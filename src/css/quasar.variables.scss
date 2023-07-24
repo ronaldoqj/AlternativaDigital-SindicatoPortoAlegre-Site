@@ -1,0 +1,52 @@
+// Quasar SCSS (& Sass) Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass/SCSS variables found in Quasar's source Sass/SCSS files.
+
+// Check documentation for full list of Quasar variables
+
+// Your own variables (that are declared here) and Quasar's own
+// ones will be available out of the box in your .vue/.scss/.sass files
+
+// It's highly recommended to change the default colors
+// to match your app's branding.
+// Tip: Use the "Theme Builder" on Quasar's documentation website.
+body {
+  --q-tertiary: #FFFFFF;
+  --q-text-inverse: #FFFFFF;
+  --q-text: #000000;
+}
+
+$primary   : #A11D20;
+$secondary : #336AA7;
+$accent    : #7E181A;
+$tertiary: var(--q-tertiary) !default;
+
+$dark      : #1D1D1D;
+$dark-page : #121212;
+
+$positive  : #21BA45;
+$negative  : #C10015;
+$info      : #31CCEC;
+$warning   : #F2C037;
+
+$background: #ffffff;
+$text-inverse: var(--q-text-inverse) !default;
+$text: var(--q-text) !default;
+
+/**
+ * Normal variables
+ */
+$top-radius: 40px;
+$corner-curve: 100px;
+$negative-top: 40px;
+$negative-bottom: 100px;
+
+.bg-text-inverse { background: $text-inverse !important; }
+.text-text-inverse { color: $text-inverse !important; }
+
+.bg-text { background: $text !important; }
+.text-text { color: $text !important; }
+
+.bg-tertiary { background: $tertiary !important; }
+.text-tertiary { color: $tertiary !important; }
