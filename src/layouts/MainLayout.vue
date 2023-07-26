@@ -1,7 +1,7 @@
 <template>
   <div class="box__layout">
 
-  <q-layout view="lhr lpR lFr" class="WAL__layout">
+  <q-layout view="lhr lpR lfr" class="WAL__layout">
     <q-header class="box__layout">
 
       <LayoutHeader v-model="leftDrawerOpen"></LayoutHeader>
@@ -47,6 +47,10 @@
       <div id="slice__header" class="row"></div>
       <router-view />
     </q-page-container>
+
+    <q-footer>
+      <LayoutFooter />
+    </q-footer>
   </q-layout>
 </div>
 </template>
@@ -55,6 +59,7 @@
 import { ref } from 'vue'
 import EssentialLink, { EssentialLinkProps } from 'components/EssentialLink.vue'
 import LayoutHeader from 'components/layout/LayoutHeader.vue'
+import LayoutFooter from 'components/layout/LayoutFooter.vue'
 
 const essentialLinks: EssentialLinkProps[] = [
   {

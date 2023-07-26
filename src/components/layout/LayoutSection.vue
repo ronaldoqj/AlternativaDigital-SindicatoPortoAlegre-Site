@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PropType, computed, reactive } from 'vue'
+import { PropType, computed } from 'vue'
 import IconDefault from 'components/interface/IconDefault.vue'
 
 type layoutType = 'top' | 'banner' | 'normal'
@@ -22,13 +22,28 @@ const props = defineProps({
   cornerColor: {
     type: String,
     require: false
+  },
+  twoCorners: {
+    type: Boolean,
+    default: false,
+    require: false
+  },
+  withoutCurveTop: {
+    type: Boolean,
+    default: false,
+    require: false
+  },
+  withoutCurveBootom: {
+    type: Boolean,
+    default: false,
+    require: false
   }
 })
 
-const state = reactive({
-  showCornerCurveTop: false,
-  showCornerCurveBottom: true
-})
+// const state = reactive({
+//   showCornerCurveTop: false,
+//   showCornerCurveBottom: true
+// })
 
 const resolveType = computed(() => {
   let style = ''
@@ -59,18 +74,22 @@ const resolveBackground = computed(() => {
   return background
 })
 
+const resolveWithoutCurveTop = computed(() => {
+  return props.withoutCurveTop ? 'without__curve--top' : ''
+})
+
 </script>
 
 <template>
-  <div :class="`layout__section ${resolveType} ${resolveBackground}`">
+  <div :class="`layout__section ${resolveType} ${resolveBackground} ${resolveWithoutCurveTop}`">
     <div class="box__section">
       <slot v-if="resolveType === 'section__banner'"></slot>
       <div v-else class="section--content">
-        {{ resolveType }}
         <slot></slot>
       </div>
-      <div v-if="state.showCornerCurveBottom" class="corner-curve curve-up">
-        <IconDefault size="120" :color="props.cornerColor" viewBox="0 0 120 120" src="assets/svg/corner-curve.svg#corner_curve" />
+      <div v-show="!withoutCurveBootom" class="corner-curve curve-up">
+        <IconDefault :size="120" :color="props.cornerColor" viewBox="0 0 120 120" src="assets/svg/corner-curve.svg#corner_curve" />
+        <IconDefault v-show="twoCorners" :size="120" :color="props.cornerColor" viewBox="0 0 120 120" src="assets/svg/corner-curve.svg#corner_curve" />
       </div>
     </div>
   </div>
@@ -90,6 +109,15 @@ const resolveBackground = computed(() => {
     .corner-curve {
       position: relative;
       bottom: $negative-bottom;
+      // Add to align two corner on bottom
+      display: flex;
+      justify-content: space-between;
+
+      span {
+        &:last-child {
+          transform: scaleX(-1);
+        }
+      }
     }
   }
 
@@ -114,9 +142,13 @@ const resolveBackground = computed(() => {
 
   &.section__normal
   {
-    margin-bottom: -$negative-bottom;
     margin-top: -$negative-bottom;
     border-top-right-radius: $corner-curve;
+  }
+
+  &.without__curve--top {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
   }
 
 }

@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { PropType } from 'vue'
-import { IconDefaultSize } from '../_models/interfaces/IconDefault'
-
 const props = defineProps({
   src: {
     type: String,
     required: true
   },
   size: {
-    type: Object as PropType<IconDefaultSize>,
+    type: Number,
     require: false
   },
   viewBox: {

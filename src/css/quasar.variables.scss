@@ -13,6 +13,7 @@
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
 body {
   --q-tertiary: #FFFFFF;
+  --q-quaternary: #F2F3F3;
   --q-text-inverse: #FFFFFF;
   --q-text: #000000;
 }
@@ -21,6 +22,7 @@ $primary   : #A11D20;
 $secondary : #336AA7;
 $accent    : #7E181A;
 $tertiary: var(--q-tertiary) !default;
+$quaternary: var(--q-quaternary) !default;
 
 $dark      : #1D1D1D;
 $dark-page : #121212;
@@ -50,3 +52,6 @@ $negative-bottom: 100px;
 
 .bg-tertiary { background: $tertiary !important; }
 .text-tertiary { color: $tertiary !important; }
+
+.bg-quaternary { background: $quaternary !important; }
+.text-quaternary { color: $quaternary !important; }
