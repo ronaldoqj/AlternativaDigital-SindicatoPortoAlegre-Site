@@ -103,7 +103,15 @@ const resolveWithoutCurveTop = computed(() => {
   .box__section
   {
     .section--content {
+      position: relative;
       padding: 40px 100px;
+      z-index: $z-index-content;
+    }
+
+    @media only screen and (max-width: $breakpoint-sm) {
+      .section--content {
+        padding: 40px 30px;
+      }
     }
 
     .corner-curve {
@@ -112,6 +120,7 @@ const resolveWithoutCurveTop = computed(() => {
       // Add to align two corner on bottom
       display: flex;
       justify-content: space-between;
+      z-index: $z-index-min;
 
       span {
         &:last-child {

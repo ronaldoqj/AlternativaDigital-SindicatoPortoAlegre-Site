@@ -8,7 +8,7 @@ import LayoutSection from 'components/layout/LayoutSection.vue'
   <div id="container__footer" class="text-text-inverse">
     <LayoutSection background="secondary" cornerColor="primary">
         <div id="content__footer">
-          <ImageDefault :size="{width: 290, height: 34}" src="assets/svg/portal-parceiro-bancariosrs.svg"></ImageDefault>
+          <ImageDefault :size="{width: '290px', 'height': '34px'}" src="assets/svg/portal-parceiro-bancariosrs.svg"></ImageDefault>
         </div>
     </LayoutSection>
     <LayoutSection background="primary" cornerColor="accent">
@@ -22,7 +22,7 @@ import LayoutSection from 'components/layout/LayoutSection.vue'
     </LayoutSection>
     <LayoutSection background="accent" withoutCurveBootom>
         <div id="content__footer">
-          <ImageDefault :size="{width: 290, height: 34}" src="assets/svg/portal-parceiro-bancariosrs.svg"></ImageDefault>
+          <ImageDefault :size="{width: '290px', height: '34px'}" src="assets/svg/portal-parceiro-bancariosrs.svg"></ImageDefault>
         </div>
     </LayoutSection>
   </div>

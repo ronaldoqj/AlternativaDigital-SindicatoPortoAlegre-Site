@@ -1,5 +1,9 @@
-// Quasar SCSS (& Sass) Variables
-// --------------------------------------------------
+/*
+ | -----------------------------------------------------|
+ |  Quasar SCSS (& Sass) Variables                      |
+ | -----------------------------------------------------|
+**/
+
 // To customize the look and feel of this app, you can override
 // the Sass/SCSS variables found in Quasar's source Sass/SCSS files.
 
@@ -11,9 +15,13 @@
 // It's highly recommended to change the default colors
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
+
 body {
   --q-tertiary: #FFFFFF;
   --q-quaternary: #F2F3F3;
+  --q-quinary: #9E9B9B;
+  --q-quinary: #4B4B4B;
+  --q-senary: #4B4B4B;
   --q-text-inverse: #FFFFFF;
   --q-text: #000000;
 }
@@ -23,6 +31,8 @@ $secondary : #336AA7;
 $accent    : #7E181A;
 $tertiary: var(--q-tertiary) !default;
 $quaternary: var(--q-quaternary) !default;
+$quinary: var(--q-quinary) !default;
+$senary: var(--q-senary) !default;
 
 $dark      : #1D1D1D;
 $dark-page : #121212;
@@ -36,13 +46,13 @@ $background: #ffffff;
 $text-inverse: var(--q-text-inverse) !default;
 $text: var(--q-text) !default;
 
-/**
- * Normal variables
- */
-$top-radius: 40px;
-$corner-curve: 100px;
-$negative-top: 40px;
-$negative-bottom: 100px;
+
+
+/*
+ | -----------------------------------------------------|
+ |  Add colors to Quasar                                |
+ | -----------------------------------------------------|
+**/
 
 .bg-text-inverse { background: $text-inverse !important; }
 .text-text-inverse { color: $text-inverse !important; }
@@ -55,3 +65,24 @@ $negative-bottom: 100px;
 
 .bg-quaternary { background: $quaternary !important; }
 .text-quaternary { color: $quaternary !important; }
+
+.bg-quinary { background: $quinary !important; }
+.text-quinary { color: $quinary !important; }
+
+.bg-senary { background: $senary !important; }
+.text-senary { color: $senary !important; }
+
+
+
+ /*
+ | -----------------------------------------------------|
+ |  Normal variables                                    |
+ | -----------------------------------------------------|
+**/
+
+ $top-radius: 40px;
+ $corner-curve: 100px;
+ $negative-top: 40px;
+ $negative-bottom: 100px;
+ $z-index-min: 1;
+ $z-index-content: 90;
