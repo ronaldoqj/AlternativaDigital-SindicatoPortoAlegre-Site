@@ -72,7 +72,7 @@ const resolveRadius = computed(() => {
 
 const loading = ref(false)
 
-function simulateProgress (number:number) {
+function simulateProgress () {
   // we set loading state
   loading.value = true
 
@@ -98,7 +98,7 @@ function simulateProgress (number:number) {
 
     :loading="loading"
     :color="props.color"
-    @click="simulateProgress(3)"
+    @click="simulateProgress()"
     :style="resolveStyle">
     {{ props.title }}
     <template v-slot:loading>
