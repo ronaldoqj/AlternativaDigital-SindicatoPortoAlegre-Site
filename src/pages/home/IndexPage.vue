@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import LayoutSection from 'components/layout/LayoutSection.vue'
+import LayoutSection from 'layouts/components/LayoutSection.vue'
 import SectionHighlights from 'pages/home/SectionHighlights.vue'
 import SectionNews from 'pages/home/SectionNews.vue'
 import SectionVideos from 'pages/home/SectionVideos.vue'

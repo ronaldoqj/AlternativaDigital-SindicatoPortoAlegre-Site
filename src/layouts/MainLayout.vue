@@ -58,8 +58,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import EssentialLink, { EssentialLinkProps } from 'components/EssentialLink.vue'
-import LayoutHeader from 'components/layout/LayoutHeader.vue'
-import LayoutFooter from 'components/layout/LayoutFooter.vue'
+import LayoutHeader from 'layouts/components/LayoutHeader.vue'
+import LayoutFooter from 'layouts/components/LayoutFooter.vue'
 
 const essentialLinks: EssentialLinkProps[] = [
   {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import { PropType } from 'vue'
-// import { type ratioType } from '../_models/interfaces/InterfacesDefault'
+// import { type ratioType } from 'components/models/interfaces/InterfacesDefault'
 import ImageDefault from 'components/interface/ImageDefault.vue'
 
 // const props = defineProps({

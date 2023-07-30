@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ImageDefault from 'components/interface/ImageDefault.vue'
-import LayoutSection from 'components/layout/LayoutSection.vue'
+import LayoutSection from 'layouts/components/LayoutSection.vue'
 
 </script>
 

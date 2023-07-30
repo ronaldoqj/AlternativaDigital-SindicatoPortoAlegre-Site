@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ImageDefault from 'components/interface/ImageDefault.vue'
-import LayoutMenu from 'components/layout/LayoutMenu.vue'
-import LayoutMenuSocialMedia from 'components/layout/LayoutMenuSocialMedia.vue'
+import LayoutMenu from 'layouts/components/LayoutMenu.vue'
+import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
 
 const props = defineProps({
   modelValue: {
