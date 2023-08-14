@@ -1,4 +1,4 @@
-<script setup type="ts">
+<script setup lang="ts">
 import ImageDefault from 'components/interface/ImageDefault.vue'
 import { reactive } from 'vue'
 

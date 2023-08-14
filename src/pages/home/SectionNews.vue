@@ -1,4 +1,4 @@
-<script setup type="ts">
+<script setup lang="ts">
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import NewsItem from 'components/interface/NewsItem.vue'
 import ButtonDefault from 'components/interface/ButtonDefault.vue'
@@ -9,7 +9,7 @@ const description = 'Cerca de dois meses após ser anunciado como futuro preside
 </script>
 
 <template>
-  <div class="section__default">
+  <div class="section__default" v-if="false">
     <TitleDefault title="Notícias" color="primary" />
     <div class="row q-mb-md">
       <div class="col-xs-12 col-lg-6 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" :highlights="true" /></div>

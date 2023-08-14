@@ -5,9 +5,11 @@ const slide = ref(1)
 </script>
 
 <template>
-  <div class="box__carousel--banner--top">
+  <div class="section__highlights--carousel">
     <q-carousel
-      class="carousel__banner--top"
+      class="carousel-highlights"
+      control-color="tertiary"
+      swipeable
       animated
       v-model="slide"
       :autoplay="7000"
@@ -29,23 +31,26 @@ const slide = ref(1)
 $border-radius-control-banner: 20px;
 $banner-height: 630px;
 
-.carousel__banner--top {
-  border-top-right-radius: $top-radius;
-  border-top-left-radius: $top-radius;
-  height: $banner-height;
-}
+.section__highlights--carousel {
+  .carousel-highlights {
+    border-top-right-radius: $top-radius;
+    border-top-left-radius: $top-radius;
+    height: $banner-height;
 
-.q-carousel__control {
-  width: fit-content;
-  margin: 0 auto;
-  padding: 0 20px;
-  border-top-right-radius: $border-radius-control-banner;
-  border-top-left-radius: $border-radius-control-banner;
-  background-color: $accent;
-  bottom: $negative-bottom;
+    .q-carousel__control
+    {
+      width: fit-content;
+      margin: 0 auto;
+      padding: 0 20px;
+      border-top-right-radius: $border-radius-control-banner;
+      border-top-left-radius: $border-radius-control-banner;
+      background-color: $accent;
+      bottom: $negative-bottom;
 
-  button {
-    padding: 0;
+      button {
+        padding: 0;
+      }
+    }
   }
 }
 </style>

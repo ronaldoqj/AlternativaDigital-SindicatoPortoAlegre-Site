@@ -24,6 +24,8 @@ body {
   --q-senary: #4B4B4B;
   --q-text-inverse: #FFFFFF;
   --q-text: #000000;
+  --q-dark-hover: #000000;
+  --q-dark-hover-90: #00000090;
 }
 
 $primary   : #A11D20;
@@ -33,6 +35,9 @@ $tertiary: var(--q-tertiary) !default;
 $quaternary: var(--q-quaternary) !default;
 $quinary: var(--q-quinary) !default;
 $senary: var(--q-senary) !default;
+
+$dark-hover: var(--q-dark-hover) !default;
+$dark-hover-90: var(--q-dark-hover-90) !default;
 
 $dark      : #1D1D1D;
 $dark-page : #121212;
@@ -71,6 +76,12 @@ $text: var(--q-text) !default;
 
 .bg-senary { background: $senary !important; }
 .text-senary { color: $senary !important; }
+
+.bg-dark-hover { background: $dark-hover !important; }
+.text-dark-hover { color: $dark-hover !important; }
+
+.bg-dark-hover-90 { background: $dark-hover-90 !important; }
+.text-dark-hover-90 { color: $dark-hover-90 !important; }
 
 
 

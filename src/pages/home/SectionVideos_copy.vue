@@ -6,61 +6,40 @@ import { ref, reactive, computed, onMounted } from 'vue'
 import { arrayChunk } from 'src/helpers/helpers'
 
 type CarouselType = 'mobile' | 'desktop'
-interface ICarouselItem {
+interface ICarouselData {
   id: number
   image: string
-}
-
-interface ICarouselDesktop {
-  firstItem: ICarouselItem
-  item: Array<ICarouselItem>
-}
-
-interface ICarouselMobile {
-  firstItem: ICarouselItem
-  item: Array<ICarouselItem>
-  item2: Array<ICarouselItem>
 }
 
 const $q = useQuasar()
 const slide = ref(1)
 const state = reactive({
-  arrayTest: ['1', '2', '3', '4'],
   carousel: {
-    data: [] as Array<ICarouselItem>,
-    carouselData: [] as Array<ICarouselMobile | ICarouselDesktop>,
-    storeCarouselData: {
-      mobile: [] as Array<ICarouselMobile>,
-      desktop: [] as Array<ICarouselDesktop>
-    }
+    data: [] as Array<ICarouselData>,
+    items: [] as Array<[ICarouselData, [ICarouselData, ICarouselData]]>,
+    itemsMobile: [] as Array<[ICarouselData, [ICarouselData, ICarouselData]]>,
+    itemsDeskop: [] as Array<[ICarouselData, [ICarouselData, ICarouselData]]>
   }
 })
 
-const showCarousel = computed((): boolean => {
-  return !!state.carousel.carouselData.length
-})
+const sortItems = (carouselType:CarouselType) => {
+  state.carousel.data.forEach((element:ICarouselData) => {
+    if (state.carousel.data.length) {
+      switch (carouselType) {
+        case 'desktop':
+          // const test = element
+          console.log(element)
 
-const currentCarouselType = computed(() => {
-  const type = $q.screen.lt.lg ? 'mobile' : 'desktop'
-  console.log('slide', slide)
-  sortCarouselData(type)
-  return type
-})
-
-const sortCarouselData = (carouselType:CarouselType): void => {
-  if (state.carousel.data.length) {
-    switch (carouselType) {
-      case 'desktop':
-        state.carousel.carouselData = state.carousel.storeCarouselData.desktop
-        break
-      case 'mobile':
-      default:
-        state.carousel.carouselData = state.carousel.storeCarouselData.mobile
-        break
+          break
+        case 'mobile':
+        default:
+          //
+          break
+      }
     }
+  })
 
-    slide.value = 0
-  }
+  console.log('function Test', carouselType)
 }
 
 /**
@@ -68,85 +47,147 @@ const sortCarouselData = (carouselType:CarouselType): void => {
  * Functions to sort Objects into array
  * -------------------------------------------
  */
-
-const sortDesktop = (blocksDesktop: Array<ICarouselItem[]>): ICarouselDesktop[] => {
-  const itemCarousel:Array<ICarouselDesktop> = []
-
-  blocksDesktop.forEach((item:Array<ICarouselItem>) => {
-    switch (item.length) {
-      case 3:
-        itemCarousel.push({
-          firstItem: item[0],
-          item: [item[1], item[2]]
-        } as ICarouselDesktop)
-        break
-      case 2:
-        itemCarousel.push({
-          firstItem: item[0],
-          item: [item[1]]
-        } as ICarouselDesktop)
-        break
-      case 1:
-      default:
-        itemCarousel.push({ firstItem: item[0] } as ICarouselDesktop)
-        break
-    }
-  })
-
-  console.log('sortDesktop', JSON.parse(JSON.stringify(itemCarousel)))
-  return JSON.parse(JSON.stringify(itemCarousel))
-}
-
-const sortMobile = (blocksMobile: Array<ICarouselItem[]>): ICarouselMobile[] => {
-  const itemCarousel: Array<ICarouselMobile> = []
-
-  blocksMobile.forEach((item:Array<ICarouselItem>) => {
-    switch (item.length) {
-      case 5:
-        itemCarousel.push({
-          firstItem: item[0],
-          item: [item[1], item[2]],
-          item2: [item[3], item[4]]
-        } as ICarouselMobile)
-        break
-      case 4:
-        itemCarousel.push({
-          firstItem: item[0],
-          item: [item[1], item[2]],
-          item2: [item[3]]
-        } as ICarouselMobile)
-        break
-      case 3:
-        itemCarousel.push({
-          firstItem: item[0],
-          item: [item[1], item[2]]
-        } as ICarouselMobile)
-        break
-      case 2:
-        itemCarousel.push({
-          firstItem: item[0],
-          item: [item[1]]
-        } as ICarouselMobile)
-        break
-      case 1:
-      default:
-        itemCarousel.push({ firstItem: item[0] } as ICarouselMobile)
-        break
-    }
-  })
-
-  console.log('sortMobile', JSON.parse(JSON.stringify(itemCarousel)))
-  return JSON.parse(JSON.stringify(itemCarousel))
-}
-
-const setStoreDatas = (carouselData: Array<ICarouselItem>) : void => {
+const blocksOfThree = (carouselData: Array<ICarouselData>) : Array<ICarouselData[]> => {
   const blocksMobile = arrayChunk(carouselData, 5)
   const blocksDesktop = arrayChunk(carouselData, 3)
-  state.carousel.storeCarouselData.mobile = sortMobile(blocksMobile)
-  state.carousel.storeCarouselData.desktop = sortDesktop(blocksDesktop)
+  console.log('blocksMobile', blocksMobile)
+  console.log('blocksDesktop', blocksDesktop)
+  console.log('chunkMobile', chunkMobile(blocksMobile, 4))
+  console.log('chunkDesktop', chunkDesktop(blocksDesktop, 2))
+
+  return blocksMobile
 }
 
-const getData = (): void => {
+interface ICarouselItem {
+  id: number
+  image: string
+}
+
+interface ICarouselDeskot {
+  firstItem: ICarouselItem
+  item: Array<ICarouselItem[]>
+}
+
+interface ICarouselMobile {
+  firstItem: ICarouselItem
+  item: Array<ICarouselItem[]>
+}
+
+const chunkDesktop = (blocksDesktop: Array<any>, chunkSize: number) => {
+  const chunks:Array<ICarouselDeskot> = []
+
+  blocksDesktop.forEach((item:Array<ICarouselData>) => {
+    const firstItem: ICarouselItem = { id: item[0].id, image: item[0].image }
+    let items: ICarouselItem[] = []
+    const itemCarousel: ICarouselDeskot = { firstItem, item: [] }
+
+    switch (item.length) {
+      case 3:
+        items = [item[1], item[2]] as Array<ICarouselItem>
+        itemCarousel.item.push(items)
+        // chunks.push(itemCarousel)
+        break
+      case 2:
+        items = [item[1]] as Array<ICarouselItem>
+        itemCarousel.item.push(items)
+        // chunks.push(itemCarousel)
+        break
+      case 1:
+      default:
+        items = [] as Array<ICarouselItem>
+        break
+    }
+    // itemCarousel.item.push(items)
+    chunks.push(itemCarousel)
+  })
+
+  return JSON.parse(JSON.stringify(chunks))
+}
+
+const chunkMobile = (blocksMobile: Array<any>, chunkSize: number) => {
+  const chunks:Array<ICarouselMobile> = []
+
+  blocksMobile.forEach((item:Array<ICarouselData>) => {
+    const firstItem: ICarouselItem = { id: item[0].id, image: item[0].image }
+    let items: ICarouselItem[] = []
+    const itemCarousel: ICarouselMobile = { firstItem, item: [] }
+
+    switch (item.length) {
+      case 5:
+        // chunks.push([item[0], [item[1], item[2]], [item[3], item[4]]])
+        items = [item[1], item[2]] as Array<ICarouselItem>
+        itemCarousel.item.push(items)
+        items = [item[3], item[4]] as Array<ICarouselItem>
+        itemCarousel.item.push(items)
+        break
+      case 4:
+        // chunks.push([item[0], [item[1], item[2]], [item[3]]])
+        items = [item[1], item[2]] as Array<ICarouselItem>
+        itemCarousel.item.push(items)
+        items = [item[3]] as Array<ICarouselItem>
+        itemCarousel.item.push(items)
+        break
+      case 3:
+        // chunks.push([item[0], [item[1], item[2]]])
+        items = [item[1], item[2]] as Array<ICarouselItem>
+        itemCarousel.item.push(items)
+        break
+      case 2:
+        // chunks.push([item[0], [item[1]]])
+        items = [item[1]] as Array<ICarouselItem>
+        itemCarousel.item.push(items)
+        break
+      case 1:
+      default:
+        // chunks.push([item[0], []])
+        break
+    }
+
+    chunks.push(itemCarousel)
+  })
+
+  return JSON.parse(JSON.stringify(chunks))
+}
+// const chunkMobile = (blocksMobile: Array<any>, chunkSize: number) => {
+//   const chunks:Array<any> = []
+
+//   blocksMobile.forEach((item:Array<ICarouselData>) => {
+//     switch (item.length) {
+//       case 5:
+//         chunks.push([item[0], [item[1], item[2]], [item[3], item[4]]])
+//         break
+//       case 4:
+//         chunks.push([item[0], [item[1], item[2]], [item[3]]])
+//         break
+//       case 3:
+//         chunks.push([item[0], [item[1], item[2]]])
+//         break
+//       case 2:
+//         chunks.push([item[0], [item[1]]])
+//         break
+//       case 1:
+//       default:
+//         chunks.push([item[0], []])
+//         break
+//     }
+//   })
+
+//   return JSON.parse(JSON.stringify(chunks))
+// }
+
+const treatItems = (blocks:any) => {
+  // blocks = arrayChunk(blocks, 3)
+  // console.log('arrayChunk', blocks)
+
+  return blocks
+}
+
+const carouselType = computed(() => {
+  sortItems($q.screen.lt.lg ? 'mobile' : 'desktop')
+  return $q.screen.lt.lg ? 'mobile' : 'desktop'
+})
+
+const getData = () => {
   const limitImages = 7
   let countImages = 0
   const newData = []
@@ -166,10 +207,11 @@ const getData = (): void => {
 
   state.carousel.data = newData
   console.log(state.carousel.data)
-  setStoreDatas(state.carousel.data)
+  blocksOfThree(state.carousel.data)
 }
 
 onMounted(() => {
+  console.log('onMounted')
   getData()
 })
 </script>
@@ -177,9 +219,8 @@ onMounted(() => {
 <template>
   <div class="section__default">
     <TitleDefault title="Vídeos" color="tertiary" />
-    {{ currentCarouselType }}
-    <div v-if="!showCarousel">Loading</div>
-    <div v-else class="section__videos--carousel">
+    {{ carouselType }}
+    <div class="section__videos--carousel">
       <q-carousel
         class="carousel-videos"
         control-color="tertiary"
@@ -190,11 +231,10 @@ onMounted(() => {
         navigation
         infinite
       >
-      <q-carousel-slide v-for="(item, key) in state.carousel.carouselData" :key="key" :name="key" class="carousel--slide column no-wrap">
+      <q-carousel-slide :name="1" class="carousel--slide column no-wrap">
         <div class="row fit justify-start q-gutter-xs no-wrap">
-          {{ console.log('keyInside', key) }}
-          <div :class="`mosaic ${currentCarouselType}`">
-            <q-img class="first-item rounded-borders" :src="item.firstItem.image">
+          <div :class="`mosaic ${carouselType}`">
+            <q-img class="first-item rounded-borders" src="assets/image/tests/test-1.jpg">
               <div class="absolute-full box__icon--play flex flex-center">
                 <IconDefault :size="90" color="tertiary" viewBox="0 0 90 100" src="assets/svg/icon-play.svg#icon_play" />
               </div>
@@ -211,7 +251,7 @@ onMounted(() => {
                 </div>
               </q-img>
             </div>
-            <div class="last-item last-item-2" v-if="currentCarouselType === 'mobile'">
+            <div class="last-item last-item-2">
               <q-img class="item rounded-borders" src="assets/image/tests/test-2.jpg">
                 <div class="absolute-full box__icon--play flex flex-center">
                   <IconDefault :size="90" color="tertiary" viewBox="0 0 90 100" src="assets/svg/icon-play.svg#icon_play" />
@@ -223,12 +263,13 @@ onMounted(() => {
                 </div>
               </q-img>
             </div>
+
           </div>
         </div>
       </q-carousel-slide>
-      <!-- <q-carousel-slide :name="2" class="carousel--slide column no-wrap">
+      <q-carousel-slide :name="2" class="carousel--slide column no-wrap">
         <div class="row fit justify-start q-gutter-xs no-wrap">
-          <div :class="`mosaic ${currentCarouselType}`">
+          <div :class="`mosaic ${carouselType}`">
             <q-img class="first-item rounded-borders" src="assets/image/tests/test-4.jpg">
               <div class="absolute-full box__icon--play flex flex-center">
                 <IconDefault :size="90" color="tertiary" viewBox="0 0 90 100" src="assets/svg/icon-play.svg#icon_play" />
@@ -251,7 +292,7 @@ onMounted(() => {
       </q-carousel-slide>
       <q-carousel-slide :name="3" class="carousel--slide column no-wrap">
         <div class="row fit justify-start q-gutter-xs no-wrap">
-          <div :class="`mosaic ${currentCarouselType}`">
+          <div :class="`mosaic ${carouselType}`">
             <q-img class="first-item rounded-borders" src="assets/image/tests/test-7.jpg">
               <div class="absolute-full box__icon--play flex flex-center">
                 <IconDefault :size="90" color="tertiary" viewBox="0 0 90 100" src="assets/svg/icon-play.svg#icon_play" />
@@ -274,7 +315,7 @@ onMounted(() => {
       </q-carousel-slide>
       <q-carousel-slide :name="4" class="carousel--slide column no-wrap">
         <div class="row fit justify-start q-gutter-xs no-wrap">
-          <div :class="`mosaic ${currentCarouselType}`">
+          <div :class="`mosaic ${carouselType}`">
             <q-img class="first-item rounded-borders" src="assets/image/tests/test-3.jpg">
               <div class="absolute-full box__icon--play flex flex-center">
                 <IconDefault :size="90" color="tertiary" viewBox="0 0 90 100" src="assets/svg/icon-play.svg#icon_play" />
@@ -294,7 +335,7 @@ onMounted(() => {
             </div>
           </div>
         </div>
-      </q-carousel-slide> -->
+      </q-carousel-slide>
       </q-carousel>
     </div>
   </div>

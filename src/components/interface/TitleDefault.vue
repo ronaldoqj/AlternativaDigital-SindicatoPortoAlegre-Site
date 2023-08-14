@@ -1,4 +1,4 @@
-<script setup type="ts">
+<script setup lang="ts">
 import IconDefault from 'components/interface/IconDefault.vue'
 
 const props = defineProps({

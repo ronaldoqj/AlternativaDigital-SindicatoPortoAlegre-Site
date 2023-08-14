@@ -1,4 +1,4 @@
-<script setup type="ts">
+<script setup lang="ts">
 import TitleDefault from 'components/interface/TitleDefault.vue'
 </script>
 
