@@ -18,7 +18,6 @@ const state = reactive({
 
 const setStoreDatas = (carouselData: Array<ICarouselItem>) : void => {
   state.carousel.carouselData = arrayChunk(carouselData, 3) as unknown as Array<ICarouselItem>[]
-  console.log('sectionServices carouselData', JSON.parse(JSON.stringify(state.carousel.carouselData)))
 }
 
 const getData = (): void => {
@@ -40,7 +39,6 @@ const getData = (): void => {
   }
 
   state.carousel.data = newData
-  console.log(state.carousel.data)
   setStoreDatas(state.carousel.data)
 }
 
@@ -68,38 +66,29 @@ onMounted(() => {
         <div class="row fit justify-start q-gutter-sm no-wrap">
           <div class="container-content">
             <q-img class="rounded-borders content-item" v-for="(item, key2) in arrayItem" :key="key2" :src="item.image" />
-            <!-- <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/quasar.jpg" />
-            <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/mountains.jpg" /> -->
           </div>
         </div>
       </q-carousel-slide>
-      <!-- <q-carousel-slide :name="2" class="carousel--slide column no-wrap">
-        <div class="row fit justify-start q-gutter-sm no-wrap">
-          <div class="container-content">
-            <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/mountains.jpg" />
-            <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/quasar.jpg" />
-            <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/quasar.jpg" />
+      <!--
+        <q-carousel-slide :name="2" class="carousel--slide column no-wrap">
+          <div class="row fit justify-start q-gutter-sm no-wrap">
+            <div class="container-content">
+              <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/mountains.jpg" />
+              <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/quasar.jpg" />
+              <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/quasar.jpg" />
+            </div>
           </div>
-        </div>
-      </q-carousel-slide>
-      <q-carousel-slide :name="3" class="carousel--slide column no-wrap">
-        <div class="row fit justify-start q-gutter-sm no-wrap">
-          <div class="container-content">
-            <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/cat.jpg" />
-            <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/linux-avatar.png" />
-            <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/linux-avatar.png" />
+        </q-carousel-slide>
+        <q-carousel-slide :name="4" class="carousel--slide column no-wrap">
+          <div class="row fit justify-start q-gutter-sm no-wrap">
+            <div class="container-content">
+              <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/material.png" />
+              <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/donuts.png" />
+              <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/donuts.png" />
+            </div>
           </div>
-        </div>
-      </q-carousel-slide>
-      <q-carousel-slide :name="4" class="carousel--slide column no-wrap">
-        <div class="row fit justify-start q-gutter-sm no-wrap">
-          <div class="container-content">
-            <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/material.png" />
-            <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/donuts.png" />
-            <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/donuts.png" />
-          </div>
-        </div>
-      </q-carousel-slide> -->
+        </q-carousel-slide>
+      -->
       </q-carousel>
     </div>
   </div>
