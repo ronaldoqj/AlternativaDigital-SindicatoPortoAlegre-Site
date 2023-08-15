@@ -131,11 +131,31 @@ $height-item: 360px;
           flex-direction: row;
         }
       }
+      // div
+      // {
+      //   div {
+      //     border-radius: 20px;
+      //   }
+
+      //   @media only screen and (max-width: $breakpoint-md)
+      //   {
+      //     flex-direction: column;
+      //     height: inherit;
+
+      //     div {
+      //       max-height: 340px;
+      //     }
+      //   }
+      // }
     }
 
     .q-carousel__control {
       bottom: -5px;
     }
+
+    // @media only screen and (max-width: $breakpoint-md) {
+    //   height: inherit;
+    // }
   }
 }
 </style>
