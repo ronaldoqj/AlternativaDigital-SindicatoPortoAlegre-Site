@@ -25,7 +25,6 @@ interface ICarouselMobile {
 const $q = useQuasar()
 const slide = ref(1)
 const state = reactive({
-  arrayTest: ['1', '2', '3', '4'],
   carousel: {
     data: [] as Array<ICarouselItem>,
     carouselData: [] as Array<ICarouselMobile | ICarouselDesktop>,
@@ -40,7 +39,7 @@ const showCarousel = computed((): boolean => {
   return !!state.carousel.carouselData.length
 })
 
-const currentCarouselType = computed(() => {
+const currentCarouselType = computed((): CarouselType => {
   const type = $q.screen.lt.lg ? 'mobile' : 'desktop'
   console.log('slide', slide)
   sortCarouselData(type)
@@ -93,7 +92,7 @@ const sortDesktop = (blocksDesktop: Array<ICarouselItem[]>): ICarouselDesktop[] 
     }
   })
 
-  console.log('sortDesktop', JSON.parse(JSON.stringify(itemCarousel)))
+  // console.log('sortDesktop', JSON.parse(JSON.stringify(itemCarousel)))
   return JSON.parse(JSON.stringify(itemCarousel))
 }
 
@@ -135,7 +134,7 @@ const sortMobile = (blocksMobile: Array<ICarouselItem[]>): ICarouselMobile[] => 
     }
   })
 
-  console.log('sortMobile', JSON.parse(JSON.stringify(itemCarousel)))
+  // console.log('sortMobile', JSON.parse(JSON.stringify(itemCarousel)))
   return JSON.parse(JSON.stringify(itemCarousel))
 }
 
@@ -167,6 +166,7 @@ const getData = (): void => {
   state.carousel.data = newData
   console.log(state.carousel.data)
   setStoreDatas(state.carousel.data)
+  sortCarouselData(currentCarouselType as unknown as CarouselType)
 }
 
 onMounted(() => {
@@ -177,7 +177,7 @@ onMounted(() => {
 <template>
   <div class="section__default">
     <TitleDefault title="Vídeos" color="tertiary" />
-    {{ currentCarouselType }}
+    <!-- {{ currentCarouselType }} -->
     <div v-if="!showCarousel">Loading</div>
     <div v-else class="section__videos--carousel">
       <q-carousel
@@ -190,38 +190,37 @@ onMounted(() => {
         navigation
         infinite
       >
-      <q-carousel-slide v-for="(item, key) in state.carousel.carouselData" :key="key" :name="key" class="carousel--slide column no-wrap">
+      <q-carousel-slide v-for="(news, key) in (state.carousel.carouselData as ICarouselMobile[])" :key="key" :name="key" class="carousel--slide column no-wrap">
         <div class="row fit justify-start q-gutter-xs no-wrap">
-          {{ console.log('keyInside', key) }}
           <div :class="`mosaic ${currentCarouselType}`">
-            <q-img class="first-item rounded-borders" :src="item.firstItem.image">
+            <q-img class="first-item rounded-borders" :src="news.firstItem.image">
               <div class="absolute-full box__icon--play flex flex-center">
                 <IconDefault :size="90" color="tertiary" viewBox="0 0 90 100" src="assets/svg/icon-play.svg#icon_play" />
               </div>
             </q-img>
-            <div class="last-item">
-              <q-img class="item rounded-borders" src="assets/image/tests/test-2.jpg">
+            <div class="last-item" :name="key">
+              <q-img class="item rounded-borders" :src="item.image" v-for="(item, key2) in news.item" :key="key2">
                 <div class="absolute-full box__icon--play flex flex-center">
                   <IconDefault :size="90" color="tertiary" viewBox="0 0 90 100" src="assets/svg/icon-play.svg#icon_play" />
                 </div>
               </q-img>
-              <q-img class="item rounded-borders" src="assets/image/tests/test-3.jpg">
+              <!-- <q-img class="item rounded-borders" src="assets/image/tests/test-3.jpg">
                 <div class="absolute-full box__icon--play flex flex-center">
                   <IconDefault :size="90" color="tertiary" viewBox="0 0 90 100" src="assets/svg/icon-play.svg#icon_play" />
                 </div>
-              </q-img>
+              </q-img> -->
             </div>
             <div class="last-item last-item-2" v-if="currentCarouselType === 'mobile'">
-              <q-img class="item rounded-borders" src="assets/image/tests/test-2.jpg">
+              <q-img class="item rounded-borders" :src="item2.image" v-for="(item2, key3) in news.item2" :key="key3">
                 <div class="absolute-full box__icon--play flex flex-center">
                   <IconDefault :size="90" color="tertiary" viewBox="0 0 90 100" src="assets/svg/icon-play.svg#icon_play" />
                 </div>
               </q-img>
-              <q-img class="item rounded-borders" src="assets/image/tests/test-3.jpg">
+              <!-- <q-img class="item rounded-borders" src="assets/image/tests/test-3.jpg">
                 <div class="absolute-full box__icon--play flex flex-center">
                   <IconDefault :size="90" color="tertiary" viewBox="0 0 90 100" src="assets/svg/icon-play.svg#icon_play" />
                 </div>
-              </q-img>
+              </q-img> -->
             </div>
           </div>
         </div>

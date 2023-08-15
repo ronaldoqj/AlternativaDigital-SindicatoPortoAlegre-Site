@@ -9,7 +9,7 @@ const description = 'Cerca de dois meses após ser anunciado como futuro preside
 </script>
 
 <template>
-  <div class="section__default" v-if="false">
+  <div class="section__default">
     <TitleDefault title="Notícias" color="primary" />
     <div class="row q-mb-md">
       <div class="col-xs-12 col-lg-6 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" :highlights="true" /></div>
