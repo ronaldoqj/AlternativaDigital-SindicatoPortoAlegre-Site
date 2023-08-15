@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ImageDefault from 'components/interface/ImageDefault.vue'
-import LayoutMenu from 'components/layout/LayoutMenu.vue'
-import LayoutMenuSocialMedia from 'components/layout/LayoutMenuSocialMedia.vue'
+import LayoutMenu from 'layouts/components/LayoutMenu.vue'
+import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
 
 const props = defineProps({
   modelValue: {
@@ -27,11 +27,11 @@ function toggleDrawer () {
 <template>
   <div id="container__header">
     <div class="layout__header--first">
-      <ImageDefault :size="{width: 254, height: 30}" src="/assets/svg/portal-parceiro-bancariosrs.svg"></ImageDefault>
+      <ImageDefault :size="{width: '254px', height: '30px'}" src="/assets/svg/portal-parceiro-bancariosrs.svg"></ImageDefault>
     </div>
     <div id="menu__header">
       <div class="logo">
-        <ImageDefault :size="{width: 168, height: 78}" src="/assets/svg/logo-sind-bancarios-porto-alegre.svg"></ImageDefault>
+        <ImageDefault :size="{width: '168px', height: '78px'}" src="/assets/svg/logo-sind-bancarios-porto-alegre.svg"></ImageDefault>
       </div>
       <div class="menu__box">
         <div class="social-media">
