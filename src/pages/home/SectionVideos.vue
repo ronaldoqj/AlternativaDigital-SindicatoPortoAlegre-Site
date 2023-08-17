@@ -175,7 +175,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="section__default">
+  <div class="section__default section__videos">
     <TitleDefault title="Vídeos" color="tertiary" />
     <!-- {{ currentCarouselType }} -->
     <div v-if="!showCarousel">Loading</div>
@@ -312,123 +312,127 @@ $space-between-rows-items: 10px;
 $height-item: 400px;
 $height-small-items: $height-item / 2 - $space-between-rows-items;
 
-.section__videos--carousel
+.section__videos
 {
-  .carousel-videos
+  .section__videos--carousel
   {
-    background-color: transparent;
-    height: inherit;
-    padding-bottom: 20px;
-
-    .carousel--slide
+    .carousel-videos
     {
-      padding: 10px 4px 30px 0px;
+      background-color: transparent;
+      height: inherit;
+      padding-bottom: 20px;
 
-      .mosaic
+      .carousel--slide
       {
-        /**
-         * |-------------------------------------|
-         * | .mobile is default below            |
-         * |-------------------------------------|
-         */
+        padding: 10px 4px 30px 0px;
 
-        display: flex;
-        flex-direction: column;
-        width: inherit;
-        height: inherit;
-
-        .rounded-borders {
-          border-radius: 20px;
-        }
-
-        .first-item {
-          width: auto;
-          height: $height-item;
-          margin-right: $space-between-cols-items;
-          margin-bottom: 5px;
-        }
-
-        .last-item
+        .mosaic
         {
-          margin: 5px 0;
-          width: auto;
-          margin-left: $space-between-cols-items;
+          /**
+           * |-------------------------------------|
+           * | .mobile is default below            |
+           * |-------------------------------------|
+           */
+
           display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-
-          .item {
-            &:first-child {
-              margin-right: 5px;
-            }
-            &:last-child {
-              margin-left: 5px;
-            }
-
-            height: $height-small-items;
-          }
-        }
-
-        .box__icon--play
-        {
-          background: none;
-          transition: 500ms ease-in-out;
-          cursor: pointer;
-
-          span {
-            transition: 500ms ease-in-out;
-          }
-
-          &:hover
-          {
-            background: $background-color;
-            span {
-              opacity: 0.8;
-            }
-          }
-        }
-
-        &.desktop
-        {
+          flex-direction: column;
           width: inherit;
-          height: $height-item;
-          flex-direction: row;
+          height: inherit;
 
           .rounded-borders {
             border-radius: 20px;
           }
 
           .first-item {
-            width: 70%;
+            width: auto;
             height: $height-item;
             margin-right: $space-between-cols-items;
+            margin-bottom: 5px;
           }
 
           .last-item
           {
-            margin: 0;
-            width: 30%;
+            margin: 5px 0;
+            width: auto;
             margin-left: $space-between-cols-items;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             justify-content: space-between;
 
             .item {
+              &:first-child {
+                margin-right: 5px;
+              }
+              &:last-child {
+                margin-left: 5px;
+              }
+
               height: $height-small-items;
             }
+          }
 
-            &.last-item-2 {
-              display: none;
+          .box__icon--play
+          {
+            background: none;
+            transition: 500ms ease-in-out;
+            cursor: pointer;
+
+            span {
+              transition: 500ms ease-in-out;
+            }
+
+            &:hover
+            {
+              background: $background-color;
+              span {
+                opacity: 0.8;
+              }
             }
           }
+
+          &.desktop
+          {
+            width: inherit;
+            height: $height-item;
+            flex-direction: row;
+
+            .rounded-borders {
+              border-radius: 20px;
+            }
+
+            .first-item {
+              width: 70%;
+              height: $height-item;
+              margin-right: $space-between-cols-items;
+            }
+
+            .last-item
+            {
+              margin: 0;
+              width: 30%;
+              margin-left: $space-between-cols-items;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+
+              .item {
+                height: $height-small-items;
+              }
+
+              &.last-item-2 {
+                display: none;
+              }
+            }
+          }
+
         }
-
       }
-    }
 
-    .q-carousel__control {
-      bottom: -5px;
+      .q-carousel__control {
+        bottom: -5px;
+      }
     }
   }
 }
+
 </style>
