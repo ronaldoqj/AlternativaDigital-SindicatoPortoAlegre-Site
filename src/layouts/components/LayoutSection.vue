@@ -37,6 +37,11 @@ const props = defineProps({
     type: Boolean,
     default: false,
     require: false
+  },
+  minHeight: {
+    type: Boolean,
+    default: false,
+    require: false
   }
 })
 
@@ -74,8 +79,12 @@ const resolveBackground = computed(() => {
   return background
 })
 
-const resolveWithoutCurveTop = computed(() => {
+const resolveWithoutCurveTop = computed((): string => {
   return props.withoutCurveTop ? 'without__curve--top' : ''
+})
+
+const resolveMinHeight = computed((): string => {
+  return props.minHeight ? 'min__height' : ''
 })
 
 </script>
@@ -84,7 +93,7 @@ const resolveWithoutCurveTop = computed(() => {
   <div :class="`layout__section ${resolveType} ${resolveBackground} ${resolveWithoutCurveTop}`">
     <div class="box__section">
       <slot v-if="resolveType === 'section__banner'"></slot>
-      <div v-else class="section--content">
+      <div v-else :class="`section--content ${resolveMinHeight}`">
         <slot></slot>
       </div>
       <div v-show="!withoutCurveBootom" class="corner-curve curve-up">
@@ -96,7 +105,8 @@ const resolveWithoutCurveTop = computed(() => {
 </template>
 
 <style lang="scss">
-
+$topBottomHeights-desktop: 764px;
+$topBottomHeights-mobile: 764px;
 .layout__section {
   position: relative;
 
@@ -106,11 +116,19 @@ const resolveWithoutCurveTop = computed(() => {
       position: relative;
       padding: 40px 100px;
       z-index: $z-index-content;
+
+      &.min__height {
+        min-height: calc(100vh - #{$topBottomHeights-mobile});
+      }
     }
 
     @media only screen and (max-width: $breakpoint-sm) {
       .section--content {
         padding: 40px 30px;
+      }
+
+      &.min__height {
+        min-height: calc(100vh - #{$topBottomHeights-desktop});
       }
     }
 
@@ -131,7 +149,7 @@ const resolveWithoutCurveTop = computed(() => {
   }
 
   &.section__top {
-    margin-bottom: -$negative-bottom;
+    // margin-bottom: -$negative-bottom;
     margin-top: 0;
     border-top-right-radius: $top-radius;
     border-top-left-radius: $top-radius;

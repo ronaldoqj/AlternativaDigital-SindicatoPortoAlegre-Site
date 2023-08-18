@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ImageDefault from 'components/interface/ImageDefault.vue'
-import { reactive } from 'vue'
+import { defaultImage } from 'src/helpers/helpers'
+import { computed, reactive } from 'vue'
 
 const props = defineProps({
   src: {
@@ -55,6 +56,10 @@ const state = reactive({
   description: false
 })
 
+const resolveImage = computed((): string => {
+  return props.src ? props.src : defaultImage
+})
+
 const resolveType = () => {
   if (props.highlights) {
     state.size = {
@@ -75,7 +80,7 @@ resolveType()
 <template>
   <div class="news__item">
     <div>
-      <ImageDefault class="news__image" :size="resolveType().size" src="assets/image/tests/test-1.jpg"></ImageDefault>
+      <ImageDefault class="news__image" :size="resolveType().size" :src="resolveImage"></ImageDefault>
     </div>
     <div class="box__texts">
       <div :class="`box__texts--titles ${resolveType().style}`">
@@ -102,7 +107,7 @@ resolveType()
 
     @media only screen and (max-width: $breakpoint-sm) {
       width: auto;
-      max-width: max-content;
+      // max-width: max-content;
       flex-direction: column;
       padding: 0 5px;
 
