@@ -104,6 +104,7 @@ resolveType()
       width: auto;
       max-width: max-content;
       flex-direction: column;
+      padding: 0 5px;
 
       .news__image {
         border-radius: 20px;

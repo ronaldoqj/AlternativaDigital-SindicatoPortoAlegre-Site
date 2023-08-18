@@ -17,14 +17,13 @@ const description = 'Cerca de dois meses após ser anunciado como futuro preside
     </div>
 
     <div class="row">
-      <div class="col-xs-12 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
-      <div class="col-xs-12 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
-      <div class="col-xs-12 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
-      <div class="col-xs-12 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
-      <div class="col-xs-12 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
+
+      <div class="col-xs-12 col-sm-6 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
     </div>
 
     <div class="box__btn--more">

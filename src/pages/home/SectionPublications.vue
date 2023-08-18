@@ -2,6 +2,7 @@
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import { ref, reactive, onMounted } from 'vue'
 import IconDefault from 'components/interface/IconDefault.vue'
+import NewsItem from 'components/interface/NewsItem.vue'
 
 interface ITabsIcons {
   id: number
@@ -18,6 +19,10 @@ const state = reactive({
     cards: []
   }
 })
+
+const subject = 'Assembleia Legislativa'
+const title = 'Assembleia irá deliberar sobre aprovação de Acordos Coletivos de Trabalho do Itaú'
+const description = 'Cerca de dois meses após ser anunciado como futuro presidente do Banrisul pelo governador Eduar Leite, o nome de Fulano Beltrano Ciclano finalmente foi pautado na Comissão de Finanças da Assembleia Legislativa...'
 
 const getData = (): void => {
   state.sections.tabs.push({ id: 0, name: 'microphone', icon: 'assets/svg/icon-microphone.svg#microphone', size: 45, viewBox: '0 0 24 40' })
@@ -41,7 +46,7 @@ onMounted(() => {
 <template>
   <div class="section__default section__publications">
     <TitleDefault title="Publicações" color="primary" />
-    <div class="tabs__publications">
+    <div class="tabs__publications q-mt-sm">
       <div class="container__tabs--publications">
         <div class="title" color="quinary">
             Filtro por assunto
@@ -50,14 +55,14 @@ onMounted(() => {
           v-model="tab"
           inline-label
           class="text-quinary tabs"
-          active-bg-color="primary"
+          active-class="select-tab"
           active-color="tertiary"
-          indicator-color="primary"
+          indicator-color="transparent"
           left-icon="arrow_back_ios"
           right-icon="arrow_forward_ios"
         >
           <q-tab :name="`name_${key}`" class="tab-container" v-for="(item, key) in state.sections.tabs" :key="key">
-            <div class="background-icon container-icon">
+            <div class="container-icon">
               <IconDefault
                 :size="item.size"
                 :viewBox="item.viewBox"
@@ -69,6 +74,15 @@ onMounted(() => {
       </div>
     </div>
 
+    <div class="row q-mt-xl">
+      <div class="col-xs-12 col-sm-6 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
+
+      <div class="col-xs-12 col-sm-6 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 q-my-sm"><NewsItem :subject="subject" :title="title" :description="description" /></div>
+    </div>
   </div>
 </template>
 
@@ -88,41 +102,65 @@ onMounted(() => {
         // }
 
         .title {
-          color: $quinary;
+          color: $senary;
           font-size: 24px;
           font-family: "roboto light";
           white-space: nowrap;
           float: none;
           text-align: center;
+          margin: 10px 0 20px;
 
           @media only screen and (min-width: $breakpoint-md)
           {
+            color: $quinary;
             display: flex;
             align-items: center;
             height: 110px;
             float: left;
             padding-right: 20px;
+            margin: 0;
           }
         }
 
         .tabs
         {
-          border: solid 1px purple;
           max-width: fit-content;
 
           .tab-container
           {
-            border-radius: 0 45% 45%;
-            width: 110px;
+            padding: 0px 5px;
             height: 110px;
-            margin: 0 5px;
-            background: $quaternary;
 
             .container-icon {
+              background: $quaternary;
+              border-radius: 0 45% 45%;
               width: 110px;
+              height: 110px;
               display: flex;
               justify-content: center;
               align-items: center;
+            }
+          }
+
+          .q-focus-helper {
+            background-color: transparent;
+          }
+          .q-tab__content
+          {
+            &:hover
+            {
+              background-color: none;
+
+              .container-icon {
+                border: solid 1px $quinary;
+              }
+            }
+          }
+
+          .select-tab
+          {
+            .container-icon {
+              background: $primary;
             }
           }
         }
