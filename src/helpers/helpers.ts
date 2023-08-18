@@ -7,3 +7,5 @@ export const arrayChunk = <T>(array: T[], chunkSize: number): T[][] => {
   }
   return chunks
 }
+
+export const defaultImage = 'assets/image/tests/test-1.jpg'
