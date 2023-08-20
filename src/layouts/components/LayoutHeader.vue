@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ImageDefault from 'components/interface/ImageDefault.vue'
+import IconDefault from 'components/interface/IconDefault.vue'
 import LayoutMenu from 'layouts/components/LayoutMenu.vue'
 import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
 
@@ -30,19 +31,30 @@ function toggleDrawer () {
       <ImageDefault :size="{width: '254px', height: '30px'}" src="/assets/svg/portal-parceiro-bancariosrs.svg"></ImageDefault>
     </div>
     <div id="menu__header">
-      <div class="logo">
-        <ImageDefault :size="{width: '168px', height: '78px'}" src="/assets/svg/logo-sind-bancarios-porto-alegre.svg"></ImageDefault>
+      <div class="mobile__menu">
+        <IconDefault
+          :size="40"
+          class="icon__menu-burguer"
+          viewBox="0 0 34 23"
+          src="assets/svg/icon-menu-burguer.svg#menu_burguer"
+          @click="toggleDrawer"
+        />
       </div>
-      <div class="menu__box">
-        <div class="social-media">
-          <LayoutMenuSocialMedia />
+      <div class="menu__header--content">
+        <div class="logo">
+          <ImageDefault :size="{width: '168px', height: '78px'}" src="/assets/svg/logo-sind-bancarios-porto-alegre.svg"></ImageDefault>
         </div>
-        <div class="menu">
-          <LayoutMenu />
+        <div class="menu__box">
+          <div class="social-media">
+            <LayoutMenuSocialMedia />
+          </div>
+          <div class="menu">
+            <LayoutMenu />
+          </div>
         </div>
       </div>
     </div>
-    <q-toolbar style="display: none;" class="q-pa-xl toolbar">
+    <q-toolbar class="q-pa-xl toolbar" v-if="false">
       <q-toolbar-title>
         Quasar App
       </q-toolbar-title>
@@ -61,29 +73,101 @@ function toggleDrawer () {
 <style lang="scss">
 $borderTopRadius: 40px;
 
-#container__header {
+#container__header
+{
   background-color: $secondary;
 
-  #menu__header {
+  #menu__header
+  {
     background: $primary url('/assets/image/water-mark.png') no-repeat right -40px top -35px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
     border-top-left-radius: $borderTopRadius;
     border-top-right-radius: $borderTopRadius;
-    padding: 30px 0 40px 0;
+    padding: 30px 0 0 0;
 
-    .menu__box {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
+    .mobile__menu
+    {
+      .icon__menu-burguer
+      {
+        color: $text-inverse;
+        transition: 0.2s ease-in-out;
 
-      .social-media {
+        &:hover {
+          color: $quinary
+        }
+      }
+
+      width: 80%;
+      text-align: right;
+      margin: 0 auto -40px;
+      cursor: pointer;
+    }
+
+    .menu__header--content
+    {
+      // background: $primary url('/assets/image/water-mark.png') no-repeat right -40px top -35px;
+      // border-top-left-radius: $borderTopRadius;
+      // border-top-right-radius: $borderTopRadius;
+      // padding: 30px 0 40px 0;
+      text-align: center;
+
+      .menu__box
+      {
         display: flex;
-        justify-content: space-between;
-        padding: 0 15px;
-        margin-bottom: 10px;
-        width: 400px;
+        flex-direction: column;
+        align-items: flex-end;
+        background: $accent;
+        background: linear-gradient(0deg, $accent 57%, rgba(112,24,26,1) 100%);
+        padding: 30px 0;
+        margin-top: 40px;
+
+        .social-media {
+          display: flex;
+          justify-content: space-evenly;
+          padding: 0 15px;
+          margin-bottom: 10px;
+          max-width: 400px;
+          width: 100%;
+          margin: 0 auto;
+        }
+
+        .menu {
+          display: none;
+        }
+
+      }
+    }
+
+    /** Desktop */
+    @media only screen and (min-width: $breakpoint-md)
+    {
+      background-color: $primary;
+      padding: 30px 0 40px 0;
+
+      .menu__header--content
+      {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        .menu__box {
+          background: none;
+          padding: 0;
+          margin-top: 0;
+
+          .social-media {
+            justify-content: space-between;
+            margin: 0 0 10px;
+          }
+        }
+      }
+
+      .mobile__menu {
+        display: none;
+      }
+
+      .menu {
+          display: unset !important;
+          margin-bottom: -20px;
       }
     }
   }
@@ -101,5 +185,4 @@ $borderTopRadius: 40px;
     border-top-right-radius: $borderTopRadius;
   }
 }
-
 </style>

@@ -126,8 +126,13 @@ $height-slice-bottom-header: 40px;
   // margin: 0 auto;
 }
 #slice__header {
-  background-color: $primary;
+  background-color: $accent;
   height: $height-slice-bottom-header;
+
+  @media only screen and (min-width: $breakpoint-md)
+  {
+    background-color: $primary;
+  }
 }
 
 .q-page {
