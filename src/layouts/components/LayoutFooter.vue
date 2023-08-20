@@ -37,7 +37,7 @@ import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
     </LayoutSection>
     <LayoutSection background="accent" withoutCurveBootom class="footer__fix--last-section">
         <div id="content__footer">
-          <ImageDefault :size="{width: '290px', height: '34px'}" src="assets/svg/portal-parceiro-bancariosrs.svg"></ImageDefault>
+          <ImageDefault class="logo-alternativa-digital" :size="{width: '245px', height: '45px'}" src="assets/svg/logo-alternativa-digital.svg"></ImageDefault>
         </div>
     </LayoutSection>
   </div>
@@ -50,6 +50,10 @@ import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
   #content__footer {
     display: flex;
     justify-content: center;
+
+    .logo-alternativa-digital{
+      margin-top: -10px;
+    }
   }
 
   .content__section2--footer
