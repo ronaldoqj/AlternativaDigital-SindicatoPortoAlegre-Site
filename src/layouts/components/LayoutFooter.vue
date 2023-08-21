@@ -3,14 +3,30 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import LayoutMenu from 'layouts/components/LayoutMenu.vue'
 import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
+import { useQuasar } from 'quasar'
+import { computed } from 'vue'
+
+type CurrentColor = 'primary' | 'accent'
+
+const $q = useQuasar()
+
+const typeSection1 = computed((): CurrentColor => {
+  return $q.screen.lt.lg ? 'accent' : 'primary'
+})
 
 </script>
 
 <template>
   <div id="container__footer" class="text-text-inverse">
-    <LayoutSection background="secondary" cornerColor="primary">
+    <LayoutSection background="secondary" :cornerColor="typeSection1">
         <div id="content__footer">
           <ImageDefault :size="{width: '290px', 'height': '34px'}" src="assets/svg/portal-parceiro-bancariosrs.svg"></ImageDefault>
+        </div>
+    </LayoutSection>
+    <!-- Only Mobile -->
+    <LayoutSection background="accent" class="section-footer_menu-social-media--mobile" cornerColor="primary">
+        <div class="container__social-media--mobile">
+          <LayoutMenuSocialMedia />
         </div>
     </LayoutSection>
     <LayoutSection background="primary" cornerColor="accent">
@@ -53,6 +69,14 @@ import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
 
     .logo-alternativa-digital{
       margin-top: -10px;
+    }
+  }
+
+  .section-footer_menu-social-media--mobile
+  {
+    .container__social-media--mobile {
+      display: flex;
+      justify-content: space-evenly;
     }
   }
 
@@ -120,11 +144,17 @@ import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
         }
 
       }
+    }
+  }
 
+  /** Desktop */
+  @media only screen and (min-width: $breakpoint-md)
+  {
+    .section-footer_menu-social-media--mobile {
+      display: none;
     }
 
-    /** Desktop */
-    @media only screen and (min-width: $breakpoint-md)
+    .content__section2--footer
     {
       flex-direction: row;
 
@@ -171,9 +201,7 @@ import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
             }
           }
         }
-
       }
-
     }
   }
 

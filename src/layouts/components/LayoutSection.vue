@@ -122,11 +122,8 @@ $topBottomHeights-mobile: 764px;
       }
     }
 
-    @media only screen and (max-width: $breakpoint-sm) {
-      .section--content {
-        padding: 40px 30px;
-      }
-
+    @media only screen and (max-width: $breakpoint-sm)
+    {
       &.min__height {
         min-height: calc(100vh - #{$topBottomHeights-desktop});
       }
