@@ -22,8 +22,8 @@ import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
             </p>
           </div>
           <div class="column__right">
-            <div><LayoutMenu /></div>
-            <div class="section__menu--social-media"><LayoutMenuSocialMedia /></div>
+            <div class="menu-footer"><LayoutMenu /></div>
+            <div class="section-footer__menu-social-media--desktop"><LayoutMenuSocialMedia /></div>
             <div class="contact-details">
               <p class="contact-fone">(51) 3030 9400</p>
               <p class="contact-email">contato@sindbancarios.org.br</p>
@@ -59,21 +59,32 @@ import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
   .content__section2--footer
   {
     display: flex;
+    flex-direction: column;
+
     justify-content: space-around;
 
     .column__left
     {
-      max-width: 300px;
+      max-width: auto;
+      text-align: center;
+      margin-bottom: 30px;
 
       .resume {
         margin-top: 20px;
+        display: none;
       }
     }
 
     .column__right
     {
-      .section__menu--social-media {
+      .menu-footer {
         display: flex;
+        flex-direction: column;
+      }
+
+      .section-footer__menu-social-media--desktop
+      {
+        display: none;
         justify-content: flex-end;
         margin: 30px 0;
 
@@ -88,26 +99,82 @@ import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
 
       .contact-details
       {
-        margin: 30px 0 0;
+        p
+        {
+          text-align: center;
+          margin: 30px 0 0;
 
-        .contact-fone {
-          font-size: 30px;
-          font-weight: bold;
-          margin: 0 0 5px;
+          &.contact-fone {
+            font-size: 30px;
+            font-weight: bold;
+          }
+          &.contact-email {
+            font-size: 25px;
+            font-weight: bold;
+            word-break: break-word;
+          }
+          &.contact-address {
+            font-size: 18px;
+            line-height: 1.3em;
+          }
         }
 
-        .contact-email {
-          font-size: 30px;
-          font-weight: bold;
-        }
-
-        .contact-address {
-          font-size: 20px;
-          line-height: 1.3em;
-        }
       }
+
     }
 
+    /** Desktop */
+    @media only screen and (min-width: $breakpoint-md)
+    {
+      flex-direction: row;
+
+      .column__left
+      {
+        max-width: 300px;
+        margin-bottom: 0;
+
+        .resume {
+          display: block;
+        }
+      }
+
+      .column__right
+      {
+        .section-footer__menu-social-media--desktop
+        {
+          display: flex;
+        }
+
+        .menu-footer {
+          flex-direction: row;
+
+          button {
+            margin: -8px 0;
+          }
+        }
+
+        .contact-details
+        {
+          p {
+            text-align: left;
+            margin: 0 0 10px;
+
+            &.contact-email {
+              font-size: 30px;
+              word-break: normal;
+            }
+
+            &.contact-address {
+              font-size: 20px;
+              padding-top: 10px;
+              margin-bottom: 0;
+            }
+          }
+        }
+
+      }
+
+    }
   }
 
   .footer__fix--last-section {
