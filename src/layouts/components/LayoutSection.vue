@@ -124,7 +124,7 @@ $topBottomHeights-mobile: 764px;
 
     @media only screen and (max-width: $breakpoint-sm) {
       .section--content {
-        padding: 40px 30px;
+        padding: 40px 20px 20px;
       }
 
       &.min__height {
