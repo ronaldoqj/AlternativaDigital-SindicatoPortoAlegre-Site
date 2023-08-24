@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import LayoutSection from 'layouts/components/LayoutSection.vue'
-import RelatedPublications from 'pages/news/RelatedPublications.vue'
+import RelatedPublications from 'components/interface/RelatedPublications.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 </script>
 
