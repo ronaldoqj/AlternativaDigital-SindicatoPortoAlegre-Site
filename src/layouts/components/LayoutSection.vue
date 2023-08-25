@@ -116,6 +116,7 @@ $topBottomHeights-mobile: 764px;
       position: relative;
       padding: 40px 100px 20px;
       z-index: $z-index-content;
+      transition: 0.3s ease-in-out;
 
       &.min__height {
         min-height: calc(100vh - #{$topBottomHeights-mobile});
