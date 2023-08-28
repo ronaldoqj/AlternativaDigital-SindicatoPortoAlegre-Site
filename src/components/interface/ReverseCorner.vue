@@ -25,5 +25,5 @@ const props = defineProps({
 </script>
 
 <template>
-  <IconDefault class="component__interface--reverse-corner" :size="props.size" :color="props.color" viewBox="0 0 120 120" src="assets/svg/corner-curve.svg#corner_curve" />
+  <IconDefault class="component__interface--reverse-corner" :size="props.size" :color="props.color" viewBox="0 0 120 120" src="/assets/svg/corner-curve.svg#corner_curve" />
 </template>

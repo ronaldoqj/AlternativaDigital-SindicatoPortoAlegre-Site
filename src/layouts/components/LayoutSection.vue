@@ -97,8 +97,8 @@ const resolveMinHeight = computed((): string => {
         <slot></slot>
       </div>
       <div v-show="!withoutCurveBootom" class="corner-curve curve-up">
-        <IconDefault :size="120" :color="props.cornerColor" viewBox="0 0 120 120" src="assets/svg/corner-curve.svg#corner_curve" />
-        <IconDefault v-show="twoCorners" :size="120" :color="props.cornerColor" viewBox="0 0 120 120" src="assets/svg/corner-curve.svg#corner_curve" />
+        <IconDefault :size="120" :color="props.cornerColor" viewBox="0 0 120 120" src="/assets/svg/corner-curve.svg#corner_curve" />
+        <IconDefault v-show="twoCorners" :size="120" :color="props.cornerColor" viewBox="0 0 120 120" src="/assets/svg/corner-curve.svg#corner_curve" />
       </div>
     </div>
   </div>

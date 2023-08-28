@@ -1,54 +1,38 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import ImageDefault from 'components/interface/ImageDefault.vue'
+import { defaultImage } from 'src/helpers/helpers'
+
+const props = defineProps({
+  src: {
+    type: String,
+    default: defaultImage,
+    required: false
+  },
+  menu: {
+    type: Boolean,
+    required: false
+  }
+})
 
 const slide = ref(1)
 </script>
 
 <template>
-  <div class="section__highlights--carousel">
-    <q-carousel
-      class="carousel"
-      control-color="tertiary"
-      animated
-      v-model="slide"
-      :autoplay="7000"
-      navigation
-      infinite
-    >
-      <q-carousel-slide :name="1" img-src="/assets/image/tests/test-1.jpg" />
-      <q-carousel-slide :name="2" img-src="/assets/image/tests/test-2.jpg" />
-      <q-carousel-slide :name="3" img-src="/assets/image/tests/test-3.jpg" />
-      <q-carousel-slide :name="4" img-src="/assets/image/tests/test-4.jpg" />
-      <q-carousel-slide :name="5" img-src="/assets/image/tests/test-5.jpg" />
-      <q-carousel-slide :name="6" img-src="/assets/image/tests/test-6.jpg" />
-      <q-carousel-slide :name="7" img-src="/assets/image/tests/test-7.jpg" />
-    </q-carousel>
+  <div class="section__banner-top--carousel">
+    <ImageDefault class="image-box" :src="props.src" />
   </div>
 </template>
 
 <style lang="scss">
 $border-radius-control-banner: 20px;
-$banner-height: 630px;
+$banner-height: 600px;
 
-.section__highlights--carousel {
-  .carousel {
+.section__banner-top--carousel {
+  .image-box {
     border-top-right-radius: $top-radius;
     border-top-left-radius: $top-radius;
     height: $banner-height;
-  }
-
-  .q-carousel__control {
-    width: fit-content;
-    margin: 0 auto;
-    padding: 0 20px;
-    border-top-right-radius: $border-radius-control-banner;
-    border-top-left-radius: $border-radius-control-banner;
-    background-color: $accent;
-    bottom: $negative-bottom;
-
-    button {
-      padding: 0;
-    }
   }
 }
 </style>

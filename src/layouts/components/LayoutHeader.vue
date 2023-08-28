@@ -36,7 +36,7 @@ function toggleDrawer () {
           :size="40"
           class="icon__menu-burguer"
           viewBox="0 0 34 23"
-          src="assets/svg/icon-menu-burguer.svg#menu_burguer"
+          src="/assets/svg/icon-menu-burguer.svg#menu_burguer"
           @click="toggleDrawer"
         />
       </div>

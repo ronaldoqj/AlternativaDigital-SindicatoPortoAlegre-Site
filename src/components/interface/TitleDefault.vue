@@ -16,7 +16,7 @@ const props = defineProps({
 
 <template>
   <div class="title__default">
-    <IconDefault :size="56" :color="props.color" viewBox="0 0 56 30" src="assets/svg/icon-bullet-point-title.svg#bullet_point" />
+    <IconDefault :size="56" :color="props.color" viewBox="0 0 56 30" src="/assets/svg/icon-bullet-point-title.svg#bullet_point" />
     <span color="primary" :class="`text-${props.color} title`">{{ props.title }}</span>
     <slot></slot>
   </div>
