@@ -15,6 +15,10 @@ const props = defineProps({
   color: {
     type: String,
     require: false
+  },
+  class: {
+    type: String,
+    require: false
   }
 })
 </script>
@@ -23,7 +27,8 @@ const props = defineProps({
   <q-icon
     :size="`${props.size}px`"
     :color="props.color"
+    :class="props.class"
     :name="`svguse:${props.src}|${props.viewBox}`"
   />
-  <!-- <q-icon size="150px" color="accent" name="svguse:assets/svg/corner-curve.svg#corner_curve|0 0 150 150"></q-icon> -->
+  <!-- <q-icon size="150px" color="accent" name="svguse:/assets/svg/corner-curve.svg#corner_curve|0 0 150 150"></q-icon> -->
 </template>

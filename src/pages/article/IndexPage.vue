@@ -11,7 +11,7 @@
 
         <div class="author">
           <q-avatar size="128px" class="avatar">
-            <img style="object-fit: cover;" src="assets/image/tests/test-1.jpg">
+            <img style="object-fit: cover;" src="/assets/image/tests/test-1.jpg">
           </q-avatar>
           <div class="texts">
             <h3 class="name">Fulano da Siva</h3>
