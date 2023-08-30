@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-// import { colors, setCssVar } from 'quasar'
+import { PropType, computed } from 'vue'
 import ReverseCorner from 'components/interface/ReverseCorner.vue'
-import { clickRoute } from 'src/helpers/helpers'
+import { RouteLocationRaw, useRouter } from 'vue-router'
+// import { colors, setCssVar } from 'quasar'
 
 // const { getPaletteColor } = colors
 const props = defineProps({
-  src: {
+  image: {
     type: String,
     required: true
   },
@@ -25,16 +25,13 @@ const props = defineProps({
     require: false
   },
   route: {
-    type: String,
-    default: () => { return '#' },
-    require: false
+    type: Object as PropType<RouteLocationRaw>,
+    default: () => ({ name: 'servicos' }),
+    required: false
   }
 })
 
-// const changeScssColor = () => {
-//   console.log('getPaletteColor: ', getPaletteColor('color-buffer'))
-//   setCssVar('color-buffer', getPaletteColor('secondary'))
-// }
+const router = useRouter()
 
 const resolveBackground = computed((): string => {
   return props.background ? `bg-${props.background}` : ''
@@ -43,12 +40,22 @@ const resolveBackground = computed((): string => {
 const resolveColor = computed((): string => {
   return props.color ? `text-${props.color}` : ''
 })
+
+const clickRoute = (route: RouteLocationRaw) => {
+  router.push(route)
+  // router.replace(route)
+}
+
+// const changeScssColor = () => {
+//   console.log('getPaletteColor: ', getPaletteColor('color-buffer'))
+//   setCssVar('color-buffer', getPaletteColor('secondary'))
+// }
 </script>
 
 <template>
   <div
     class="component__interface--card-button"
-    :style="`background: url(${props.src}) center/cover;`"
+    :style="`background: url(${props.image}) center/cover;`"
     @click="clickRoute(props.route)"
   >
     <ReverseCorner :size="80" :color="props.background" />

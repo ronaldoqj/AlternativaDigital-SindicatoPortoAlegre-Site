@@ -10,10 +10,10 @@ import LayoutSection from 'layouts/components/LayoutSection.vue'
       <TitleDefault title="Serviços" />
       <div id="content__page--service">
         <div class="row q-col-gutter-md">
-          <div class="col-xs-12 col-lg-6"><CardButton src="/assets/image/tests/test-1.jpg" title="Convênios" /></div>
-          <div class="col-xs-12 col-lg-6"><CardButton src="/assets/image/tests/test-3.jpg" title="Arquivo Histórico" /></div>
-          <div class="col-xs-12 col-lg-6"><CardButton src="/assets/image/tests/test-5.jpg" title="Espaços" /></div>
-          <div class="col-xs-12 col-lg-6"><CardButton src="/assets/image/tests/test-6.jpg" title="Jurídico" /></div>
+          <div class="col-xs-12 col-lg-6"><CardButton image="/assets/image/tests/test-1.jpg" title="Convênios" :route="{name: 'insurance'}" /></div>
+          <div class="col-xs-12 col-lg-6"><CardButton image="/assets/image/tests/test-3.jpg" title="Arquivo Histórico" :route="{name: 'historyFile'}" /></div>
+          <div class="col-xs-12 col-lg-6"><CardButton image="/assets/image/tests/test-5.jpg" title="Espaços" :route="{name: 'spaces'}" /></div>
+          <div class="col-xs-12 col-lg-6"><CardButton image="/assets/image/tests/test-6.jpg" title="Jurídico" :route="{name: 'legal'}" /></div>
         </div>
       </div>
     </div>
