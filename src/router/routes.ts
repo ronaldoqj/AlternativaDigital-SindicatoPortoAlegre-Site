@@ -3,22 +3,24 @@ import { RouteRecordRaw } from 'vue-router'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
+    name: 'homeIndex',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/home/IndexPage.vue') },
-      { path: 'news', component: () => import('pages/news/IndexPage.vue') },
-      { path: 'article', component: () => import('pages/article/IndexPage.vue') },
+      { path: '', name: 'home', component: () => import('pages/home/IndexPage.vue') },
+      { path: 'noticias', name: 'news', component: () => import('pages/news/IndexPage.vue') },
+      { path: 'artigo', name: 'article', component: () => import('pages/article/IndexPage.vue') },
       {
-        path: 'services',
+        path: 'servicos',
+        name: 'servicesIndex',
         component: () => import('pages/services/IndexPage.vue'),
         children: [
-          { path: '', component: () => import('pages/services/ServicesPage.vue') },
-          { path: 'insurance', component: () => import('pages/services/InsurancePage.vue') },
-          { path: 'history-file', component: () => import('pages/services/HistoryFilePage.vue') },
-          { path: 'spaces', component: () => import('pages/services/SpacesPage.vue') }
+          { path: '', name: 'services', component: () => import('pages/services/ServicesPage.vue') },
+          { path: 'convenios', name: 'insurance', component: () => import('pages/services/InsurancePage.vue') },
+          { path: 'arquivo-historico', name: 'historyFile', component: () => import('pages/services/HistoryFilePage.vue') },
+          { path: 'espacos', name: 'spaces', component: () => import('pages/services/SpacesPage.vue') },
+          { path: 'juridico', name: 'legal', component: () => import('pages/services/LegalPage.vue') }
         ]
       }
-
     ]
   },
 
