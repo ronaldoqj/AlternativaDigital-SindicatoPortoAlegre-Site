@@ -17,7 +17,7 @@ const props = defineProps({
   <div class="page__contact--component-input">
     <span class="label__form">{{ props.title }}</span>
     <div :class="`box__input ${props.type}`">
-      <q-input dense borderless />
+      <q-input dense borderless model-value=""></q-input>
     </div>
   </div>
 </template>
