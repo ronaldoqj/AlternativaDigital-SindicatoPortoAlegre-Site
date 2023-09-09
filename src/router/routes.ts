@@ -37,6 +37,14 @@ const routes: RouteRecordRaw[] = [
           { path: 'formacao', name: 'departmentsFormation', component: () => import('pages/departments/FormationPage.vue') },
           { path: 'financeiras-e-terceirizados-do-ramo-financeiro', name: 'departmentsFinancialInstitutionsAndOutsourcedFinancialSector', component: () => import('pages/departments/FinancialInstitutionsAndOutsourcedFinancialSectorPage.vue') }
         ]
+      },
+      {
+        path: 'contato',
+        name: 'contactIndex',
+        component: () => import('pages/contact/IndexPage.vue'),
+        children: [
+          { path: '', name: 'contact', component: () => import('pages/contact/ContactPage.vue') }
+        ]
       }
     ]
   },
