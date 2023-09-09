@@ -16,6 +16,16 @@ const props = defineProps({
     type: String,
     require: false
   },
+  itemStyle: {
+    type: Object,
+    default: () => ({}),
+    required: false
+  },
+  itemClass: {
+    type: String,
+    default: '',
+    required: false
+  },
   listItems: {
     type: Object as PropType<IDinamicList>,
     default: () => ({}),
@@ -31,8 +41,13 @@ const props = defineProps({
 const slide = ref(1)
 const freezeComponent = shallowRef(props.componentItem)
 const blockList = computed(() => {
+  resetPageCarousel()
   return arrayChunk(props.listItems.listProp, props.listItems.currentScreen.blockSize)
 })
+
+const resetPageCarousel = () => {
+  slide.value = 0
+}
 
 onMounted(() => {
   // To Do
@@ -61,6 +76,8 @@ onMounted(() => {
           <div class="row">
             <component
               v-for="(item, key) in (itemIndex)" :key="key"
+              :style="props.itemStyle"
+              :class="props.itemClass"
               class="col-xs-12 col-md-6 col-lg-4 col-xl-3"
               :is="freezeComponent"
               v-bind="item"
@@ -116,6 +133,19 @@ $height-item: 360px;
         //   flex-direction: row;
         // }
       }
+
+      /** Styles for specific pages */
+      @media only screen and (max-width: $breakpoint-sm)
+      {
+        .departments__legal--document-item {
+          margin-bottom: 50px;
+
+          &:last-child {
+            margin-bottom: 20px;
+          }
+        }
+      }
+
     }
 
     .q-carousel__control {
@@ -126,6 +156,7 @@ $height-item: 360px;
     // {
     //   height: inherit;
     // }
+
   }
 }
 </style>
