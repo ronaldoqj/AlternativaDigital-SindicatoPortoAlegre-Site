@@ -16,6 +16,11 @@ const props = defineProps({
     type: String,
     require: false
   },
+  controlColor: {
+    type: String,
+    default: 'accent',
+    require: false
+  },
   itemStyle: {
     type: Object,
     default: () => ({}),
@@ -64,7 +69,7 @@ onMounted(() => {
     <div v-else class="section__services--carousel">
       <q-carousel
         class="carousel-section"
-        control-color="accent"
+        :control-color="props.controlColor"
         swipeable
         animated
         v-model="slide"
