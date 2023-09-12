@@ -42,7 +42,7 @@ const state = reactive({
     },
     default: {
       size: {
-        minWidth: '175px',
+        minWidth: '266px',
         height: '175px'
       },
       description: false,
@@ -50,7 +50,7 @@ const state = reactive({
     }
   },
   size: {
-    minWidth: '175px',
+    minWidth: '266px',
     height: '175px'
   },
   description: false
@@ -162,7 +162,13 @@ resolveType()
     }
 
     a {
-      color: $primary;
+      color: $septenary;
+      text-decoration: none;
+
+      &:hover {
+        color: $primary;
+        text-decoration: underline;
+      }
     }
   }
 
