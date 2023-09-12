@@ -7,6 +7,14 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', name: 'home', component: () => import('pages/home/IndexPage.vue') },
+      {
+        path: 'quem-somos',
+        name: 'aboutIndex',
+        component: () => import('pages/syndicate/IndexPage.vue'),
+        children: [
+          { path: '', name: 'about', component: () => import('pages/syndicate/AboutPage.vue') }
+        ]
+      },
       { path: 'noticias', name: 'news', component: () => import('pages/news/IndexPage.vue') },
       { path: 'artigo', name: 'article', component: () => import('pages/article/IndexPage.vue') },
       {
