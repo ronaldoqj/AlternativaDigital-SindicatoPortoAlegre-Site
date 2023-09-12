@@ -26,6 +26,11 @@ const props = defineProps({
     default: '',
     required: false
   },
+  itemsScreenBreak: {
+    type: String,
+    default: 'col-xs-12 col-md-6 col-lg-4 col-xl-3',
+    required: false
+  },
   listItems: {
     type: Object as PropType<IDinamicList>,
     default: () => ({}),
@@ -77,8 +82,7 @@ onMounted(() => {
             <component
               v-for="(item, key) in (itemIndex)" :key="key"
               :style="props.itemStyle"
-              :class="props.itemClass"
-              class="col-xs-12 col-md-6 col-lg-4 col-xl-3"
+              :class="`${props.itemsScreenBreak} ${props.itemClass}`"
               :is="freezeComponent"
               v-bind="item"
             />

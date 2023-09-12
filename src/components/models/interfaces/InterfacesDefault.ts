@@ -25,6 +25,7 @@ export interface IDinamicScreen {
 }
 
 export interface IDinamicList {
+  screenBreak?: string
   currentScreen: IDinamicScreen
   listProp: Array<object>
 }

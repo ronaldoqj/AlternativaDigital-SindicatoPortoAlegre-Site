@@ -7,6 +7,9 @@ import { useQuasar } from 'quasar'
 import { shallowRef, reactive, computed, onMounted, watch } from 'vue'
 
 import DocumentItem from './components/DocumentItem.vue'
+import MembersItem from './components/MembersItem.vue'
+import NewsItem from 'components/interface/NewsItem.vue'
+import SectionVideos from 'src/pages/departments/components/legal/SectionVideos.vue'
 // import IconDefault from 'components/interface/IconDefault.vue'
 // import ImageDefault from 'components/interface/ImageDefault.vue'
 
@@ -29,10 +32,26 @@ import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/int
 // }
 
 const $q = useQuasar()
-const freezeComponent = shallowRef(DocumentItem)
+const freezeComponentDocument = shallowRef(DocumentItem)
+const freezeComponentDepartmentPublications = shallowRef(NewsItem)
+const freezeComponentMembersItem = shallowRef(MembersItem)
 const state = reactive({
   documents: {
     items: {
+      currentScreen: {} as IDinamicScreen,
+      listProp: [] as Array<object>
+    } as IDinamicList
+  },
+  legalMembers: {
+    items: {
+      screenBreak: 'col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2',
+      currentScreen: {} as IDinamicScreen,
+      listProp: [] as Array<object>
+    } as IDinamicList
+  },
+  departmentPublications: {
+    items: {
+      screenBreak: 'col-xs-12 col-sm-12 col-md-6 col-xl-4',
       currentScreen: {} as IDinamicScreen,
       listProp: [] as Array<object>
     } as IDinamicList
@@ -52,26 +71,62 @@ const setListDocuments = () => {
   state.documents.items.listProp.push({ title: 'Guia 2023 10', description: 'Lorem ipsum dolor sit amet, consectetuer 10', src: '/assets/svg/icon-xml.svg#icon_xml' })
 }
 
+const setListLegalMembers = () => {
+  state.legalMembers.items.listProp.push({ title: 'Luciano Fetzner Barcellos', subtitle: 'Presidente', description: 'Banrisul', image: '/assets/image/tests/test-6.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luis Gustavo Vargas Soares', subtitle: 'Secretario Geral', description: 'Bradesco', image: '/assets/image/tests/test-5.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Silvia Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/tests/test-4.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luciano Fetzner Barcellos', subtitle: 'Presidente', description: 'Banrisul', image: '/assets/image/tests/test-1.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luis Gustavo Vargas Soares', subtitle: 'Secretario Geral', description: 'Bradesco', image: '/assets/image/tests/test-2.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Silvia Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/tests/test-3.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luciano Fetzner Barcellos', subtitle: 'Presidente', description: 'Banrisul', image: '/assets/image/tests/test-7.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luis Gustavo Vargas Soares', subtitle: 'Secretario Geral', description: 'Bradesco', image: '/assets/image/tests/test-4.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Silvia Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/tests/test-5.jpg' })
+}
+
+const setDepartmentPublications = () => {
+  const limitImages = 7
+  let countImages = 0
+
+  for (let index = 0; index < 16; index++) {
+    if (countImages === limitImages) {
+      countImages = 0
+    }
+    countImages += 1
+
+    const title = 'Assembleia irá deliberar sobre aprovação de Acordos Coletivos de Trabalho do Itaú'
+    const description = 'Assembleia Legislativa'
+
+    state.departmentPublications.items.listProp.push({ subject: `Subject ${index}`, title: `${title} ${index}`, description: `${description} ${index}` })
+  }
+}
+
 const currentScreenSize = computed((): TScreenSize => {
   return $q.screen.name
 })
 
 const changeOrderList = (screenSize: TScreenSize) => {
-  let blockSize:number
+  let blockSizeDocument:number
+  let blockSizeDepartmentPublications:number
 
   switch (screenSize) {
     case 'md':
-      blockSize = 2
+      blockSizeDocument = 2
+      blockSizeDepartmentPublications = 6
+      blockSizeDocument = 2
       break
     case 'lg':
-      blockSize = 3
+      blockSizeDocument = 3
+      blockSizeDepartmentPublications = 6
       break
     default:
-      blockSize = 4
+      blockSizeDocument = 4
+      blockSizeDepartmentPublications = 9
       break
   }
 
-  state.documents.items.currentScreen = { screen: screenSize, blockSize }
+  state.documents.items.currentScreen = { screen: screenSize, blockSize: blockSizeDocument }
+  state.departmentPublications.items.currentScreen = { screen: screenSize, blockSize: blockSizeDepartmentPublications }
+  state.legalMembers.items.currentScreen = { screen: screenSize, blockSize: blockSizeDocument }
 }
 
 watch(currentScreenSize, (newValue) => {
@@ -80,6 +135,8 @@ watch(currentScreenSize, (newValue) => {
 
 onMounted(() => {
   setListDocuments()
+  setDepartmentPublications()
+  setListLegalMembers()
   changeOrderList(currentScreenSize.value)
 })
 </script>
@@ -122,34 +179,27 @@ onMounted(() => {
       <!-- <DocumentItem title="Guia 2023" description="Lorem ipsum dolor sit amet, consectetuer" />
       <component :is="documentItem" v-bind="props"></component> -->
       <!-- <CarouselSlide :list="state.documents.listDocuments" :screen-block="state.documents.screenBlock"></CarouselSlide> -->
-      <CarouselSlide v-if="state.documents.items.listProp.length" :listItems="state.documents.items" :component-item="freezeComponent" item-class="departments__legal--document-item" />
+      <CarouselSlide v-if="state.documents.items.listProp.length" :listItems="state.documents.items" :component-item="freezeComponentDocument" item-class="departments__legal--document-item" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">
       <TitleDefault class="q-mb-xl" title="Publicações do departamento" />
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
+      <CarouselSlide v-if="state.departmentPublications.items.listProp.length" :listItems="state.departmentPublications.items" :items-screen-break="state.departmentPublications.items.screenBreak" :component-item="freezeComponentDepartmentPublications" item-class="" />
     </LayoutSection>
 
     <LayoutSection background="quaternary" cornerColor="tertiary">
       <TitleDefault class="q-mb-xl" title="Vídeos do departamento jurídico" />
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
+      <SectionVideos />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="secondary">
       <TitleDefault class="q-mb-xl" title="Membros do departamento jurídico" />
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
+      <p class="subtitle__legal-members">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
+        facilisi.
+      </p>
+      <CarouselSlide v-if="state.legalMembers.items.listProp.length" :listItems="state.legalMembers.items" :component-item="freezeComponentMembersItem" />
     </LayoutSection>
   </div>
 </template>
@@ -186,6 +236,10 @@ onMounted(() => {
       margin: 10px 0;
       clear: both;
     }
+  }
+
+  .subtitle__legal-members {
+    margin: -50px 0 30px;
   }
 
   @media only screen and (min-width: $breakpoint-sm)
