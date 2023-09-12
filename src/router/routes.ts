@@ -12,7 +12,8 @@ const routes: RouteRecordRaw[] = [
         name: 'aboutIndex',
         component: () => import('pages/syndicate/IndexPage.vue'),
         children: [
-          { path: '', name: 'about', component: () => import('pages/syndicate/AboutPage.vue') }
+          { path: '', name: 'about', component: () => import('pages/syndicate/AboutPage.vue') },
+          { path: 'editais', name: 'notice', component: () => import('pages/syndicate/NoticePage.vue') }
         ]
       },
       { path: 'noticias', name: 'news', component: () => import('pages/news/IndexPage.vue') },
