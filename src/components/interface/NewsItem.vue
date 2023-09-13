@@ -84,9 +84,9 @@ resolveType()
     </div>
     <div class="box__texts">
       <div :class="`box__texts--titles ${resolveType().style}`">
-        <h5 class="tag-h5" v-if="props.subject">{{ props.subject }}</h5>
-        <h4 class="tag-h4" v-if="props.title">{{ props.title }}</h4>
-        <h6 class="tag-h6" v-if="props.highlights === true">{{ props.description }}</h6>
+        <h5 class="tag-h5 " v-if="props.subject">{{ props.subject }}</h5>
+        <h4 class="tag-h4 " v-if="props.title">{{ props.title }}</h4>
+        <h6 class="tag-h6 " v-if="props.highlights === true">{{ props.description }}</h6>
       </div>
       <div>
         <a href="#">Leia mais</a>
@@ -116,7 +116,6 @@ resolveType()
         margin-bottom: 10px;
       }
     }
-
   }
 
   .box__texts
