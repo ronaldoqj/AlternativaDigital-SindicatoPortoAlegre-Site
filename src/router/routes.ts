@@ -48,6 +48,14 @@ const routes: RouteRecordRaw[] = [
         ]
       },
       {
+        path: 'sindicalize-se',
+        name: 'unionizeIndex',
+        component: () => import('pages/unionize/IndexPage.vue'),
+        children: [
+          { path: '', name: 'unionize', component: () => import('pages/unionize/UnionizePage.vue') }
+        ]
+      },
+      {
         path: 'contato',
         name: 'contactIndex',
         component: () => import('pages/contact/IndexPage.vue'),
