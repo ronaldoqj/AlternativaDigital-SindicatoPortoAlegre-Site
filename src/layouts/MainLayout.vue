@@ -26,21 +26,49 @@
     <q-drawer
       v-model="leftDrawerOpen"
       side="left" behavior="mobile"
+      class="component__mobile--menu"
       bordered
     >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
+      <div class="box__mobile--menu">
+        <div class="mobile__header--logo">
+          <ImageDefault :size="{width: '168px', height: '78px'}" src="/assets/svg/logo-sind-bancarios-porto-alegre.svg"></ImageDefault>
+        </div>
+        <div class="mobile--menu">
+          <LayoutMenu />
+        </div>
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
+        <div class="mobile__contact--information">
+          <div class="contact-details">
+            <p class="contact-fone">(51) 3030 9400</p>
+            <p class="contact-email">contato@sindbancarios.org.br</p>
+            <p class="contact-address">
+              Horário de Segunda a Sexta das 9h às 18h<br />
+              Rua General Câmara, 424, Porto Alegre/RS
+            </p>
+          </div>
+        </div>
+        <div class="mobile__social-media">
+          <LayoutMenuSocialMedia />
+        </div>
+        <div class="mobile__logo--alternativa-digital">
+          <ImageDefault :size="{width: '245px', height: '45px'}" src="/assets/svg/logo-alternativa-digital.svg"></ImageDefault>
+        </div>
+        <!--
+          <q-list>
+            <q-item-label
+              header
+            >
+              Essential Links
+            </q-item-label>
+
+            <EssentialLink
+              v-for="link in essentialLinks"
+              :key="link.title"
+              v-bind="link"
+            />
+          </q-list>
+        -->
+      </div>
     </q-drawer>
 
     <q-page-container id="page--container">
@@ -58,8 +86,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import EssentialLink, { EssentialLinkProps } from 'components/EssentialLink.vue'
+import LayoutMenu from 'layouts/components/LayoutMenu.vue'
 import LayoutHeader from 'layouts/components/LayoutHeader.vue'
 import LayoutFooter from 'layouts/components/LayoutFooter.vue'
+import ImageDefault from 'components/interface/ImageDefault.vue'
+import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
 
 const essentialLinks: EssentialLinkProps[] = [
   {
@@ -141,5 +172,83 @@ $height-slice-bottom-header: 40px;
 
 #page--container {
   z-index: 4000;
+}
+
+.component__mobile--menu
+{
+  width: 600px;
+  background-color: $accent;
+
+  .box__mobile--menu
+  {
+    $menu-margin-top: 80px;
+    $menu-border-top-radius: 40px;
+
+    margin-top: $menu-margin-top;
+    background: $primary;
+    padding: 40px 0;
+    border-top-left-radius: $menu-border-top-radius;
+    border-top-right-radius: $menu-border-top-radius;
+    height: calc(100% - #{$menu-margin-top});
+
+    .mobile__header--logo {
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .mobile--menu {
+      display: flex;
+      flex-direction: column;
+      color: $tertiary;
+    }
+
+    /** ---------------------------------------------- */
+    /** Menu Mobile */
+    /** ---------------------------------------------- */
+    .mobile__contact--information
+    {
+      color: $tertiary;
+      p
+      {
+        text-align: center;
+        margin: 28px 0 0;
+
+        &.contact-fone {
+          font-size: 28px;
+          font-weight: bold;
+        }
+        &.contact-email {
+          font-size: 22px;
+          font-weight: bold;
+          word-break: break-word;
+        }
+        &.contact-address {
+          font-size: 16px;
+          line-height: 1.2em;
+        }
+      }
+    }
+
+    .mobile__social-media {
+      background: $accent;
+      display: flex;
+      justify-content: space-evenly;
+      margin: 20px 0;
+      padding: 15px 0;
+    }
+
+    .mobile__logo--alternativa-digital
+    {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+}
+.q-drawer.q-drawer--left
+{
+  width: 100% !important;
+  min-width: 320px !important;
+  max-width: 400px !important;
 }
 </style>
