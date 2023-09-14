@@ -2,6 +2,7 @@
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import NewsItem from 'components/interface/NewsItem.vue'
 import { reactive, onMounted, computed } from 'vue'
+import { defaultImage } from 'src/helpers/helpers'
 
 const props = defineProps({
   title: {
@@ -31,7 +32,7 @@ const getData = (): void => {
   for (let index = 1; index < 7; index++) {
     const item: IPublicationItem = {
       id: index,
-      image: `assets/image/tests/test-${index}.jpg`,
+      image: defaultImage,
       subject: 'Assembleia Legislativa',
       title: 'Assembleia irá deliberar sobre aprovação de Acordos Coletivos de Trabalho do Itaú',
       description: 'Cerca de dois meses após ser anunciado como futuro presidente do Banrisul pelo governador Eduar Leite, o nome de Fulano Beltrano Ciclano finalmente foi pautado na Comissão de Finanças da Assembleia Legislativa...'

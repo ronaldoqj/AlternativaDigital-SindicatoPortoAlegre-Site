@@ -32,7 +32,7 @@ const getData = (): void => {
     countImages += 1
     const item: ICarouselItem = {
       id: index,
-      image: `assets/image/tests/test-${countImages}.jpg`
+      image: `assets/image/apresentation/home/servicos/SERVICOS-${countImages}.jpg`
     }
 
     newData.push(item)

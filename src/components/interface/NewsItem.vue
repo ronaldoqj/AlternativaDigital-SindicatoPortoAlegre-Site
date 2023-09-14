@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import ImageDefault from 'components/interface/ImageDefault.vue'
 import { defaultImage } from 'src/helpers/helpers'
-import { computed, reactive } from 'vue'
+import { computed, reactive, PropType } from 'vue'
+import { RouteLocationRaw, useRouter } from 'vue-router'
 
 const props = defineProps({
   src: {
@@ -26,6 +27,11 @@ const props = defineProps({
   },
   highlights: {
     type: Boolean,
+    required: false
+  },
+  route: {
+    type: Object as PropType<RouteLocationRaw>,
+    default: () => ({ name: 'news', params: { id: 1, title: 'title' } }),
     required: false
   }
 })
@@ -56,6 +62,12 @@ const state = reactive({
   description: false
 })
 
+const router = useRouter()
+const clickRoute = (route: RouteLocationRaw) => {
+  router.push(route)
+  // router.replace(route)
+}
+
 const resolveImage = computed((): string => {
   return props.src ? props.src : defaultImage
 })
@@ -78,7 +90,7 @@ resolveType()
 </script>
 
 <template>
-  <div class="news__item">
+  <div class="news__item" @click="clickRoute(props.route)">
     <div>
       <ImageDefault class="news__image" :size="resolveType().size" :src="resolveImage"></ImageDefault>
     </div>
@@ -100,6 +112,7 @@ resolveType()
     display: flex;
     margin-bottom: 20px;
     max-width: 800px;
+    cursor: pointer;
 
     .news__image {
       border-radius: 20px;
