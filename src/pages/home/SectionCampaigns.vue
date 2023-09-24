@@ -49,7 +49,7 @@ onMounted(() => {
 
 <template>
   <div class="section__default">
-    <TitleDefault title="Serviços" color="primary" />
+    <TitleDefault title="Campanhas" color="primary" />
     <div v-if="!state.carousel.carouselData.length">Loading</div>
     <div v-else class="section__services--carousel">
       <q-carousel

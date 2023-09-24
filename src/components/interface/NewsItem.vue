@@ -109,9 +109,7 @@ resolveType()
 
 <style lang="scss">
   .news__item {
-    display: flex;
     margin-bottom: 20px;
-    max-width: 800px;
     cursor: pointer;
 
     .news__image {
@@ -134,9 +132,6 @@ resolveType()
   .box__texts
   {
     padding: 0 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
     .box__texts--titles
     {

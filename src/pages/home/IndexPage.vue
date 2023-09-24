@@ -11,7 +11,7 @@
         <SectionVideos />
       </LayoutSection>
       <LayoutSection background="quaternary" cornerColor="tertiary" twoCorners>
-        <SectionServices />
+        <SectionCampaigns />
       </LayoutSection>
       <LayoutSection background="tertiary" cornerColor="primary" withoutCurveTop>
         <SectionPublications />
@@ -31,7 +31,7 @@ import LayoutSection from 'layouts/components/LayoutSection.vue'
 import SectionHighlights from 'pages/home/SectionHighlights.vue'
 import SectionNews from 'pages/home/SectionNews.vue'
 import SectionVideos from 'pages/home/SectionVideos.vue'
-import SectionServices from 'pages/home/SectionServices.vue'
+import SectionCampaigns from 'pages/home/SectionCampaigns.vue'
 import SectionPublications from 'pages/home/SectionPublications.vue'
 import SectionAgenda from 'pages/home/SectionAgenda.vue'
 import SectionSocialMedia from 'pages/home/SectionSocialMedia.vue'
