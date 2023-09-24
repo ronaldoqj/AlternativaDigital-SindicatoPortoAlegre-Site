@@ -50,7 +50,8 @@ import RadioForm from 'src/pages/unionize/components/RadioForm.vue'
             </div>
             <div class="row q-col-gutter-sm q-my-md">
               <div class="col-xs-12 col-md-7 col-lg-4"><InputForm label="Data de nascimento" /></div>
-              <div class="col-xs-12 col-md-5 col-sm-6 col-lg-3"><RadioForm label="Sexo" gender /></div>
+              <!-- <div class="col-xs-12 col-md-5 col-sm-6 col-lg-3"><RadioForm label="Sexo" gender /></div> -->
+              <div class="col-xs-12 col-md-5 col-sm-6 col-lg-3"><InputForm label="Sexo" /></div>
               <div class="col-xs-12 col-sm-6 col-lg-5"><InputForm label="Estado civil" /></div>
             </div>
             <div class="row q-col-gutter-sm q-my-md">

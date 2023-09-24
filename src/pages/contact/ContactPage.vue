@@ -40,19 +40,19 @@ import IconDefault from 'components/interface/IconDefault.vue'
 
             <div style="height: 80px;"></div>
             <div class="personal--data-item social-media">
-              <q-btn size="sm" flat round class="container-icon">
+              <q-btn size="sm" flat round class="container-icon" href="https://www.facebook.com/SindBancarios.PoA/" target="_blank">
                 <IconDefault :size="24" class="icon-class" viewBox="0 0 12.18 22.3" src="/assets/svg/icon-facebook-outline.svg#facebook_outline" />
               </q-btn>
-              <q-btn size="sm" flat round class="container-icon">
+              <q-btn size="sm" flat round class="container-icon" href="https://www.instagram.com/sindbancariospoa/" target="_blank">
                 <IconDefault :size="24" class="icon-class" viewBox="0 0 22.3 22.3" src="/assets/svg/icon-instagram-outline.svg#instagram_outline" />
               </q-btn>
-              <q-btn size="sm" flat round class="container-icon">
+              <q-btn size="sm" flat round class="container-icon" href="https://twitter.com/sindbancarios" target="_blank">
                 <IconDefault :size="24" class="icon-class" viewBox="0 0 26.99 22.31" src="/assets/svg/icon-twitter-outline.svg#twitter_outline" />
               </q-btn>
-              <q-btn size="sm" flat round class="container-icon">
+              <!-- <q-btn size="sm" flat round class="container-icon" href="" target="_blank">
                 <IconDefault :size="24" class="icon-class" viewBox="0 0 20.65 20.7" src="/assets/svg/icon-whatsapp-outline.svg#whatsapp_outline" />
-              </q-btn>
-              <q-btn size="sm" flat round class="container-icon">
+              </q-btn> -->
+              <q-btn size="sm" flat round class="container-icon" href="https://www.youtube.com/SindBancariosPoA" target="_blank">
                 <IconDefault :size="24" class="icon-class" viewBox="0 0 24.17 17.07" src="/assets/svg/icon-youtube-outline.svg#youtube_outline" />
               </q-btn>
             </div>
