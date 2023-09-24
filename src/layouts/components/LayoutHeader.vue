@@ -147,7 +147,8 @@ $borderTopRadius: 40px;
       {
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
+        padding: 0 100px;
+        justify-content: space-between;
 
         .menu__box {
           background: none;
