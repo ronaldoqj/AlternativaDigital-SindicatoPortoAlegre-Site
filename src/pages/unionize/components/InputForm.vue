@@ -9,6 +9,15 @@ const props = defineProps({
     type: String,
     default: '',
     require: false
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  readOnly: {
+    type: Boolean,
+    default: false,
+    require: false
   }
 })
 </script>
@@ -16,8 +25,16 @@ const props = defineProps({
 <template>
   <div class="page__contact--component-input">
     <span class="label__form">{{ props.label }}</span>
-    <div :class="`box__input ${props.type}`">
-      <q-input dense borderless model-value=""></q-input>
+    <div :class="`box__input ${props.type} ${props.readOnly ? 'read__only' : ''}`">
+      <q-input
+        :readonly="props.readOnly"
+        borderless
+        model-value="Text Value"
+        :name="props.name"
+        :class="props.readOnly ? 'read__only--input' : ''"
+        dense
+        >
+      </q-input>
     </div>
   </div>
 </template>
@@ -39,13 +56,30 @@ const props = defineProps({
     border: solid 1px $quinary;
     padding: 0 20px;
     box-shadow: 0px 3px 4px #9E9B9B60;
+    transition: 0.2s ease-in-out;
 
     input {
       color: $accent;
+      font-weight: normal;
     }
 
     &.textarea {
       height: 200px;
+    }
+
+    &.read__only {
+      border: 0;
+      box-shadow: 0px 3px 4px #fff;
+      padding: 0 10px;
+
+      .read__only--input
+      {
+        font-size: 18px;
+
+        input {
+          font-weight: bold;
+        }
+      }
     }
   }
 

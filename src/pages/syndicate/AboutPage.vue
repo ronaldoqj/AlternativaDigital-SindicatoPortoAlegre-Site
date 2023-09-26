@@ -75,27 +75,11 @@ const state = reactive({
           'Diretor Titular de Aposentados e Seguridade Social;',
           'Diretor Titular de Formação;',
           'Diretor Titular de Financeiras e Terceirizados do Ramo Financeiro.',
-          'Os integrantes da Diretoria Executiva, do Conselho de Representação em Entidades de Grau Superior e do Conselho Fiscal do Sindicato são eleitos em Assembleia Geral Ordinária da categoria, em processo eleitoral, quadrienalmente. As eleições, em primeiro turno, são realizadas dentro do prazo máximo de 60 (sessenta) e mínimo de 30 (trinta) dias que antecedem o término dos mandatos vigentes.',
-          'Conheça os integrantes da atual gestão do SindBancários: '
+          'Os integrantes da Diretoria Executiva, do Conselho de Representação em Entidades de Grau Superior e do Conselho Fiscal do Sindicato são eleitos em Assembleia Geral Ordinária da categoria, em processo eleitoral, quadrienalmente. As eleições, em primeiro turno, são realizadas dentro do prazo máximo de 60 (sessenta) e mínimo de 30 (trinta) dias que antecedem o término dos mandatos vigentes.'
         ]
       },
       {
-        title: 'CUT',
-        content: [
-          'Em setembro de 1983, seguindo suas tradições de vanguarda da classe trabalhadora gaúcha, o Sindicato foi o primeiro do Estado a filiar-se à recém criada Central Única dos Trabalhadores (CUT). Muitos dos seus quadros assumiram postos na direção da Central.'
-        ]
-      },
-      {
-        title: 'Base do Sindicato',
-        content: [
-          'Desde 1990, o Sindicato tem como base Porto Alegre e 14 municípios vizinhos. São eles: Alvorada, Barra do Ribeiro, Cachoeirinha, Canoas, Charqueadas, Eldorado do Sul, Esteio, Gravataí, Guaíba, Nova Santa Rita, São Jerônimo, Sapucaia do Sul, Sertão Santana e Viamão.'
-        ]
-      },
-      {
-        title: 'Sede',
-        content: [
-          'Toda a estrutura diretiva, de serviços e equipamentos para uso dos bancários e da comunidade (auditório, biblioteca, cinema, espaço cultural) está em um único lugar. A Casa dos Bancários é a referência da ação do SindBancários na Capital. O local, que antigamente era chamado de Sede da Ladeira (fica na Rua General Câmara), foi completamente restaurado, ganhando salas, espaço para atendimento de associados, auditório, salão de festas e áreas de cultura e lazer. Conheça mais sobre os espaços aqui.'
-        ]
+        title: 'Conheça os integrantes da atual gestão do SindBancários:'
       }
     ]
   },

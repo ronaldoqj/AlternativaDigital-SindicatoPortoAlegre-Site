@@ -90,13 +90,13 @@ const description = 'Cerca de dois meses após ser anunciado como futuro preside
     </div>
 
     <div class="row q-col-gutter-md">
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[0].src" :route="state.news.normal[0].route" :subject="state.news.normal[0].subject" :title="state.news.normal[0].title" :description="state.news.normal[0].description" /></div>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[1].src" :route="state.news.normal[1].route" :subject="state.news.normal[1].subject" :title="state.news.normal[1].title" :description="state.news.normal[1].description" /></div>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[2].src" :route="state.news.normal[2].route" :subject="state.news.normal[2].subject" :title="state.news.normal[2].title" :description="state.news.normal[2].description" /></div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[0].src" :route="state.news.normal[0].route" :subject="state.news.normal[0].subject" :title="state.news.normal[0].title" :description="state.news.normal[0].description" /></div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[1].src" :route="state.news.normal[1].route" :subject="state.news.normal[1].subject" :title="state.news.normal[1].title" :description="state.news.normal[1].description" /></div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[2].src" :route="state.news.normal[2].route" :subject="state.news.normal[2].subject" :title="state.news.normal[2].title" :description="state.news.normal[2].description" /></div>
 
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[3].src" :route="state.news.normal[3].route" :subject="state.news.normal[3].subject" :title="state.news.normal[3].title" :description="state.news.normal[3].description" /></div>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[4].src" :route="state.news.normal[4].route" :subject="state.news.normal[4].subject" :title="state.news.normal[4].title" :description="state.news.normal[4].description" /></div>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[5].src" :route="state.news.normal[5].route" :subject="state.news.normal[5].subject" :title="state.news.normal[5].title" :description="state.news.normal[5].description" /></div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[3].src" :route="state.news.normal[3].route" :subject="state.news.normal[3].subject" :title="state.news.normal[3].title" :description="state.news.normal[3].description" /></div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[4].src" :route="state.news.normal[4].route" :subject="state.news.normal[4].subject" :title="state.news.normal[4].title" :description="state.news.normal[4].description" /></div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[5].src" :route="state.news.normal[5].route" :subject="state.news.normal[5].subject" :title="state.news.normal[5].title" :description="state.news.normal[5].description" /></div>
     </div>
 
     <div class="box__btn--more">

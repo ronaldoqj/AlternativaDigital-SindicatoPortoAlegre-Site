@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { PropType } from 'vue'
+
+export type TState = 'default' | 'actived' | 'done'
+
 const props = defineProps({
   src: {
     type: String,
@@ -15,6 +19,11 @@ const props = defineProps({
     default: false,
     require: false
   },
+  state: {
+    type: String as PropType<TState>,
+    default: 'default',
+    require: false
+  },
   description: {
     type: String,
     default: 'Passo',
@@ -25,7 +34,7 @@ const props = defineProps({
 
 <template>
   <!-- Preencher os dados -->
-  <div :class="`component__unionize--button-step ${props.actived ? 'actived' : ''}`">
+  <div :class="`component__unionize--button-step ${props.state}`">
     <div class="button-step">
       <span>{{ props.title }}</span>
     </div>
@@ -93,6 +102,39 @@ const props = defineProps({
 
       .title {
         color: $accent;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &.done
+  {
+    span {
+      color: $octal;
+    }
+
+    cursor: pointer;
+
+    .title {
+      color: $octal;
+    }
+
+    .button-step {
+      border-color: $octal;
+    }
+
+    &:hover
+    {
+      span {
+        color: $octal;
+      }
+
+      .button-step {
+        border-color: $octal;
+      }
+
+      .title {
+        color: $octal;
         text-decoration: underline;
       }
     }

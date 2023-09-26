@@ -1,10 +1,85 @@
 <script setup lang="ts">
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
-import ButtonStep from 'src/pages/unionize/components/ButtonStep.vue'
+import ButtonStep, { TState } from 'src/pages/unionize/components/ButtonStep.vue'
 import SeparatorStep from 'src/pages/unionize/components/SeparatorStep.vue'
 import InputForm from 'src/pages/unionize/components/InputForm.vue'
 import RadioForm from 'src/pages/unionize/components/RadioForm.vue'
+import { computed, reactive } from 'vue'
+
+type TFormStates = 'edition' | 'review' | 'done'
+
+const state = reactive({
+  form: {
+    formState: 'edition' as TFormStates,
+    inputs: {
+      commercialData: {
+        bank: { label: 'banco', name: 'bank' },
+        bankCode: { label: 'COD do banco', name: 'cod_bank' },
+        agency: { label: 'Agência', name: 'agency' },
+
+        phone: { label: 'Telefone', name: 'phone' },
+        extension: { label: 'Ramal', name: 'extension' },
+        alreadyAssociated: { label: 'Já foi associado à este sindicato?', name: 'already_associated' },
+
+        registration: { label: 'Matrícula funcional', name: 'registration' },
+        position: { label: 'Cargo/Função', name: 'position' },
+        commercialEmail: { label: 'E-mail comercial', name: 'commercial_email' }
+      },
+      personalData: {
+        cpf: { label: 'CPF', name: 'cpf' },
+        rg: { label: 'RG', name: 'rg' },
+
+        birth: { label: 'Data de nascimento', name: 'birth' },
+        sex: { label: 'Sexo', name: 'sex' },
+        maritalStatus: { label: 'Estado civil', name: 'marital_status' },
+
+        email: { label: 'Email', name: 'email' },
+        phone: { label: 'Telefone', name: 'phone' },
+        cellPhone: { label: 'Celular', name: 'cell_phone' },
+
+        homeAddress: { label: 'Endereço Recidencial', name: 'home_address' },
+        number: { label: 'Número', name: 'number' },
+        complement: { label: 'Complemento', name: 'complement' },
+
+        neighborhood: { label: 'Bairro', name: 'neighborhood' },
+        city: { label: 'Cidade', name: 'city' },
+        state: { label: 'Estado', name: 'state' }
+      }
+    }
+  },
+  staps: {
+    one: 'actived' as TState,
+    two: 'default' as TState
+  }
+})
+
+const cData = state.form.inputs.commercialData
+const pData = state.form.inputs.personalData
+
+const formReadyOnly = computed((): boolean => {
+  return state.form.formState === 'review'
+})
+
+const changeFormState = (formState:TFormStates) => {
+  state.form.formState = formState
+
+  switch (formState) {
+    case 'edition':
+      state.staps.one = 'actived'
+      state.staps.two = 'default'
+      break
+    case 'review':
+      state.staps.one = 'done'
+      state.staps.two = 'actived'
+      break
+    case 'done':
+    default:
+      state.staps.one = 'done'
+      state.staps.two = 'done'
+      break
+  }
+}
 </script>
 
 <template>
@@ -16,28 +91,28 @@ import RadioForm from 'src/pages/unionize/components/RadioForm.vue'
           Passos da sindicalização
         </div>
         <div class="box__steps">
-          <ButtonStep actived description="Preencher os dados" />
+          <ButtonStep title="01" :state="state.staps.one" description="Preencher os dados" />
           <SeparatorStep class="separator__step" />
-          <ButtonStep title="02" description="Enviado" />
+          <ButtonStep title="02" :state="state.staps.two" description="Enviado" />
         </div>
 
         <div class="page__unionize--section-form q-my-xl">
           <div class="header--section-form">Dados Comerciais</div>
           <div class="section--form">
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-lg-5"><InputForm label="Banco" /></div>
-              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm label="COD do banco" /></div>
-              <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm label="Agência" /></div>
+              <div class="col-xs-12 col-lg-5"><InputForm :label="cData.bank.label" :name="cData.bank.name" :read-only="formReadyOnly" /></div>
+              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm :label="cData.bankCode.label" :name="cData.bankCode.name" :read-only="formReadyOnly" /></div>
+              <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm :label="cData.agency.label" :name="cData.agency.name" :read-only="formReadyOnly" /></div>
             </div>
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-lg-5"><InputForm label="Telefone" /></div>
-              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm label="Ramal" /></div>
-              <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><RadioForm label="Já foi associado à este sindicato?" /></div>
+              <div class="col-xs-12 col-lg-5"><InputForm :label="cData.phone.label" :name="cData.phone.name" :read-only="formReadyOnly" /></div>
+              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm :label="cData.extension.label" :name="cData.extension.name" :read-only="formReadyOnly" /></div>
+              <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><RadioForm :label="cData.alreadyAssociated.label" :name="cData.alreadyAssociated.name" :read-only="formReadyOnly" /></div>
             </div>
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm label="Matrícula funcional" /></div>
-              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm label="Cargo/Função" /></div>
-              <div class="col-xs-12 col-lg-5"><InputForm label="E-mail comercial" /></div>
+              <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm :label="cData.registration.label" :name="cData.registration.name" :read-only="formReadyOnly" /></div>
+              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm :label="cData.position.label" :name="cData.position.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-lg-5"><InputForm :label="cData.commercialEmail.label" :name="cData.commercialEmail.name" :read-only="formReadyOnly" /></div>
             </div>
           </div>
         </div>
@@ -45,29 +120,43 @@ import RadioForm from 'src/pages/unionize/components/RadioForm.vue'
           <div class="header--section-form">Dados Pessoais</div>
           <div class="section--form">
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-lg-5"><InputForm label="CPF" /></div>
-              <div class="col-xs-12 col-lg-5"><InputForm label="RG" /></div>
+              <div class="col-xs-12 col-lg-5"><InputForm :label="pData.cpf.label" :name="pData.cpf.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-lg-5"><InputForm :label="pData.rg.label" :name="pData.rg.name" :read-only="formReadyOnly" /></div>
             </div>
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-md-7 col-lg-4"><InputForm label="Data de nascimento" /></div>
+              <div class="col-xs-12 col-md-7 col-lg-4"><InputForm :label="pData.birth.label" :name="pData.birth.name" :read-only="formReadyOnly" /></div>
               <!-- <div class="col-xs-12 col-md-5 col-sm-6 col-lg-3"><RadioForm label="Sexo" gender /></div> -->
-              <div class="col-xs-12 col-md-5 col-sm-6 col-lg-3"><InputForm label="Sexo" /></div>
-              <div class="col-xs-12 col-sm-6 col-lg-5"><InputForm label="Estado civil" /></div>
+              <div class="col-xs-12 col-md-5 col-sm-6 col-lg-3"><InputForm :label="pData.sex.label" :name="pData.sex.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-sm-6 col-lg-5"><InputForm :label="pData.maritalStatus.label" :name="pData.maritalStatus.name" :read-only="formReadyOnly" /></div>
             </div>
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-lg-6"><InputForm label="E-mail" /></div>
-              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm label="Telefone" /></div>
-              <div class="col-4 col-xs-12 col-sm-6 col-lg-3"><InputForm label="Celular" /></div>
+              <div class="col-xs-12 col-lg-6"><InputForm :label="pData.email.label" :name="pData.email.name" :read-only="formReadyOnly" /></div>
+              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm :label="pData.phone.label" :name="pData.phone.name" :read-only="formReadyOnly" /></div>
+              <div class="col-4 col-xs-12 col-sm-6 col-lg-3"><InputForm :label="pData.cellPhone.label" :name="pData.cellPhone.name" :read-only="formReadyOnly" /></div>
             </div>
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-lg-6"><InputForm label="Endereço Residencial" /></div>
-              <div class="col-3 col-xs-12 col-sm-4 col-lg-2"><InputForm label="Número" /></div>
-              <div class="col-4 col-xs-12 col-sm-8 col-lg-4"><InputForm label="Complemento" /></div>
+              <div class="col-xs-12 col-lg-6"><InputForm :label="pData.homeAddress.label" :name="pData.homeAddress.name" :read-only="formReadyOnly" /></div>
+              <div class="col-3 col-xs-12 col-sm-4 col-lg-2"><InputForm :label="pData.number.label" :name="pData.number.name" :read-only="formReadyOnly" /></div>
+              <div class="col-4 col-xs-12 col-sm-8 col-lg-4"><InputForm :label="pData.complement.label" :name="pData.complement.name" :read-only="formReadyOnly" /></div>
             </div>
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-lg-6"><InputForm label="Bairro" /></div>
-              <div class="col-4 col-xs-12 col-sm-8 col-lg-4"><InputForm label="Cidade" /></div>
-              <div class="col-3 col-xs-12 col-sm-4 col-lg-2"><InputForm label="Estado" /></div>
+              <div class="col-xs-12 col-lg-6"><InputForm :label="pData.neighborhood.label" :name="pData.neighborhood.name" :read-only="formReadyOnly" /></div>
+              <div class="col-4 col-xs-12 col-sm-8 col-lg-4"><InputForm :label="pData.city.label" :name="pData.city.name" :read-only="formReadyOnly" /></div>
+              <div class="col-3 col-xs-12 col-sm-4 col-lg-2"><InputForm :label="pData.state.label" :name="pData.state.name" :read-only="formReadyOnly" /></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page__unionize--section-actions q-mb-xl">
+          <div class="confirm" v-if="state.form.formState === 'edition'">
+            <q-btn color="octal" size="lg" class="default__btn confirm-btn" label="Confirmar Dados" @click="changeFormState('review')" />
+          </div>
+          <div class="row q-col-gutter-sm send" v-if="state.form.formState === 'review'">
+            <div class="col-4">
+              <q-btn color="septenary" size="lg" class="default__btn confirm-btn" label="Reeditar Dados" @click="changeFormState('edition')" />
+            </div>
+            <div class="col-8">
+              <q-btn color="octal" size="lg" class="default__btn confirm-btn" label="Enviar Dados" @click="changeFormState('done')" />
             </div>
           </div>
         </div>
@@ -121,6 +210,13 @@ import RadioForm from 'src/pages/unionize/components/RadioForm.vue'
         border: solid 1px $septenary;
         border-radius: 45px;
         padding: 30px;
+      }
+    }
+
+    .page__unionize--section-actions {
+      .default__btn {
+        width: 100%;
+          border-radius: 20px;
       }
     }
   }
