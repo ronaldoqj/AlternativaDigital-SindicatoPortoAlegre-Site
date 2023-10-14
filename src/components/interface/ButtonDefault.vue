@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PropType, computed, ref } from 'vue'
+import { PropType, computed } from 'vue'
 import { ButtonDefaultSize } from 'components/models/interfaces/InterfacesDefault'
 
 const props = defineProps({
