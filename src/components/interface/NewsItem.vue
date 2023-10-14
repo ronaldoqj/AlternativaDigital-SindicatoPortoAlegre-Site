@@ -31,7 +31,7 @@ const props = defineProps({
   },
   route: {
     type: Object as PropType<RouteLocationRaw>,
-    default: () => ({ name: 'news', params: { id: 1, title: 'title' } }),
+    default: () => ({ }),
     required: false
   }
 })
@@ -131,6 +131,7 @@ resolveType()
 
   .box__texts
   {
+    margin: 6px 0 0;
     padding: 0 5px;
 
     .box__texts--titles

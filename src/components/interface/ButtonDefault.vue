@@ -46,6 +46,10 @@ const props = defineProps({
   noCaps: {
     type: Boolean,
     require: false
+  },
+  loading: {
+    type: Boolean,
+    require: false
   }
 })
 
@@ -70,19 +74,6 @@ const resolveRadius = computed(() => {
   return cssClass
 })
 
-const loading = ref(false)
-
-function simulateProgress () {
-  // we set loading state
-  loading.value = true
-
-  // simulate a delay
-  setTimeout(() => {
-    // we're done, we reset loading state
-    loading.value = false
-  }, 3000)
-}
-
 </script>
 
 <template>
@@ -96,9 +87,8 @@ function simulateProgress () {
     :class="`button-default ${resolveRadius}`"
     :no-caps="props.noCaps"
 
-    :loading="loading"
+    :loading="props.loading"
     :color="props.color"
-    @click="simulateProgress()"
     :style="resolveStyle">
     {{ props.title }}
     <template v-slot:loading>

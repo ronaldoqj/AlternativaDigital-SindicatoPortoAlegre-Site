@@ -11,7 +11,8 @@
 const { configure } = require('quasar/wrappers')
 const path = require('path')
 
-module.exports = configure(function (/* ctx */) {
+/** essa variavel ctx estava comentada, tive qeu descomentar para add minha variavel de ambiente API */
+module.exports = configure(function (ctx) {
   return {
     eslint: {
       // fix: true,
@@ -54,12 +55,15 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
+      env: {
+        API: ctx.dev ? 'http://localhost' : 'http://productionDomain'
+      },
       target: {
         browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
         node: 'node16'
       },
 
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,

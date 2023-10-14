@@ -5,10 +5,24 @@ import TitleDefault from 'components/interface/TitleDefault.vue'
 import ImageDefault from 'components/interface/ImageDefault.vue'
 import { onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
+import { TTypeNews } from 'src/types/INews'
+import NewsService from 'src/services/NewsService'
+import { AxiosError } from 'axios'
+import SkeletonNews from 'components/interface/skeletons/SkeletonNews.vue'
 
 const route = useRoute()
 const state = reactive({
+  control: {
+    showContent: false
+  },
   news: {
+    idNews: null as null | number,
+    type: null as null | TTypeNews,
+    content: {},
+    relatedNews: {
+      perPage: 6,
+      list: []
+    },
     id1: {
       image: '/assets/image/apresentation/home/destaque/NOTICIA-DESTAQUE-001.jpg',
       subtitle: 'Santander vai pagar PLR e PPE no dia 29 de setembro',
@@ -259,7 +273,6 @@ const state = reactive({
       ]
     }
   },
-  showNews: false,
   currentNews: {
     image: '',
     subtitle: '',
@@ -268,7 +281,47 @@ const state = reactive({
   } as any
 })
 
+const getRelatedList = () => {
+  NewsService.related({ notNews: state.news.idNews, perPage: state.news.relatedNews.perPage })
+    .then((response:any) => {
+      console.log('getRelatedList', response.data)
+      response.data.forEach((element: never) => {
+        state.news.relatedNews.list.push(element as never)
+      })
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      //
+    })
+}
+
+const getNews = () => {
+  NewsService.get({ id: state.news.idNews })
+    .then((response:any) => {
+      console.log('getNews', response)
+      state.control.showContent = true
+      getRelatedList()
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      //
+    })
+}
+
 onMounted(() => {
+  if (route.params && route.params.id.length) {
+    if (!isNaN(route.params.id as unknown as number)) {
+      state.news.idNews = Number(route.params.id)
+      getNews()
+    } else {
+      // ToDo error
+    }
+  }
+
   switch (route.params.id) {
     case '1':
       state.currentNews = state.news.id1
@@ -303,8 +356,6 @@ onMounted(() => {
       state.currentNews = state.news.id1
       break
   }
-
-  state.showNews = true
 })
 </script>
 
@@ -313,8 +364,11 @@ onMounted(() => {
     <div id="page__news" class="col">
       <LayoutSection background="tertiary" type="top" cornerColor="secondary" min-height>
         <TitleDefault title="Notícia" />
+        <div v-if="!state.control.showContent" class="q-mt-xl">
+          <SkeletonNews />
+        </div>
 
-        <template v-if="state.showNews">
+        <div class="q-mb-xl" v-else>
           <h2>{{ state.currentNews.subtitle }}</h2>
           <h1>{{ state.currentNews.title }}</h1>
 
@@ -326,9 +380,9 @@ onMounted(() => {
               <p v-if="item.type === 'font'">{{ item.value }}</p>
             </template>
           </div>
-        </template>
-        <div class="related__publications">
-          <RelatedPublications />
+        </div>
+        <div class="related__publications" v-if="state.news.relatedNews.list.length">
+          <RelatedPublications :list="state.news.relatedNews.list" />
         </div>
       </LayoutSection>
     </div>

@@ -2,10 +2,10 @@
   <q-page class="row justify-evenly">
     <div id="page__content" class="col">
       <LayoutSection type="banner" background="primary" cornerColor="tertiary">
-        <SectionHighlights />
+        <SectionBanner :news="state.sectionBanners" />
       </LayoutSection>
       <LayoutSection background="tertiary" cornerColor="accent">
-        <SectionNews />
+        <SectionNews :news="state.sectionNews" />
       </LayoutSection>
       <LayoutSection background="accent" cornerColor="quaternary">
         <SectionVideos />
@@ -28,13 +28,41 @@
 
 <script setup lang="ts">
 import LayoutSection from 'layouts/components/LayoutSection.vue'
-import SectionHighlights from 'pages/home/SectionHighlights.vue'
+import SectionBanner from 'pages/home/SectionBanner.vue'
 import SectionNews from 'pages/home/SectionNews.vue'
 import SectionVideos from 'pages/home/SectionVideos.vue'
 import SectionCampaigns from 'pages/home/SectionCampaigns.vue'
 import SectionPublications from 'pages/home/SectionPublications.vue'
 import SectionAgenda from 'pages/home/SectionAgenda.vue'
 import SectionSocialMedia from 'pages/home/SectionSocialMedia.vue'
+import { AxiosError } from 'axios'
+import NewsService from 'src/services/NewsService'
+import { onMounted, reactive } from 'vue'
+
+const state = reactive({
+  sectionBanners: [],
+  sectionNews: {}
+})
+
+onMounted(() => {
+  // console.log('envRouterModeAPI', process.env.API)
+  NewsService.listHome({})
+    .then((response:any) => {
+      state.sectionBanners = response.data.banners
+      state.sectionNews = {
+        highlights: response.data.highlights,
+        geral: response.data.geral
+      }
+      // console.log('initial response', response.data)
+      // console.log('initial response2', state.sectionNews)
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      //
+    })
+})
 </script>
 
 <style lang="scss">

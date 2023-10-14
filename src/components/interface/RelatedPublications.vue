@@ -2,12 +2,16 @@
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import NewsItem from 'components/interface/NewsItem.vue'
 import { reactive, onMounted, computed } from 'vue'
-import { defaultImage } from 'src/helpers/helpers'
+import { getValidImage, defaultImage } from 'src/helpers/helpers'
 
 const props = defineProps({
   title: {
     type: String,
     require: false
+  },
+  list: {
+    type: Array,
+    require: true
   }
 })
 
@@ -44,15 +48,21 @@ const getData = (): void => {
 
 onMounted(() => {
   getData()
+  console.log('List of RelatedPublications', props.list)
 })
 </script>
 
 <template>
-  <div class="q-mt-xl q-pt-xl">
+  <div class="q-mt-xl">
     <TitleDefault :title="resolveTitle" />
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-lg-4 q-my-sm" v-for="(item, key) in state.relatedPublicationData" :key="key">
-        <NewsItem :subject="item.subject" :title="item.subject" :description="item.description" :src="item.image" />
+    <div class="row q-my-sm q-col-gutter-md">
+      <div class="col-xs-12 col-sm-6 col-lg-4" v-for="(row, key) in (props.list as any)" :key="key">
+        <NewsItem
+          :src="getValidImage(row, 'imageNews')"
+          :subject="row.subject"
+          :title="row.title"
+          :description="row.description"
+        />
       </div>
     </div>
   </div>

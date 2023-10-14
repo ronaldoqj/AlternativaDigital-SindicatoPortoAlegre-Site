@@ -2,7 +2,18 @@
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import NewsItem from 'components/interface/NewsItem.vue'
 import ButtonDefault from 'components/interface/ButtonDefault.vue'
-import { reactive } from 'vue'
+import { baseURL, getValidImage, convertURL } from 'src/helpers/helpers'
+import { computed, onMounted, reactive, watch } from 'vue'
+import { AxiosError } from 'axios'
+import NewsService from 'src/services/NewsService'
+import TitleLastItem from 'components/interface/TitleLastItem.vue'
+
+const props = defineProps({
+  news: {
+    type: Object,
+    required: false
+  }
+})
 
 const state = reactive({
   news: {
@@ -72,23 +83,117 @@ const state = reactive({
         title: 'Atividade será realizada na próxima quinta (7), às 9h30, na ...',
         description: 'O 29º Grito dos Excluídos e das Excluídas vai levar a pergunta “Você tem fome e sede de quê?” para as ruas nesta quinta-feira, 7 de setembro ...'
       }
-    ]
+    ],
+    geral: {
+      page: 1,
+      perPage: 6,
+      endList: false,
+      lastPate: null as null | number,
+      list: [] as any
+    }
+  },
+  buttons: {
+    moreNews: {
+      loading: false,
+      show: true
+    }
   }
 })
-const subject = 'Assembleia Legislativa'
-const title = 'Assembleia irá deliberar sobre aprovação de Acordos Coletivos de Trabalho do Itaú'
-const description = 'Cerca de dois meses após ser anunciado como futuro presidente do Banrisul pelo governador Eduar Leite, o nome de Fulano Beltrano Ciclano finalmente foi pautado na Comissão de Finanças da Assembleia Legislativa...'
+
+const geralNews = computed(() => {
+  return props.news?.geral
+})
+
+const moreNews = () => {
+  state.news.geral.page += 1
+  state.buttons.moreNews.loading = true
+  NewsService.list({ page: state.news.geral.page, perPage: state.news.geral.perPage })
+    .then((response:any) => {
+      console.log('MoreNews', response.data)
+      response.data.data.forEach((element:any) => {
+        // state.news.geral.list.push(element)
+        // console.log('currentList', state.news.geral.list)
+        // console.log('itemNews', element)
+        console.log('next_page_url', response.data.next_page_url)
+        if (response.data.next_page_url === null) {
+          state.buttons.moreNews.show = false
+        }
+        state.news.geral.list.push(element)
+      })
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      state.buttons.moreNews.loading = false
+    })
+}
+
+watch(geralNews, newValue => {
+  state.news.geral.list = newValue
+})
+
+onMounted(() => {
+  console.log('onMounted SectionNews', props.news)
+})
 </script>
 
 <template>
   <div class="section__default">
     <TitleDefault title="Notícias" color="primary" />
     <div class="row q-mb-md q-col-gutter-md">
-      <div class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm"><NewsItem :src="state.news.highlights[0].src" :route="state.news.highlights[0].route" :subject="state.news.highlights[0].subject" :title="state.news.highlights[0].title" :description="state.news.highlights[0].description" :highlights="true" /></div>
-      <div class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm"><NewsItem :src="state.news.highlights[1].src" :route="state.news.highlights[1].route" :subject="state.news.highlights[1].subject" :title="state.news.highlights[1].title" :description="state.news.highlights[1].description" :highlights="true" /></div>
-      <div class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm xl"><NewsItem :src="state.news.highlights[2].src" :route="state.news.highlights[2].route" :subject="state.news.highlights[2].subject" :title="state.news.highlights[2].title" :description="state.news.highlights[2].description" :highlights="true" /></div>
+      <div v-if="props.news?.highlights && props.news?.highlights.length > 0" class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm">
+        <NewsItem
+          :src="`${baseURL}${props.news?.highlights[0].image_news.path}/${props.news?.highlights[0].image_news.file_name}`"
+          :route="convertURL(props.news?.highlights[0].id, props.news?.highlights[0].title)"
+          :subject="props.news?.highlights[0].topper"
+          :title="props.news?.highlights[0].title"
+          :description="props.news?.highlights[0].call"
+          :highlights="true"
+        />
+      </div>
+      <div v-if="props.news?.highlights && props.news?.highlights.length > 1" class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm">
+        <NewsItem
+          :src="`${baseURL}${props.news?.highlights[1].image_news.path}/${props.news?.highlights[1].image_news.file_name}`"
+          :route="convertURL(props.news?.highlights[1].id, props.news?.highlights[1].title)"
+          :subject="props.news?.highlights[1].topper"
+          :title="props.news?.highlights[1].title"
+          :description="props.news?.highlights[1].call"
+          :highlights="true"
+        />
+      </div>
+      <div v-if="props.news?.highlights && props.news?.highlights.length > 2" class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm xl">
+        <NewsItem
+          :src="`${baseURL}${props.news?.highlights[2].image_news.path}/${props.news?.highlights[2].image_news.file_name}`"
+          :route="convertURL(props.news?.highlights[2].id, props.news?.highlights[2].title)"
+          :subject="props.news?.highlights[2].topper"
+          :title="props.news?.highlights[2].title"
+          :description="props.news?.highlights[2].call"
+          :highlights="true"
+        />
+      </div>
     </div>
+    <!--
+      <div class="row q-mb-md q-col-gutter-md">
+        <div class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm"><NewsItem :src="state.news.highlights[0].src" :route="state.news.highlights[0].route" :subject="state.news.highlights[0].subject" :title="state.news.highlights[0].title" :description="state.news.highlights[0].description" :highlights="true" /></div>
+        <div class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm"><NewsItem :src="state.news.highlights[1].src" :route="state.news.highlights[1].route" :subject="state.news.highlights[1].subject" :title="state.news.highlights[1].title" :description="state.news.highlights[1].description" :highlights="true" /></div>
+        <div class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm xl"><NewsItem :src="state.news.highlights[2].src" :route="state.news.highlights[2].route" :subject="state.news.highlights[2].subject" :title="state.news.highlights[2].title" :description="state.news.highlights[2].description" :highlights="true" /></div>
+      </div>
+    -->
 
+    <div v-if="state.news.geral.list.length" class="row q-col-gutter-md">
+      <div v-for="(row, index) in state.news.geral.list" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 q-my-sm">
+        <!-- :src="`${baseURL}${row.image_news.path}/${row.image_news.file_name}`" -->
+        <NewsItem
+          :src="getValidImage(row, 'imageNews')"
+          :route="convertURL(row.id, row.title)"
+          :subject="row.subject"
+          :title="row.title"
+          :description="row.description"
+        />
+      </div>
+    </div>
+    <!--
     <div class="row q-col-gutter-md">
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[0].src" :route="state.news.normal[0].route" :subject="state.news.normal[0].subject" :title="state.news.normal[0].title" :description="state.news.normal[0].description" /></div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[1].src" :route="state.news.normal[1].route" :subject="state.news.normal[1].subject" :title="state.news.normal[1].title" :description="state.news.normal[1].description" /></div>
@@ -98,9 +203,25 @@ const description = 'Cerca de dois meses após ser anunciado como futuro preside
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[4].src" :route="state.news.normal[4].route" :subject="state.news.normal[4].subject" :title="state.news.normal[4].title" :description="state.news.normal[4].description" /></div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 q-my-sm"><NewsItem :src="state.news.normal[5].src" :route="state.news.normal[5].route" :subject="state.news.normal[5].subject" :title="state.news.normal[5].title" :description="state.news.normal[5].description" /></div>
     </div>
+    -->
 
     <div class="box__btn--more">
-      <ButtonDefault rounded unradiusTopLeft noCaps title="Mais notícias" color="primary" :size="{maxWidth: '400px'}" style="flex:max-content;" />
+      <ButtonDefault
+        v-if="state.buttons.moreNews.show"
+        rounded
+        unradiusTopLeft
+        noCaps
+        title="Mais notícias"
+        color="primary"
+        :size="{maxWidth: '400px'}"
+        style="flex:max-content;"
+        :loading="state.buttons.moreNews.loading"
+        @click="moreNews()"
+      />
+      <TitleLastItem
+        v-else
+        title="Todas notícias foram apresentadas"
+      />
     </div>
   </div>
 </template>
