@@ -11,10 +11,15 @@ const props = defineProps({
     type: Boolean,
     default: false,
     required: false
+  },
+  readOnly: {
+    type: Boolean,
+    default: false,
+    require: false
   }
 })
 
-const shape = ref('line')
+const shape = ref('')
 const state = reactive({
   labels: {
     first: 'Não',
@@ -29,14 +34,25 @@ const lastLabel = computed((): string => {
   return props.gender ? 'Feminino' : state.labels.last
 })
 
+const showFirstRadio = computed((): boolean => {
+  let show = true
+  if (props.readOnly && shape.value === 'y') { show = false }
+  return show
+})
+const showLastRadio = computed((): boolean => {
+  let show = true
+  if (props.readOnly && shape.value === 'n') { show = false }
+  return show
+})
+
 </script>
 
 <template>
   <div class="page__contact--component-radio">
     <span class="label__form">{{ props.label }}</span>
     <div :class="`box__input`">
-      <q-radio size="xl" v-model="shape" color="primary" val="n" :label="firstLabel" />
-      <q-radio size="xl" v-model="shape" color="primary" val="y" :label="lastLabel" />
+      <q-radio size="xl" v-model="shape" color="primary" val="n" :label="firstLabel" v-if="showFirstRadio" />
+      <q-radio size="xl" v-model="shape" color="primary" val="y" :label="lastLabel" v-if="showLastRadio" />
     </div>
   </div>
 </template>

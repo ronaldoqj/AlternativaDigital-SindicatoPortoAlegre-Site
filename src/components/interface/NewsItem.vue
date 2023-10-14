@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import ImageDefault from 'components/interface/ImageDefault.vue'
 import { defaultImage } from 'src/helpers/helpers'
-import { computed, reactive } from 'vue'
+import { computed, reactive, PropType } from 'vue'
+import { RouteLocationRaw, useRouter } from 'vue-router'
 
 const props = defineProps({
   src: {
@@ -26,6 +27,11 @@ const props = defineProps({
   },
   highlights: {
     type: Boolean,
+    required: false
+  },
+  route: {
+    type: Object as PropType<RouteLocationRaw>,
+    default: () => ({ }),
     required: false
   }
 })
@@ -56,6 +62,12 @@ const state = reactive({
   description: false
 })
 
+const router = useRouter()
+const clickRoute = (route: RouteLocationRaw) => {
+  router.push(route)
+  // router.replace(route)
+}
+
 const resolveImage = computed((): string => {
   return props.src ? props.src : defaultImage
 })
@@ -78,15 +90,15 @@ resolveType()
 </script>
 
 <template>
-  <div class="news__item">
+  <div class="news__item" @click="clickRoute(props.route)">
     <div>
       <ImageDefault class="news__image" :size="resolveType().size" :src="resolveImage"></ImageDefault>
     </div>
     <div class="box__texts">
       <div :class="`box__texts--titles ${resolveType().style}`">
-        <h5 class="tag-h5" v-if="props.subject">{{ props.subject }}</h5>
-        <h4 class="tag-h4" v-if="props.title">{{ props.title }}</h4>
-        <h6 class="tag-h6" v-if="props.highlights === true">{{ props.description }}</h6>
+        <h5 class="tag-h5 " v-if="props.subject">{{ props.subject }}</h5>
+        <h4 class="tag-h4 " v-if="props.title">{{ props.title }}</h4>
+        <h6 class="tag-h6 " v-if="props.highlights === true">{{ props.description }}</h6>
       </div>
       <div>
         <a href="#">Leia mais</a>
@@ -97,9 +109,8 @@ resolveType()
 
 <style lang="scss">
   .news__item {
-    display: flex;
     margin-bottom: 20px;
-    max-width: 800px;
+    cursor: pointer;
 
     .news__image {
       border-radius: 20px;
@@ -116,15 +127,12 @@ resolveType()
         margin-bottom: 10px;
       }
     }
-
   }
 
   .box__texts
   {
+    margin: 6px 0 0;
     padding: 0 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
     .box__texts--titles
     {

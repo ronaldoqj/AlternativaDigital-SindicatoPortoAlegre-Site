@@ -20,35 +20,66 @@ const state = reactive({
       {
         title: 'História',
         content: [
-          'O Sindicato dos Bancários de Porto Alegre e Região (SindBancários) completou 90 anos de história em 2023. A entidade foi fundada em 18 de janeiro de 1933, em uma Assembleia Geral que contou com 185 bancários. Na época, o SindBancários se chamou Sindicato dos Bancários do Rio Grande do Sul.',
-          'A base era estadual, mas, com o surgimento de novos sindicatos no Interior, a entidade assumiu o nome atual: Sindicato dos Bancários de Porto Alegre e Região.',
-          'Em 90 anos, o SindBancários desenhou uma trajetória de presença marcante na construção do sindicalismo bancário brasileiro. No Estado, tem papel crucial na luta por mais dignidade dos trabalhadores e trabalhadoras, e na construção da democracia em diversos períodos históricos.'
+          'O Sindicato dos Bancários de Porto Alegre e Região - SindBancários foi fundado em 18 de janeiro de 1933, em uma Assembleia Geral com a presença de 185 bancários. À época, o SindBancários chamava-se Sindicato dos Bancários do Rio Grande do Sul. A base era estadual, mas, com o surgimento de novos sindicatos no Interior, a entidade assumiu o nome atual: Sindicato dos Bancários de Porto Alegre e Região.',
+          'Em nove décadas, o SindBancários desenhou uma trajetória de presença marcante na construção do sindicalismo bancário brasileiro. No Estado, a entidade tem papel crucial na luta por mais dignidade dos trabalhadores e trabalhadoras, e na construção da democracia em diversos períodos históricos.'
         ]
       },
       {
         title: 'As intervenções',
         content: [
-          'A primeira ocorreu em 1946, quando caiu o Estado Novo. Novamente, em 1964, quando do Golpe Militar. Outra intervenção foi em 1968, quando recrudesceu o regime militar, com o Ato Institucional (AI) 5. Em 6 de setembro de 1979, em meio à maior greve dos bancários porto-alegrenses, ocorreria a quarta e última intervenção, que durou 10 meses e cinco dias.',
-          'A ação interventora terminou com a cassação dos dirigentes Aquiles Notti, Câncio Vargas, Felipe Nogueira e do então presidente do Sindicato, Olívio Dutra, ex-governador do Rio Grande do Sul e ex-ministro das Cidades do governo Lula.'
+          'A primeira ocorreu em 1946, quando caiu o Estado Novo. A segunda, em 1964, quando do Golpe Militar. Outra intervenção foi em 1968, quando recrudesceu o regime militar, com o Ato Institucional (AI) 5. Em 6 de setembro de 1979, em meio à maior greve dos bancários porto-alegrenses, ocorreria a quarta e última intervenção, que durou 10 meses e cinco dias.',
+          'A ação interventora terminou com a cassação dos dirigentes Aquiles Notti, Câncio Vargas, Felipe Nogueira e do então presidente do Sindicato, Olívio Dutra, ex-governador do Rio Grande do Sul e ex-ministro das Cidades do governo Lula (2003-2005).'
         ]
       },
       {
         title: 'CUT',
         content: [
-          'Em setembro de 1983, seguindo suas tradições de vanguarda da classe trabalhadora gaúcha, o Sindicato foi o primeiro a filiar-se no Estado à recém criada Central Única dos Trabalhadores (CUT). Muitos dos seus quadros assumiram postos na direção da Central.'
+          'Em setembro de 1983, seguindo suas tradições de vanguarda da classe trabalhadora gaúcha, o Sindicato foi o primeiro do Estado a filiar-se à recém criada Central Única dos Trabalhadores (CUT). Muitos dos seus quadros assumiram postos na direção da Central.'
         ]
       },
       {
         title: 'Base do Sindicato',
         content: [
-          'Desde 1990, o Sindicato tem como base Porto Alegre e 14 municípios vizinhos (Alvorada, Barra do Ribeiro, Cachoeirinha, Canoas, Charqueadas, Eldorado do Sul, Esteio, Gravataí, Guaíba, Nova Santa Rita, São Jerônimo, Sapucaia do Sul, Sertão Santana e Viamão).'
+          'Desde 1990, o Sindicato tem como base Porto Alegre e 14 municípios vizinhos. São eles: Alvorada, Barra do Ribeiro, Cachoeirinha, Canoas, Charqueadas, Eldorado do Sul, Esteio, Gravataí, Guaíba, Nova Santa Rita, São Jerônimo, Sapucaia do Sul, Sertão Santana e Viamão.'
         ]
       },
       {
         title: 'Sede',
         content: [
-          'Toda a estrutura diretiva, de serviços e equipamentos para uso dos bancários e da comunidade (auditório, biblioteca, cinema, Espaço Cultural) está em um único lugar. A Casa dos Bancários é a referência da ação do SindBancários na Capital. O local, que antigamente era chamado de Sede da Ladeira (fica na Rua General Câmara), foi completamente restaurado, ganhando salas, espaço para atendimento de associados, auditório, salão de festas e áreas de cultura e lazer.'
+          'Toda a estrutura diretiva, de serviços e equipamentos para uso dos bancários e da comunidade (auditório, biblioteca, cinema, espaço cultural) está em um único lugar. A Casa dos Bancários é a referência da ação do SindBancários na Capital. O local, que antigamente era chamado de Sede da Ladeira (fica na Rua General Câmara), foi completamente restaurado, ganhando salas, espaço para atendimento de associados, auditório, salão de festas e áreas de cultura e lazer. Conheça mais sobre os espaços aqui.'
         ]
+      }
+    ],
+    direction: [
+      {
+        content: [
+          'A administração do Sindicato é exercida pelos 15 (quinze) integrantes titulares da Diretoria Executiva, representados pelo Diretor Presidente e pelos Diretores Titulares de cada departamento (conforme o Artigo 28 do Estatuto).',
+          'Em nove décadas, o SindBancários desenhou uma trajetória de presença marcante na construção do sindicalismo bancário brasileiro. No Estado, a entidade tem papel crucial na luta por mais dignidade dos trabalhadores e trabalhadoras, e na construção da democracia em diversos períodos históricos.'
+        ]
+      },
+      {
+        title: 'Constituem os integrantes titulares da Diretoria Executiva os seguintes cargos:',
+        content: [
+          'Diretor Presidente;',
+          'Diretor Titular da Secretaria Geral;',
+          ' Diretor Titular da Secretaria Executiva;',
+          'Diretor Titular Financeiro;',
+          'Diretor Titular Administrativo;',
+          'Diretor Titular de Comunicação;',
+          'Diretor Titular Jurídico;',
+          'Diretor Titular de Juventude e Gênero;',
+          'Diretor Titular de Diversidade e Combate ao Racismo;',
+          'Diretor Titular de Saúde e Condições de Trabalho;',
+          'Diretor Titular de Esportes e Lazer;',
+          'Diretor Titular de Cultura e Sustentabilidade;',
+          'Diretor Titular de Aposentados e Seguridade Social;',
+          'Diretor Titular de Formação;',
+          'Diretor Titular de Financeiras e Terceirizados do Ramo Financeiro.',
+          'Os integrantes da Diretoria Executiva, do Conselho de Representação em Entidades de Grau Superior e do Conselho Fiscal do Sindicato são eleitos em Assembleia Geral Ordinária da categoria, em processo eleitoral, quadrienalmente. As eleições, em primeiro turno, são realizadas dentro do prazo máximo de 60 (sessenta) e mínimo de 30 (trinta) dias que antecedem o término dos mandatos vigentes.'
+        ]
+      },
+      {
+        title: 'Conheça os integrantes da atual gestão do SindBancários:'
       }
     ]
   },
@@ -81,15 +112,15 @@ const setListStatute = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Luciano Fetzner Barcellos', subtitle: 'Presidente', description: 'Banrisul', image: '/assets/image/tests/test-6.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Luis Gustavo Vargas Soares', subtitle: 'Secretario Geral', description: 'Bradesco', image: '/assets/image/tests/test-5.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Silvia Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/tests/test-4.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Luciano Fetzner Barcellos', subtitle: 'Presidente', description: 'Banrisul', image: '/assets/image/tests/test-1.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Luis Gustavo Vargas Soares', subtitle: 'Secretario Geral', description: 'Bradesco', image: '/assets/image/tests/test-2.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Silvia Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/tests/test-3.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Luciano Fetzner Barcellos', subtitle: 'Presidente', description: 'Banrisul', image: '/assets/image/tests/test-7.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Luis Gustavo Vargas Soares', subtitle: 'Secretario Geral', description: 'Bradesco', image: '/assets/image/tests/test-4.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Silvia Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/tests/test-5.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luciano Fetzner Barcellos', subtitle: 'Presidente', description: 'Banrisul', image: '/assets/image/apresentation/pessoas/diretoria_masculino.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luis Gustavo Vargas Soares', subtitle: 'Secretario Geral', description: 'Bradesco', image: '/assets/image/apresentation/pessoas/diretoria_masculino.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Silvia Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/apresentation/pessoas/diretoria_feminino.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luciano Fetzner Barcellos', subtitle: 'Presidente', description: 'Banrisul', image: '/assets/image/apresentation/pessoas/diretoria_masculino.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luis Gustavo Vargas Soares', subtitle: 'Secretario Geral', description: 'Bradesco', image: '/assets/image/apresentation/pessoas/diretoria_masculino.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Silvia Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/apresentation/pessoas/diretoria_feminino.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luciano Fetzner Barcellos', subtitle: 'Presidente', description: 'Banrisul', image: '/assets/image/apresentation/pessoas/diretoria_masculino.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luis Gustavo Vargas Soares', subtitle: 'Secretario Geral', description: 'Bradesco', image: '/assets/image/apresentation/pessoas/diretoria_masculino.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Silvia Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/apresentation/pessoas/diretoria_feminino.jpg' })
 }
 
 const currentScreenSize = computed((): TScreenSize => {
@@ -130,12 +161,12 @@ onMounted(() => {
 <template>
   <div id="page__departments--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop src="/assets/image/tests/test-6.jpg" />
+      <BannerTop src="/assets/image/apresentation/quem-somos/BANNER_QUEM_SOMOS.jpg" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="accent">
       <div id="content__page--departments-default-open">
-        <TitleDefault class="q-mb-xl" title="Departamento Jurídico" />
+        <TitleDefault class="q-mb-xl" title="Quem Somos" />
         <SectionAbout :item="state.section.about" />
       </div>
     </LayoutSection>
@@ -143,13 +174,7 @@ onMounted(() => {
     <LayoutSection background="accent" cornerColor="tertiary">
       <TitleDefault class="q-mb-xl" title="Estatuto" color="text-inverse" />
       <p class="section__statute--subtitle">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-        diam nonummy nibh euismod tincidunt ut laoreet dolore
-        magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-        quis nostrud exerci tation ullamcorper suscipit lobortis nisl
-        ut aliquip ex ea commodo consequat. Duis autem vel eum
-        iriure dolor in hendrerit in vulputate velit esse molestie
-        consequat, vel illum dolore.
+        Confira todas as definições e organização do Estatuto do SindBancários. O documento prevê estrutura de gestão das entidades, instâncias deliberativas, departamentos, processo eleitoral e aprovação de plano anual.
       </p>
       <CarouselSlide v-if="state.statute.items.listProp.length" :listItems="state.statute.items" color="text-inverse" control-color="text-inverse" :component-item="freezeComponentStatute" item-class="departments__legal--document-item" />
     </LayoutSection>
@@ -157,10 +182,9 @@ onMounted(() => {
     <LayoutSection background="tertiary" cornerColor="secondary">
       <TitleDefault class="q-mb-xl" title="Diretoria" />
       <p class="subtitle__legal-members">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
-        facilisi.
+        A administração do Sindicato é exercida pelos 15 (quinze) integrantes titulares da Diretoria Executiva, representados pelo Diretor Presidente e pelos Diretores Titulares de cada departamento (conforme o Artigo 28 do Estatuto).
       </p>
+      <SectionAbout :item="state.section.direction" />
       <CarouselSlide v-if="state.legalMembers.items.listProp.length" :listItems="state.legalMembers.items" :component-item="freezeComponentMembersItem" />
     </LayoutSection>
   </div>

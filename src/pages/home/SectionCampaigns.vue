@@ -32,7 +32,7 @@ const getData = (): void => {
     countImages += 1
     const item: ICarouselItem = {
       id: index,
-      image: `assets/image/tests/test-${countImages}.jpg`
+      image: `assets/image/apresentation/home/servicos/SERVICOS-${countImages}.jpg`
     }
 
     newData.push(item)
@@ -49,7 +49,7 @@ onMounted(() => {
 
 <template>
   <div class="section__default">
-    <TitleDefault title="Serviços" color="primary" />
+    <TitleDefault title="Campanhas" color="primary" />
     <div v-if="!state.carousel.carouselData.length">Loading</div>
     <div v-else class="section__services--carousel">
       <q-carousel

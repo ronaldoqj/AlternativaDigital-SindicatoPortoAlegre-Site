@@ -43,4 +43,3 @@ onMounted(() => {
   }
 }
 </style>
-src/components/models/interfaces/pages/syndicate/IAbout

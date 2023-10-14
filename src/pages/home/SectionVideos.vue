@@ -146,7 +146,7 @@ const setStoreDatas = (carouselData: Array<ICarouselItem>) : void => {
 }
 
 const getData = (): void => {
-  const limitImages = 7
+  const limitImages = 6
   let countImages = 0
   const newData = []
 
@@ -157,7 +157,7 @@ const getData = (): void => {
     countImages += 1
     const item: ICarouselItem = {
       id: index,
-      image: `assets/image/tests/test-${countImages}.jpg`
+      image: `/assets/image/apresentation/home/videos/video_00${countImages}.jpg`
     }
 
     newData.push(item)

@@ -11,7 +11,7 @@ const props = defineProps({
 
 <template>
   <!-- Preencher os dados -->
-  <div :class="`component__unionize--separator-step bg-${color}`" ></div>
+  <div :class="`component__unionize--separator-step bg-${props.color}`" ></div>
 </template>
 
 <style lang="scss">

@@ -30,7 +30,7 @@ const getData = (): void => {
   let countImages = 0
   const newData:ICarouselItem[] = []
 
-  for (let index = 1; index < 16; index++) {
+  for (let index = 1; index < 9; index++) {
     if (countImages === limitImages) {
       countImages = 0
     }
@@ -38,7 +38,7 @@ const getData = (): void => {
 
     const item: ICarouselItem = {
       id: index,
-      day: 11,
+      day: 1 + index,
       month: 'APR'
     }
 

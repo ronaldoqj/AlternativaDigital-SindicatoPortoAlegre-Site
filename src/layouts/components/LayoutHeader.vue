@@ -28,7 +28,7 @@ function toggleDrawer () {
 <template>
   <div id="container__header">
     <div class="layout__header--first">
-      <ImageDefault :size="{width: '254px', height: '30px'}" src="/assets/svg/portal-parceiro-bancariosrs.svg"></ImageDefault>
+      <a href="https://www.bancariosrs.com.br" target="_blank"><ImageDefault :size="{width: '254px', height: '30px'}" src="/assets/svg/portal-parceiro-bancariosrs.svg"></ImageDefault></a>
     </div>
     <div id="menu__header">
       <div class="mobile__menu">
@@ -147,7 +147,8 @@ $borderTopRadius: 40px;
       {
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
+        padding: 0 100px;
+        justify-content: space-between;
 
         .menu__box {
           background: none;
