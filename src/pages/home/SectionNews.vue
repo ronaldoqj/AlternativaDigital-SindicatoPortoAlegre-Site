@@ -110,7 +110,7 @@ const moreNews = () => {
   NewsService.list({ page: state.news.geral.page, perPage: state.news.geral.perPage })
     .then((response:any) => {
       console.log('MoreNews', response.data)
-      response.data.data.forEach((element:any) => {
+      response.data.data.forEach((element:Array<object>) => {
         // state.news.geral.list.push(element)
         // console.log('currentList', state.news.geral.list)
         // console.log('itemNews', element)
