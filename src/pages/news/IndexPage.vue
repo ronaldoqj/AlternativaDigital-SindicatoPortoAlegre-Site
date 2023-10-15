@@ -3,12 +3,15 @@ import LayoutSection from 'layouts/components/LayoutSection.vue'
 import RelatedPublications from 'components/interface/RelatedPublications.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import ImageDefault from 'components/interface/ImageDefault.vue'
+import VideoDefault from 'components/interface/VideoDefault.vue'
+import AudioDefault from 'components/interface/AudioDefault.vue'
 import { onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { INews, IResponseNews, IResponseRelated, TNewsLayers, TPositionNews } from 'src/types/INews'
 import NewsService from 'src/services/NewsService'
 import { AxiosError } from 'axios'
 import SkeletonNews from 'components/interface/skeletons/SkeletonNews.vue'
+import { getValidImage, baseURL } from 'src/helpers/helpers'
 
 const route = useRoute()
 const state = reactive({
@@ -17,6 +20,7 @@ const state = reactive({
   },
   news: null as null | INews,
   idNews: null as null | number,
+  layersNews: [] as TNewsLayers[],
   relatedNews: {
     list: [] as INews[],
     perPage: 6
@@ -61,45 +65,43 @@ const checkToAddNewsLayers = () => {
 }
 
 const definesNewsLayers = () => {
-  const newsLayers: TNewsLayers[] = []
-
   /** First Layer */
   if (state.news?.image_news && state.news.position_image_news === 'BeforeTitle') {
-    newsLayers.push('image_news')
+    state.layersNews.push('image_news')
   }
   if (state.news?.video_news && state.news.position_video_news === 'BeforeTitle') {
-    newsLayers.push('video_news')
+    state.layersNews.push('video_news')
   }
   if (state.news?.audio_news && state.news.position_audio_news === 'BeforeTitle') {
-    newsLayers.push('audio_news')
+    state.layersNews.push('audio_news')
   }
   /** Titles */
-  newsLayers.push('titles')
+  state.layersNews.push('titles')
 
   /** Third Layer */
   if (state.news?.image_news && state.news.position_image_news === 'BeforeText') {
-    newsLayers.push('image_news')
+    state.layersNews.push('image_news')
   }
   if (state.news?.video_news && state.news.position_video_news === 'BeforeText') {
-    newsLayers.push('video_news')
+    state.layersNews.push('video_news')
   }
   if (state.news?.audio_news && state.news.position_audio_news === 'BeforeText') {
-    newsLayers.push('audio_news')
+    state.layersNews.push('audio_news')
   }
   /** Text */
-  newsLayers.push('text')
+  state.layersNews.push('text')
 
   if (state.news?.image_news && state.news.position_image_news === 'AfterText') {
-    newsLayers.push('image_news')
+    state.layersNews.push('image_news')
   }
   if (state.news?.video_news && state.news.position_video_news === 'AfterText') {
-    newsLayers.push('video_news')
+    state.layersNews.push('video_news')
   }
   if (state.news?.audio_news && state.news.position_audio_news === 'AfterText') {
-    newsLayers.push('audio_news')
+    state.layersNews.push('audio_news')
   }
 
-  console.log('newsLayers', newsLayers)
+  console.log('newsLayers', state.layersNews)
 }
 
 onMounted(() => {
@@ -124,11 +126,20 @@ onMounted(() => {
         </div>
 
         <div v-else class="q-mb-xl">
-          <h2>{{ state.news?.topper }}</h2>
-          <h1>{{ state.news?.title }}</h1>
-
-          <div class="content" v-html="state.news?.text"></div>
+          <div v-for="(layer, index) in state.layersNews" :key="index">
+            <div v-if="layer === 'image_news'" class="layer--image">
+              <ImageDefault :src="getValidImage(state.news as INews, 'imageNews')"></ImageDefault>
+            </div>
+            <div v-if="layer === 'video_news'" class="layer--video"> <VideoDefault :src="(state.news?.video_news as string)" /> </div>
+            <div v-if="layer === 'audio_news'" class="layer--audio"> <AudioDefault :src="`${baseURL}${state.news?.audio_news?.path}/${state.news?.audio_news?.file_name}`" /> </div>
+            <div v-if="layer === 'titles'" class="layer--title">
+              <h2>{{ state.news?.topper }}</h2>
+              <h1>{{ state.news?.title }}</h1>
+            </div>
+            <div v-if="layer === 'text'" class="layer--text" v-html="state.news?.text"></div>
+          </div>
         </div>
+
         <div class="related__publications" v-if="state.relatedNews.list.length">
           <RelatedPublications :list="state.relatedNews.list" />
         </div>
