@@ -5,7 +5,7 @@ import TitleDefault from 'components/interface/TitleDefault.vue'
 import ImageDefault from 'components/interface/ImageDefault.vue'
 import VideoDefault from 'components/interface/VideoDefault.vue'
 import AudioDefault from 'components/interface/AudioDefault.vue'
-import { onMounted, reactive } from 'vue'
+import { computed, onMounted, reactive, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { INews, IResponseNews, IResponseRelated, TNewsLayers, TPositionNews } from 'src/types/INews'
 import NewsService from 'src/services/NewsService'
@@ -60,10 +60,6 @@ const getNews = () => {
     })
 }
 
-const checkToAddNewsLayers = () => {
-  ''
-}
-
 const definesNewsLayers = () => {
   /** First Layer */
   if (state.news?.image_news && state.news.position_image_news === 'BeforeTitle') {
@@ -104,7 +100,11 @@ const definesNewsLayers = () => {
   console.log('newsLayers', state.layersNews)
 }
 
-onMounted(() => {
+const computedLayout = computed(() => {
+  return route.params
+})
+
+const init = () => {
   if (route.params && route.params.id.length) {
     if (!isNaN(route.params.id as unknown as number)) {
       state.idNews = Number(route.params.id)
@@ -113,6 +113,29 @@ onMounted(() => {
       // ToDo error
     }
   }
+}
+
+const resetNews = () => {
+  state.control.showContent = false
+  state.news = null
+  state.idNews = null
+  state.layersNews = []
+  state.relatedNews = {
+    list: [],
+    perPage: 6
+  }
+}
+
+watch(computedLayout, (newValue) => {
+  console.log('router', newValue)
+  if (newValue.params) {
+    resetNews()
+    init()
+  }
+})
+
+onMounted(() => {
+  init()
 })
 </script>
 
@@ -124,11 +147,10 @@ onMounted(() => {
         <div v-if="!state.control.showContent" class="q-mt-xl">
           <SkeletonNews />
         </div>
-
         <div v-else class="q-mb-xl">
           <div v-for="(layer, index) in state.layersNews" :key="index">
             <div v-if="layer === 'image_news'" class="layer--image">
-              <ImageDefault :src="getValidImage(state.news as INews, 'imageNews')"></ImageDefault>
+              <ImageDefault class="q-my-lg" :src="getValidImage(state.news as INews, 'imageNews')"></ImageDefault>
             </div>
             <div v-if="layer === 'video_news'" class="layer--video"> <VideoDefault :src="(state.news?.video_news as string)" /> </div>
             <div v-if="layer === 'audio_news'" class="layer--audio">

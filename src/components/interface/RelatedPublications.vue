@@ -2,7 +2,7 @@
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import NewsItem from 'components/interface/NewsItem.vue'
 import { reactive, onMounted, computed } from 'vue'
-import { getValidImage, defaultImage } from 'src/helpers/helpers'
+import { getValidImage, defaultImage, convertURL } from 'src/helpers/helpers'
 
 const props = defineProps({
   title: {
@@ -61,6 +61,7 @@ onMounted(() => {
           :src="getValidImage(row, 'imageNews')"
           :subject="row.subject"
           :title="row.title"
+          :route="convertURL(row.id, row.title)"
           :description="row.description"
         />
       </div>
