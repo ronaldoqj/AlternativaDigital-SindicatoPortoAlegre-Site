@@ -4,6 +4,7 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
 import IconDefault from 'components/interface/IconDefault.vue'
 import LayoutMenu from 'layouts/components/LayoutMenu.vue'
 import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
+import { RouteLocationRaw, useRouter } from 'vue-router'
 
 const props = defineProps({
   modelValue: {
@@ -17,8 +18,13 @@ const props = defineProps({
   }
 })
 
+const router = useRouter()
 const drawerOpen = ref(!props.menu)
 const emit = defineEmits(['update:modelValue'])
+
+const clickRoute = (route: RouteLocationRaw) => {
+  router.push(route)
+}
 
 function toggleDrawer () {
   emit('update:modelValue', drawerOpen.value)
@@ -42,7 +48,7 @@ function toggleDrawer () {
       </div>
       <div class="menu__header--content">
         <div class="logo">
-          <ImageDefault :size="{width: '168px', height: '78px'}" src="/assets/svg/logo-sind-bancarios-porto-alegre.svg"></ImageDefault>
+          <ImageDefault @click="clickRoute({name: 'home'})" :size="{width: '168px', height: '78px'}" src="/assets/svg/logo-sind-bancarios-porto-alegre.svg" style="cursor: pointer;"></ImageDefault>
         </div>
         <div class="menu__box">
           <div class="social-media">

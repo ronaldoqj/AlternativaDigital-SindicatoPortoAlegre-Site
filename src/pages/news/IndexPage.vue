@@ -30,7 +30,7 @@ const state = reactive({
 const getRelatedList = () => {
   NewsService.related({ notNews: state.idNews, perPage: state.relatedNews.perPage })
     .then((response:IResponseRelated) => {
-      console.log('getRelatedList', response)
+      // console.log('getRelatedList', response)
       response.data.forEach((element: INews) => {
         state.relatedNews.list.push(element)
       })
@@ -97,7 +97,7 @@ const definesNewsLayers = () => {
     state.layersNews.push('audio_news')
   }
 
-  console.log('newsLayers', state.layersNews)
+  // console.log('newsLayers', state.layersNews)
 }
 
 const computedLayout = computed(() => {
@@ -127,8 +127,8 @@ const resetNews = () => {
 }
 
 watch(computedLayout, (newValue) => {
-  console.log('router', newValue)
-  if (newValue.params) {
+  // console.log('router News changed', newValue)
+  if (Object.keys(newValue).length) {
     resetNews()
     init()
   }
