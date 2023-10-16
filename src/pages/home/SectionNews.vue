@@ -144,32 +144,35 @@ onMounted(() => {
     <div class="row q-mb-md q-col-gutter-md">
       <div v-if="props.news?.highlights && props.news?.highlights.length > 0" class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm">
         <NewsItem
-          :src="`${baseURL}${props.news?.highlights[0].image_news.path}/${props.news?.highlights[0].image_news.file_name}`"
+          :src="getValidImage(props.news?.highlights[0], 'imageNews')"
           :route="convertURL(props.news?.highlights[0].id, props.news?.highlights[0].title)"
           :subject="props.news?.highlights[0].topper"
           :title="props.news?.highlights[0].title"
           :description="props.news?.highlights[0].call"
           :highlights="true"
+          :onlyText="props.news?.highlights[0].type_news === 'text'"
         />
       </div>
       <div v-if="props.news?.highlights && props.news?.highlights.length > 1" class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm">
         <NewsItem
-          :src="`${baseURL}${props.news?.highlights[1].image_news.path}/${props.news?.highlights[1].image_news.file_name}`"
+          :src="getValidImage(props.news?.highlights[1], 'imageNews')"
           :route="convertURL(props.news?.highlights[1].id, props.news?.highlights[1].title)"
           :subject="props.news?.highlights[1].topper"
           :title="props.news?.highlights[1].title"
           :description="props.news?.highlights[1].call"
           :highlights="true"
+          :onlyText="props.news?.highlights[1].type_news === 'text'"
         />
       </div>
       <div v-if="props.news?.highlights && props.news?.highlights.length > 2" class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm xl">
         <NewsItem
-          :src="`${baseURL}${props.news?.highlights[2].image_news.path}/${props.news?.highlights[2].image_news.file_name}`"
+          :src="getValidImage(props.news?.highlights[2], 'imageNews')"
           :route="convertURL(props.news?.highlights[2].id, props.news?.highlights[2].title)"
           :subject="props.news?.highlights[2].topper"
           :title="props.news?.highlights[2].title"
           :description="props.news?.highlights[2].call"
           :highlights="true"
+          :onlyText="props.news?.highlights[2].type_news === 'text'"
         />
       </div>
     </div>
@@ -190,6 +193,7 @@ onMounted(() => {
           :subject="row.subject"
           :title="row.title"
           :description="row.description"
+          :onlyText="row.type_news === 'text'"
         />
       </div>
     </div>

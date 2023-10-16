@@ -5,7 +5,7 @@ import { INews } from 'src/types/INews'
  * Helper Variables
  */
 export const baseURL = process.env.API?.endsWith('/') ? process.env.API : process.env.API + '/'
-export const xdebugTrigger = process.env.xdebugTrigger
+export const xdebugTrigger = process.env.xdebugTrigger ? process.env.xdebugTrigger : ''
 export const defaultImagePath = 'assets/images/image-default.jpg'
 export const defaultImage = `${baseURL}${defaultImagePath}`
 
