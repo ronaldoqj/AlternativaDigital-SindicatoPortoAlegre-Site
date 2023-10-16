@@ -1,10 +1,10 @@
 <template>
   <q-page class="row justify-evenly">
     <div id="page__content" class="col">
-      <LayoutSection type="banner" background="primary" cornerColor="tertiary">
+      <LayoutSection v-if="state.sectionBanners.length" type="banner" background="primary" cornerColor="tertiary">
         <SectionBanner :news="state.sectionBanners" />
       </LayoutSection>
-      <LayoutSection background="tertiary" cornerColor="accent">
+      <LayoutSection background="tertiary" cornerColor="accent" :type="state.sectionBanners.length ? 'normal' : 'top'">
         <SectionNews :news="state.sectionNews" />
       </LayoutSection>
       <LayoutSection background="accent" cornerColor="quaternary">
