@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, reactive, ref, watch } from 'vue'
+import { useQuasar } from 'quasar'
 import { RouteLocationRaw, useRouter } from 'vue-router'
 import { baseURL, convertURL } from 'src/helpers/helpers'
 import SkeletonBanner from 'components/interface/skeletons/SkeletonBanner.vue'
 
-const slide = ref(1)
-
-const router = useRouter()
 const props = defineProps({
   news: {
     type: Object,
@@ -19,13 +17,31 @@ const props = defineProps({
   // }
 })
 
+type CarouselType = 'mobile' | 'desktop'
+const $q = useQuasar()
+const slide = ref(1)
+const router = useRouter()
+
+const state = reactive({
+  typeImage: 'mobile' as CarouselType,
+  sectionNews: {}
+})
+
+const screenSize = (): CarouselType => {
+  return $q.screen.lt.lg ? 'mobile' : 'desktop'
+}
+
 const clickRoute = (route: RouteLocationRaw) => {
   router.push(route)
   // router.replace(route)
 }
 
+watch(screenSize, (newValue) => {
+  state.typeImage = newValue
+})
+
 onMounted(() => {
-  console.log('bannerList', props.news)
+  state.typeImage = screenSize()
 })
 </script>
 
@@ -37,7 +53,7 @@ onMounted(() => {
       swipeable
       animated
       v-model="slide"
-      :autoplay="7000"
+      :autoplay="700000"
       navigation
       infinite
     >
@@ -47,14 +63,12 @@ onMounted(() => {
         style="cursor: pointer;"
         @click="clickRoute(convertURL(row.id, row.title))"
         :name="index+1"
-        :img-src="`${baseURL}${row.banner_desktop.path}/${row.banner_desktop.file_name}`"
+        :img-src=" state.typeImage === 'mobile' ? `${baseURL}${row.banner_mobile.path}/${row.banner_mobile.file_name}` : `${baseURL}${row.banner_desktop.path}/${row.banner_desktop.file_name}`"
       />
 
-      <!-- <q-carousel-slide :name="2" img-src="/assets/image/apresentation/home/banner/BANNER_PRINCIPAL_002.jpg" /> -->
       <q-carousel-slide v-if="!props.news" name="1">
         <SkeletonBanner />
       </q-carousel-slide>
-
     </q-carousel>
   </div>
 </template>
@@ -63,8 +77,10 @@ onMounted(() => {
 $border-radius-control-banner: 20px;
 $banner-height: 630px;
 
-.section__highlights--carousel {
-  .carousel-highlights {
+.section__highlights--carousel
+{
+  .carousel-highlights
+  {
     border-top-right-radius: $top-radius;
     border-top-left-radius: $top-radius;
     height: $banner-height;

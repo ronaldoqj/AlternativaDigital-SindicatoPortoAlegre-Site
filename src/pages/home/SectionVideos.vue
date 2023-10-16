@@ -41,7 +41,7 @@ const showCarousel = computed((): boolean => {
 
 const currentCarouselType = computed((): CarouselType => {
   const type = $q.screen.lt.lg ? 'mobile' : 'desktop'
-  console.log('slide', slide)
+  // console.log('slide', slide)
   sortCarouselData(type)
   return type
 })
@@ -164,7 +164,7 @@ const getData = (): void => {
   }
 
   state.carousel.data = newData
-  console.log(state.carousel.data)
+  // console.log(state.carousel.data)
   setStoreDatas(state.carousel.data)
   sortCarouselData(currentCarouselType as unknown as CarouselType)
 }
