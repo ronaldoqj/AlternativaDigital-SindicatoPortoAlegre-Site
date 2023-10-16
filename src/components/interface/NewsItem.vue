@@ -29,6 +29,10 @@ const props = defineProps({
     type: Boolean,
     required: false
   },
+  onlyText: {
+    type: Boolean,
+    required: false
+  },
   route: {
     type: Object as PropType<RouteLocationRaw>,
     default: () => ({ }),
@@ -72,6 +76,10 @@ const resolveImage = computed((): string => {
   return props.src ? props.src : defaultImage
 })
 
+const resolveOnlyText = computed((): string => {
+  return props.onlyText ? 'only--text' : ''
+})
+
 const resolveType = () => {
   if (props.highlights) {
     state.size = {
@@ -90,8 +98,8 @@ resolveType()
 </script>
 
 <template>
-  <div class="news__item" @click="clickRoute(props.route)">
-    <div>
+  <div :class="`news__item ${resolveOnlyText}`" @click="clickRoute(props.route)">
+    <div v-if="!props.onlyText">
       <ImageDefault class="news__image" :size="resolveType().size" :src="resolveImage"></ImageDefault>
     </div>
     <div class="box__texts">
@@ -108,12 +116,15 @@ resolveType()
 </template>
 
 <style lang="scss">
-  .news__item {
+  .news__item
+  {
+    $border-radius: 20px;
+
     margin-bottom: 20px;
     cursor: pointer;
 
     .news__image {
-      border-radius: 20px;
+      border-radius: $border-radius;
     }
 
     @media only screen and (max-width: $breakpoint-sm) {
@@ -123,60 +134,68 @@ resolveType()
       padding: 0 5px;
 
       .news__image {
-        border-radius: 20px;
         margin-bottom: 10px;
       }
     }
-  }
 
-  .box__texts
-  {
-    margin: 6px 0 0;
-    padding: 0 5px;
-
-    .box__texts--titles
+    .box__texts
     {
-      .tag-h4,
-      .tag-h5,
-      .tag-h6 {
-        margin: 0;
-      }
+      margin: 6px 0 0;
+      padding: 0 5px;
 
-      .tag-h5 {
-        font-size: 15px;
-        line-height: 1.2em;
-        color: $quinary;
-      }
+      .box__texts--titles
+      {
+        .tag-h4,
+        .tag-h5,
+        .tag-h6 {
+          margin: 0;
+        }
 
-      .tag-h4 {
-        font-size: 20px;
-        line-height: 1.2em;
-        font-weight: bold;
-        color: $primary;
-        margin: 4px 0;
-      }
+        .tag-h5 {
+          font-size: 15px;
+          line-height: 1.2em;
+          color: $quinary;
+        }
 
-      .tag-h6 {
-        font-size: 12px;
-        color: $senary;
-        line-height: 1.4em;
-      }
-
-      &.highlights {
         .tag-h4 {
-          font-size: 25px;
+          font-size: 20px;
+          line-height: 1.2em;
+          font-weight: bold;
+          color: $primary;
+          margin: 4px 0;
+        }
+
+        .tag-h6 {
+          font-size: 12px;
+          color: $senary;
+          line-height: 1.4em;
+        }
+
+        &.highlights {
+          .tag-h4 {
+            font-size: 25px;
+          }
+        }
+      }
+
+      a {
+        color: $septenary;
+        text-decoration: none;
+
+        &:hover {
+          color: $primary;
+          text-decoration: underline;
         }
       }
     }
 
-    a {
-      color: $septenary;
-      text-decoration: none;
-
-      &:hover {
-        color: $primary;
-        text-decoration: underline;
-      }
+    &.only--text {
+      border: solid 1px $quaternary;
+      border-radius: $border-radius;
+      padding: 20px;
+      height: 100%;
+      display: flex;
+      align-items: center;
     }
   }
 </style>
