@@ -56,7 +56,7 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
       env: {
-        API: ctx.dev ? 'http://localhost' : 'http://productionDomain'
+        API: ctx.dev ? 'http://localhost' : 'http://novo.sindbancarios.nodejsng15f06.uni5.net'
       },
       target: {
         browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
