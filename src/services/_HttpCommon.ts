@@ -1,8 +1,7 @@
 import axios, { type AxiosInstance } from 'axios'
-import { baseURL } from 'src/helpers/helpers'
+import { baseURL, xdebugTrigger } from 'src/helpers/helpers'
 
 const $baseURL = `${baseURL}api/site/`
-const xdebugTrigger = '?XDEBUG_TRIGGER'
 export const endURL = `${xdebugTrigger}`
 
 const apiClient: AxiosInstance = axios.create({
