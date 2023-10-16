@@ -131,7 +131,11 @@ onMounted(() => {
               <ImageDefault :src="getValidImage(state.news as INews, 'imageNews')"></ImageDefault>
             </div>
             <div v-if="layer === 'video_news'" class="layer--video"> <VideoDefault :src="(state.news?.video_news as string)" /> </div>
-            <div v-if="layer === 'audio_news'" class="layer--audio"> <AudioDefault :src="`${baseURL}${state.news?.audio_news?.path}/${state.news?.audio_news?.file_name}`" /> </div>
+            <div v-if="layer === 'audio_news'" class="layer--audio">
+              <AudioDefault
+                :src="`${baseURL}${state.news?.audio_news?.path}/${state.news?.audio_news?.file_name}`"
+              />
+            </div>
             <div v-if="layer === 'titles'" class="layer--title">
               <h2>{{ state.news?.topper }}</h2>
               <h1>{{ state.news?.title }}</h1>
