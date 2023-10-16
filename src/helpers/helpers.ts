@@ -1,4 +1,5 @@
 import { IDefaultResponse, TResponseType, TColumnImage, IColumnImage } from 'src/types/IDefaults'
+import { INews } from 'src/types/INews'
 
 /**
  * Helper Variables
@@ -18,7 +19,7 @@ export const arrayChunk = <T>(array: T[], chunkSize: number): T[][] => {
   return chunks
 }
 
-export const getValidImage = (data:IColumnImage<string>, column: TColumnImage): string => {
+export const getValidImage = (data: INews | IColumnImage<string>, column: TColumnImage): string => {
   let url = defaultImagePath
   switch (column) {
     case 'bannerMobile':

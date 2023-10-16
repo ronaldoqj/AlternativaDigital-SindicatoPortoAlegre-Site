@@ -179,5 +179,4 @@ resolveType()
       }
     }
   }
-
 </style>

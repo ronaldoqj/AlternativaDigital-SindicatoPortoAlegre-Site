@@ -1,4 +1,4 @@
-export type ratioType = string | '1' | '16/9' | '4/3'
+export type ratioType = string | number | '1' | '16/9' | '4/3'
 export type TScreenSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export interface ImageDefaultSize {

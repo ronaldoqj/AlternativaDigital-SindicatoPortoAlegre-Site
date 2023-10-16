@@ -17,7 +17,7 @@ const routes: RouteRecordRaw[] = [
         ]
       },
       { path: 'noticia/:id/:title', name: 'news', component: () => import('pages/news/IndexPage.vue') },
-      { path: 'artigo', name: 'article', component: () => import('pages/article/IndexPage.vue') },
+      { path: 'artigo/:id/:title', name: 'article', component: () => import('pages/article/IndexPage.vue') },
       {
         path: 'servicos',
         name: 'servicesIndex',
