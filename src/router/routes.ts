@@ -13,7 +13,9 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/syndicate/IndexPage.vue'),
         children: [
           { path: '', name: 'about', component: () => import('pages/syndicate/AboutPage.vue') },
-          { path: 'editais', name: 'notice', component: () => import('pages/syndicate/NoticePage.vue') }
+          { path: 'acordos-e-convencoes', name: 'agreementsConventions', component: () => import('pages/syndicate/AgreementConventionPage.vue') },
+          { path: 'editais', name: 'notice', component: () => import('pages/syndicate/NoticePage.vue') },
+          { path: 'publicacoes', name: 'publications', component: () => import('pages/syndicate/PublicationsPage.vue') }
         ]
       },
       { path: 'noticia/:id/:title', name: 'news', component: () => import('pages/news/IndexPage.vue') },

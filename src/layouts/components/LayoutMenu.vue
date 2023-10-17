@@ -8,6 +8,9 @@ const state = reactive({
   menu: {
     home: { name: 'home' } as RouteLocationRaw,
     about: { name: 'about' } as RouteLocationRaw,
+    agreementsConventions: { name: 'agreementsConventions' } as RouteLocationRaw,
+    publications: { name: 'publications' } as RouteLocationRaw,
+    notice: { name: 'notice' } as RouteLocationRaw,
     unionize: { name: 'unionize' } as RouteLocationRaw,
     departments: { name: 'departments' } as RouteLocationRaw,
     services: { name: 'services' } as RouteLocationRaw,
@@ -65,13 +68,13 @@ const clickRoute = (route: RouteLocationRaw) => {
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section>Acordos e convenções</q-item-section>
+          <q-item-section @click="clickRoute(state.menu.agreementsConventions)">Acordos e convenções</q-item-section>
         </q-item>
 
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section>Editais</q-item-section>
+          <q-item-section @click="clickRoute(state.menu.notice)">Editais</q-item-section>
         </q-item>
 
         <q-separator class="menu__separator" />
@@ -96,12 +99,12 @@ const clickRoute = (route: RouteLocationRaw) => {
                 <q-item-section>Estúdio RAO</q-item-section>
               </q-item>
               <q-separator class="menu__separator" />
-              <q-item clickable>
+              <!-- <q-item clickable>
                 <q-item-section>Galeria de fotos</q-item-section>
-              </q-item>
+              </q-item> -->
               <q-separator class="menu__separator" />
               <q-item clickable>
-                <q-item-section>Publicações</q-item-section>
+                <q-item-section @click="clickRoute(state.menu.publications)">Publicações</q-item-section>
               </q-item>
             </q-list>
           </q-menu>
