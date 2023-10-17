@@ -395,15 +395,9 @@ $max-height-and-padding-bottom: 45vh;
     {
       background-color: $accent;
       padding: 0 10%;
-      max-height: $max-height-and-padding-bottom;
 
       .video--dialog {
         border-radius: 15px;
-        padding-bottom: $max-height-and-padding-bottom !important;
-
-        iframe {
-          max-height: $max-height-and-padding-bottom;
-        }
       }
     }
 
@@ -431,6 +425,22 @@ $max-height-and-padding-bottom: 45vh;
           // transform: scaleX(-1);
           // transform: scaleY(-1);
           rotate: 180deg;
+        }
+      }
+    }
+
+    @media only screen and (min-width: $breakpoint-lg)
+    {
+      .section--content
+      {
+        max-height: $max-height-and-padding-bottom;
+
+        .video--dialog {
+          padding-bottom: $max-height-and-padding-bottom !important;
+
+          iframe {
+            max-height: $max-height-and-padding-bottom;
+          }
         }
       }
     }

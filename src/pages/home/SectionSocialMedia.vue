@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TitleDefault from 'components/interface/TitleDefault.vue'
+import CardButton from 'components/interface/CardButton.vue'
 import { ref, reactive, onMounted } from 'vue'
 import { arrayChunk } from 'src/helpers/helpers'
 
@@ -49,7 +50,7 @@ onMounted(() => {
 
 <template>
   <div class="section__default">
-    <TitleDefault title="SindBancários nas redes" color="primary" />
+    <TitleDefault title="Departamentos" color="primary" />
     <div v-if="!state.carousel.carouselData.length">Loading</div>
     <div v-else class="section__social-media--carousel">
       <q-carousel
@@ -62,13 +63,13 @@ onMounted(() => {
         navigation
         infinite
       >
-      <q-carousel-slide v-for="(arrayItem, key) in (state.carousel.carouselData as Array<ICarouselItem>[])" :key="key" :name="key" class="carousel--slide column no-wrap">
+      <!-- <q-carousel-slide v-for="(arrayItem, key) in (state.carousel.carouselData as Array<ICarouselItem>[])" :key="key" :name="key" class="carousel--slide column no-wrap">
         <div class="row fit justify-start q-gutter-sm no-wrap">
           <div class="container-content">
             <q-img class="rounded-borders content-item" v-for="(item, key2) in arrayItem" :key="key2" :src="item.image" />
           </div>
         </div>
-      </q-carousel-slide>
+      </q-carousel-slide> -->
       <!--
         <q-carousel-slide :name="2" class="carousel--slide column no-wrap">
           <div class="row fit justify-start q-gutter-sm no-wrap">
@@ -89,6 +90,35 @@ onMounted(() => {
           </div>
         </q-carousel-slide>
       -->
+
+        <q-carousel-slide :name="1" class="carousel--slide column no-wrap">
+          <div class="row fit justify-start q-gutter-sm no-wrap">
+            <div class="container-content">
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/001_Juridico.png" title="Jurídico" :route="{name: 'departmentsLegal'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/002_Saude.png" title="Saúde e condições de trabalho" :route="{name: 'departmentsHealthAndWorkingConditions'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/003_Juventude.png" title="Juventude e gênero" :route="{name: 'departmentsYouthAndGender'}" /></div>
+            </div>
+          </div>
+        </q-carousel-slide>
+        <q-carousel-slide :name="2" class="carousel--slide column no-wrap">
+          <div class="row fit justify-start q-gutter-sm no-wrap">
+            <div class="container-content">
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/004_Diversidade.png" title="Diversidade e combate ao racismo" :route="{name: 'departmentsDiversityAndCombatingRacism'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/005_Esporte.png" title="Esporte e lazer" :route="{name: 'departmentsSportsAndLeisure'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/006_Cultura.png" title="Cultura e sustentabilidade" :route="{name: 'departmentsCultureAndSustainability'}" /></div>
+            </div>
+          </div>
+        </q-carousel-slide>
+        <q-carousel-slide :name="3" class="carousel--slide column no-wrap">
+          <div class="row fit justify-start q-gutter-sm no-wrap">
+            <div class="container-content">
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/007_Aposentados.png" title="Aposentados e seguridade social" :route="{name: 'departmentsRetireesAndSocialSecurity'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/008_Formacao.png" title="Formação" :route="{name: 'departmentsFormation'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/009_Financeiras.png" title="Financeiras e terceirizados do ramo financeiro" :route="{name: 'departmentsFinancialInstitutionsAndOutsourcedFinancialSector'}" /></div>
+            </div>
+          </div>
+        </q-carousel-slide>
+
       </q-carousel>
     </div>
   </div>

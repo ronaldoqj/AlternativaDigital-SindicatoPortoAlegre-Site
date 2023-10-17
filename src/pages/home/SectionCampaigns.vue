@@ -6,6 +6,7 @@ import { arrayChunk } from 'src/helpers/helpers'
 interface ICarouselItem {
   id: number
   image: string
+  link: string
 }
 
 const slide = ref(1)
@@ -20,23 +21,18 @@ const setStoreDatas = (carouselData: Array<ICarouselItem>) : void => {
   state.carousel.carouselData = arrayChunk(carouselData, 3) as unknown as Array<ICarouselItem>[]
 }
 
+const clickLink = (link:string) => {
+  window.open(link, '_blank')
+}
+
 const getData = (): void => {
-  const limitImages = 7
-  let countImages = 0
   const newData:ICarouselItem[] = []
-
-  for (let index = 1; index < 16; index++) {
-    if (countImages === limitImages) {
-      countImages = 0
-    }
-    countImages += 1
-    const item: ICarouselItem = {
-      id: index,
-      image: `assets/image/apresentation/home/servicos/SERVICOS-${countImages}.jpg`
-    }
-
-    newData.push(item)
-  }
+  newData.push({ id: 1, image: 'assets/image/apresentation/home/campaigns/001_saude_mental.jpg', link: 'https://www.instagram.com/p/CyN69NXv-pu/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==' })
+  newData.push({ id: 2, image: 'assets/image/apresentation/home/campaigns/002_energia_bancária.jpg', link: 'https://www.instagram.com/p/CyJ2CABMe6s/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==' })
+  newData.push({ id: 3, image: 'assets/image/apresentation/home/campaigns/003_outubro_rosa.jpg', link: 'https://www.instagram.com/p/Cx2-NzfObt_/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==' })
+  newData.push({ id: 4, image: 'assets/image/apresentation/home/campaigns/004_doacao_sangue.jpg', link: 'https://www.instagram.com/p/CxYOebMuB_E/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==' })
+  newData.push({ id: 5, image: 'assets/image/apresentation/home/campaigns/005_basta.jpg', link: 'https://www.instagram.com/p/CyOL-YCOEop/?utm_source=ig_web_copy_link' })
+  newData.push({ id: 6, image: 'assets/image/apresentation/home/campaigns/006_banrisul.jpg', link: 'https://www.instagram.com/p/CxFtywQtiWZ/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==' })
 
   state.carousel.data = newData
   setStoreDatas(state.carousel.data)
@@ -65,7 +61,7 @@ onMounted(() => {
       <q-carousel-slide v-for="(arrayItem, key) in (state.carousel.carouselData as Array<ICarouselItem>[])" :key="key" :name="key" class="carousel--slide column no-wrap">
         <div class="row fit justify-start q-gutter-sm no-wrap">
           <div class="container-content">
-            <q-img class="rounded-borders content-item" v-for="(item, key2) in arrayItem" :key="key2" :src="item.image" />
+            <q-img class="rounded-borders content-item" v-for="(item, key2) in arrayItem" :key="key2" :src="item.image" @click="clickLink(item.link)" />
           </div>
         </div>
       </q-carousel-slide>

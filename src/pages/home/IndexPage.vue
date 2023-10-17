@@ -10,12 +10,20 @@
       <LayoutSection background="accent" cornerColor="quaternary">
         <SectionVideos />
       </LayoutSection>
-      <LayoutSection background="quaternary" cornerColor="tertiary" twoCorners>
+      <LayoutSection background="quaternary" cornerColor="primary">
         <SectionCampaigns />
       </LayoutSection>
-      <LayoutSection background="tertiary" cornerColor="primary" withoutCurveTop>
+
+      <!-- <LayoutSection background="quaternary" cornerColor="tertiary" twoCorners>
+        <SectionCampaigns />
+      </LayoutSection> -->
+      <!-- <LayoutSection background="tertiary" cornerColor="primary" withoutCurveTop>
         <SectionPublications />
-      </LayoutSection>
+      </LayoutSection> -->
+      <!-- <LayoutSection background="primary" cornerColor="tertiary">
+        <SectionAgenda />
+      </LayoutSection> -->
+
       <LayoutSection background="primary" cornerColor="tertiary">
         <SectionAgenda />
       </LayoutSection>
