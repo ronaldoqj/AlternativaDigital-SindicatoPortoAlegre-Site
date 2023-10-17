@@ -15,6 +15,11 @@ const props = defineProps({
   size: {
     type: Object as PropType<ImageDefaultSize>,
     require: false
+  },
+  class: {
+    type: String,
+    default: 'q-my-xl',
+    required: false
   }
 })
 
@@ -47,7 +52,7 @@ const resolveSrc = computed(() => {
 
 <template>
   <q-video
-    class="q-my-xl"
+    :class="props.class"
     :style="resolveStyle"
     :src="resolveSrc"
     :ratio="props.ratio"
