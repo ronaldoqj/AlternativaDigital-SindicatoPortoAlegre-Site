@@ -12,6 +12,10 @@ const props = defineProps({
     type: String,
     require: true
   },
+  surname: {
+    type: String,
+    require: false
+  },
   subtitle: {
     type: String,
     default: '',
@@ -71,9 +75,9 @@ const clickRoute = (route: RouteLocationRaw) => {
       <div :class="`title ${resolveColor} ${resolveBackground}`" :style="`background-color: $primary`">
         <div class="texts">
           <p class="name">{{ props.title }}</p>
-          <p class="surname">sobrenome</p>
-          <p class="position">Presidente</p>
-          <p class="company">Banrisul</p>
+          <p class="surname">{{ props.surname }}</p>
+          <p class="position">{{ props.subtitle }}</p>
+          <p class="company">{{ props.description }}</p>
         </div>
       </div>
     </div>

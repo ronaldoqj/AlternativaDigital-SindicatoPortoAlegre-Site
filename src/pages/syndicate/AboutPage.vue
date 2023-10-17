@@ -11,6 +11,14 @@ import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/int
 import StatuteItem from 'src/pages/syndicate/components/about/StatuteItem.vue'
 import SectionAbout from 'src/pages/syndicate/components/about/SectionAbout.vue'
 
+interface IItemMember {
+  title: string
+  surname: string
+  subtitle: string
+  description: string
+  image: string
+}
+
 const $q = useQuasar()
 const freezeComponentStatute = shallowRef(StatuteItem)
 const freezeComponentMembersItem = shallowRef(MembersItem)
@@ -84,6 +92,11 @@ const state = reactive({
     ]
   },
   statute: {
+    item: {
+      title: 'Estatuto 2023 1',
+      description: 'Lorem ipsum dolor sit amet, consectetuer 1',
+      src: '/assets/svg/icon-xml.svg#icon_xml'
+    },
     items: {
       currentScreen: {} as IDinamicScreen,
       listProp: [] as Array<object>
@@ -93,7 +106,7 @@ const state = reactive({
     items: {
       screenBreak: 'col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2',
       currentScreen: {} as IDinamicScreen,
-      listProp: [] as Array<object>
+      listProp: [] as IItemMember[]
     } as IDinamicList
   }
 })
@@ -112,15 +125,29 @@ const setListStatute = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Luciano Fetzner Barcellos', subtitle: 'Presidente', description: 'Banrisul', image: '/assets/image/apresentation/pessoas/diretoria_masculino.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Luis Gustavo Vargas Soares', subtitle: 'Secretario Geral', description: 'Bradesco', image: '/assets/image/apresentation/pessoas/diretoria_masculino.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Silvia Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/apresentation/pessoas/diretoria_feminino.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Luciano Fetzner Barcellos', subtitle: 'Presidente', description: 'Banrisul', image: '/assets/image/apresentation/pessoas/diretoria_masculino.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Luis Gustavo Vargas Soares', subtitle: 'Secretario Geral', description: 'Bradesco', image: '/assets/image/apresentation/pessoas/diretoria_masculino.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Silvia Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/apresentation/pessoas/diretoria_feminino.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Luciano Fetzner Barcellos', subtitle: 'Presidente', description: 'Banrisul', image: '/assets/image/apresentation/pessoas/diretoria_masculino.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Luis Gustavo Vargas Soares', subtitle: 'Secretario Geral', description: 'Bradesco', image: '/assets/image/apresentation/pessoas/diretoria_masculino.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Silvia Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/apresentation/pessoas/diretoria_feminino.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luciano', surname: 'Fetzner Barcellos', subtitle: 'Presidência', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/001.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Silvia', surname: 'Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/002.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Eduardo', surname: 'Munhoz Baptista', subtitle: 'Secretaria Geral', description: 'Itaú-Unibanco', image: '/assets/image/apresentation/quem-somos/directorship/003.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Cristina', surname: 'Silva Rocha Garbinatto', subtitle: 'Conselho Fiscal', description: 'Banco Do Brasil', image: '/assets/image/apresentation/quem-somos/directorship/004.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Daniela', surname: 'Silva de Souza', subtitle: 'Secretaria Executiva', description: 'Itaú-Unibanco', image: '/assets/image/apresentation/quem-somos/directorship/005.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luiz', surname: 'Cassemiro', subtitle: 'Secretaria Geral', description: 'Secretaria Executiva', image: '/assets/image/apresentation/quem-somos/directorship/006.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Edson', surname: 'Ramos da Rocha', subtitle: 'Conselho Fiscal', description: 'Bradesco', image: '/assets/image/apresentation/quem-somos/directorship/007.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Antônio', surname: 'Augusto Borges de Borges', subtitle: 'Administrativo', description: 'Itaú-Unibanco', image: '/assets/image/apresentation/quem-somos/directorship/008.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Tiago', surname: 'Vasconcellos Pedroso', subtitle: 'Financeiro', description: 'Caixa Econômica Federal', image: '/assets/image/apresentation/quem-somos/directorship/009.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Maristela', surname: 'da Rocha', subtitle: 'Financeiro', description: 'Caixa Econômica Federal', image: '/assets/image/apresentation/quem-somos/directorship/010.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: '/assets/image/apresentation/quem-somos/directorship/011.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Jamile', surname: 'Chamun', subtitle: 'Saúde', description: 'Itaú-Unibanco', image: '/assets/image/apresentation/quem-somos/directorship/012.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Carmen', surname: 'Guedes', subtitle: 'Juventude e Gênero', description: 'Santander', image: '/assets/image/apresentation/quem-somos/directorship/013.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Sandro', surname: 'Artur Ferreira Rodrigues', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: '/assets/image/apresentation/quem-somos/directorship/014.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'ESPORTE E LAZER', surname: '', subtitle: '', description: '', image: '/assets/image/apresentation/quem-somos/directorship/015.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Guaracy', surname: 'Padilla Gonçalves', subtitle: 'Cultura e Sustentabilidade', description: 'Caixa Econômica Federal', image: '/assets/image/apresentation/quem-somos/directorship/016.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Eroni', surname: 'Batista Ribeiro', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/017.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Claudete', surname: 'Genuíno Marocco', subtitle: 'Aposentados e Seguridade Social', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/018.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Natalina', surname: 'Rosane Gue', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: '/assets/image/apresentation/quem-somos/directorship/019.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Jairo', surname: 'Severo Soares', subtitle: 'Formação', description: 'Itaú-Unibanco', image: '/assets/image/apresentation/quem-somos/directorship/020.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Caroline', surname: 'Soares Heidner', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Caixa Econômica Federal', image: '/assets/image/apresentation/quem-somos/directorship/021.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Gilnei', surname: 'Silva Nunes', subtitle: 'Comunicação', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/022.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Jonas', surname: 'de Souza Castilhos', subtitle: 'Comunicação', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/023.jpg' })
 }
 
 const currentScreenSize = computed((): TScreenSize => {
@@ -172,11 +199,21 @@ onMounted(() => {
     </LayoutSection>
 
     <LayoutSection background="accent" cornerColor="tertiary">
-      <TitleDefault class="q-mb-xl" title="Estatuto" color="text-inverse" />
-      <p class="section__statute--subtitle">
+      <TitleDefault class="q-mb-lg" title="Estatuto" color="text-inverse" />
+      <div class="row q-mb-lg">
+        <div class="col-xs-12 col-md-7 self-center q-mb-md">
+          <p class="section__statute--subtitle">
+            Confira todas as definições e organização do Estatuto do SindBancários. O documento prevê estrutura de gestão das entidades, instâncias deliberativas, departamentos, processo eleitoral e aprovação de plano anual.
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-5 self-center q-mb-md">
+          <StatuteItem style="margin: 0;" :title="state.statute.item.title" :description="state.statute.item.description" :src="state.statute.item.src" />
+        </div>
+      </div>
+      <!-- <p class="section__statute--subtitle">
         Confira todas as definições e organização do Estatuto do SindBancários. O documento prevê estrutura de gestão das entidades, instâncias deliberativas, departamentos, processo eleitoral e aprovação de plano anual.
       </p>
-      <CarouselSlide v-if="state.statute.items.listProp.length" :listItems="state.statute.items" color="text-inverse" control-color="text-inverse" :component-item="freezeComponentStatute" item-class="departments__legal--document-item" />
+      <CarouselSlide v-if="state.statute.items.listProp.length" :listItems="state.statute.items" color="text-inverse" control-color="text-inverse" :component-item="freezeComponentStatute" item-class="departments__legal--document-item" /> -->
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="secondary">
@@ -184,8 +221,15 @@ onMounted(() => {
       <p class="subtitle__legal-members">
         A administração do Sindicato é exercida pelos 15 (quinze) integrantes titulares da Diretoria Executiva, representados pelo Diretor Presidente e pelos Diretores Titulares de cada departamento (conforme o Artigo 28 do Estatuto).
       </p>
-      <SectionAbout :item="state.section.direction" />
-      <CarouselSlide v-if="state.legalMembers.items.listProp.length" :listItems="state.legalMembers.items" :component-item="freezeComponentMembersItem" />
+      <SectionAbout :item="state.section.direction" class="q-my-xl" />
+
+      <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3" v-for="(member, key) in (state.legalMembers.items.listProp as IItemMember[])" :key="key">
+          <MembersItem :title="member.title" :surname="member.surname" :subtitle="member.subtitle" :description="member.description" :image="member.image" />
+        </div>
+      </div>
+
+      <!-- <CarouselSlide v-if="state.legalMembers.items.listProp.length" :listItems="state.legalMembers.items" :component-item="freezeComponentMembersItem" /> -->
     </LayoutSection>
   </div>
 </template>
@@ -203,7 +247,8 @@ onMounted(() => {
   .section__statute--subtitle {
     color: $text-inverse;
     font-size: 14px;
-    margin: -40px 0 40px;
+    margin: 0 40px;
+    text-align: justify;
   }
 
   #content__page--departments-default-open
