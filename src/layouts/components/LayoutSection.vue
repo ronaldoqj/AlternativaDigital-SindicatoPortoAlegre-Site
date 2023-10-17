@@ -114,7 +114,7 @@ $topBottomHeights-mobile: 764px;
   {
     .section--content {
       position: relative;
-      padding: 40px 100px 20px;
+      padding: 40px 101px 20px;
       z-index: $z-index-content;
       transition: 0.3s ease-in-out;
 

@@ -130,11 +130,15 @@ resolveType()
     @media only screen and (max-width: $breakpoint-sm) {
       width: auto;
       // max-width: max-content;
-      flex-direction: column;
+      // flex-direction: column;
       padding: 0 5px;
 
       .news__image {
         margin-bottom: 10px;
+      }
+
+      &.only--text {
+        margin-bottom: 20px;
       }
     }
 

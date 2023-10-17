@@ -28,7 +28,7 @@ const state = reactive({
 })
 
 const screenSize = (): CarouselType => {
-  return $q.screen.lt.lg ? 'mobile' : 'desktop'
+  return $q.screen.lt.md ? 'mobile' : 'desktop'
 }
 
 const clickRoute = (route: RouteLocationRaw) => {
