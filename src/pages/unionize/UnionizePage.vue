@@ -14,37 +14,37 @@ const state = reactive({
     formState: 'edition' as TFormStates,
     inputs: {
       commercialData: {
-        bank: { label: 'banco', name: 'bank' },
-        bankCode: { label: 'COD do banco', name: 'cod_bank' },
-        agency: { label: 'Agência', name: 'agency' },
+        bank: { value: null, label: 'banco', name: 'bank' },
+        bankCode: { value: null, label: 'COD do banco', name: 'cod_bank' },
+        agency: { value: null, label: 'Agência', name: 'agency' },
 
-        phone: { label: 'Telefone', name: 'phone' },
-        extension: { label: 'Ramal', name: 'extension' },
-        alreadyAssociated: { label: 'Já foi associado à este sindicato?', name: 'already_associated' },
+        phone: { value: null, label: 'Telefone', name: 'phone' },
+        extension: { value: null, label: 'Ramal', name: 'extension' },
+        alreadyAssociated: { value: null, label: 'Já foi associado à este sindicato?', name: 'already_associated' },
 
-        registration: { label: 'Matrícula funcional', name: 'registration' },
-        position: { label: 'Cargo/Função', name: 'position' },
-        commercialEmail: { label: 'E-mail comercial', name: 'commercial_email' }
+        registration: { value: null, label: 'Matrícula funcional', name: 'registration' },
+        position: { value: null, label: 'Cargo/Função', name: 'position' },
+        commercialEmail: { value: null, label: 'E-mail comercial', name: 'commercial_email' }
       },
       personalData: {
-        cpf: { label: 'CPF', name: 'cpf' },
-        rg: { label: 'RG', name: 'rg' },
+        cpf: { value: null, label: 'CPF', name: 'cpf' },
+        rg: { value: null, label: 'RG', name: 'rg' },
 
-        birth: { label: 'Data de nascimento', name: 'birth' },
-        sex: { label: 'Sexo', name: 'sex' },
-        maritalStatus: { label: 'Estado civil', name: 'marital_status' },
+        birth: { value: null, label: 'Data de nascimento', name: 'birth' },
+        sex: { value: null, label: 'Sexo', name: 'sex' },
+        maritalStatus: { value: null, label: 'Estado civil', name: 'marital_status' },
 
-        email: { label: 'Email', name: 'email' },
-        phone: { label: 'Telefone', name: 'phone' },
-        cellPhone: { label: 'Celular', name: 'cell_phone' },
+        email: { value: null, label: 'Email', name: 'email' },
+        phone: { value: null, label: 'Telefone', name: 'phone' },
+        cellPhone: { value: null, label: 'Celular', name: 'cell_phone' },
 
-        homeAddress: { label: 'Endereço Recidencial', name: 'home_address' },
-        number: { label: 'Número', name: 'number' },
-        complement: { label: 'Complemento', name: 'complement' },
+        homeAddress: { value: null, label: 'Endereço Recidencial', name: 'home_address' },
+        number: { value: null, label: 'Número', name: 'number' },
+        complement: { value: null, label: 'Complemento', name: 'complement' },
 
-        neighborhood: { label: 'Bairro', name: 'neighborhood' },
-        city: { label: 'Cidade', name: 'city' },
-        state: { label: 'Estado', name: 'state' }
+        neighborhood: { value: null, label: 'Bairro', name: 'neighborhood' },
+        city: { value: null, label: 'Cidade', name: 'city' },
+        state: { value: null, label: 'Estado', name: 'state' }
       }
     }
   },
@@ -100,19 +100,19 @@ const changeFormState = (formState:TFormStates) => {
           <div class="header--section-form">Dados Comerciais</div>
           <div class="section--form">
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-lg-5"><InputForm :label="cData.bank.label" :name="cData.bank.name" :read-only="formReadyOnly" /></div>
-              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm :label="cData.bankCode.label" :name="cData.bankCode.name" :read-only="formReadyOnly" /></div>
-              <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm :label="cData.agency.label" :name="cData.agency.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-lg-5"><InputForm v-model="cData.bank.value" :label="cData.bank.label" :name="cData.bank.name" :read-only="formReadyOnly" /></div>
+              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm v-model="cData.bankCode.value" :label="cData.bankCode.label" :name="cData.bankCode.name" :read-only="formReadyOnly" /></div>
+              <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm v-model="cData.agency.value" :label="cData.agency.label" :name="cData.agency.name" :read-only="formReadyOnly" /></div>
             </div>
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-lg-5"><InputForm :label="cData.phone.label" :name="cData.phone.name" :read-only="formReadyOnly" /></div>
-              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm :label="cData.extension.label" :name="cData.extension.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-lg-5"><InputForm v-model="cData.phone.value" :label="cData.phone.label" :name="cData.phone.name" :read-only="formReadyOnly" /></div>
+              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm v-model="cData.extension.value" :label="cData.extension.label" :name="cData.extension.name" :read-only="formReadyOnly" /></div>
               <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><RadioForm :label="cData.alreadyAssociated.label" :name="cData.alreadyAssociated.name" :read-only="formReadyOnly" /></div>
             </div>
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm :label="cData.registration.label" :name="cData.registration.name" :read-only="formReadyOnly" /></div>
-              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm :label="cData.position.label" :name="cData.position.name" :read-only="formReadyOnly" /></div>
-              <div class="col-xs-12 col-lg-5"><InputForm :label="cData.commercialEmail.label" :name="cData.commercialEmail.name" :read-only="formReadyOnly" /></div>
+              <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm v-model="cData.registration.value" :label="cData.registration.label" :name="cData.registration.name" :read-only="formReadyOnly" /></div>
+              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm v-model="cData.position.value" :label="cData.position.label" :name="cData.position.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-lg-5"><InputForm v-model="cData.commercialEmail.value" :label="cData.commercialEmail.label" :name="cData.commercialEmail.name" :read-only="formReadyOnly" /></div>
             </div>
           </div>
         </div>
@@ -120,29 +120,29 @@ const changeFormState = (formState:TFormStates) => {
           <div class="header--section-form">Dados Pessoais</div>
           <div class="section--form">
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-lg-5"><InputForm :label="pData.cpf.label" :name="pData.cpf.name" :read-only="formReadyOnly" /></div>
-              <div class="col-xs-12 col-lg-5"><InputForm :label="pData.rg.label" :name="pData.rg.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-lg-5"><InputForm v-model="pData.cpf.value" :label="pData.cpf.label" :name="pData.cpf.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-lg-5"><InputForm v-model="pData.rg.value" :label="pData.rg.label" :name="pData.rg.name" :read-only="formReadyOnly" /></div>
             </div>
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-md-7 col-lg-4"><InputForm :label="pData.birth.label" :name="pData.birth.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-md-7 col-lg-4"><InputForm v-model="pData.birth.value" :label="pData.birth.label" :name="pData.birth.name" :read-only="formReadyOnly" /></div>
               <!-- <div class="col-xs-12 col-md-5 col-sm-6 col-lg-3"><RadioForm label="Sexo" gender /></div> -->
-              <div class="col-xs-12 col-md-5 col-sm-6 col-lg-3"><InputForm :label="pData.sex.label" :name="pData.sex.name" :read-only="formReadyOnly" /></div>
-              <div class="col-xs-12 col-sm-6 col-lg-5"><InputForm :label="pData.maritalStatus.label" :name="pData.maritalStatus.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-md-5 col-sm-6 col-lg-3"><InputForm v-model="pData.sex.value" :label="pData.sex.label" :name="pData.sex.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-sm-6 col-lg-5"><InputForm v-model="pData.maritalStatus.value" :label="pData.maritalStatus.label" :name="pData.maritalStatus.name" :read-only="formReadyOnly" /></div>
             </div>
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-lg-6"><InputForm :label="pData.email.label" :name="pData.email.name" :read-only="formReadyOnly" /></div>
-              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm :label="pData.phone.label" :name="pData.phone.name" :read-only="formReadyOnly" /></div>
-              <div class="col-4 col-xs-12 col-sm-6 col-lg-3"><InputForm :label="pData.cellPhone.label" :name="pData.cellPhone.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-lg-6"><InputForm v-model="pData.email.value" :label="pData.email.label" :name="pData.email.name" :read-only="formReadyOnly" /></div>
+              <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm v-model="pData.phone.value" :label="pData.phone.label" :name="pData.phone.name" :read-only="formReadyOnly" /></div>
+              <div class="col-4 col-xs-12 col-sm-6 col-lg-3"><InputForm v-model="pData.cellPhone.value" :label="pData.cellPhone.label" :name="pData.cellPhone.name" :read-only="formReadyOnly" /></div>
             </div>
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-lg-6"><InputForm :label="pData.homeAddress.label" :name="pData.homeAddress.name" :read-only="formReadyOnly" /></div>
-              <div class="col-3 col-xs-12 col-sm-4 col-lg-2"><InputForm :label="pData.number.label" :name="pData.number.name" :read-only="formReadyOnly" /></div>
-              <div class="col-4 col-xs-12 col-sm-8 col-lg-4"><InputForm :label="pData.complement.label" :name="pData.complement.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-lg-6"><InputForm v-model="pData.homeAddress.value" :label="pData.homeAddress.label" :name="pData.homeAddress.name" :read-only="formReadyOnly" /></div>
+              <div class="col-3 col-xs-12 col-sm-4 col-lg-2"><InputForm v-model="pData.number.value" :label="pData.number.label" :name="pData.number.name" :read-only="formReadyOnly" /></div>
+              <div class="col-4 col-xs-12 col-sm-8 col-lg-4"><InputForm v-model="pData.complement.value" :label="pData.complement.label" :name="pData.complement.name" :read-only="formReadyOnly" /></div>
             </div>
             <div class="row q-col-gutter-sm q-my-md">
-              <div class="col-xs-12 col-lg-6"><InputForm :label="pData.neighborhood.label" :name="pData.neighborhood.name" :read-only="formReadyOnly" /></div>
-              <div class="col-4 col-xs-12 col-sm-8 col-lg-4"><InputForm :label="pData.city.label" :name="pData.city.name" :read-only="formReadyOnly" /></div>
-              <div class="col-3 col-xs-12 col-sm-4 col-lg-2"><InputForm :label="pData.state.label" :name="pData.state.name" :read-only="formReadyOnly" /></div>
+              <div class="col-xs-12 col-lg-6"><InputForm v-model="pData.neighborhood.value" :label="pData.neighborhood.label" :name="pData.neighborhood.name" :read-only="formReadyOnly" /></div>
+              <div class="col-4 col-xs-12 col-sm-8 col-lg-4"><InputForm v-model="pData.city.value" :label="pData.city.label" :name="pData.city.name" :read-only="formReadyOnly" /></div>
+              <div class="col-3 col-xs-12 col-sm-4 col-lg-2"><InputForm v-model="pData.state.value" :label="pData.state.label" :name="pData.state.name" :read-only="formReadyOnly" /></div>
             </div>
           </div>
         </div>
