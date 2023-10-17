@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import { PropType } from 'vue'
+
 const props = defineProps({
+  modelValue: {
+    type: String as PropType<string | number | null | undefined>,
+    default: () => ('')
+  },
   label: {
     type: String,
     default: '',
@@ -27,9 +33,10 @@ const props = defineProps({
     <span class="label__form">{{ props.label }}</span>
     <div :class="`box__input ${props.type} ${props.readOnly ? 'read__only' : ''}`">
       <q-input
+        :model-value="(modelValue as string | null)"
+        @update:model-value="(event) => $emit('update:modelValue', event)"
         :readonly="props.readOnly"
         borderless
-        model-value="Text Value"
         :name="props.name"
         :class="props.readOnly ? 'read__only--input' : ''"
         dense
