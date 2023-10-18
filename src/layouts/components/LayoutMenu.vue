@@ -12,7 +12,19 @@ const state = reactive({
     publications: { name: 'publications' } as RouteLocationRaw,
     notice: { name: 'notice' } as RouteLocationRaw,
     unionize: { name: 'unionize' } as RouteLocationRaw,
+
     departments: { name: 'departments' } as RouteLocationRaw,
+    departmentsLegal: { name: 'departmentsLegal' } as RouteLocationRaw,
+    saude: { name: 'saude' } as RouteLocationRaw,
+    juventude: { name: 'juventude' } as RouteLocationRaw,
+    diversidade: { name: 'diversidade' } as RouteLocationRaw,
+    esporte: { name: 'esporte' } as RouteLocationRaw,
+    cultura: { name: 'cultura' } as RouteLocationRaw,
+    aposentados: { name: 'aposentados' } as RouteLocationRaw,
+    formacao: { name: 'formacao' } as RouteLocationRaw,
+    financeiras: { name: 'financeiras' } as RouteLocationRaw,
+    comunicacao: { name: 'comunicacao' } as RouteLocationRaw,
+
     services: { name: 'services' } as RouteLocationRaw,
     servicesInsurance: { name: 'servicesInsurance' } as RouteLocationRaw,
     servicesHistoryFile: { name: 'servicesHistoryFile' } as RouteLocationRaw,
@@ -55,11 +67,11 @@ const clickRoute = (route: RouteLocationRaw) => {
               </q-item>
               <q-separator class="menu__separator" />
               <q-item clickable>
-                <q-item-section>Estatuto</q-item-section>
+                <q-item-section @click="clickRoute(state.menu.about)">Estatuto</q-item-section>
               </q-item>
               <q-separator class="menu__separator" />
               <q-item clickable>
-                <q-item-section>Diretoria</q-item-section>
+                <q-item-section @click="clickRoute(state.menu.about)">Diretoria</q-item-section>
               </q-item>
             </q-list>
           </q-menu>
@@ -87,14 +99,14 @@ const clickRoute = (route: RouteLocationRaw) => {
 
           <q-menu auto-close class="bg-accent text-text-inverse submenu--level2" anchor="top end" self="top start">
             <q-list dense>
-              <q-item clickable>
+              <!-- <q-item clickable>
                 <q-item-section @click="clickRoute(state.menu.news)">Notícias</q-item-section>
               </q-item>
               <q-separator class="menu__separator" />
               <q-item clickable>
                 <q-item-section>Artigos</q-item-section>
               </q-item>
-              <q-separator class="menu__separator" />
+              <q-separator class="menu__separator" /> -->
               <q-item clickable>
                 <q-item-section>Estúdio RAO</q-item-section>
               </q-item>
@@ -110,11 +122,11 @@ const clickRoute = (route: RouteLocationRaw) => {
           </q-menu>
         </q-item>
 
-        <q-separator class="menu__separator" />
+        <!-- <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
           <q-item-section>Quit</q-item-section>
-        </q-item>
+        </q-item> -->
       </q-list>
     </q-menu>
   </q-btn>
@@ -129,13 +141,13 @@ const clickRoute = (route: RouteLocationRaw) => {
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section>Jurídico</q-item-section>
+          <q-item-section @click="clickRoute(state.menu.departmentsLegal)">Jurídico</q-item-section>
         </q-item>
 
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section>
+          <q-item-section @click="clickRoute(state.menu.saude)">
             Saúde e condições<br />
             de trabalho
           </q-item-section>
@@ -144,13 +156,13 @@ const clickRoute = (route: RouteLocationRaw) => {
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section>Juventude e Gênero</q-item-section>
+          <q-item-section @click="clickRoute(state.menu.juventude)">Juventude e Gênero</q-item-section>
         </q-item>
 
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section>
+          <q-item-section @click="clickRoute(state.menu.diversidade)">
             Diversidade e<br />
             Combate ao Racismo
           </q-item-section>
@@ -159,19 +171,19 @@ const clickRoute = (route: RouteLocationRaw) => {
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section>Esporte e Lazer</q-item-section>
+          <q-item-section @click="clickRoute(state.menu.esporte)">Esporte e Lazer</q-item-section>
         </q-item>
 
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section>Cultura e Sustentabilidade</q-item-section>
+          <q-item-section @click="clickRoute(state.menu.cultura)">Cultura e Sustentabilidade</q-item-section>
         </q-item>
 
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section>
+          <q-item-section @click="clickRoute(state.menu.aposentados)">
             Aposentados e<br />
             Seguridade Social
           </q-item-section>
@@ -180,15 +192,23 @@ const clickRoute = (route: RouteLocationRaw) => {
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section>Formação</q-item-section>
+          <q-item-section @click="clickRoute(state.menu.formacao)">Formação</q-item-section>
         </q-item>
 
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section>
+          <q-item-section @click="clickRoute(state.menu.financeiras)">
             Financeiras e terceirizados<br />
             do ramo financeiro
+          </q-item-section>
+        </q-item>
+
+        <q-separator class="menu__separator" />
+
+        <q-item clickable v-close-popup>
+          <q-item-section @click="clickRoute(state.menu.comunicacao)">
+            Comunicação
           </q-item-section>
         </q-item>
       </q-list>

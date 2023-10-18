@@ -80,7 +80,7 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: '/assets/image/apresentation/quem-somos/directorship/011.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Caroline', surname: 'Soares Heidner', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Caixa Econômica Federal', image: '/assets/image/apresentation/quem-somos/directorship/021.jpg' })
 }
 
 const setDepartmentPublications = () => {
@@ -144,17 +144,17 @@ onMounted(() => {
 <template>
   <div id="page__departments--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop src="/assets/image/apresentation/departamentos/001_Juridico.png" />
+      <BannerTop src="/assets/image/apresentation/departamentos/009_Financeiras.png" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">
       <div id="content__page--departments-default-open">
-        <TitleDefault class="q-mb-xl" title="Departamento Jurídico" />
+        <TitleDefault class="q-mb-xl" title="Financeiras e terceirizados do ramo financeiro" />
         <div>
           <!-- <ImageDefault class="images__floats left" src="/assets/image/tests/test-1.jpg" /> -->
           <!-- <h4>Ao Departamento Jurídico, cabe preparar material para subsidiar as negociações coletivas, assessorar a Diretoria Executiva em todas as negociações coletivas, ações trabalhistas e outras demandas da área jurídica, coordenando a elaboração de medidas judiciais em defesa dos direitos da categoria, da classe trabalhadora e da cidadania.</h4> -->
           <p>
-            Ao Departamento Jurídico, cabe preparar material para subsidiar as negociações coletivas, assessorar a Diretoria Executiva em todas as negociações coletivas, ações trabalhistas e outras demandas da área jurídica, coordenando a elaboração de medidas judiciais em defesa dos direitos da categoria, da classe trabalhadora e da cidadania.
+            Implementa as políticas para os trabalhadores em financeiras, empresas e cooperativas de crédito e demais instituições do ramo financeiro, bem como para todos os trabalhadores terceirizados do ramo financeiro. À pasta também cabe integrar todos os trabalhadores do ramos financeiro na vida cotidiana da categoria, especialmente no que se refere às campanhas salariais.
           </p>
         </div>
       </div>

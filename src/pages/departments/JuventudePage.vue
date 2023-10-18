@@ -80,7 +80,7 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: '/assets/image/apresentation/quem-somos/directorship/011.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Carmen', surname: 'Guedes', subtitle: 'Juventude e Gênero', description: 'Santander', image: '/assets/image/apresentation/quem-somos/directorship/013.jpg' })
 }
 
 const setDepartmentPublications = () => {
@@ -144,17 +144,17 @@ onMounted(() => {
 <template>
   <div id="page__departments--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop src="/assets/image/apresentation/departamentos/001_Juridico.png" />
+      <BannerTop src="/assets/image/apresentation/departamentos/003_Juventude.png" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">
       <div id="content__page--departments-default-open">
-        <TitleDefault class="q-mb-xl" title="Departamento Jurídico" />
+        <TitleDefault class="q-mb-xl" title="Juventude e Gênero" />
         <div>
           <!-- <ImageDefault class="images__floats left" src="/assets/image/tests/test-1.jpg" /> -->
           <!-- <h4>Ao Departamento Jurídico, cabe preparar material para subsidiar as negociações coletivas, assessorar a Diretoria Executiva em todas as negociações coletivas, ações trabalhistas e outras demandas da área jurídica, coordenando a elaboração de medidas judiciais em defesa dos direitos da categoria, da classe trabalhadora e da cidadania.</h4> -->
           <p>
-            Ao Departamento Jurídico, cabe preparar material para subsidiar as negociações coletivas, assessorar a Diretoria Executiva em todas as negociações coletivas, ações trabalhistas e outras demandas da área jurídica, coordenando a elaboração de medidas judiciais em defesa dos direitos da categoria, da classe trabalhadora e da cidadania.
+            Executa as políticas de Juventude e Gênero do Sindicato, organiza atividades para fomentar, na categoria, o debate sobre as temáticas de juventude e gênero, entre outras que estejam relacionadas à valorização da igualdade, diversidade e cidadania. Articula e coordena as ações em conjunto com os movimentos social e sindical ligados às temáticas de competência desta diretoria.
           </p>
         </div>
       </div>

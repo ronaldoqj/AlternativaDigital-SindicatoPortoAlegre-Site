@@ -80,7 +80,8 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: '/assets/image/apresentation/quem-somos/directorship/011.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Guaracy', surname: 'Padilla Gonçalves', subtitle: 'Cultura e Sustentabilidade', description: 'Caixa Econômica Federal', image: '/assets/image/apresentation/quem-somos/directorship/016.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Eroni', surname: 'Batista Ribeiro', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/017.jpg' })
 }
 
 const setDepartmentPublications = () => {
@@ -144,17 +145,17 @@ onMounted(() => {
 <template>
   <div id="page__departments--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop src="/assets/image/apresentation/departamentos/001_Juridico.png" />
+      <BannerTop src="/assets/image/apresentation/departamentos/006_Cultura.png" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">
       <div id="content__page--departments-default-open">
-        <TitleDefault class="q-mb-xl" title="Departamento Jurídico" />
+        <TitleDefault class="q-mb-xl" title="Cultura e Sustentabilidade" />
         <div>
           <!-- <ImageDefault class="images__floats left" src="/assets/image/tests/test-1.jpg" /> -->
           <!-- <h4>Ao Departamento Jurídico, cabe preparar material para subsidiar as negociações coletivas, assessorar a Diretoria Executiva em todas as negociações coletivas, ações trabalhistas e outras demandas da área jurídica, coordenando a elaboração de medidas judiciais em defesa dos direitos da categoria, da classe trabalhadora e da cidadania.</h4> -->
           <p>
-            Ao Departamento Jurídico, cabe preparar material para subsidiar as negociações coletivas, assessorar a Diretoria Executiva em todas as negociações coletivas, ações trabalhistas e outras demandas da área jurídica, coordenando a elaboração de medidas judiciais em defesa dos direitos da categoria, da classe trabalhadora e da cidadania.
+            Executa as políticas de Cultura e Sustentabilidade do Sindicato; garante que os projetos e atividades organizados pelo Sindicato observem as diretrizes de uma gestão sustentável, com responsabilidade ambiental, social e econômica; organiza eventos culturais e de lazer que promovam a integração da categoria e a consolidação da solidariedade de classe. A pasta também promove, através de suas atividades, a valorização da cultura popular, do sindicalismo e da história de luta da classe trabalhadora; organiza a memória da categoria e do Sindicato, através de pesquisas e arquivamentos de dados. Ainda tem sob a sua responsabilidade a administração do Centro de Memória Bancária, da Biblioteca do Sindicato e do CineBancários.
           </p>
         </div>
       </div>

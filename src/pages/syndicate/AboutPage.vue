@@ -2,9 +2,9 @@
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
-import CarouselSlide from 'src/components/interface/CarouselSlide.vue'
+// import CarouselSlide from 'src/components/interface/CarouselSlide.vue'
 import { useQuasar } from 'quasar'
-import { shallowRef, reactive, computed, onMounted, watch } from 'vue'
+import { reactive, computed, onMounted, watch } from 'vue'
 
 import MembersItem from 'src/pages/departments/components/MembersItem.vue'
 import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
@@ -20,8 +20,8 @@ interface IItemMember {
 }
 
 const $q = useQuasar()
-const freezeComponentStatute = shallowRef(StatuteItem)
-const freezeComponentMembersItem = shallowRef(MembersItem)
+// const freezeComponentStatute = shallowRef(StatuteItem)
+// const freezeComponentMembersItem = shallowRef(MembersItem)
 const state = reactive({
   section: {
     about: [

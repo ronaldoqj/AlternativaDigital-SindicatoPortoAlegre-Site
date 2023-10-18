@@ -83,7 +83,7 @@ onMounted(() => {
           :name="keyIndex"
           class="carousel--slide column no-wrap"
         >
-          <div class="row">
+          <div class="row q-col-gutter-xs">
             <component
               v-for="(item, key) in (itemIndex)" :key="key"
               :style="props.itemStyle"

@@ -95,26 +95,33 @@ onMounted(() => {
           <div class="row fit justify-start q-gutter-sm no-wrap">
             <div class="container-content">
               <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/001_Juridico.png" title="Jurídico" :route="{name: 'departmentsLegal'}" /></div>
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/002_Saude.png" title="Saúde e condições de trabalho" :route="{name: 'departmentsHealthAndWorkingConditions'}" /></div>
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/003_Juventude.png" title="Juventude e gênero" :route="{name: 'departmentsYouthAndGender'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/002_Saude.png" title="Saúde e condições de trabalho" :route="{name: 'saude'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/003_Juventude.png" title="Juventude e gênero" :route="{name: 'juventude'}" /></div>
             </div>
           </div>
         </q-carousel-slide>
         <q-carousel-slide :name="2" class="carousel--slide column no-wrap">
           <div class="row fit justify-start q-gutter-sm no-wrap">
             <div class="container-content">
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/004_Diversidade.png" title="Diversidade e combate ao racismo" :route="{name: 'departmentsDiversityAndCombatingRacism'}" /></div>
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/005_Esporte.png" title="Esporte e lazer" :route="{name: 'departmentsSportsAndLeisure'}" /></div>
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/006_Cultura.png" title="Cultura e sustentabilidade" :route="{name: 'departmentsCultureAndSustainability'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/004_Diversidade.png" title="Diversidade e combate ao racismo" :route="{name: 'diversidade'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/005_Esporte.png" title="Esporte e lazer" :route="{name: 'esporte'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/006_Cultura.png" title="Cultura e sustentabilidade" :route="{name: 'cultura'}" /></div>
             </div>
           </div>
         </q-carousel-slide>
         <q-carousel-slide :name="3" class="carousel--slide column no-wrap">
           <div class="row fit justify-start q-gutter-sm no-wrap">
             <div class="container-content">
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/007_Aposentados.png" title="Aposentados e seguridade social" :route="{name: 'departmentsRetireesAndSocialSecurity'}" /></div>
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/008_Formacao.png" title="Formação" :route="{name: 'departmentsFormation'}" /></div>
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/009_Financeiras.png" title="Financeiras e terceirizados do ramo financeiro" :route="{name: 'departmentsFinancialInstitutionsAndOutsourcedFinancialSector'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/007_Aposentados.png" title="Aposentados e seguridade social" :route="{name: 'aposentados'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/008_Formacao.png" title="Formação" :route="{name: 'formacao'}" /></div>
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/009_Financeiras.png" title="Financeiras e terceirizados do ramo financeiro" :route="{name: 'financeiras'}" /></div>
+            </div>
+          </div>
+        </q-carousel-slide>
+        <q-carousel-slide :name="4" class="carousel--slide column no-wrap">
+          <div class="row fit justify-start q-gutter-sm no-wrap">
+            <div class="container-content">
+              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/010_Comunicacao.jpg" title="Comunicaçao" :route="{name: 'comunicacao'}" /></div>
             </div>
           </div>
         </q-carousel-slide>
