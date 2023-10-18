@@ -80,7 +80,8 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: '/assets/image/apresentation/quem-somos/directorship/011.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Gilnei', surname: 'Silva Nunes', subtitle: 'Comunicação', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/022.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Jonas', surname: 'de Souza Castilhos', subtitle: 'Comunicação', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/023.jpg' })
 }
 
 const setDepartmentPublications = () => {
@@ -144,17 +145,17 @@ onMounted(() => {
 <template>
   <div id="page__departments--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop src="/assets/image/apresentation/departamentos/001_Juridico.png" />
+      <BannerTop src="/assets/image/apresentation/departamentos/010_Comunicacao.jpg" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">
       <div id="content__page--departments-default-open">
-        <TitleDefault class="q-mb-xl" title="Departamento Jurídico" />
+        <TitleDefault class="q-mb-xl" title="Comunicação" />
         <div>
           <!-- <ImageDefault class="images__floats left" src="/assets/image/tests/test-1.jpg" /> -->
           <!-- <h4>Ao Departamento Jurídico, cabe preparar material para subsidiar as negociações coletivas, assessorar a Diretoria Executiva em todas as negociações coletivas, ações trabalhistas e outras demandas da área jurídica, coordenando a elaboração de medidas judiciais em defesa dos direitos da categoria, da classe trabalhadora e da cidadania.</h4> -->
           <p>
-            Ao Departamento Jurídico, cabe preparar material para subsidiar as negociações coletivas, assessorar a Diretoria Executiva em todas as negociações coletivas, ações trabalhistas e outras demandas da área jurídica, coordenando a elaboração de medidas judiciais em defesa dos direitos da categoria, da classe trabalhadora e da cidadania.
+            A pasta de Comunicação recolhe e divulga informações, interligando o Sindicato, categoria e o conjunto da sociedade; dirige a produção de materiais gráficos e audiovisuais; mantém a publicação do jornal O Bancário e coordena a distribuição dos informativos e demais publicações do Sindicato. Desenvolve as campanhas publicitárias definidas pela Diretoria Executiva; coordena a atualização permanente da página do Sindicato na Internet, bem como a produção de conteúdos jornalísticos e campanhas através de todos os meios de comunicação utilizados, inclusive os digitais.
           </p>
         </div>
       </div>

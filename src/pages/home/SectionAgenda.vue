@@ -22,7 +22,7 @@ const state = reactive({
 })
 
 const setStoreDatas = (carouselData: Array<ICarouselItem>) : void => {
-  state.carousel.carouselData = arrayChunk(carouselData, 3) as unknown as Array<ICarouselItem>[]
+  state.carousel.carouselData = arrayChunk(carouselData, 2) as unknown as Array<ICarouselItem>[]
 }
 
 const getData = (): void => {
@@ -184,9 +184,11 @@ $height-section2: 200px;
           }
         }
 
-        @media only screen and (min-width: $breakpoint-md)
+        flex-direction: row;
+
+        @media only screen and (max-width: $breakpoint-sm)
         {
-          flex-direction: row;
+          flex-direction: column;
         }
       }
     }

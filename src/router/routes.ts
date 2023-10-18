@@ -13,7 +13,9 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/syndicate/IndexPage.vue'),
         children: [
           { path: '', name: 'about', component: () => import('pages/syndicate/AboutPage.vue') },
-          { path: 'editais', name: 'notice', component: () => import('pages/syndicate/NoticePage.vue') }
+          { path: 'acordos-e-convencoes', name: 'agreementsConventions', component: () => import('pages/syndicate/AgreementConventionPage.vue') },
+          { path: 'editais', name: 'notice', component: () => import('pages/syndicate/NoticePage.vue') },
+          { path: 'publicacoes', name: 'publications', component: () => import('pages/syndicate/PublicationsPage.vue') }
         ]
       },
       { path: 'noticia/:id/:title', name: 'news', component: () => import('pages/news/IndexPage.vue') },
@@ -36,7 +38,16 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/departments/IndexPage.vue'),
         children: [
           { path: '', name: 'departments', component: () => import('pages/departments/DepartmentsPage.vue') },
-          { path: 'juridico', name: 'departmentsLegal', component: () => import('pages/departments/LegalPage.vue') }
+          { path: 'juridico', name: 'departmentsLegal', component: () => import('pages/departments/LegalPage.vue') },
+          { path: 'saude-e-condicoes-de-trabalho', name: 'saude', component: () => import('pages/departments/SaudePage.vue') },
+          { path: 'juventude-e-genero', name: 'juventude', component: () => import('pages/departments/JuventudePage.vue') },
+          { path: 'diversidade-e-combate-ao-racismo', name: 'diversidade', component: () => import('pages/departments/DiversidadePage.vue') },
+          { path: 'esporte-e-lazer', name: 'esporte', component: () => import('pages/departments/EsportePage.vue') },
+          { path: 'cultura-e-sustentabilidade', name: 'cultura', component: () => import('pages/departments/CulturaPage.vue') },
+          { path: 'aposentados-e-seguridade-social', name: 'aposentados', component: () => import('pages/departments/AposentadosPage.vue') },
+          { path: 'formacao', name: 'formacao', component: () => import('pages/departments/FormacaoPage.vue') },
+          { path: 'financeiras-e-terceirizados-do-ramo-financeiro', name: 'financeiras', component: () => import('pages/departments/FinanceirasPage.vue') },
+          { path: 'Comunicacao', name: 'comunicacao', component: () => import('pages/departments/ComunicacaoPage.vue') }
           // { path: 'saude-e-condicoes-de-trabalho', name: 'departmentsHealthAndWorkingConditions', component: () => import('pages/departments/HealthAndWorkingConditionsPage.vue') },
           // { path: 'juventude-e-genero', name: 'departmentsYouthAndGender', component: () => import('pages/departments/YouthGenderPage.vue') },
           // { path: 'diversidade-e-combate-ao-racismo', name: 'departmentsDiversityAndCombatingRacism', component: () => import('pages/departments/DiversityAndCombatingRacismPage.vue') },
