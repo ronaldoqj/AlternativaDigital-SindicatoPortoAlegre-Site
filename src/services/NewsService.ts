@@ -19,6 +19,10 @@ class NewsService {
   related (data:unknown): Promise<IResponseRelated> {
     return http.post(`${prefix}/related${endURL}`, data)
   }
+
+  relatedDepartment (data:unknown): Promise<IResponseRelated> {
+    return http.post(`${prefix}/related-department${endURL}`, data)
+  }
 }
 
 export default new NewsService()
