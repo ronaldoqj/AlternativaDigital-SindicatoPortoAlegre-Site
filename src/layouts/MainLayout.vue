@@ -30,6 +30,9 @@
       bordered
     >
       <div class="box__mobile--menu">
+        <q-btn flat color="text-inverse close--menu" @click="leftDrawerOpen = false">
+          <IconDefault :size="25" class="corner corner--down" color="text-inverse" viewBox="0 0 46.24 46.25" src="/assets/svg/x.svg#icon_x" />
+        </q-btn>
         <div class="mobile__header--logo">
           <ImageDefault :size="{width: '168px', height: '78px'}" src="/assets/svg/logo-sind-bancarios-porto-alegre.svg"></ImageDefault>
         </div>
@@ -91,6 +94,7 @@ import LayoutHeader from 'layouts/components/LayoutHeader.vue'
 import LayoutFooter from 'layouts/components/LayoutFooter.vue'
 import ImageDefault from 'components/interface/ImageDefault.vue'
 import LayoutMenuSocialMedia from 'layouts/components/LayoutMenuSocialMedia.vue'
+import IconDefault from 'components/interface/IconDefault.vue'
 
 // const essentialLinks: EssentialLinkProps[] = [
 //   {
@@ -186,14 +190,20 @@ $height-slice-bottom-header: 40px;
 
     margin-top: $menu-margin-top;
     background: $primary;
-    padding: 40px 0;
+    padding: 10px 0;
     border-top-left-radius: $menu-border-top-radius;
     border-top-right-radius: $menu-border-top-radius;
     height: calc(100% - #{$menu-margin-top});
 
+    .close--menu {
+      float: right;
+      margin: 10px;
+    }
+
     .mobile__header--logo {
       margin: 20px auto;
       text-align: center;
+      clear: both;
     }
 
     .mobile--menu {
