@@ -34,7 +34,7 @@ const typeSection1 = computed((): CurrentColor => {
           <div class="column__left">
             <ImageDefault :size="{width: '168px', height: '78px'}" src="/assets/svg/logo-sind-bancarios-porto-alegre.svg"></ImageDefault>
             <p class="resume">
-              Lorem ipsum dolor sit ament, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat.
+              O Sindicato dos Bancários de Porto Alegre e Região foi fundado em 18 de janeiro de 1933, em uma assembleia que contou com a presença de 185 bancários. Atualmente, são mais de 14 mil bancários sindicalizados, que fazem parte de uma das entidades de classe mais atuantes do Brasil.
             </p>
           </div>
           <div class="column__right">
@@ -96,6 +96,7 @@ const typeSection1 = computed((): CurrentColor => {
       .resume {
         margin-top: 20px;
         display: none;
+        text-align: justify;
       }
     }
 
