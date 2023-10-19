@@ -8,28 +8,12 @@ import { shallowRef, reactive, computed, onMounted, watch } from 'vue'
 
 import DocumentItem from './components/DocumentItem.vue'
 import MembersItem from './components/MembersItem.vue'
-import NewsItem from 'components/interface/NewsItem.vue'
-// import SectionVideos from 'src/pages/departments/components/legal/SectionVideos.vue'
-// import IconDefault from 'components/interface/IconDefault.vue'
-// import ImageDefault from 'components/interface/ImageDefault.vue'
+import RelatedPublications from 'components/interface/RelatedPublications.vue'
 
 import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
-
-// const state = reactive({
-//   item: {
-//     title: 'Clinica Odontológica update',
-//     subject: 'Desconto de 25% em compras acima de R$ 150,00 update',
-//     phone: '3325 5036 update',
-//     mail: 'farmacia@donjoaoxii.com.br update',
-//     socialMedia: ['facebook', 'instagram', 'twitter', 'whatsapp', 'youtube']
-//   }
-// })
-
-// const props = {
-//   title: 'Guia 2023',
-//   description: 'Lorem ipsum dolor sit amet, consectetuer',
-//   src: '/assets/svg/icon-xml.svg#icon_xml'
-// }
+import { AxiosError } from 'axios'
+import NewsService from 'src/services/NewsService'
+import { INews, IResponseRelated } from 'src/types/INews'
 
 interface IItemMember {
   title: string
@@ -41,8 +25,6 @@ interface IItemMember {
 
 const $q = useQuasar()
 const freezeComponentDocument = shallowRef(DocumentItem)
-const freezeComponentDepartmentPublications = shallowRef(NewsItem)
-// const freezeComponentMembersItem = shallowRef(MembersItem)
 const state = reactive({
   documents: {
     items: {
@@ -63,6 +45,11 @@ const state = reactive({
       currentScreen: {} as IDinamicScreen,
       listProp: [] as Array<object>
     } as IDinamicList
+  },
+  relatedDepartments: {
+    departmentId: 6,
+    limit: 6,
+    list: [] as INews[]
   }
 })
 
@@ -130,6 +117,19 @@ const changeOrderList = (screenSize: TScreenSize) => {
   state.legalMembers.items.currentScreen = { screen: screenSize, blockSize: blockSizeDocument }
 }
 
+const getRelatedDepartments = () => {
+  NewsService.relatedDepartment({ department_id: state.relatedDepartments.departmentId, limit: state.relatedDepartments.limit })
+    .then((response:IResponseRelated) => {
+      state.relatedDepartments.list = response.data
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      //
+    })
+}
+
 watch(currentScreenSize, (newValue) => {
   changeOrderList(newValue)
 })
@@ -139,6 +139,7 @@ onMounted(() => {
   setDepartmentPublications()
   setListLegalMembers()
   changeOrderList(currentScreenSize.value)
+  getRelatedDepartments()
 })
 </script>
 
@@ -152,8 +153,6 @@ onMounted(() => {
       <div id="content__page--departments-default-open">
         <TitleDefault class="q-mb-xl" title="Cultura e Sustentabilidade" />
         <div>
-          <!-- <ImageDefault class="images__floats left" src="/assets/image/tests/test-1.jpg" /> -->
-          <!-- <h4>Ao Departamento Jurídico, cabe preparar material para subsidiar as negociações coletivas, assessorar a Diretoria Executiva em todas as negociações coletivas, ações trabalhistas e outras demandas da área jurídica, coordenando a elaboração de medidas judiciais em defesa dos direitos da categoria, da classe trabalhadora e da cidadania.</h4> -->
           <p>
             Executa as políticas de Cultura e Sustentabilidade do Sindicato; garante que os projetos e atividades organizados pelo Sindicato observem as diretrizes de uma gestão sustentável, com responsabilidade ambiental, social e econômica; organiza eventos culturais e de lazer que promovam a integração da categoria e a consolidação da solidariedade de classe. A pasta também promove, através de suas atividades, a valorização da cultura popular, do sindicalismo e da história de luta da classe trabalhadora; organiza a memória da categoria e do Sindicato, através de pesquisas e arquivamentos de dados. Ainda tem sob a sua responsabilidade a administração do Centro de Memória Bancária, da Biblioteca do Sindicato e do CineBancários.
           </p>
@@ -163,31 +162,16 @@ onMounted(() => {
 
     <LayoutSection background="quaternary" cornerColor="tertiary">
       <TitleDefault class="q-mb-xl" title="Documentos" />
-      <!-- <DocumentItem title="Guia 2023" description="Lorem ipsum dolor sit amet, consectetuer" />
-      <component :is="documentItem" v-bind="props"></component> -->
-      <!-- <CarouselSlide :list="state.documents.listDocuments" :screen-block="state.documents.screenBlock"></CarouselSlide> -->
       <CarouselSlide v-if="state.documents.items.listProp.length" :listItems="state.documents.items" :component-item="freezeComponentDocument" item-class="departments__legal--document-item" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">
-      <TitleDefault class="q-mb-xl" title="Publicações do departamento" />
-      <CarouselSlide v-if="state.departmentPublications.items.listProp.length" :listItems="state.departmentPublications.items" :items-screen-break="state.departmentPublications.items.screenBreak" :component-item="freezeComponentDepartmentPublications" item-class="" />
+      <RelatedPublications v-if="state.relatedDepartments.list.length" :list="state.relatedDepartments.list" />
+      <TitleDefault v-else class="q-my-xl" title="Nenhuma publicação relacionada encontrada" only-text />
     </LayoutSection>
-
-    <!-- <LayoutSection background="quaternary" cornerColor="tertiary">
-      <TitleDefault class="q-mb-xl" title="Vídeos do departamento jurídico" />
-      <SectionVideos />
-    </LayoutSection> -->
 
     <LayoutSection background="quaternary" cornerColor="secondary">
       <TitleDefault class="q-mb-xl" title="Membros por equipe" />
-      <!-- <p class="subtitle__legal-members">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
-        facilisi.
-      </p> -->
-      <!-- <CarouselSlide v-if="state.legalMembers.items.listProp.length" :listItems="state.legalMembers.items" :component-item="freezeComponentMembersItem" /> -->
-
       <div class="row">
         <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3" v-for="(member, key) in (state.legalMembers.items.listProp as IItemMember[])" :key="key">
           <MembersItem :title="member.title" :surname="member.surname" :subtitle="member.subtitle" :description="member.description" :image="member.image" />

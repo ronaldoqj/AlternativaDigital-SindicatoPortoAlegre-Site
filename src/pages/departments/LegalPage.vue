@@ -9,12 +9,15 @@ import { shallowRef, reactive, computed, onMounted, watch } from 'vue'
 import DocumentItem from './components/DocumentItem.vue'
 import MembersItem from './components/MembersItem.vue'
 import NewsItem from 'components/interface/NewsItem.vue'
+import NewsService from 'src/services/NewsService'
+import RelatedPublications from 'components/interface/RelatedPublications.vue'
 // import SectionVideos from 'src/pages/departments/components/legal/SectionVideos.vue'
 // import IconDefault from 'components/interface/IconDefault.vue'
 // import ImageDefault from 'components/interface/ImageDefault.vue'
 
 import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
-
+import { AxiosError } from 'axios'
+import { INews, IResponseRelated } from 'src/types/INews'
 // const state = reactive({
 //   item: {
 //     title: 'Clinica Odontológica update',
@@ -63,6 +66,11 @@ const state = reactive({
       currentScreen: {} as IDinamicScreen,
       listProp: [] as Array<object>
     } as IDinamicList
+  },
+  relatedDepartments: {
+    departmentId: 1,
+    limit: 6,
+    list: [] as INews[]
   }
 })
 
@@ -129,6 +137,22 @@ const changeOrderList = (screenSize: TScreenSize) => {
   state.legalMembers.items.currentScreen = { screen: screenSize, blockSize: blockSizeDocument }
 }
 
+const getRelatedDepartments = () => {
+  NewsService.relatedDepartment({ department_id: state.relatedDepartments.departmentId, limit: state.relatedDepartments.limit })
+    .then((response:IResponseRelated) => {
+      state.relatedDepartments.list = response.data
+      console.log('getRelatedDepartments response:', response)
+      // console.log('initial response', response.data)
+      // console.log('initial response2', state.sectionNews)
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      //
+    })
+}
+
 watch(currentScreenSize, (newValue) => {
   changeOrderList(newValue)
 })
@@ -138,6 +162,7 @@ onMounted(() => {
   setDepartmentPublications()
   setListLegalMembers()
   changeOrderList(currentScreenSize.value)
+  getRelatedDepartments()
 })
 </script>
 
@@ -169,8 +194,9 @@ onMounted(() => {
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">
-      <TitleDefault class="q-mb-xl" title="Publicações do departamento" />
-      <CarouselSlide v-if="state.departmentPublications.items.listProp.length" :listItems="state.departmentPublications.items" :items-screen-break="state.departmentPublications.items.screenBreak" :component-item="freezeComponentDepartmentPublications" item-class="" />
+      <RelatedPublications v-if="state.relatedDepartments.list.length" :list="state.relatedDepartments.list" />
+      <TitleDefault v-else class="q-my-xl" title="Nenhuma publicação relacionada encontrada" only-text />
+      <!-- <CarouselSlide v-if="state.departmentPublications.items.listProp.length" :listItems="state.departmentPublications.items" :items-screen-break="state.departmentPublications.items.screenBreak" :component-item="freezeComponentDepartmentPublications" item-class="" /> -->
     </LayoutSection>
 
     <!-- <LayoutSection background="quaternary" cornerColor="tertiary">
