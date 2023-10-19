@@ -28,7 +28,7 @@
         <SectionAgenda />
       </LayoutSection>
       <LayoutSection background="tertiary" cornerColor="secondary">
-        <SectionSocialMedia />
+        <SectionDepartments />
       </LayoutSection>
     </div>
   </q-page>
@@ -40,9 +40,9 @@ import SectionBanner from 'pages/home/SectionBanner.vue'
 import SectionNews from 'pages/home/SectionNews.vue'
 import SectionVideos from 'pages/home/SectionVideos.vue'
 import SectionCampaigns from 'pages/home/SectionCampaigns.vue'
-import SectionPublications from 'pages/home/SectionPublications.vue'
+// import SectionPublications from 'pages/home/SectionPublications.vue'
 import SectionAgenda from 'pages/home/SectionAgenda.vue'
-import SectionSocialMedia from 'pages/home/SectionSocialMedia.vue'
+import SectionDepartments from 'pages/home/SectionDepartments.vue'
 import { AxiosError } from 'axios'
 import NewsService from 'src/services/NewsService'
 import { onMounted, reactive } from 'vue'
