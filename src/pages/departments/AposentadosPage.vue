@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { baseURL } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
@@ -67,8 +68,8 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Claudete', surname: 'Genuíno Marocco', subtitle: 'Aposentados e Seguridade Social', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/018.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Natalina', surname: 'Rosane Gue', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: '/assets/image/apresentation/quem-somos/directorship/019.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Claudete', surname: 'Genuíno Marocco', subtitle: 'Aposentados e Seguridade Social', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/018.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Natalina', surname: 'Rosane Gue', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/019.jpg` })
 }
 
 const setDepartmentPublications = () => {
@@ -146,7 +147,7 @@ onMounted(() => {
 <template>
   <div id="page__departments--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop src="/assets/image/apresentation/departamentos/007_Aposentados.png" />
+      <BannerTop :src="`${baseURL}temporary/images/departamentos/007_Aposentados.png`" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">

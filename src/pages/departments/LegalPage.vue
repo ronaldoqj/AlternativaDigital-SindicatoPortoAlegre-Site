@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { baseURL } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
@@ -8,7 +9,7 @@ import { shallowRef, reactive, computed, onMounted, watch } from 'vue'
 
 import DocumentItem from './components/DocumentItem.vue'
 import MembersItem from './components/MembersItem.vue'
-import NewsItem from 'components/interface/NewsItem.vue'
+// import NewsItem from 'components/interface/NewsItem.vue'
 import NewsService from 'src/services/NewsService'
 import RelatedPublications from 'components/interface/RelatedPublications.vue'
 // import SectionVideos from 'src/pages/departments/components/legal/SectionVideos.vue'
@@ -44,7 +45,7 @@ interface IItemMember {
 
 const $q = useQuasar()
 const freezeComponentDocument = shallowRef(DocumentItem)
-const freezeComponentDepartmentPublications = shallowRef(NewsItem)
+// const freezeComponentDepartmentPublications = shallowRef(NewsItem)
 // const freezeComponentMembersItem = shallowRef(MembersItem)
 const state = reactive({
   documents: {
@@ -88,7 +89,7 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: '/assets/image/apresentation/quem-somos/directorship/011.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/011.jpg` })
 }
 
 const setDepartmentPublications = () => {
@@ -169,7 +170,7 @@ onMounted(() => {
 <template>
   <div id="page__departments--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop src="/assets/image/apresentation/departamentos/001_Juridico.png" />
+      <BannerTop :src="`${baseURL}temporary/images/departamentos/001_Juridico.png`" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">

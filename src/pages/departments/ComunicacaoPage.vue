@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { baseURL } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
@@ -67,8 +68,8 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Gilnei', surname: 'Silva Nunes', subtitle: 'Comunicação', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/022.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Jonas', surname: 'de Souza Castilhos', subtitle: 'Comunicação', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/023.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Gilnei', surname: 'Silva Nunes', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/022.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Jonas', surname: 'de Souza Castilhos', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/023.jpg` })
 }
 
 const setDepartmentPublications = () => {
@@ -146,7 +147,7 @@ onMounted(() => {
 <template>
   <div id="page__departments--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop src="/assets/image/apresentation/departamentos/010_Comunicacao.jpg" />
+      <BannerTop :src="`${baseURL}temporary/images/departamentos/010_Comunicacao.jpg`" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">

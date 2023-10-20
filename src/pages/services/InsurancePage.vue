@@ -26,7 +26,8 @@ const state = reactive({
 
     <LayoutSection background="tertiary" cornerColor="secondary">
       <div id="content__page--service-insurance">
-        <TitleDefault class="q-mb-xl" title="Convênios" />
+        <TitleDefault class="q-mb-md" title="Convênios" />
+        <div class="subtitle q-mb-xl">Os bancários e bancárias sindicalizadas têm, à disposição, uma série de descontos e benefícios em cursos, escolas, universidades, consultas, estabelecimentos esportivos, restaurantes e livrarias. Confira os convênios do SindBancários nas diferentes áreas.</div>
         <TabsCategories title="Filtro por categoia" />
         <h2 class="q-mt-xl q-mb-lg">Dentista</h2>
 
@@ -58,6 +59,10 @@ const state = reactive({
 
   #content__page--service-insurance {
     margin-bottom: 30px;
+
+    .subtitle {
+      text-align: justify;
+    }
   }
 }
 </style>

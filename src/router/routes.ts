@@ -8,14 +8,16 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: '', name: 'home', component: () => import('pages/home/IndexPage.vue') },
       {
-        path: 'quem-somos',
+        path: 'o-sindicato',
         name: 'aboutIndex',
         component: () => import('pages/syndicate/IndexPage.vue'),
         children: [
-          { path: '', name: 'about', component: () => import('pages/syndicate/AboutPage.vue') },
+          { path: 'quem-somos', name: 'about', component: () => import('pages/syndicate/AboutPage.vue') },
           { path: 'acordos-e-convencoes', name: 'agreementsConventions', component: () => import('pages/syndicate/AgreementConventionPage.vue') },
           { path: 'editais', name: 'notice', component: () => import('pages/syndicate/NoticePage.vue') },
-          { path: 'publicacoes', name: 'publications', component: () => import('pages/syndicate/PublicationsPage.vue') }
+          { path: 'publicacoes', name: 'publications', component: () => import('pages/syndicate/PublicationsPage.vue') },
+          { path: 'estudio', name: 'studioRAO', component: () => import('pages/syndicate/StudioRaoPage.vue') }
+          // { path: 'estudio-rao', name: 'studioRAO', component: () => import('pages/syndicate/StudioRaoPage.vue') }
         ]
       },
       { path: 'noticia/:id/:title', name: 'news', component: () => import('pages/news/IndexPage.vue') },

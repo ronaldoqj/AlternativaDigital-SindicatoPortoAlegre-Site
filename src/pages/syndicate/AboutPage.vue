@@ -2,6 +2,7 @@
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
+import { baseURL } from 'src/helpers/helpers'
 // import CarouselSlide from 'src/components/interface/CarouselSlide.vue'
 import { useQuasar } from 'quasar'
 import { reactive, computed, onMounted, watch } from 'vue'
@@ -125,29 +126,29 @@ const setListStatute = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Luciano', surname: 'Fetzner Barcellos', subtitle: 'Presidência', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/001.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Silvia', surname: 'Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/002.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Eduardo', surname: 'Munhoz Baptista', subtitle: 'Secretaria Geral', description: 'Itaú-Unibanco', image: '/assets/image/apresentation/quem-somos/directorship/003.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Cristina', surname: 'Silva Rocha Garbinatto', subtitle: 'Conselho Fiscal', description: 'Banco Do Brasil', image: '/assets/image/apresentation/quem-somos/directorship/004.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Daniela', surname: 'Silva de Souza', subtitle: 'Secretaria Executiva', description: 'Itaú-Unibanco', image: '/assets/image/apresentation/quem-somos/directorship/005.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Luiz', surname: 'Cassemiro', subtitle: 'Secretaria Geral', description: 'Secretaria Executiva', image: '/assets/image/apresentation/quem-somos/directorship/006.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Edson', surname: 'Ramos da Rocha', subtitle: 'Conselho Fiscal', description: 'Bradesco', image: '/assets/image/apresentation/quem-somos/directorship/007.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Antônio', surname: 'Augusto Borges de Borges', subtitle: 'Administrativo', description: 'Itaú-Unibanco', image: '/assets/image/apresentation/quem-somos/directorship/008.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Tiago', surname: 'Vasconcellos Pedroso', subtitle: 'Financeiro', description: 'Caixa Econômica Federal', image: '/assets/image/apresentation/quem-somos/directorship/009.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Maristela', surname: 'da Rocha', subtitle: 'Financeiro', description: 'Caixa Econômica Federal', image: '/assets/image/apresentation/quem-somos/directorship/010.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: '/assets/image/apresentation/quem-somos/directorship/011.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Jamile', surname: 'Chamun', subtitle: 'Saúde', description: 'Itaú-Unibanco', image: '/assets/image/apresentation/quem-somos/directorship/012.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Carmen', surname: 'Guedes', subtitle: 'Juventude e Gênero', description: 'Santander', image: '/assets/image/apresentation/quem-somos/directorship/013.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Sandro', surname: 'Artur Ferreira Rodrigues', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: '/assets/image/apresentation/quem-somos/directorship/014.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'ESPORTE E LAZER', surname: '', subtitle: '', description: '', image: '/assets/image/apresentation/quem-somos/directorship/015.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Guaracy', surname: 'Padilla Gonçalves', subtitle: 'Cultura e Sustentabilidade', description: 'Caixa Econômica Federal', image: '/assets/image/apresentation/quem-somos/directorship/016.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Eroni', surname: 'Batista Ribeiro', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/017.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Claudete', surname: 'Genuíno Marocco', subtitle: 'Aposentados e Seguridade Social', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/018.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Natalina', surname: 'Rosane Gue', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: '/assets/image/apresentation/quem-somos/directorship/019.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Jairo', surname: 'Severo Soares', subtitle: 'Formação', description: 'Itaú-Unibanco', image: '/assets/image/apresentation/quem-somos/directorship/020.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Caroline', surname: 'Soares Heidner', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Caixa Econômica Federal', image: '/assets/image/apresentation/quem-somos/directorship/021.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Gilnei', surname: 'Silva Nunes', subtitle: 'Comunicação', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/022.jpg' })
-  state.legalMembers.items.listProp.push({ title: 'Jonas', surname: 'de Souza Castilhos', subtitle: 'Comunicação', description: 'Banrisul', image: '/assets/image/apresentation/quem-somos/directorship/023.jpg' })
+  state.legalMembers.items.listProp.push({ title: 'Luciano', surname: 'Fetzner Barcellos', subtitle: 'Presidência', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/001.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Silvia', surname: 'Regina de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/002.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Eduardo', surname: 'Munhoz Baptista', subtitle: 'Secretaria Geral', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/003.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Cristina', surname: 'Silva Rocha Garbinatto', subtitle: 'Conselho Fiscal', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/004.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Daniela', surname: 'Silva de Souza', subtitle: 'Secretaria Executiva', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/005.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Luiz', surname: 'Cassemiro', subtitle: 'Secretaria Geral', description: 'Secretaria Executiva', image: `${baseURL}temporary/images/quem-somos/directorship/006.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Edson', surname: 'Ramos da Rocha', subtitle: 'Conselho Fiscal', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/007.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Antônio', surname: 'Augusto Borges de Borges', subtitle: 'Administrativo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/008.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Tiago', surname: 'Vasconcellos Pedroso', subtitle: 'Financeiro', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/009.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Maristela', surname: 'da Rocha', subtitle: 'Financeiro', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/010.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/011.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Jamile', surname: 'Chamun', subtitle: 'Saúde', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/012.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Carmen', surname: 'Guedes', subtitle: 'Juventude e Gênero', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/013.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Sandro', surname: 'Artur Ferreira Rodrigues', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/014.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'ESPORTE E LAZER', surname: '', subtitle: '', description: '', image: `${baseURL}temporary/images/quem-somos/directorship/015.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Guaracy', surname: 'Padilla Gonçalves', subtitle: 'Cultura e Sustentabilidade', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/016.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Eroni', surname: 'Batista Ribeiro', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/017.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Claudete', surname: 'Genuíno Marocco', subtitle: 'Aposentados e Seguridade Social', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/018.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Natalina', surname: 'Rosane Gue', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/019.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Jairo', surname: 'Severo Soares', subtitle: 'Formação', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/020.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Caroline', surname: 'Soares Heidner', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/021.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Gilnei', surname: 'Silva Nunes', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/022.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Jonas', surname: 'de Souza Castilhos', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/023.jpg` })
 }
 
 const currentScreenSize = computed((): TScreenSize => {
@@ -188,7 +189,7 @@ onMounted(() => {
 <template>
   <div id="page__departments--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop src="/assets/image/apresentation/quem-somos/BANNER_QUEM_SOMOS.jpg" />
+      <BannerTop :src="`${baseURL}temporary/images/quem-somos/BANNER_QUEM_SOMOS.jpg`" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="accent">
@@ -203,11 +204,11 @@ onMounted(() => {
       <div class="row q-mb-lg">
         <div class="col-xs-12 col-md-7 self-center q-mb-md">
           <p class="section__statute--subtitle">
-            Confira todas as definições e organização do Estatuto do SindBancários. O documento prevê estrutura de gestão das entidades, instâncias deliberativas, departamentos, processo eleitoral e aprovação de plano anual.
+            Confira todas definições e organização do Estatuto do SindBancários. O documento prevê estrutura de gestão da entidades, instâncias deliberativas, departamentos, processo eleitoral e aprovação de plano anual.
           </p>
         </div>
         <div class="col-xs-12 col-md-5 self-center q-mb-md">
-          <StatuteItem style="margin: 0;" :title="state.statute.item.title" :description="state.statute.item.description" :src="state.statute.item.src" />
+          <StatuteItem style="margin: 0;" :title="state.statute.item.title" :description="state.statute.item.description" :src="state.statute.item.src" :link="`${baseURL}temporary/documents/about/Novo_Estatuto_Social_do_Sindicato_dos_Bancarios_de_Porto_Alegre_e_Regiao.pdf`" />
         </div>
       </div>
       <!-- <p class="section__statute--subtitle">
