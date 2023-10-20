@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { baseURL } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
-import { baseURL } from 'src/helpers/helpers'
 // import CarouselSlide from 'src/components/interface/CarouselSlide.vue'
 import { useQuasar } from 'quasar'
 import { reactive, computed, onMounted, watch } from 'vue'
@@ -171,7 +171,7 @@ const state = reactive({
     {
       section: 'Diversidade e Combate ao Racismo',
       list: [
-        { title: 'Sandro', surname: 'Artur Ferreira Rodrigues', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/014.jpg` },
+        { title: 'Sandro Artur', surname: 'Ferreira Rodrigues', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/014.jpg` },
         { title: 'Ernesto Humberto', surname: 'dos Santos', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` }
       ]
     },

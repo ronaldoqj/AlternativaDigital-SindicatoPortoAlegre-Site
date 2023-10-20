@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PropType } from 'vue'
 import IconDefault from 'components/interface/IconDefault.vue'
-import ButtonDefault from 'components/interface/ButtonDefault.vue'
+// import ButtonDefault from 'components/interface/ButtonDefault.vue'
 import { IDocumentItem } from 'src/components/models/interfaces/pages/services/document'
 
 const props = defineProps({
@@ -52,7 +52,7 @@ const props = defineProps({
         <div class="subtitle">{{ props.subtitle }}</div>
         <div class="title">{{ props.title }}</div>
       </div>
-        <a class="btn--link" href="#">{{ props.titleButton }}</a>
+        <a class="btn--link" :href="props.link" target="_blank">{{ props.titleButton }}</a>
         <!-- <ButtonDefault rounded flat noCaps  :title="props.titleButton" :color="props.color" /> -->
     </div>
   </div>
@@ -64,7 +64,7 @@ const props = defineProps({
   margin: 0 0 20px;
   padding: 0 5px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
 
   .content
   {
