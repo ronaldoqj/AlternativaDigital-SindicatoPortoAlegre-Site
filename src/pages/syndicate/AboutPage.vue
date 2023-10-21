@@ -1,24 +1,23 @@
 <script setup lang="ts">
 import { baseURL } from 'src/helpers/helpers'
+import { useQuasar } from 'quasar'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
 // import CarouselSlide from 'src/components/interface/CarouselSlide.vue'
-import { useQuasar } from 'quasar'
 import { reactive, computed, onMounted, watch } from 'vue'
-
 import MembersItem from 'src/pages/departments/components/MembersItem.vue'
 import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
 import StatuteItem from 'src/pages/syndicate/components/about/StatuteItem.vue'
 import SectionAbout from 'src/pages/syndicate/components/about/SectionAbout.vue'
 
-interface IItemMember {
-  title: string
-  surname: string
-  subtitle: string
-  description: string
-  image: string
-}
+// interface IItemMember {
+//   title: string
+//   surname: string
+//   subtitle: string
+//   description: string
+//   image: string
+// }
 
 const $q = useQuasar()
 // const freezeComponentStatute = shallowRef(StatuteItem)

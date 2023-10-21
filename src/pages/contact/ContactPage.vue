@@ -80,7 +80,7 @@ import IconDefault from 'components/interface/IconDefault.vue'
       width="100%"
       height="870"
       style="border:0;"
-      allowfullscreen=""
+      allowfullscreen="true"
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
     ></iframe>
