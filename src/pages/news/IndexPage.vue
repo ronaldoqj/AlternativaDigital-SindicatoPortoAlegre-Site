@@ -145,8 +145,6 @@ const computedLayout = computed(() => {
 // }
 
 const init = () => {
-  console.log('=============== Route', route)
-  console.log('--------------- Router', router.currentRoute.value.fullPath)
   if (route.params && route.params.id.length) {
     if (!isNaN(route.params.id as unknown as number)) {
       state.idNews = Number(route.params.id)
