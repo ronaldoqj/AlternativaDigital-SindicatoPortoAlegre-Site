@@ -24,32 +24,24 @@ export const useStructureStore = defineStore('counter', {
       switch (size) {
         case 'xl':
           this.screen.screenSize = 'xl'
+          this.screen.screenDevice = 'desktop'
           break
         case 'lg':
           this.screen.screenSize = 'lg'
+          this.screen.screenDevice = 'desktop'
           break
         case 'md':
           this.screen.screenSize = 'md'
+          this.screen.screenDevice = 'desktop'
           break
         case 'sm':
           this.screen.screenSize = 'sm'
+          this.screen.screenDevice = 'mobile'
           break
         case 'xs':
         default:
           this.screen.screenSize = 'xs'
-          break
-      }
-
-      switch (size) {
-        case 'xs':
-        case 'sm':
           this.screen.screenDevice = 'mobile'
-          break
-        case 'md':
-        case 'lg':
-        case 'xl':
-        default:
-          this.screen.screenDevice = 'desktop'
           break
       }
     }
