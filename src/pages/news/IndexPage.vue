@@ -193,6 +193,7 @@ onMounted(() => {
 {
   .align-title {
     display: flex;
+    flex-wrap: wrap-reverse;
     justify-content: space-between;
   }
 

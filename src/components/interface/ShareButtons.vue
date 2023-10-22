@@ -143,5 +143,13 @@ onMounted(() => {
     border-radius: 30px;
     background-color: $quaternary;
     box-shadow: inset 0 2px 6px $quinary;
+    transition: 0.3s ease-in-out;
+
+    @media only screen and (max-width: $breakpoint-xs)
+    {
+      width: 100%;
+      margin-top: -20px;
+      margin-bottom: 15px;
+    }
   }
 </style>
