@@ -135,7 +135,7 @@ watch(geralNews, newValue => {
 })
 
 onMounted(() => {
-  console.log('onMounted SectionNews', props.news)
+  // console.log('onMounted SectionNews', props.news)
 })
 </script>
 

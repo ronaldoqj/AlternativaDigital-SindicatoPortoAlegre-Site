@@ -3,12 +3,16 @@
 </template>
 
 <script setup lang="ts">
-import { baseURL, domain, defaultImagePath } from 'src/helpers/helpers'
-import { useMeta } from 'quasar'
+import { useMeta, useQuasar } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
+import { useStructureStore } from 'stores/structure-store'
+import { baseURL, domain, defaultImagePath } from 'src/helpers/helpers'
+import { computed, onMounted, watch } from 'vue'
+import { TStructureScreenSize } from './types/IDefaults'
 
 const route = useRoute()
 const router = useRouter()
+const $q = useQuasar()
 const applicationName = 'Sindicato dos Bancários de Porto Alegre e Região - SindBancários'
 const imagePath = baseURL + defaultImagePath
 const description = 'Description test'
@@ -32,4 +36,19 @@ const metaData = {
 }
 
 useMeta(metaData)
+
+/**
+ * Functionality responsible for defining screen in storeStructure
+ */
+const structureStore = computed(() : TStructureScreenSize => {
+  return $q.screen.name
+})
+
+watch(structureStore, (newValue: TStructureScreenSize) => {
+  useStructureStore().setScreen(newValue)
+})
+
+onMounted(() => {
+  useStructureStore().setScreen(structureStore as unknown as TStructureScreenSize)
+})
 </script>

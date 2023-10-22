@@ -2,7 +2,8 @@
 import { baseURL, arrayChunk } from 'src/helpers/helpers'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import CardButton from 'components/interface/CardButton.vue'
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, watch, computed } from 'vue'
+import { useStructureStore } from 'stores/structure-store'
 
 interface ICarouselItem {
   id: number
@@ -43,8 +44,18 @@ const getData = (): void => {
   setStoreDatas(state.carousel.data)
 }
 
+const structureStore = computed((): string => {
+  return useStructureStore().currentSize
+})
+
+watch(structureStore, (newValue: string) => {
+  console.log('currentStructureStore watch Device', newValue)
+})
+
 onMounted(() => {
   getData()
+  console.log('onMouted screen', structureStore.value)
+  // useStructureStore().increment()
 })
 </script>
 
@@ -63,13 +74,15 @@ onMounted(() => {
         navigation
         infinite
       >
-      <!-- <q-carousel-slide v-for="(arrayItem, key) in (state.carousel.carouselData as Array<ICarouselItem>[])" :key="key" :name="key" class="carousel--slide column no-wrap">
-        <div class="row fit justify-start q-gutter-sm no-wrap">
-          <div class="container-content">
-            <q-img class="rounded-borders content-item" v-for="(item, key2) in arrayItem" :key="key2" :src="item.image" />
+      <!--
+        <q-carousel-slide v-for="(arrayItem, key) in (state.carousel.carouselData as Array<ICarouselItem>[])" :key="key" :name="key" class="carousel--slide column no-wrap">
+          <div class="row fit justify-start q-gutter-sm no-wrap">
+            <div class="container-content">
+              <q-img class="rounded-borders content-item" v-for="(item, key2) in arrayItem" :key="key2" :src="item.image" />
+            </div>
           </div>
-        </div>
-      </q-carousel-slide> -->
+        </q-carousel-slide>
+      -->
       <!--
         <q-carousel-slide :name="2" class="carousel--slide column no-wrap">
           <div class="row fit justify-start q-gutter-sm no-wrap">
