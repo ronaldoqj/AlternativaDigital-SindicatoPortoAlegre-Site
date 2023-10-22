@@ -14,6 +14,14 @@ export const defaultImage = `${baseURL}${defaultImagePath}`
 /**
  * Helper Functions
  */
+export const metaImage = (path: string) => {
+  let image = defaultImage
+  if (path.length) {
+    image = baseURL + path
+  }
+  return image
+}
+
 export const arrayChunk = <T>(array: T[], chunkSize: number): T[][] => {
   const chunks: T[][] = []
   for (let i = 0; i < array.length; i += chunkSize) {

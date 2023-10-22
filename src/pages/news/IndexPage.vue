@@ -146,7 +146,7 @@ onMounted(() => {
       <LayoutSection background="tertiary" type="top" cornerColor="secondary" min-height>
         <div class="align-title">
           <TitleDefault title="Notícia" />
-          <ShareButtons v-if="state.control.showContent" :description="state.news?.call" />
+          <ShareButtons v-if="state.control.showContent" :description="state.news?.call" :image="`${state.news?.image_news?.path}/${state.news?.image_news?.file_name}`" />
         </div>
 
         <!-- <div class="fb-share-button"

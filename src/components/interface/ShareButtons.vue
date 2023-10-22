@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { baseURL, domain, defaultImagePath } from 'src/helpers/helpers'
+import { baseURL, domain, defaultImagePath, metaImage } from 'src/helpers/helpers'
 import { useMeta } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
 import IconDefault from 'components/interface/IconDefault.vue'
@@ -7,6 +7,10 @@ import { onMounted } from 'vue'
 
 const props = defineProps({
   description: {
+    type: String,
+    required: false
+  },
+  image: {
     type: String,
     required: false
   }
@@ -20,7 +24,8 @@ const setMeta = () => {
   const description = props.description
   console.log('DESCRIPTION SOCIAL MEDIAS', description)
 
-  const imagePath = baseURL + defaultImagePath
+  // const imagePath = baseURL + defaultImagePath
+  const imagePath = props.image as string
 
   /**
    * Example:
@@ -53,13 +58,13 @@ const setMeta = () => {
       ogUrl: { property: 'og:url', content: `${domain}${router.currentRoute.value.fullPath}` },
       ogTitle: { property: 'og:title', content: route.params.title },
       ogDescription: { property: 'og:description', content: description },
-      ogImage: { property: 'og:image', content: imagePath },
+      ogImage: { property: 'og:image', content: metaImage(imagePath) },
 
       metaCard: { name: 'twitter:card', content: 'summary_large_image' },
       metaUrl: { name: 'twitter:url', content: `${domain}${router.currentRoute.value.fullPath}` },
       metaTitle: { name: 'twitter:title', content: route.params.title },
       metaDescription: { name: 'twitter:description', content: description },
-      metaImage: { name: 'twitter:image', content: imagePath }
+      metaImage: { name: 'twitter:image', content: metaImage(imagePath) }
       // metaCreator: { name: 'twitter:creator', content: '@sindipoa' },
       // metaDomain: { name: 'twitter:domain', content: applicationName },
       // metaSite: { name: 'twitter:site', content: '@sindipoa' }
@@ -71,7 +76,11 @@ const setMeta = () => {
 
 const whatsappUrl = () => {
   // $linkSocialMediaWhatsapp = "whatsapp://send?text={Str::slug($noticia->titulo, '-')} - " . url("/noticia/{$noticia->id}");
-  return `whatsapp://send?text=${router.currentRoute.value.fullPath}`
+  return `whatsapp://send?text=${domain + router.currentRoute.value.fullPath}`
+}
+
+const facebookUrl = () => {
+  return domain + router.currentRoute.value.fullPath
 }
 
 const twitterUrl = () => {
@@ -122,7 +131,7 @@ onMounted(() => {
       <IconDefault @click="socialMediaShare('whatsapp', whatsappUrl())" :size="18" class="icon-class" viewBox="0 0 20.65 20.7" src="/assets/svg/icon-whatsapp-outline.svg#whatsapp_outline" />
     </q-btn>
     <q-btn size="12px" outline round color="quinary">
-      <IconDefault @click="socialMediaShare('facebook', domain+router.currentRoute.value.fullPath)" :size="18" class="icon-class" viewBox="0 0 12.18 22.3" src="/assets/svg/icon-facebook-outline.svg#facebook_outline" />
+      <IconDefault @click="socialMediaShare('facebook', facebookUrl())" :size="18" class="icon-class" viewBox="0 0 12.18 22.3" src="/assets/svg/icon-facebook-outline.svg#facebook_outline" />
     </q-btn>
     <q-btn size="12px" outline round color="quinary">
       <IconDefault @click="socialMediaShare('twitter', twitterUrl())" :size="18" class="icon-class" viewBox="0 0 26.99 22.31" src="/assets/svg/icon-twitter-outline.svg#twitter_outline" />
