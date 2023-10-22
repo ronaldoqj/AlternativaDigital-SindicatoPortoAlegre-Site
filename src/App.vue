@@ -14,7 +14,6 @@ const imagePath = baseURL + defaultImagePath
 const description = 'Description test'
 
 const metaData = {
-  title: 'Test Metadata Title',
   meta: {
     ogUrl: { property: 'og:url', content: `${domain}${router.currentRoute.value.fullPath}` },
     ogType: { property: 'og:type', content: 'website' },
@@ -32,5 +31,5 @@ const metaData = {
   }
 }
 
-useMeta(metaData)
+// useMeta(metaData)
 </script>

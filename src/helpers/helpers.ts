@@ -51,7 +51,7 @@ export const convertURL = (id: number, title: string) => {
   /** Converte caracteres acentuados em caracteres normal e aceita apenas letras e numeros e convert espacos em _ */
   const rota = title.normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
-    .replace(/\s+/g, '_')
+    .replace(/\s+/g, '-')
     .replace(/[^\w-]/g, '')
   title = rota.toLowerCase()
   // return rota.toLowerCase()
