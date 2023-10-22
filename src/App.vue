@@ -31,5 +31,5 @@ const metaData = {
   }
 }
 
-// useMeta(metaData)
+useMeta(metaData)
 </script>

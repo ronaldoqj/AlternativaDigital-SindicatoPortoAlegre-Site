@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { baseURL, domain, defaultImagePath, metaImage } from 'src/helpers/helpers'
+import { domain, metaImage } from 'src/helpers/helpers'
+// import { baseURL, defaultImagePath } from 'src/helpers/helpers'
 import { useMeta } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
 import IconDefault from 'components/interface/IconDefault.vue'
@@ -104,10 +105,7 @@ const socialMediaShare = (socialMedia: 'facebook' | 'twitter' | 'whatsapp', url:
 
   switch (socialMedia) {
     case 'facebook':
-      // window.open('http://www.facebook.com/sharer.php?u=' + url, 'Compartilhar no facebook', 'toolbar=no, location=no, directories=no, status=no, ' + 'menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left)
-      // https://www.facebook.com/sharer.php?u=https%3A%2F%2Fbancariosrs.com.br%2Fnoticia%2F2692%2Fbancarios-criam-instrumento-de-vigilancia-e-atencao-a-saude-da-categoria
       window.open('http://www.facebook.com/sharer.php?u=' + url, 'Compartilhar no facebook', 'toolbar=no, location=no, directories=no, status=no, ' + 'menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width=' + f.w + ', height=' + f.h + ', top=' + f.top + ', left=' + f.left)
-      // https://www.facebook.com/sharer.php?u=/noticia/67/confira_os_shows_de_outubro_do_projeto_musica_no_teatro
       break
     case 'twitter':
       window.open(t.url, t.title, `toolbar=0, status=0, width=${t.w}, height=${t.h}`)

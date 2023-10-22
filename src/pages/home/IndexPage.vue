@@ -53,7 +53,6 @@ const state = reactive({
 })
 
 onMounted(() => {
-  // console.log('envRouterModeAPI', process.env.API)
   NewsService.listHome({})
     .then((response:any) => {
       state.sectionBanners = response.data.banners
@@ -61,8 +60,6 @@ onMounted(() => {
         highlights: response.data.highlights,
         geral: response.data.geral
       }
-      // console.log('initial response', response.data)
-      // console.log('initial response2', state.sectionNews)
     })
     .catch((error:AxiosError) => {
       console.log('error', error)
