@@ -97,9 +97,6 @@ onMounted(() => {
 <style lang="scss">
 .section__departments--carousel
 {
-  /** extra down space to bullets controls */
-  padding-bottom: 50px;
-
   .carousel--slide {
     /** put space to not cut shadow over effect */
     padding: 5px;
@@ -107,11 +104,16 @@ onMounted(() => {
 
   .carousel-section
   {
-    background-color: transparent;
+    /** extra down space to bullets controls */
+    padding-bottom: 50px;
     /** Force carousel item height when necessary be dynamic height */
     height: inherit;
-    /** force bullets controls break in a new line */
-    position: unset;
+
+    background-color: transparent;
+  }
+
+  .q-carousel__navigation--buttons {
+    bottom: 0;
   }
 }
 </style>
