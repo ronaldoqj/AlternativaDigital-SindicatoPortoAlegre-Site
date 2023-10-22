@@ -2,7 +2,7 @@
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import NewsItem from 'components/interface/NewsItem.vue'
 import ButtonDefault from 'components/interface/ButtonDefault.vue'
-import { baseURL, getValidImage, convertURL } from 'src/helpers/helpers'
+import { getValidImage, convertURL } from 'src/helpers/helpers'
 import { computed, onMounted, reactive, watch } from 'vue'
 import { AxiosError } from 'axios'
 import NewsService from 'src/services/NewsService'
@@ -11,6 +11,7 @@ import TitleLastItem from 'components/interface/TitleLastItem.vue'
 const props = defineProps({
   news: {
     type: Object,
+    default: () => ({}),
     required: false
   }
 })
@@ -134,7 +135,7 @@ watch(geralNews, newValue => {
 })
 
 onMounted(() => {
-  console.log('onMounted SectionNews', props.news)
+  // console.log('onMounted SectionNews', props.news)
 })
 </script>
 
@@ -209,7 +210,7 @@ onMounted(() => {
     </div>
     -->
 
-    <div class="box__btn--more">
+    <div class="box__btn--more q-mt-xl q-mb-lg" v-show="Object.keys(props.news).length">
       <ButtonDefault
         v-if="state.buttons.moreNews.show"
         rounded

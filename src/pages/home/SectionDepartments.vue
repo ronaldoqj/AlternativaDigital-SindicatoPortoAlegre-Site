@@ -1,46 +1,65 @@
 <script setup lang="ts">
+import { reactive, onMounted, computed } from 'vue'
+import { useStructureStore } from 'stores/structure-store'
+import { baseURL, arrayChunk } from 'src/helpers/helpers'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import CardButton from 'components/interface/CardButton.vue'
-import { ref, reactive, onMounted } from 'vue'
-import { arrayChunk } from 'src/helpers/helpers'
+import { TStructureScreenSize } from 'src/types/IDefaults'
 
 interface ICarouselItem {
-  id: number
   image: string
+  title: string
+  route: {
+    name: string
+  }
 }
 
-const slide = ref(1)
 const state = reactive({
   carousel: {
-    data: [] as Array<ICarouselItem>,
-    carouselData: [] as Array<ICarouselItem>[]
+    list: [] as ICarouselItem[],
+    slide: 0
   }
 })
 
-const setStoreDatas = (carouselData: Array<ICarouselItem>) : void => {
-  state.carousel.carouselData = arrayChunk(carouselData, 4) as unknown as Array<ICarouselItem>[]
+const resetCarouselSlide = () => {
+  state.carousel.slide = 0
 }
 
-const getData = (): void => {
-  const limitImages = 7
-  let countImages = 0
-  const newData:ICarouselItem[] = []
+const listItems = computed(() => {
+  let list: ICarouselItem[][] = [[{} as ICarouselItem]]
+  resetCarouselSlide()
 
-  for (let index = 1; index < 16; index++) {
-    if (countImages === limitImages) {
-      countImages = 0
-    }
-    countImages += 1
-    const item: ICarouselItem = {
-      id: index,
-      image: `assets/image/tests/test-${countImages}.jpg`
-    }
-
-    newData.push(item)
+  switch (structureStore.value) {
+    case 'xs':
+    case 'sm':
+    case 'md':
+      list = arrayChunk(state.carousel.list, 1)
+      break
+    case 'lg':
+    case 'xl':
+    default:
+      list = arrayChunk(state.carousel.list, 2)
+      break
   }
 
-  state.carousel.data = newData
-  setStoreDatas(state.carousel.data)
+  return list
+})
+
+const structureStore = computed((): TStructureScreenSize => {
+  return useStructureStore().currentSize
+})
+
+const getData = (): void => {
+  state.carousel.list.push({ image: `${baseURL}temporary/images/departamentos/001_Juridico.png`, title: 'Jurídico', route: { name: 'departmentsLegal' } })
+  state.carousel.list.push({ image: `${baseURL}temporary/images/departamentos/002_Saude.png`, title: 'Saúde e condições de trabalho', route: { name: 'saude' } })
+  state.carousel.list.push({ image: `${baseURL}temporary/images/departamentos/003_Juventude.png`, title: 'Juventude e gênero', route: { name: 'juventude' } })
+  state.carousel.list.push({ image: `${baseURL}temporary/images/departamentos/004_Diversidade.png`, title: 'Diversidade e combate ao racismo', route: { name: 'diversidade' } })
+  state.carousel.list.push({ image: `${baseURL}temporary/images/departamentos/005_Esporte.png`, title: 'Esporte e lazer', route: { name: 'esporte' } })
+  state.carousel.list.push({ image: `${baseURL}temporary/images/departamentos/006_Cultura.png`, title: 'Cultura e sustentabilidade', route: { name: 'cultura' } })
+  state.carousel.list.push({ image: `${baseURL}temporary/images/departamentos/007_Aposentados.png`, title: 'Aposentados e seguridade social', route: { name: 'aposentados' } })
+  state.carousel.list.push({ image: `${baseURL}temporary/images/departamentos/008_Formacao.png`, title: 'Formação', route: { name: 'formacao' } })
+  state.carousel.list.push({ image: `${baseURL}temporary/images/departamentos/009_Financeiras.png`, title: 'Financeiras e terceirizados do ramo financeiro', route: { name: 'financeiras' } })
+  state.carousel.list.push({ image: `${baseURL}temporary/images/departamentos/010_Comunicacao.jpg`, title: 'Comunicaçao', route: { name: 'comunicacao' } })
 }
 
 onMounted(() => {
@@ -51,128 +70,50 @@ onMounted(() => {
 <template>
   <div class="section__default">
     <TitleDefault title="Departamentos" color="primary" />
-    <div v-if="!state.carousel.carouselData.length">Loading</div>
-    <div v-else class="section__social-media--carousel">
+    <div v-if="!listItems.length">Loading</div>
+    <div v-else class="section__departments--carousel">
       <q-carousel
         class="carousel-section"
         control-color="accent"
         swipeable
         animated
-        v-model="slide"
-        :autoplay="700000"
+        v-model="state.carousel.slide"
+        :autoplay="7000"
         navigation
         infinite
       >
-      <!-- <q-carousel-slide v-for="(arrayItem, key) in (state.carousel.carouselData as Array<ICarouselItem>[])" :key="key" :name="key" class="carousel--slide column no-wrap">
-        <div class="row fit justify-start q-gutter-sm no-wrap">
-          <div class="container-content">
-            <q-img class="rounded-borders content-item" v-for="(item, key2) in arrayItem" :key="key2" :src="item.image" />
-          </div>
-        </div>
-      </q-carousel-slide> -->
-      <!--
-        <q-carousel-slide :name="2" class="carousel--slide column no-wrap">
-          <div class="row fit justify-start q-gutter-sm no-wrap">
-            <div class="container-content">
-              <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/mountains.jpg" />
-              <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/quasar.jpg" />
-              <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/quasar.jpg" />
+        <q-carousel-slide v-for="(items, key) in listItems" :key="key" :name="key" class="carousel--slide">
+          <div class="row q-col-gutter-sm">
+            <div class="col-xs-12 col-lg-6" v-for="(item, keyItem) in items" :key="keyItem">
+              <CardButton :image="item.image" :title="item.title" :route="item.route" />
             </div>
           </div>
         </q-carousel-slide>
-        <q-carousel-slide :name="4" class="carousel--slide column no-wrap">
-          <div class="row fit justify-start q-gutter-sm no-wrap">
-            <div class="container-content">
-              <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/material.png" />
-              <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/donuts.png" />
-              <q-img class="rounded-borders content-item" src="https://cdn.quasar.dev/img/donuts.png" />
-            </div>
-          </div>
-        </q-carousel-slide>
-      -->
-
-        <q-carousel-slide :name="1" class="carousel--slide column no-wrap">
-          <div class="row fit justify-start q-gutter-sm no-wrap">
-            <div class="container-content">
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/001_Juridico.png" title="Jurídico" :route="{name: 'departmentsLegal'}" /></div>
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/002_Saude.png" title="Saúde e condições de trabalho" :route="{name: 'saude'}" /></div>
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/003_Juventude.png" title="Juventude e gênero" :route="{name: 'juventude'}" /></div>
-            </div>
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide :name="2" class="carousel--slide column no-wrap">
-          <div class="row fit justify-start q-gutter-sm no-wrap">
-            <div class="container-content">
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/004_Diversidade.png" title="Diversidade e combate ao racismo" :route="{name: 'diversidade'}" /></div>
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/005_Esporte.png" title="Esporte e lazer" :route="{name: 'esporte'}" /></div>
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/006_Cultura.png" title="Cultura e sustentabilidade" :route="{name: 'cultura'}" /></div>
-            </div>
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide :name="3" class="carousel--slide column no-wrap">
-          <div class="row fit justify-start q-gutter-sm no-wrap">
-            <div class="container-content">
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/007_Aposentados.png" title="Aposentados e seguridade social" :route="{name: 'aposentados'}" /></div>
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/008_Formacao.png" title="Formação" :route="{name: 'formacao'}" /></div>
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/009_Financeiras.png" title="Financeiras e terceirizados do ramo financeiro" :route="{name: 'financeiras'}" /></div>
-            </div>
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide :name="4" class="carousel--slide column no-wrap">
-          <div class="row fit justify-start q-gutter-sm no-wrap">
-            <div class="container-content">
-              <div style="min-width: 32%; margin: 5px;"><CardButton image="/assets/image/apresentation/departamentos/010_Comunicacao.jpg" title="Comunicaçao" :route="{name: 'comunicacao'}" /></div>
-            </div>
-          </div>
-        </q-carousel-slide>
-
       </q-carousel>
     </div>
   </div>
 </template>
 
 <style lang="scss">
-$border-radius-control-banner: 20px;
-$height-item: 270px;
-
-.section__social-media--carousel
+.section__departments--carousel
 {
+  .carousel--slide {
+    /** put space to not cut shadow over effect */
+    padding: 5px;
+  }
+
   .carousel-section
   {
-    background-color: transparent;
+    /** extra down space to bullets controls */
+    padding-bottom: 50px;
+    /** Force carousel item height when necessary be dynamic height */
     height: inherit;
 
-    .carousel--slide
-    {
-      padding: 10px 0 50px 0;
+    background-color: transparent;
+  }
 
-      .container-content
-      {
-        display: flex;
-        flex-direction: column;
-        width: inherit;
-        height: inherit;
-
-        .rounded-borders {
-          border-radius: $border-radius-control-banner;
-        }
-
-        .content-item {
-          margin: 5px;
-          height: $height-item;
-          cursor: pointer;
-        }
-
-        @media only screen and (min-width: $breakpoint-md)
-        {
-          flex-direction: row;
-        }
-      }
-    }
-
-    .q-carousel__control {
-      bottom: -5px;
-    }
+  .q-carousel__navigation--buttons {
+    bottom: 0;
   }
 }
 </style>

@@ -28,28 +28,37 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
         <TitleDefault class="q-mb-xl" title="Arquivo Histórico" />
         <div>
           <ImageDefault class="images__floats left" src="/assets/image/tests/test-1.jpg" />
-          <h4>O Espaço</h4>
-          <p>It has survived not only five centuries. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-          <h4>Serviços</h4>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.</p>
-          <h4>Agenda</h4>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing.</p>
-          <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-          <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-        </div>
-
-        <div class="space__between"></div>
-
-        <div>
-          <ImageDefault class="images__floats right" src="/assets/image/tests/test-1.jpg" />
-          <h4>O Espaço</h4>
-          <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-          <h4>Serviços</h4>
-          <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, It has survived not only five centuries, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.</p>
-          <h4>Agenda</h4>
-          <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing.</p>
-          <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-          <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+          <p>
+             Arquivo Histórico Sindicato dos Bancários de Porto Alegre e Região (AHSBPOA) O Arquivo Histórico Sindicato dos Bancários de Porto Alegre e Região (AHSBPOA) disponibiliza uma série de conjuntos documentais de diversos suportes, com informações que vão além da representação de uma classe profissional.
+          </p>
+          <p>
+            A trajetória e experiência coletiva do Sindicato dos Bancários de Porto Alegre e Região é traduzida por uma série de documentos que compõem o acervo da entidade. Reestruturado a partir de 2002, o Arquivo Histórico do SindBancários (AHSBPOA) recupera a história institucional por meio de um farto espaço de memória, com documentos textuais diversos, videográficos, fotográficos, periódicos, iconográficos, entre outros.
+          </p>
+          <p>O acervo pode ser consultado pelos bancários, de forma presencial ou virtual.</p>
+          <p>
+            O Sindicato dos Bancários, através da assessoria técnica da Arxius do Brasil, proporciona para a gestão do AHSBPOA uma base de dados de código aberto. Assim o usuário pode ter acesso online ao conteúdo do acervo.
+          </p>
+          <p>
+            Acesse:<br />
+            <a href="http://www.adb.inf.br" target="_blank">www.adb.inf.br</a>
+          </p>
+          <p>
+            Endereço: <br />
+            Rua General Câmara, 424, 3º andar – Centro Histórico <br />
+            Porto Alegre – RS <br />
+            Contato: (51) 3030 – 9400 <br />
+            E-mail: ahsbpoa@sindbancarios.org.br
+          </p>
+          <h4>ACERVO</h4>
+          <p>
+            Seu acervo é constituído desde recortes de jornais da década de 1930 ao registro de assembleias em VHS da década de 1990; passando por registros da reunião da Intersindical que deu origem à CUT e ao PT. <br />
+            Há projetos editoriais, charges, registros fotográficos de ações e lutas sindicais ao panfleto ou cartaz que revelam percursos históricos não oficializados e inserem a categoria em um rico contexto social, político e cultural.
+          </p>
+          <p>
+            Consulta Online: <br />
+            Pesquisa padrão, acesse <a href="http://memoria.arxiusdobrasil.com.br" target="_blank">memoria.arxiusdobrasil.com.br</a> <br />
+            Acesse a série ‘O Bancário’: <a href="https://obancario.adb.inf.br" target="_blank">obancario.adb.inf.br</a> <br />
+          </p>
         </div>
       </div>
     </LayoutSection>
@@ -61,7 +70,7 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
 {
   .images__floats {
     width: 100%;
-    height: 400px;
+    height: 430px;
     border-radius: 40px;
     margin-bottom: 10px;
   }

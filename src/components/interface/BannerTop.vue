@@ -15,7 +15,7 @@ const props = defineProps({
   }
 })
 
-const slide = ref(1)
+// const slide = ref(1)
 </script>
 
 <template>

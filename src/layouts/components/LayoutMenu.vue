@@ -9,9 +9,10 @@ const state = reactive({
     home: { name: 'home' } as RouteLocationRaw,
     about: { name: 'about' } as RouteLocationRaw,
     agreementsConventions: { name: 'agreementsConventions' } as RouteLocationRaw,
-    publications: { name: 'publications' } as RouteLocationRaw,
     notice: { name: 'notice' } as RouteLocationRaw,
     unionize: { name: 'unionize' } as RouteLocationRaw,
+    studioRAO: { name: 'studioRAO' } as RouteLocationRaw,
+    publications: { name: 'publications' } as RouteLocationRaw,
 
     departments: { name: 'departments' } as RouteLocationRaw,
     departmentsLegal: { name: 'departmentsLegal' } as RouteLocationRaw,
@@ -108,7 +109,7 @@ const clickRoute = (route: RouteLocationRaw) => {
               </q-item>
               <q-separator class="menu__separator" /> -->
               <q-item clickable>
-                <q-item-section>Estúdio RAO</q-item-section>
+                <q-item-section @click="clickRoute(state.menu.studioRAO)">Estúdio RAO</q-item-section>
               </q-item>
               <q-separator class="menu__separator" />
               <!-- <q-item clickable>

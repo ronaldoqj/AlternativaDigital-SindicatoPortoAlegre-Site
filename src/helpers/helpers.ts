@@ -4,6 +4,8 @@ import { INews } from 'src/types/INews'
 /**
  * Helper Variables
  */
+// export const domain = process.env.DOMAIN?.endsWith('/') ? process.env.DOMAIN : process.env.DOMAIN + '/'
+export const domain = process.env.DOMAIN?.replace(/\/$/, '')
 export const baseURL = process.env.API?.endsWith('/') ? process.env.API : process.env.API + '/'
 export const xdebugTrigger = process.env.xdebugTrigger ? process.env.xdebugTrigger : ''
 export const defaultImagePath = 'assets/images/image-default.jpg'
@@ -12,6 +14,14 @@ export const defaultImage = `${baseURL}${defaultImagePath}`
 /**
  * Helper Functions
  */
+export const metaImage = (path: string) => {
+  let image = defaultImage
+  if (path.length) {
+    image = baseURL + path
+  }
+  return image
+}
+
 export const arrayChunk = <T>(array: T[], chunkSize: number): T[][] => {
   const chunks: T[][] = []
   for (let i = 0; i < array.length; i += chunkSize) {
@@ -44,7 +54,13 @@ export const getValidImage = (data: INews | IColumnImage<string>, column: TColum
 }
 
 export const convertURL = (id: number, title: string) => {
-  const rota = title.replace(/\s+/g, '_').replace(/[^\w-]/g, '')
+  /** permite apenas letras e numeros */
+  // const rota = title.replace(/\s+/g, '_').replace(/[^\w-]/g, '')
+  /** Converte caracteres acentuados em caracteres normal e aceita apenas letras e numeros e convert espacos em _ */
+  const rota = title.normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '')
   title = rota.toLowerCase()
   // return rota.toLowerCase()
 

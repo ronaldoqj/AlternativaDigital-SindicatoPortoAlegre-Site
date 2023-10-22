@@ -16,11 +16,13 @@ onMounted(() => {
 
 <template>
   <div class="syndicate__section--About">
-    <div class="item q-mt-xl" v-for="(row, key) in (props.item as IHistory[])" :key="key">
+    <div class="item" v-for="(row, key) in (props.item as IHistory[])" :key="key">
+      <div v-if="row.spaceBefore" :class="row.spaceBefore"></div>
       <h2>{{ row.title }}</h2>
       <p v-for="(item, key2) in (row.content as IHistory)" :key="key2">
         {{ item }}
       </p>
+      <div v-if="row.spaceAfter" :class="row.spaceAfter"></div>
     </div>
   </div>
 </template>
@@ -30,9 +32,10 @@ onMounted(() => {
 {
   h2 {
     font-size: 25px;
-    color: $accent;
+    line-height: 1.2em;
+    color: #7E181A;
     font-weight: bold;
-    margin: 0;
+    margin: 20px 0 10px;
   }
 
   p {

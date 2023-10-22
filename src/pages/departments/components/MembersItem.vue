@@ -85,39 +85,34 @@ const clickRoute = (route: RouteLocationRaw) => {
 </template>
 
 <style lang="scss">
-
 .component__interface--card-members
 {
+  $border-radius-card-top: 100px;
+  $border-radius-card-button: 100px;
+  $border-radius-title: $border-radius-card-button;
+  $width-card: 380px;
+  $height-card: 600px;
   width: auto;
 
   .content
   {
     position: relative;
-    margin: 0 auto 20px;
+    margin: 15px 0;
     cursor: pointer;
-    $border-radius-card-top: 100px;
-    $border-radius-card-button: 100px;
-    $border-radius-title: $border-radius-card-button;
-    $width-card: 380px;
-    $height-card: 600px;
-
     border-top-left-radius: $border-radius-card-top;
     border-top-right-radius: $border-radius-card-top;
     border-bottom-left-radius: $border-radius-card-button + 5;
     border-bottom-right-radius: $border-radius-card-button + 5;
     height: $height-card;
-    width: $width-card;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     transition: 0.3s ease-in-out;
 
     .title {
-      // padding: 40px 60px 50px;
       border-radius: $border-radius-title;
       border-top-left-radius: 0;
       transition: 0.3s ease-in-out;
-      // padding: 40px 45px 80px;
       padding: 40px 45px 40px;
 
       .texts {
@@ -161,19 +156,18 @@ const clickRoute = (route: RouteLocationRaw) => {
 
       box-shadow: 2px 2px 1px 1px;
     }
-
-    @media only screen and (max-width: $breakpoint-xs) {
-      width: 100%;
-    }
-
-    @media only screen and (max-width: $breakpoint-sm) {
-      .title {
-
-      }
-
-    }
-
   }
 
+  @media only screen and (min-width: $breakpoint-xs) {
+    .content {
+      width: $width-card;
+    }
+  }
+
+  @media only screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-sm) {
+    .content {
+      margin: 15px auto;
+    }
+  }
 }
 </style>

@@ -1,20 +1,12 @@
 <script setup lang="ts">
 import { baseURL } from 'src/helpers/helpers'
+import { useQuasar } from 'quasar'
+import { computed, onMounted, reactive, watch } from 'vue'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
-import CarouselSlide from 'src/components/interface/CarouselSlide.vue'
-import { useQuasar } from 'quasar'
-import { shallowRef, reactive, computed, onMounted, watch } from 'vue'
-
-import DocumentItem from './components/DocumentItem.vue'
-import MembersItem from './components/MembersItem.vue'
-import RelatedPublications from 'components/interface/RelatedPublications.vue'
-
+import SectionVideos from 'src/pages/departments/components/legal/SectionVideos.vue'
 import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
-import { INews, IResponseRelated } from 'src/types/INews'
-import { AxiosError } from 'axios'
-import NewsService from 'src/services/NewsService'
 
 interface IItemMember {
   title: string
@@ -25,7 +17,6 @@ interface IItemMember {
 }
 
 const $q = useQuasar()
-const freezeComponentDocument = shallowRef(DocumentItem)
 const state = reactive({
   documents: {
     items: {
@@ -46,11 +37,6 @@ const state = reactive({
       currentScreen: {} as IDinamicScreen,
       listProp: [] as Array<object>
     } as IDinamicList
-  },
-  relatedDepartments: {
-    departmentId: 2,
-    limit: 6,
-    list: [] as INews[]
   }
 })
 
@@ -68,7 +54,7 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Jamile', surname: 'Chamun', subtitle: 'Saúde', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/012.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: '/assets/image/apresentation/quem-somos/directorship/011.jpg' })
 }
 
 const setDepartmentPublications = () => {
@@ -117,19 +103,6 @@ const changeOrderList = (screenSize: TScreenSize) => {
   state.legalMembers.items.currentScreen = { screen: screenSize, blockSize: blockSizeDocument }
 }
 
-const getRelatedDepartments = () => {
-  NewsService.relatedDepartment({ department_id: state.relatedDepartments.departmentId, limit: state.relatedDepartments.limit })
-    .then((response:IResponseRelated) => {
-      state.relatedDepartments.list = response.data
-    })
-    .catch((error:AxiosError) => {
-      console.log('error', error)
-    })
-    .then(() => {
-      //
-    })
-}
-
 watch(currentScreenSize, (newValue) => {
   changeOrderList(newValue)
 })
@@ -139,50 +112,57 @@ onMounted(() => {
   setDepartmentPublications()
   setListLegalMembers()
   changeOrderList(currentScreenSize.value)
-  getRelatedDepartments()
 })
 </script>
 
 <template>
-  <div id="page__departments--default-open" class="col">
+  <div id="page__syndicate--studio-rao" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop :src="`${baseURL}temporary/images/departamentos/002_Saude.png`" />
+      <BannerTop :src="`${baseURL}temporary/images/quem-somos/estudio-rao/BANNERS_MODELO.jpg`" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">
-      <div id="content__page--departments-default-open">
-        <TitleDefault class="q-mb-xl" title="Saúde e condições de trabalho" />
+      <div class="section-1">
+        <TitleDefault class="q-mb-xl" title="Estúdio RAO" />
         <div>
           <p>
-            O Departamento realiza estudos sobre condições de trabalho e saúde da categoria, inclusive em convênio com outras instituições, buscando conhecer a realidade dos colegas. Tem por objetivo, também, implementar campanhas de prevenção, propiciar atendimento aos bancários vítimas de acidente de trabalho ou acometidos de doenças profissionais, garantindo orientações sobre os seus direitos trabalhistas e previdenciários; além de encaminhar denúncias envolvendo as condições de saúde, trabalho e segurança para os órgãos competentes.
+            Conectada aos novos formatos e linguagens, a sala de estúdio complementa os demais canais de comunicação do Sindicato dos Bancários, que em outras épocas chegou a abrigar uma gráfica própria. Com o investimento em tecnologia, o Sindicato busca acompanhar os novos tempos e ampliar o diálogo com seus sócios e sócias e demais profissionais da categoria bancária.
           </p>
+          <p>
+            A estreia do estúdio ocorre no mês em que o SindBancários completa 90 anos de história, em um evento de inauguração para convidados, às 17h, na Casa dos Bancários. Além de gravação ao vivo com participações especiais, a atividade terá um coquetel com a presença de autoridades, sindicalistas, sindicatos e profissionais de comunicação que se identificam com o Sindicato.
+          </p>
+        </div>
+      </div>
+      <div class="row q-col-gutter-sm q-my-xl">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <q-img :ratio="1" class="content-item" :src="`${baseURL}temporary/images/quem-somos/estudio-rao/imagem_001.jpg`" />
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <q-img :ratio="1" class="content-item" :src="`${baseURL}temporary/images/quem-somos/estudio-rao/imagem_002.jpg`" />
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <q-img :ratio="1" class="content-item" :src="`${baseURL}temporary/images/quem-somos/estudio-rao/imagem_003.jpg`" />
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <q-img :ratio="1" class="content-item" :src="`${baseURL}temporary/images/quem-somos/estudio-rao/BANNERS_MODELO.jpg`" />
         </div>
       </div>
     </LayoutSection>
 
     <LayoutSection background="quaternary" cornerColor="tertiary">
-      <TitleDefault class="q-mb-xl" title="Documentos" />
-      <CarouselSlide v-if="state.documents.items.listProp.length" :listItems="state.documents.items" :component-item="freezeComponentDocument" item-class="departments__legal--document-item" />
+      <TitleDefault class="q-mb-xl" title="Vídeos do estúdio RAO" />
+      <SectionVideos />
     </LayoutSection>
 
-    <LayoutSection background="tertiary" cornerColor="quaternary">
-      <RelatedPublications v-if="state.relatedDepartments.list.length" :list="state.relatedDepartments.list" />
-      <TitleDefault v-else class="q-my-xl" title="Nenhuma publicação relacionada encontrada" only-text />
-    </LayoutSection>
-
-    <LayoutSection background="quaternary" cornerColor="secondary">
-      <TitleDefault class="q-mb-xl" title="Membros por equipe" />
-      <div class="row">
-        <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3" v-for="(member, key) in (state.legalMembers.items.listProp as IItemMember[])" :key="key">
-          <MembersItem :title="member.title" :surname="member.surname" :subtitle="member.subtitle" :description="member.description" :image="member.image" />
-        </div>
-      </div>
+    <LayoutSection background="tertiary" cornerColor="secondary">
+      <div class="q-my-xl"></div>
     </LayoutSection>
   </div>
 </template>
 
 <style lang="scss">
-#page__departments--default-open
+
+#page__syndicate--studio-rao
 {
   .images__floats {
     width: 100%;
@@ -191,11 +171,9 @@ onMounted(() => {
     margin-bottom: 10px;
   }
 
-  #content__page--departments-default-open
+  .section-1
   {
     margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
 
     h4 {
       margin: 5px 0;
@@ -215,8 +193,8 @@ onMounted(() => {
     }
   }
 
-  .subtitle__legal-members {
-    margin: -50px 0 30px;
+  .content-item {
+    border-radius: 25px;
   }
 
   @media only screen and (min-width: $breakpoint-sm)

@@ -38,6 +38,12 @@ const props = defineProps({
     require: false
   }
 })
+
+const clickLink = (link: undefined | string) => {
+  if (link) {
+    window.open(link, '_blank')
+  }
+}
 </script>
 
 <template>
@@ -47,7 +53,7 @@ const props = defineProps({
       <div class="title">{{ props.title }}</div>
       <div class="description">{{ props.description }}</div>
       <div>
-        <ButtonDefault rounded noCaps class="btn--link" :title="props.titleButton" :color="`septenary`" />
+        <ButtonDefault rounded noCaps class="btn--link" :title="props.titleButton" :color="`septenary`" @click="clickLink(props.link)" />
       </div>
     </div>
   </div>

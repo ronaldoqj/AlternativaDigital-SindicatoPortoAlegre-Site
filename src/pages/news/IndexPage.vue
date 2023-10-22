@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getValidImage, baseURL } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import RelatedPublications from 'components/interface/RelatedPublications.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
@@ -7,11 +8,11 @@ import VideoDefault from 'components/interface/VideoDefault.vue'
 import AudioDefault from 'components/interface/AudioDefault.vue'
 import { computed, onMounted, reactive, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { INews, IResponseNews, IResponseRelated, TNewsLayers, TPositionNews } from 'src/types/INews'
+import { INews, IResponseNews, IResponseRelated, TNewsLayers } from 'src/types/INews'
 import NewsService from 'src/services/NewsService'
 import { AxiosError } from 'axios'
 import SkeletonNews from 'components/interface/skeletons/SkeletonNews.vue'
-import { getValidImage, baseURL } from 'src/helpers/helpers'
+import ShareButtons from 'src/components/interface/ShareButtons.vue'
 
 const route = useRoute()
 const state = reactive({
@@ -143,7 +144,20 @@ onMounted(() => {
   <q-page class="row justify-evenly">
     <div id="page__news" class="col">
       <LayoutSection background="tertiary" type="top" cornerColor="secondary" min-height>
-        <TitleDefault title="Notícia" />
+        <div class="align-title">
+          <TitleDefault title="Notícia" />
+          <ShareButtons v-if="state.control.showContent" :description="state.news?.call" :image="`${state.news?.image_news?.path}/${state.news?.image_news?.file_name}`" />
+        </div>
+
+        <!-- <div class="fb-share-button"
+          data-href="http://novo.sindbancarios.nodejsng15f06.uni5.net"
+          data-layout="button_count">
+        </div> -->
+
+        <!-- <button @click="socialMediaShare('facebook', router.currentRoute.value.fullPath)">Click Facebook</button>
+        <button @click="socialMediaShare('twitter', twitterUrl())">Click twitter</button>
+        <button @click="socialMediaShare('whatsapp', whatsappUrl())">Click whatsapp</button> -->
+
         <div v-if="!state.control.showContent" class="q-mt-xl">
           <SkeletonNews />
         </div>
@@ -177,6 +191,12 @@ onMounted(() => {
 <style lang="scss">
 #page__news
 {
+  .align-title {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: space-between;
+  }
+
   .images__floats {
     width: 100%;
     height: 400px;

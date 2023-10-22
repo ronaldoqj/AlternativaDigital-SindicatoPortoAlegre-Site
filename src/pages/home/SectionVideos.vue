@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { baseURL, arrayChunk } from 'src/helpers/helpers'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import IconDefault from 'components/interface/IconDefault.vue'
 import VideoDefault from 'src/components/interface/VideoDefault.vue'
 import { useQuasar } from 'quasar'
 import { ref, reactive, computed, onMounted } from 'vue'
-import { arrayChunk } from 'src/helpers/helpers'
 
 type CarouselType = 'mobile' | 'desktop'
 interface ICarouselItem {
@@ -155,15 +155,15 @@ const setStoreDatas = (carouselData: Array<ICarouselItem>) : void => {
 
 const getData = (): void => {
   const newData = [
-    { id: 1, image: '/assets/image/apresentation/home/videos/001.jpg', title: 'OP SindBancários - COPA DO BRASIL KIDS 2023: Nem o mau tempo impediu o futebol da criançada', video: 'https://youtu.be/9oZYy2-lpQo?si=8WfbxoDMubQRE7ia' },
-    { id: 2, image: '/assets/image/apresentation/home/videos/002.jpg', title: 'VISTA BRANCO E PARTICIPE! Dia Nacional de Luta em Defesa do Saúde Caixa 🔵🟠 (17.10)', video: 'https://youtu.be/nfqpaMCGESw?si=O6GQNgdhNKi3qNn6' },
-    { id: 3, image: '/assets/image/apresentation/home/videos/003.jpg', title: 'Podcast De Fato #10|Frei Sérgio Görgen - A Teologia da Libertação está viva ⛪✝️', video: 'https://youtu.be/CYT-TLLGV1g?si=7jADZweOHqKEIRKu' },
-    { id: 4, image: '/assets/image/apresentation/home/videos/004.jpg', title: '⚡E AGORA - Vem aí Energia Bancária (21/10): esporte, cultura e lazer para a categoria', video: 'https://youtu.be/xpkf3oEGQNI?si=hEylqh1fWYkNi4es' },
-    { id: 5, image: '/assets/image/apresentation/home/videos/005.jpg', title: 'Minidoc 15 anos CineBancários', video: 'https://youtu.be/mu0SSeJVwcw?si=WqXY40U_QDEXJQaq' },
-    { id: 6, image: '/assets/image/apresentation/home/videos/006.jpg', title: 'DO LADO DE CÁ - Privatização da Carris: o que esperar do sistema de ônibus de Porto Alegre? 🚌🏙️', video: 'https://youtu.be/9U_jUzzKkD0?si=-5lsQDB35FBWGVAz' },
-    { id: 7, image: '/assets/image/apresentation/home/videos/007.jpg', title: 'Novos banrisulenses são recepcionados por diretoras do SindBancários 🤗🏦', video: 'https://youtu.be/sNALoW18jLE?si=oXE7OGCSnLhr_xk0' },
-    { id: 8, image: '/assets/image/apresentation/home/videos/008.jpg', title: 'Podcast De Fato #09|Professora Jaqueline Moll - Educação Pública, uma barreira contra o fascismo 🤓🏫', video: 'https://youtu.be/g87rW6nzz8Q?si=UOYh-Q7Qc7FB4lBg' },
-    { id: 9, image: '/assets/image/apresentation/home/videos/009.jpg', title: '🎬🎼 Agenda Cultural: CULTURA EM MOVIMENTO:', video: 'https://youtu.be/6pEC1pDAElk?si=ta3Expe7mThMEozt' }
+    { id: 1, image: `${baseURL}temporary/images/home/videos/001.jpg`, title: 'OP SindBancários - COPA DO BRASIL KIDS 2023: Nem o mau tempo impediu o futebol da criançada', video: 'https://youtu.be/9oZYy2-lpQo?si=8WfbxoDMubQRE7ia' },
+    { id: 2, image: `${baseURL}temporary/images/home/videos/002.jpg`, title: 'VISTA BRANCO E PARTICIPE! Dia Nacional de Luta em Defesa do Saúde Caixa 🔵🟠 (17.10)', video: 'https://youtu.be/nfqpaMCGESw?si=O6GQNgdhNKi3qNn6' },
+    { id: 3, image: `${baseURL}temporary/images/home/videos/003.jpg`, title: 'Podcast De Fato #10|Frei Sérgio Görgen - A Teologia da Libertação está viva ⛪✝️', video: 'https://youtu.be/CYT-TLLGV1g?si=7jADZweOHqKEIRKu' },
+    { id: 4, image: `${baseURL}temporary/images/home/videos/004.jpg`, title: '⚡E AGORA - Vem aí Energia Bancária (21/10): esporte, cultura e lazer para a categoria', video: 'https://youtu.be/xpkf3oEGQNI?si=hEylqh1fWYkNi4es' },
+    { id: 5, image: `${baseURL}temporary/images/home/videos/005.jpg`, title: 'Minidoc 15 anos CineBancários', video: 'https://youtu.be/mu0SSeJVwcw?si=WqXY40U_QDEXJQaq' },
+    { id: 6, image: `${baseURL}temporary/images/home/videos/006.jpg`, title: 'DO LADO DE CÁ - Privatização da Carris: o que esperar do sistema de ônibus de Porto Alegre? 🚌🏙️', video: 'https://youtu.be/9U_jUzzKkD0?si=-5lsQDB35FBWGVAz' },
+    { id: 7, image: `${baseURL}temporary/images/home/videos/007.jpg`, title: 'Novos banrisulenses são recepcionados por diretoras do SindBancários 🤗🏦', video: 'https://youtu.be/sNALoW18jLE?si=oXE7OGCSnLhr_xk0' },
+    { id: 8, image: `${baseURL}temporary/images/home/videos/008.jpg`, title: 'Podcast De Fato #09|Professora Jaqueline Moll - Educação Pública, uma barreira contra o fascismo 🤓🏫', video: 'https://youtu.be/g87rW6nzz8Q?si=UOYh-Q7Qc7FB4lBg' },
+    { id: 9, image: `${baseURL}temporary/images/home/videos/009.jpg`, title: '🎬🎼 Agenda Cultural: CULTURA EM MOVIMENTO:', video: 'https://youtu.be/6pEC1pDAElk?si=ta3Expe7mThMEozt' }
   ]
 
   state.carousel.data = newData

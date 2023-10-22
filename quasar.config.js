@@ -56,6 +56,7 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
       env: {
+        DOMAIN: ctx.dev ? 'http://novo.sindbancarios.nodejsng15f06.uni5.net/#' : 'http://novo.sindbancarios.nodejsng15f06.uni5.net/#',
         API: ctx.dev ? 'http://localhost' : 'http://server.sindbancarios.nodejsng15f06.uni5.net/',
         xdebugTrigger: ctx.dev ? '?XDEBUG_TRIGGER' : ''
       },
@@ -119,7 +120,9 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'Meta'
+      ]
     },
 
     // animations: 'all', // --- includes all animations

@@ -3,6 +3,8 @@
  */
 export type TResponseType = 'success' | 'error'
 export type TColumnImage = 'bannerMobile' | 'bannerDesktop' | 'imageNews'
+export type TStructureScreenSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type TStructureScreenDevice = 'mobile' | 'desktop'
 
 /**
  * Interfaces
