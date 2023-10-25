@@ -49,6 +49,6 @@ watch(structureStore, (newValue: TStructureScreenSize) => {
 })
 
 onMounted(() => {
-  useStructureStore().setScreen(structureStore as unknown as TStructureScreenSize)
+  useStructureStore().setScreen($q.screen.name as TStructureScreenSize)
 })
 </script>

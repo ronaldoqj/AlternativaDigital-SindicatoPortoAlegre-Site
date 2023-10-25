@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import TitleDefault from 'components/interface/TitleDefault.vue'
-import { reactive, onMounted, computed } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { arrayChunk } from 'src/helpers/helpers'
-import { useStructureStore } from 'src/stores/structure-store'
-import { TStructureScreenSize } from 'src/types/IDefaults'
 
 interface ICarouselItem {
   id: number
@@ -15,43 +13,17 @@ interface ICarouselItem {
   description?: string
 }
 
+const slide = ref(0)
 const state = reactive({
   carousel: {
     data: [] as Array<ICarouselItem>,
-    carouselData: [] as Array<ICarouselItem>[],
-    slide: 0
+    carouselData: [] as Array<ICarouselItem>[]
   }
 })
 
-const resetCarouselSlide = () => {
-  state.carousel.slide = 0
+const setStoreDatas = (carouselData: Array<ICarouselItem>) : void => {
+  state.carousel.carouselData = arrayChunk(carouselData, 2) as unknown as Array<ICarouselItem>[]
 }
-
-const listItems = computed(() => {
-  let list: ICarouselItem[][] = [[{} as ICarouselItem]]
-  resetCarouselSlide()
-
-  switch (structureStore.value) {
-    case 'xs':
-      list = arrayChunk(state.carousel.data, 1)
-      break
-    case 'sm':
-    case 'md':
-      list = arrayChunk(state.carousel.data, 2)
-      break
-    case 'lg':
-    case 'xl':
-    default:
-      list = arrayChunk(state.carousel.data, 4)
-      break
-  }
-
-  return list
-})
-
-// const setStoreDatas = (carouselData: Array<ICarouselItem>) : void => {
-//   state.carousel.carouselData = arrayChunk(carouselData, 2) as unknown as Array<ICarouselItem>[]
-// }
 
 const getData = (): void => {
   const limitImages = 7
@@ -83,12 +55,8 @@ const getData = (): void => {
   }
 
   state.carousel.data = newData
-  // setStoreDatas(state.carousel.data)
+  setStoreDatas(state.carousel.data)
 }
-
-const structureStore = computed((): null | TStructureScreenSize => {
-  return useStructureStore().currentSize
-})
 
 onMounted(() => {
   getData()
@@ -98,35 +66,33 @@ onMounted(() => {
 <template>
   <div class="section__default">
     <TitleDefault title="Agenda" color="tertiary" />
-    <div v-if="!state.carousel.data.length">Loading</div>
+    <div v-if="!state.carousel.carouselData.length">Loading</div>
     <div v-else class="section__agenda--carousel">
       <q-carousel
-        class="carousel-section"
+        class="carousel-agenda"
         swipeable
         animated
-        v-model="state.carousel.slide"
+        v-model="slide"
         :autoplay="700000"
         navigation
         infinite
       >
-        <q-carousel-slide v-for="(arrayItem, key) in listItems" :key="key" :name="key" class="carousel--slide">
-          <div class="row q-col-gutter-sm">
-            <div class="col-xs-12 col-sm-6 col-lg-3" v-for="(item, key2) in arrayItem" :key="key2">
-                <div class="container-content">
-                  <div class="content-item">
-                    <div class="item-section1"><h4>{{ item.day }}</h4><h5>{{ item.month }}</h5></div>
-                    <q-img v-if="item.type === 'image'" class="item-section2 rounded-borders" :src="item.image" />
-                    <div v-else class="item-section2 rounded-borders">
-                      <div>
-                        <p class="title ellipsis-3-lines">{{ item.title }}</p>
-                        <p class="description ellipsis-3-lines">{{ item.description }}</p>
-                      </div>
-                    </div>
-                  </div>
+      <q-carousel-slide v-for="(arrayItem, key) in (state.carousel.carouselData as Array<ICarouselItem>[])" :key="key" :name="key" class="carousel--slide column no-wrap">
+        <div class="row fit justify-start q-gutter-sm no-wrap">
+          <div class="container-content">
+            <div class="content-item" v-for="(item, key2) in arrayItem" :key="key2">
+              <div class="item-section1"><h4>{{ item.day }}</h4><h5>{{ item.month }}</h5></div>
+              <q-img v-if="item.type === 'image'" class="item-section2 rounded-borders" :src="item.image" />
+              <div v-else class="item-section2 rounded-borders">
+                <div>
+                  <p class="title ellipsis-3-lines">{{ item.title }}</p>
+                  <p class="description ellipsis-3-lines">{{ item.description }}</p>
                 </div>
               </div>
+            </div>
           </div>
-        </q-carousel-slide>
+        </div>
+      </q-carousel-slide>
       </q-carousel>
     </div>
   </div>
@@ -139,27 +105,20 @@ $height-section2: 200px;
 
 .section__agenda--carousel
 {
-  .carousel--slide {
-    /** put space to not cut shadow over effect */
-    padding: 5px;
-  }
-
-  .carousel-section
+  .carousel-agenda
   {
-    /** extra down space to bullets controls */
-    padding-bottom: 50px;
-    /** Force carousel item height when necessary be dynamic height */
-    height: inherit;
-
     background-color: transparent;
+    height: inherit;
 
     .carousel--slide
     {
-      padding: 5px;
+      padding: 10px 0 50px 0;
 
       .container-content
       {
-        width: 100%;
+        display: flex;
+        flex-direction: column;
+        width: inherit;
         height: inherit;
 
         .rounded-borders {
@@ -225,17 +184,17 @@ $height-section2: 200px;
           }
         }
 
-        // flex-direction: row;
+        flex-direction: row;
 
         @media only screen and (max-width: $breakpoint-sm)
         {
-          // flex-direction: column;
+          flex-direction: column;
         }
       }
     }
 
-    .q-carousel__navigation--buttons {
-      bottom: 0;
+    .q-carousel__control {
+      bottom: -5px;
     }
   }
 }

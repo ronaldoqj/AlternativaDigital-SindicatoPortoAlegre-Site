@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, onMounted, computed } from 'vue'
+import { reactive, onMounted, computed, watch } from 'vue'
 import { useStructureStore } from 'stores/structure-store'
 import { baseURL, arrayChunk } from 'src/helpers/helpers'
 import TitleDefault from 'components/interface/TitleDefault.vue'
@@ -45,7 +45,7 @@ const listItems = computed(() => {
   return list
 })
 
-const structureStore = computed((): TStructureScreenSize => {
+const structureStore = computed((): null | TStructureScreenSize => {
   return useStructureStore().currentSize
 })
 
