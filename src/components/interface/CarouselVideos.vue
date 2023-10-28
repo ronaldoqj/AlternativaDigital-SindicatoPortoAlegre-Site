@@ -117,9 +117,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="section__default section__videos">
+  <div class="section__default">
     <div v-if="!showCarousel">Loading</div>
-    <div v-else class="section__videos--carousel">
+    <div v-else class="component__videos--carousel">
       <q-carousel
         class="carousel-section"
         control-color="tertiary"
@@ -269,28 +269,27 @@ $max-height-and-padding-bottom: 45vh;
   }
 }
 
-.section__videos
+.component__videos--carousel
 {
-  .section__videos--carousel
+  $padding-bottom: 50px;
+
+  .carousel--slide {
+    /** put space to not cut shadow over effect */
+    padding: 5px;
+  }
+
+  .carousel-section
   {
-    .carousel--slide {
-      /** put space to not cut shadow over effect */
-      padding: 5px;
-    }
+    /** extra down space to bullets controls */
+    padding-bottom: $padding-bottom;
+    /** Force carousel item height when necessary be dynamic height */
+    height: inherit;
 
-    .carousel-section
-    {
-      /** extra down space to bullets controls */
-      padding-bottom: 50px;
-      /** Force carousel item height when necessary be dynamic height */
-      height: inherit;
+    background-color: transparent;
+  }
 
-      background-color: transparent;
-    }
-
-    .q-carousel__navigation--buttons {
-      bottom: 0;
-    }
+  .q-carousel__navigation--buttons {
+    bottom: 0;
   }
 }
 </style>

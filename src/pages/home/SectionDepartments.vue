@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, onMounted, computed, watch } from 'vue'
+import { reactive, onMounted, computed } from 'vue'
 import { useStructureStore } from 'stores/structure-store'
 import { baseURL, arrayChunk } from 'src/helpers/helpers'
 import TitleDefault from 'components/interface/TitleDefault.vue'
@@ -17,7 +17,8 @@ interface ICarouselItem {
 const state = reactive({
   carousel: {
     list: [] as ICarouselItem[],
-    slide: 0
+    slide: 0,
+    autoPlay: 10000
   }
 })
 
@@ -78,7 +79,7 @@ onMounted(() => {
         swipeable
         animated
         v-model="state.carousel.slide"
-        :autoplay="7000"
+        :autoplay="state.carousel.autoPlay"
         navigation
         infinite
       >
@@ -97,6 +98,8 @@ onMounted(() => {
 <style lang="scss">
 .section__departments--carousel
 {
+  $padding-bottom: 50px;
+
   .carousel--slide {
     /** put space to not cut shadow over effect */
     padding: 5px;
@@ -105,7 +108,7 @@ onMounted(() => {
   .carousel-section
   {
     /** extra down space to bullets controls */
-    padding-bottom: 50px;
+    padding-bottom: $padding-bottom;
     /** Force carousel item height when necessary be dynamic height */
     height: inherit;
 
