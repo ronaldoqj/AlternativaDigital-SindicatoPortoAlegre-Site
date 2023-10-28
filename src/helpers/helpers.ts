@@ -10,6 +10,7 @@ export const baseURL = process.env.API?.endsWith('/') ? process.env.API : proces
 export const xdebugTrigger = process.env.xdebugTrigger ? process.env.xdebugTrigger : ''
 export const defaultImagePath = 'assets/images/image-default.jpg'
 export const defaultImage = `${baseURL}${defaultImagePath}`
+export const carouselSettings = { autoPlay: 10000 }
 
 /**
  * Helper Functions

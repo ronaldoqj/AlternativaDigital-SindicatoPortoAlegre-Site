@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref, watch } from 'vue'
+import { onMounted, reactive, watch } from 'vue'
+import { baseURL, convertURL, carouselSettings } from 'src/helpers/helpers'
 import { useQuasar } from 'quasar'
 import { RouteLocationRaw, useRouter } from 'vue-router'
-import { baseURL, convertURL } from 'src/helpers/helpers'
 import SkeletonBanner from 'components/interface/skeletons/SkeletonBanner.vue'
 
 const props = defineProps({
@@ -10,21 +10,19 @@ const props = defineProps({
     type: Object,
     required: false
   }
-  // params: {
-  //   type: Object as PropType<IncludeImage>,
-  //   default: () => ({}),
-  //   required: false
-  // }
 })
 
 type CarouselType = 'mobile' | 'desktop'
 const $q = useQuasar()
-const slide = ref(1)
 const router = useRouter()
 
 const state = reactive({
   typeImage: 'mobile' as CarouselType,
-  sectionNews: {}
+  sectionNews: {},
+  carousel: {
+    slide: 0,
+    autoPlay: carouselSettings.autoPlay
+  }
 })
 
 const screenSize = (): CarouselType => {
@@ -52,8 +50,8 @@ onMounted(() => {
       control-color="tertiary"
       swipeable
       animated
-      v-model="slide"
-      :autoplay="700000"
+      v-model="state.carousel.slide"
+      :autoplay="state.carousel.autoPlay"
       navigation
       infinite
     >
@@ -62,11 +60,10 @@ onMounted(() => {
         :key="index"
         style="cursor: pointer;"
         @click="clickRoute(convertURL(row.id, row.title))"
-        :name="index+1"
+        :name="index"
         :img-src=" state.typeImage === 'mobile' ? `${baseURL}${row.banner_mobile.path}/${row.banner_mobile.file_name}` : `${baseURL}${row.banner_desktop.path}/${row.banner_desktop.file_name}`"
       />
-
-      <q-carousel-slide v-if="!props.news" name="1">
+      <q-carousel-slide v-if="!props.news" name="0">
         <SkeletonBanner />
       </q-carousel-slide>
     </q-carousel>

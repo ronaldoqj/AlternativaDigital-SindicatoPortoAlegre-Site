@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive, onMounted, computed } from 'vue'
+import { baseURL, arrayChunk, carouselSettings } from 'src/helpers/helpers'
 import { useStructureStore } from 'stores/structure-store'
-import { baseURL, arrayChunk } from 'src/helpers/helpers'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import CardButton from 'components/interface/CardButton.vue'
 import { TStructureScreenSize } from 'src/types/IDefaults'
@@ -18,7 +18,7 @@ const state = reactive({
   carousel: {
     list: [] as ICarouselItem[],
     slide: 0,
-    autoPlay: 10000
+    autoPlay: carouselSettings.autoPlay
   }
 })
 

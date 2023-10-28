@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import TitleDefault from 'components/interface/TitleDefault.vue'
 import { reactive, onMounted, computed } from 'vue'
-import { arrayChunk } from 'src/helpers/helpers'
+import { arrayChunk, carouselSettings } from 'src/helpers/helpers'
+import TitleDefault from 'components/interface/TitleDefault.vue'
 import { useStructureStore } from 'src/stores/structure-store'
 import { TStructureScreenSize } from 'src/types/IDefaults'
 
@@ -19,7 +19,8 @@ const state = reactive({
   carousel: {
     data: [] as Array<ICarouselItem>,
     carouselData: [] as Array<ICarouselItem>[],
-    slide: 0
+    slide: 0,
+    autoPlay: carouselSettings.autoPlay
   }
 })
 
@@ -105,7 +106,7 @@ onMounted(() => {
         swipeable
         animated
         v-model="state.carousel.slide"
-        :autoplay="700000"
+        :autoplay="state.carousel.autoPlay"
         navigation
         infinite
       >
@@ -134,7 +135,6 @@ onMounted(() => {
 
 <style lang="scss">
 $border-radius-control-banner: 20px;
-// $height-item: 270px;
 $height-section2: 200px;
 
 .section__agenda--carousel
