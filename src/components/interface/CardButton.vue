@@ -8,7 +8,7 @@ import { RouteLocationRaw, useRouter } from 'vue-router'
 const props = defineProps({
   image: {
     type: String,
-    required: true
+    require: true
   },
   title: {
     type: String,
