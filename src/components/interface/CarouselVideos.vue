@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { baseURL, arrayChunk } from 'src/helpers/helpers'
+import { reactive, computed, onMounted } from 'vue'
+import { baseURL, arrayChunk, carouselSettings } from 'src/helpers/helpers'
 import IconDefault from 'components/interface/IconDefault.vue'
 import VideoDefault from 'src/components/interface/VideoDefault.vue'
 import CardVideoThumb from 'components/interface/CardVideoThumb.vue'
-import { reactive, computed, onMounted } from 'vue'
 import { TStructureScreenSize } from 'src/types/IDefaults'
 import { useStructureStore } from 'src/stores/structure-store'
 
@@ -28,7 +28,7 @@ const state = reactive({
   carousel: {
     list: [] as Array<ICarouselItem>,
     slide: 0,
-    autoPlay: 10000
+    autoPlay: carouselSettings.autoPlay
   }
 })
 
