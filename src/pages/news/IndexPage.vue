@@ -49,7 +49,7 @@ const getNews = () => {
     .then((response:IResponseNews) => {
       console.log('getNews', response)
       state.control.showContent = true
-      state.news = response.data
+      state.news = response.data as INews
       getRelatedList()
       definesNewsLayers()
     })

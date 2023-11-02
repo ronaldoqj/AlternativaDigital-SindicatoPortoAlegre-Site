@@ -7,6 +7,7 @@ const router = useRouter()
 const state = reactive({
   menu: {
     home: { name: 'home' } as RouteLocationRaw,
+    news: { name: 'allNews' } as RouteLocationRaw,
     about: { name: 'about' } as RouteLocationRaw,
     agreementsConventions: { name: 'agreementsConventions' } as RouteLocationRaw,
     notice: { name: 'notice' } as RouteLocationRaw,
@@ -31,13 +32,12 @@ const state = reactive({
     servicesHistoryFile: { name: 'servicesHistoryFile' } as RouteLocationRaw,
     servicesSpaces: { name: 'servicesSpaces' } as RouteLocationRaw,
     servicesLegal: { name: 'servicesLegal' } as RouteLocationRaw,
-    contact: { name: 'contact' } as RouteLocationRaw,
-    news: { name: 'news', params: { id: 1, title: 'O-Santander-informou' } } as RouteLocationRaw
+    contact: { name: 'contact' } as RouteLocationRaw
+    // news: { name: 'news', params: { id: 1, title: 'O-Santander-informou' } } as RouteLocationRaw
   }
 })
 
 const clickRoute = (route: RouteLocationRaw) => {
-  console.log('click-news')
   router.push(route)
   // router.replace(route)
 }
@@ -92,6 +92,12 @@ const clickRoute = (route: RouteLocationRaw) => {
 
         <q-separator class="menu__separator" />
 
+        <q-item clickable v-close-popup>
+          <q-item-section @click="clickRoute(state.menu.news)">Notícias</q-item-section>
+        </q-item>
+
+        <q-separator class="menu__separator" />
+
         <q-item clickable>
           <q-item-section>Comunicação</q-item-section>
           <q-item-section class="more__menu--right" side>
@@ -111,8 +117,8 @@ const clickRoute = (route: RouteLocationRaw) => {
               <q-item clickable>
                 <q-item-section @click="clickRoute(state.menu.studioRAO)">Estúdio RAO</q-item-section>
               </q-item>
-              <q-separator class="menu__separator" />
-              <!-- <q-item clickable>
+              <!-- <q-separator class="menu__separator" />
+              <q-item clickable>
                 <q-item-section>Galeria de fotos</q-item-section>
               </q-item> -->
               <q-separator class="menu__separator" />

@@ -23,3 +23,11 @@ export interface IDefaultResponse {
     status: number
     message: unknown
 }
+
+export interface ITabsIcons {
+  id: number
+  name: string
+  icon: string
+  size: number
+  viewBox: string
+}

@@ -20,6 +20,7 @@ const routes: RouteRecordRaw[] = [
           // { path: 'estudio-rao', name: 'studioRAO', component: () => import('pages/syndicate/StudioRaoPage.vue') }
         ]
       },
+      { path: 'noticias', name: 'allNews', component: () => import('pages/news/AllNewsPage.vue') },
       { path: 'noticia/:id/:title', name: 'news', component: () => import('pages/news/IndexPage.vue') },
       { path: 'artigo/:id/:title', name: 'article', component: () => import('pages/article/IndexPage.vue') },
       {
