@@ -8,7 +8,11 @@ class NewsService {
     return http.post(`${prefix}/list-home${endURL}`, data)
   }
 
-  list (data:unknown): Promise<unknown> {
+  list (data:unknown): Promise<IResponseNews> {
+    return http.post(`${prefix}/list${endURL}`, data)
+  }
+
+  listNews (data:unknown): Promise<IResponseNews> {
     return http.post(`${prefix}/list${endURL}`, data)
   }
 

@@ -3,14 +3,7 @@ import TitleDefault from 'components/interface/TitleDefault.vue'
 import { ref, reactive, onMounted } from 'vue'
 import IconDefault from 'components/interface/IconDefault.vue'
 import NewsItem from 'components/interface/NewsItem.vue'
-
-interface ITabsIcons {
-  id: number
-  name: string
-  icon: string
-  size: number
-  viewBox: string
-}
+import { ITabsIcons } from 'src/types/IDefaults'
 
 const tab = ref('mails')
 const state = reactive({
