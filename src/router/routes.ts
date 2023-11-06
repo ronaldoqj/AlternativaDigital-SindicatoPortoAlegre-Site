@@ -66,7 +66,8 @@ const routes: RouteRecordRaw[] = [
         name: 'unionizeIndex',
         component: () => import('pages/unionize/IndexPage.vue'),
         children: [
-          { path: '', name: 'unionize', component: () => import('pages/unionize/UnionizePage.vue') }
+          { path: '', name: 'unionize', component: () => import('pages/unionize/IntroductionPage.vue') },
+          { path: 'formulario', name: 'unionizeForm', component: () => import('pages/unionize/UnionizePage.vue') }
         ]
       },
       {

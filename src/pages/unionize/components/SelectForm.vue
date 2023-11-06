@@ -3,8 +3,12 @@ import { PropType } from 'vue'
 
 const props = defineProps({
   modelValue: {
-    type: String as PropType<string | number | null | undefined>,
-    default: () => ('')
+    type: Object as PropType<string | number | null | undefined>,
+    default: () => ({})
+  },
+  options: {
+    type: Array,
+    required: true
   },
   label: {
     type: String,
@@ -37,11 +41,12 @@ const props = defineProps({
 </script>
 
 <template>
-  <div :class="`page__contact--component-input ${props.required ? 'required' : ''}`">
+  <div :class="`page__contact--component-input-select ${props.type} ${props.readOnly ? 'read__only' : ''} ${props.required ? 'required' : ''}`">
     <span class="label__form">{{ props.label }}</span>
-    <div :class="`box__input ${props.type} ${props.readOnly ? 'read__only' : ''}`">
-      <q-input
+    <div class="box__input">
+      <q-select
         :model-value="(modelValue as string | null)"
+        :options="props.options"
         @update:model-value="(event) => $emit('update:modelValue', event)"
         :readonly="props.readOnly"
         borderless
@@ -50,21 +55,14 @@ const props = defineProps({
         :mask="props.mask"
         dense
         >
-      </q-input>
+      </q-select>
     </div>
   </div>
 </template>
 
 <style lang="scss">
-.page__contact--component-input
+.page__contact--component-input-select
 {
-  &.required
-  {
-    .box__input {
-      border: solid 1px $primary;
-    }
-  }
-
   .label__form {
     color: $text-inverse;
     font-size: 15px;
@@ -86,22 +84,43 @@ const props = defineProps({
       font-weight: normal;
     }
 
+    span {
+      color: $accent;
+    }
+
     &.textarea {
       height: 200px;
     }
+  }
 
-    &.read__only {
+  &.required
+  {
+    .box__input {
+      border: solid 1px $primary;
+    }
+  }
+
+  &.read__only {
+    border: 0;
+    box-shadow: 0px 3px 4px #fff;
+    padding: 0 10px;
+
+    .box__input {
       border: 0;
-      box-shadow: 0px 3px 4px #fff;
       padding: 0 10px;
+      box-shadow: 0px 3px 4px #fff;
+    }
 
-      .read__only--input
-      {
-        font-size: 18px;
+    span {
+      font-weight: 400;
+    }
 
-        input {
-          font-weight: 400;
-        }
+    .read__only--input
+    {
+      font-size: 18px;
+
+      input {
+        font-weight: 400;
       }
     }
   }
