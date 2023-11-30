@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { baseURL } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import CardButton from 'components/interface/CardButton.vue'
@@ -18,10 +17,10 @@ const openVideo = () => {
       <TitleDefault title="Sindicalize-se" />
       <div class="row q-col-gutter-md q-mt-xl">
         <div class="col-xs-12 col-md-6">
-          <CardButton :route="{name: 'unionizeForm'}" :image="`${baseURL}temporary/images/departamentos/001_Juridico.png`" background="primary" color="text-inverse" :title="`Sindicalização Digital`" />
+          <CardButton :route="{name: 'unionizeForm'}" :image="`/assets/image/image-inscricao-sindicalizacao-digital.png`" background="primary" color="text-inverse" :title="`Realizar sindicalização digital`" />
         </div>
         <div class="col-xs-12 col-md-6">
-          <CardButton :image="`${baseURL}temporary/images/departamentos/002_Saude.png`" background="primary" color="text-inverse" :title="`Sindicalização Digital`" />
+          <CardButton :route="{name: 'findForm'}" :image="`/assets/image/image-ficha-sindicalizacao-digital.png`" background="primary" color="text-inverse" :title="`Enviar arquivo PDF assinado no .gov`" />
         </div>
       </div>
     </section>

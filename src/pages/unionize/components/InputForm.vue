@@ -29,6 +29,10 @@ const props = defineProps({
     type: String,
     require: false
   },
+  toPrint: {
+    type: Boolean,
+    require: false
+  },
   required: {
     type: Boolean,
     required: false
@@ -37,7 +41,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div :class="`page__contact--component-input ${props.required ? 'required' : ''}`">
+  <div :class="`page__contact--component-input ${props.required ? 'required' : ''} ${props.toPrint ? 'to--print' : ''}`">
     <span class="label__form">{{ props.label }}</span>
     <div :class="`box__input ${props.type} ${props.readOnly ? 'read__only' : ''}`">
       <q-input
@@ -102,6 +106,28 @@ const props = defineProps({
         input {
           font-weight: 400;
         }
+      }
+    }
+  }
+
+  &.to--print
+  {
+    .label__form {
+      font-size: 12px;
+    }
+
+    .box__input
+    {
+      height: 20px;
+
+      .q-field__control {
+        height: 20px;
+      }
+
+      input {
+        color: $accent;
+        font-weight: normal;
+        font-size: 12px;
       }
     }
   }

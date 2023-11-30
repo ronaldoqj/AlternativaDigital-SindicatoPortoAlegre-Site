@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { ISelectOption } from 'src/types/IDefaults'
 import { PropType } from 'vue'
 
 const props = defineProps({
   modelValue: {
-    type: Object as PropType<string | number | null | undefined>,
-    default: () => ({})
+    type: Object as PropType<ISelectOption>,
+    require: true
   },
   options: {
     type: Array,
@@ -49,7 +50,7 @@ const props = defineProps({
     <span class="label__form">{{ props.label }}</span>
     <div class="box__input">
       <q-select
-        :model-value="(modelValue as string | null)"
+        :model-value="(modelValue as ISelectOption)"
         :options="props.options"
         @update:model-value="(event) => $emit('update:modelValue', event)"
         :readonly="props.readOnly"

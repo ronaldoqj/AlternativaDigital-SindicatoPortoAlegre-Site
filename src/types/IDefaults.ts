@@ -31,3 +31,8 @@ export interface ITabsIcons {
   size: number
   viewBox: string
 }
+
+export interface ISelectOption {
+  value: null | string | number
+  label: string
+}
