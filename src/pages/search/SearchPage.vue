@@ -73,17 +73,17 @@ const clickPagination = () => {
 }
 
 const initTabMenu = (): void => {
-  state.tabMenu.tabs.push({ id: 1, name: 'legal', icon: 'assets/svg/icon-department-legal.svg#legal', size: 45, viewBox: '0 0 577.34 595.55' })
-  state.tabMenu.tabs.push({ id: 2, name: 'health', icon: 'assets/svg/icon-department-health.svg#health', size: 50, viewBox: '0 0 582.96 604.74' })
-  state.tabMenu.tabs.push({ id: 3, name: 'youth', icon: 'assets/svg/icon-department-youth.svg#youth', size: 45, viewBox: '0 0 612.46 605.94' })
-  state.tabMenu.tabs.push({ id: 4, name: 'diversity', icon: 'assets/svg/icon-department-diversity.svg#diversity', size: 45, viewBox: '0 0 340.86 603.17' })
-  state.tabMenu.tabs.push({ id: 5, name: 'sport', icon: 'assets/svg/icon-department-sport.svg#sport', size: 45, viewBox: '0 0 687.53 599.67' })
+  state.tabMenu.tabs.push({ id: 1, name: 'legal', tooltip: 'Jurídico', icon: 'assets/svg/icon-department-legal.svg#legal', size: 45, viewBox: '0 0 577.34 595.55' })
+  state.tabMenu.tabs.push({ id: 2, name: 'health', tooltip: 'Saúde e condições de trabalho', icon: 'assets/svg/icon-department-health.svg#health', size: 50, viewBox: '0 0 582.96 604.74' })
+  state.tabMenu.tabs.push({ id: 3, name: 'youth', tooltip: 'Juventude e gênero', icon: 'assets/svg/icon-department-youth.svg#youth', size: 45, viewBox: '0 0 612.46 605.94' })
+  state.tabMenu.tabs.push({ id: 4, name: 'diversity', tooltip: 'Diversidade e combate ao racismo', icon: 'assets/svg/icon-department-diversity.svg#diversity', size: 45, viewBox: '0 0 340.86 603.17' })
+  state.tabMenu.tabs.push({ id: 5, name: 'sport', tooltip: 'Esporte e Lazer', icon: 'assets/svg/icon-department-sport.svg#sport', size: 45, viewBox: '0 0 687.53 599.67' })
 
-  state.tabMenu.tabs.push({ id: 6, name: 'culture', icon: 'assets/svg/icon-department-culture.svg#culture', size: 45, viewBox: '0 0 776.66 603.18' })
-  state.tabMenu.tabs.push({ id: 7, name: 'retirees', icon: 'assets/svg/icon-department-retirees.svg#retirees', size: 50, viewBox: '0 0 717.7 610.78' })
-  state.tabMenu.tabs.push({ id: 8, name: 'training', icon: 'assets/svg/icon-department-training.svg#training', size: 45, viewBox: '0 0 675.24 603.17' })
-  state.tabMenu.tabs.push({ id: 9, name: 'financial', icon: 'assets/svg/icon-department-financial.svg#financial', size: 45, viewBox: '0 0 633.81 604.52' })
-  state.tabMenu.tabs.push({ id: 10, name: 'comunication', icon: 'assets/svg/icon-communication.svg#communication', size: 45, viewBox: '0 0 400 400' })
+  state.tabMenu.tabs.push({ id: 6, name: 'culture', tooltip: 'Cultura e sustentabilidade', icon: 'assets/svg/icon-department-culture.svg#culture', size: 45, viewBox: '0 0 776.66 603.18' })
+  state.tabMenu.tabs.push({ id: 7, name: 'retirees', tooltip: 'Aposentados e Seguridade Social', icon: 'assets/svg/icon-department-retirees.svg#retirees', size: 50, viewBox: '0 0 717.7 610.78' })
+  state.tabMenu.tabs.push({ id: 8, name: 'training', tooltip: 'Formação', icon: 'assets/svg/icon-department-training.svg#training', size: 45, viewBox: '0 0 675.24 603.17' })
+  state.tabMenu.tabs.push({ id: 9, name: 'financial', tooltip: 'Financeiras e terceirizados do ramo financeiro', icon: 'assets/svg/icon-department-financial.svg#financial', size: 45, viewBox: '0 0 633.81 604.52' })
+  state.tabMenu.tabs.push({ id: 10, name: 'comunication', tooltip: 'Comunicação', icon: 'assets/svg/icon-communication.svg#communication', size: 45, viewBox: '0 0 400 400' })
 }
 
 const getNews = () => {
@@ -176,13 +176,19 @@ onMounted(() => {
                 right-icon="arrow_forward_ios"
               >
                 <q-tab :name="item.id" class="tab-container" v-for="(item, key) in state.tabMenu.tabs" :key="key" @click="clickTab(item.id)">
-                  <div class="container-icon">
-                    <IconDefault
-                      :size="32"
-                      :viewBox="item.viewBox"
-                      :src="item.icon"
-                    />
-                  </div>
+
+                    <div class="container-icon">
+                      <q-tooltip class="bg-quinary" anchor="top middle" self="bottom middle" :offset="[10, 10]">
+                        {{ item.tooltip }}
+                      </q-tooltip>
+                      <IconDefault
+                        :size="32"
+                        :viewBox="item.viewBox"
+                        :src="item.icon"
+                      >
+                      </IconDefault>
+                    </div>
+
                 </q-tab>
               </q-tabs>
             </div>

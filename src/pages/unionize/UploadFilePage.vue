@@ -5,6 +5,7 @@ import { baseURL } from 'src/helpers/helpers'
 import { AxiosError } from 'axios'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
+import CardButton from 'components/interface/CardButton.vue'
 import CardStep from './components/CardStep.vue'
 import ButtonCardFile from './components/ButtonCardFile.vue'
 import CardAlert from './components/CardAlert.vue'
@@ -96,6 +97,10 @@ const downloadPdf = () => {
   */
 }
 
+const linkToExternal = () => {
+  window.open('https://www.gov.br/pt-br/servicos/assinatura-eletronica', '_blank')
+}
+
 onMounted(() => {
   let emailFound = false
   console.log('route.params', route.params)
@@ -135,6 +140,16 @@ onMounted(() => {
           <CardAlert @click="downloadPdf()" color="error">
             Baixar arquivo PDF da sindicalização
           </CardAlert>
+        </div>
+        <div class="card__button--fullwidth" @click="linkToExternal()">
+          <CardButton :image="`/assets/image/image-site-governament.jpg`" background="quaternary" color="primary" :title="`Acessar .gov para assinar digitalmente sua sindicalização`">
+            <q-img
+              src="/assets/image/icon-gov-br.png"
+              width="100px"
+              height="36px"
+              class="image__card--button"
+            />
+          </CardButton>
         </div>
         <div class="col-12">
           <!-- @click="sendPdfFile()" -->
@@ -176,6 +191,14 @@ onMounted(() => {
 
   .section--upload {
     //
+  }
+
+  .card__button--fullwidth {
+    width: 100%;
+  }
+
+  .image__card--button {
+    margin-right: 20px;
   }
 }
 </style>

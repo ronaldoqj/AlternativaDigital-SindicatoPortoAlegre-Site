@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PropType, computed } from 'vue'
-import ReverseCorner from 'components/interface/ReverseCorner.vue'
 import { RouteLocationRaw, useRouter } from 'vue-router'
+import ReverseCorner from 'components/interface/ReverseCorner.vue'
 // import { colors, setCssVar } from 'quasar'
 
 // const { getPaletteColor } = colors
@@ -67,7 +67,7 @@ const clickRoute = (route: RouteLocationRaw) => {
     @click="clickRoute(props.route)"
   >
     <ReverseCorner :size="80" :color="props.background" />
-    <div :class="`title ${resolveColor} ${resolveBackground}`" :style="`background-color: $primary`">{{ props.title }}</div>
+    <div :class="`title ${resolveColor} ${resolveBackground}`" :style="`background-color: $primary`"><slot></slot> {{ props.title }}</div>
   </div>
 </template>
 

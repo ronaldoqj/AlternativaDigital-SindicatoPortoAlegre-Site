@@ -27,6 +27,7 @@ export interface IDefaultResponse {
 export interface ITabsIcons {
   id: number
   name: string
+  tooltip?: string
   icon: string
   size: number
   viewBox: string

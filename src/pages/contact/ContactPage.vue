@@ -3,6 +3,93 @@ import TitleDefault from 'components/interface/TitleDefault.vue'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import InputForm from 'src/pages/contact/components/InputForm.vue'
 import IconDefault from 'components/interface/IconDefault.vue'
+import { computed, reactive } from 'vue'
+
+const state = reactive({
+  form: {
+    protocolType: {
+      value: null,
+      name: 'tipoSolicitacao',
+      options: [
+        { label: 'Denúncia', value: 'D', color: 'text-inverse', size: 'xl' },
+        { label: 'Sugestão', value: 'S', color: 'text-inverse', size: 'xl' },
+        { label: 'Reclamação', value: 'R', color: 'text-inverse', size: 'xl' },
+        { label: 'Pedido de Informação', value: 'I', color: 'text-inverse', size: 'xl' },
+        { label: 'Pedido de Providências', value: 'P', color: 'text-inverse', size: 'xl' }
+      ]
+    },
+    nameBank: {
+      value: null,
+      name: 'nomeBanco'
+    },
+    agency: {
+      value: null,
+      name: 'agencia'
+    },
+    name: {
+      value: null,
+      name: 'nome'
+    },
+    phone: {
+      value: null,
+      name: ''
+    },
+    email: {
+      value: null,
+      name: ''
+    },
+    subject: {
+      value: null,
+      name: ''
+    },
+    message: {
+      value: null,
+      name: ''
+    },
+    sendToSector: {
+      value: null,
+      name: 'oidSetor',
+      options: [
+        { label: 'Atendimento Geral', value: '11', color: 'text-inverse', size: 'xl' },
+        { label: 'Biblioteca', value: '9', color: 'text-inverse', size: 'xl' },
+        { label: 'Cine Bancários', value: '12', color: 'text-inverse', size: 'xl' },
+        { label: 'Jurídico', value: '3', color: 'text-inverse', size: 'xl' },
+        { label: 'Saúde do Trabalhador', value: '5', color: 'text-inverse', size: 'xl' },
+        { label: 'Outros', value: '11', color: 'text-inverse', size: 'xl' }
+      ]
+    },
+    file: {
+      value: null,
+      name: 'documentoUpload'
+    }
+  }
+})
+
+const validateForm = computed(() => {
+  let send = true
+
+  if (state.form.protocolType.value === null) { send = false }
+  if (state.form.nameBank.value === null) { send = false }
+  if (state.form.agency.value === null) { send = false }
+  if (state.form.name.value === null) { send = false }
+  if (state.form.phone.value === null) { send = false }
+  if (state.form.email.value === null) { send = false }
+  if (state.form.subject.value === null) { send = false }
+  if (state.form.message.value === null) { send = false }
+  if (state.form.nameBank.value === null) { send = false }
+  if (state.form.sendToSector.value === null) { send = false }
+  if (state.form.file.value === null) { send = false }
+
+  return send
+})
+
+const onSubmit = (evt:any) => {
+  console.log('@submit - do something here', evt)
+
+  if (validateForm.value) {
+    evt.target.submit()
+  }
+}
 </script>
 
 <template>
@@ -59,14 +146,79 @@ import IconDefault from 'components/interface/IconDefault.vue'
 
             <div style="height: 80px;"></div>
           </div>
+
           <div class="col-xs-12 col-lg-6">
-            <div class="form">
-              <InputForm title="Nome" class="q-mb-md" />
-              <InputForm title="Telefone" class="q-mb-md" />
-              <InputForm title="E-mail" class="q-mb-md" />
-              <InputForm title="Assunto" class="q-mb-md" />
-              <InputForm title="Mensagem" type="textarea" class="q-mb-md" />
-            </div>
+            <q-form action="https://fielassociado.sindbancarios.org.br/atendimento/atendimentoSite.php" method="post" @submit.prevent="onSubmit" enctype="multipart/form-data">
+              <div class="form">
+                <div class="title">Tipo de Protocolo</div>
+                <section class="radio">
+                  <q-option-group
+                    :options="state.form.protocolType.options"
+                    type="radio"
+                    v-model="state.form.protocolType.value"
+                    color="text-inverse"
+                    class="text-white"
+                    :name="state.form.protocolType.name"
+                    keep-color
+                    inline
+                  />
+                </section>
+                <div class="row q-col-gutter-sm">
+                  <div class="col-xs-12 col-sm-8">
+                    <InputForm title="Banco" class="q-mb-md" :name="state.form.nameBank.name" v-model="state.form.nameBank.value" />
+                  </div>
+                  <div class="col-xs-12 col-sm-4">
+                    <InputForm title="Agência" class="q-mb-md" :name="state.form.agency.name" v-model="state.form.agency.value" />
+                  </div>
+                </div>
+
+                <InputForm title="Seu nome" class="q-mb-md" :name="state.form.name.name" v-model="state.form.name.value" />
+                <InputForm title="Seu telefone" class="q-mb-md" :name="state.form.phone.name" v-model="state.form.phone.value" />
+                <InputForm title="Seu e-mail" class="q-mb-md" :name="state.form.email.name" v-model="state.form.email.value" />
+                <InputForm title="Assunto" class="q-mb-md" :name="state.form.subject.name" v-model="state.form.subject.value" />
+                <InputForm title="Mensagem" type="textarea" class="q-mb-md" :name="state.form.message.name" v-model="state.form.message.value" />
+
+                <div class="title">Encaminhar para o Setor</div>
+                <section class="radio">
+                  <q-option-group
+                    :options="state.form.sendToSector.options"
+                    type="radio"
+                    v-model="state.form.sendToSector.value"
+                    color="text-inverse"
+                    class="text-white"
+                    :name="state.form.sendToSector.name"
+                    keep-color
+                    inline
+                  />
+                </section>
+
+                <!-- documentoUpload -->
+                <div class="title"> Anexar Documento </div>
+                <section class="attach--file q-mb-lg">
+                  <div>
+                    <div class="file-btn">Escolher Arquivo</div>
+                    <q-input
+                      rounded
+                      standout
+                      v-model="state.form.file.value"
+                      :name="state.form.file.name"
+                      type="file"
+                      color="text"
+                      class="input-file"
+                      bg-color="text-inverse"
+                      label-color="text"
+                      dark
+                      dense
+                    />
+                  </div>
+                </section>
+                <section>
+                  <div>
+                    <q-btn class="btn-send full-width" label="Enviar" type="submit" color="octal" rounded unelevated :disable="!validateForm" />
+                  </div>
+                </section>
+              </div>
+            </q-form>
           </div>
         </div>
 
@@ -160,10 +312,48 @@ import IconDefault from 'components/interface/IconDefault.vue'
       }
     }
 
-    .form {
+    .form
+    {
       padding: 35px;
       border-radius: 30px;
       background-color: $septenary;
+
+      .title {
+        color: $tertiary;
+      }
+
+      .btn-send {
+        border: solid 1px $tertiary;
+      }
+
+      .attach--file
+      {
+        .file-btn {
+          width: calc(120px + 10%);
+          height: 40px;
+          font-size: 12px;
+          color: $text-inverse;
+          border: solid 1px $tertiary;
+          background-color: $primary;
+          border-top-right-radius: 20px;
+          border-bottom-right-radius: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          float: right;
+        }
+
+        .q-field__control {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        .input-file {
+          input {
+            color: $text;
+          }
+        }
+      }
     }
   }
 }

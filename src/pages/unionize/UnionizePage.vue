@@ -95,29 +95,6 @@ const formReadyOnly = computed((): boolean => {
   return state.form.formState === 'review'
 })
 
-// const downloadPDF = () => {
-//   toConfirmForm('email@personal.com')
-
-//   const hide = false
-//   if (hide) {
-//     console.log('click Download PDF')
-//     const element = document.getElementById('print')
-//     // eslint-disable-next-line no-undef
-//     // html2pdf(element)
-
-//     const opt = {
-//       margin: 0,
-//       filename: 'myfiletest4.pdf',
-//       image: { type: 'jpeg', quality: 1 },
-//       html2canvas: { scale: 2 },
-//       jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-//     }
-//     // New Promise-based usage:
-//     // eslint-disable-next-line no-undef
-//     html2pdf().set(opt).from(element).save()
-//   }
-// }
-
 const disableConfirm = computed((): boolean => {
   let disableBtn = false
 
@@ -206,12 +183,6 @@ const saveForm = () => {
     .then((response:any) => {
       console.log('Unionize Register', response)
       toConfirmForm(response.data.email)
-      // toConfirmForm('email@personal.com')
-      // state.sectionBanners = response.data.banners
-      // state.sectionNews = {
-      //   highlights: response.data.highlights,
-      //   geral: response.data.geral
-      // }
     })
     .catch((error:AxiosError) => {
       console.log('error', error)
@@ -269,18 +240,6 @@ const toConfirmForm = (email: string) => {
 onMounted(() => {
   testingForm()
   changeFormState('edition')
-  // console.log('_.isNil(null): ', _.isNil(null))
-  // console.log('_.isNil(\'\')', _.isNil(''))
-  // console.log('_.isNil({})', _.isNil({}))
-  // console.log('_.isNil([])', _.isNil([]))
-  // console.log('_.isNil(undefined)', _.isNil(undefined))
-
-  // console.log('_.isEmpty(null): ', _.isEmpty(null))
-  // console.log('_.isEmpty(\'\')', _.isEmpty(''))
-  // console.log('_.isEmpty({})', _.isEmpty({}))
-  // console.log('_.isEmpty([])', _.isEmpty([]))
-  // console.log('_.isEmpty(undefined)', _.isEmpty(undefined))
-  // console.log('_.isEmpty(\'a\')', _.isEmpty('a'))
 })
 
 </script>
@@ -289,7 +248,6 @@ onMounted(() => {
     <LayoutSection id="print" background="tertiary" type="top" cornerColor="secondary" min-height>
       <TitleDefault title="Sindicalize-se" />
       <div class="page__unionize--content">
-        <!-- <button @click="downloadPDF">Download-PDF</button> -->
         <div class="page__unionize--section-title">
           Passos da sindicalização
         </div>
