@@ -15,6 +15,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
     require: false
+  },
+  styleText: {
+    type: Object,
+    require: false
   }
 })
 </script>
@@ -22,7 +26,7 @@ const props = defineProps({
 <template>
   <div class="title__default">
     <IconDefault :size="56" v-if="!props.onlyText" class="icon--default" :color="props.color" viewBox="0 0 56 30" src="/assets/svg/icon-bullet-point-title.svg#bullet_point" />
-    <span color="primary" :class="`text-${props.color} title`">{{ props.title }}</span>
+    <span color="primary" :style="props.styleText" :class="`text-${props.color} title`">{{ props.title }}</span>
     <slot></slot>
   </div>
 </template>

@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { PropType } from 'vue'
+// import { PropType } from 'vue'
 
 const props = defineProps({
-  modelValue: {
-    type: String as PropType<string | number | null | undefined>,
-    default: () => ('')
+  // modelValue: {
+  //   type: Object as PropType<string | number | null | undefined>,
+  //   default: () => ({})
+  // },
+  options: {
+    type: Array,
+    required: true
   },
   label: {
     type: String,
@@ -41,11 +45,12 @@ const props = defineProps({
 </script>
 
 <template>
-  <div :class="`page__contact--component-input ${props.required ? 'required' : ''} ${props.toPrint ? 'to--print' : ''}`">
+  <div :class="`page__contact--component-input-select ${props.type} ${props.readOnly ? 'read__only' : ''} ${props.required ? 'required' : ''} ${props.toPrint ? 'to--print' : ''}`">
     <span class="label__form">{{ props.label }}</span>
-    <div :class="`box__input ${props.type} ${props.readOnly ? 'read__only' : ''}`">
-      <q-input
-        :model-value="(modelValue as string | null)"
+    <div class="box__input">
+      <q-select
+        model-value="modelValue"
+        :options="props.options"
         @update:model-value="(event) => $emit('update:modelValue', event)"
         :readonly="props.readOnly"
         borderless
@@ -54,21 +59,14 @@ const props = defineProps({
         :mask="props.mask"
         dense
         >
-      </q-input>
+      </q-select>
     </div>
   </div>
 </template>
 
 <style lang="scss">
-.page__contact--component-input
+.page__contact--component-input-select
 {
-  &.required
-  {
-    .box__input {
-      border: solid 1px $primary;
-    }
-  }
-
   .label__form {
     color: $text-inverse;
     font-size: 15px;
@@ -90,22 +88,44 @@ const props = defineProps({
       font-weight: normal;
     }
 
+    span {
+      color: $accent;
+    }
+
     &.textarea {
       height: 200px;
     }
+  }
 
-    &.read__only {
+  &.required
+  {
+    .box__input {
+      border: solid 1px $primary;
+    }
+  }
+
+  &.read__only
+  {
+    border: 0;
+    box-shadow: 0px 3px 4px #fff;
+    padding: 0 10px;
+
+    .box__input {
       border: 0;
-      box-shadow: 0px 3px 4px #fff;
       padding: 0 10px;
+      box-shadow: 0px 3px 4px #fff;
+    }
 
-      .read__only--input
-      {
-        font-size: 18px;
+    span {
+      font-weight: 400;
+    }
 
-        input {
-          font-weight: 400;
-        }
+    .read__only--input
+    {
+      font-size: 18px;
+
+      input {
+        font-weight: 400;
       }
     }
   }
@@ -120,8 +140,14 @@ const props = defineProps({
     {
       height: 20px;
 
-      .q-field__control {
+      .q-field {
+        font-size: 12px;
         height: 20px;
+
+        .q-field__control {
+          margin-top: -10px;
+          font-size: 12px;
+        }
       }
 
       input {

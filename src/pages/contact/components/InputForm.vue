@@ -1,9 +1,19 @@
 <script setup lang="ts">
+import { PropType } from 'vue'
+
 const props = defineProps({
+  modelValue: {
+    type: String as PropType<string | number | null | undefined>,
+    default: () => ('')
+  },
   title: {
     type: String,
     default: '',
     require: false
+  },
+  name: {
+    type: String,
+    required: true
   },
   type: {
     type: String,
@@ -17,7 +27,13 @@ const props = defineProps({
   <div class="page__contact--component-input">
     <span class="label__form">{{ props.title }}</span>
     <div :class="`box__input ${props.type}`">
-      <q-input dense borderless model-value=""></q-input>
+      <q-input
+      :model-value="(modelValue as string | null)"
+      @update:model-value="(event) => $emit('update:modelValue', event)"
+      borderless
+      :name="props.name"
+      dense
+      ></q-input>
     </div>
   </div>
 </template>

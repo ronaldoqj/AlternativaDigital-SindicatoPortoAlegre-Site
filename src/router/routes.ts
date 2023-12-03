@@ -20,6 +20,7 @@ const routes: RouteRecordRaw[] = [
           // { path: 'estudio-rao', name: 'studioRAO', component: () => import('pages/syndicate/StudioRaoPage.vue') }
         ]
       },
+      { path: 'busca', name: 'search', component: () => import('pages/search/SearchPage.vue') },
       { path: 'noticias', name: 'allNews', component: () => import('pages/news/AllNewsPage.vue') },
       { path: 'noticia/:id/:title', name: 'news', component: () => import('pages/news/IndexPage.vue') },
       { path: 'artigo/:id/:title', name: 'article', component: () => import('pages/article/IndexPage.vue') },
@@ -66,7 +67,10 @@ const routes: RouteRecordRaw[] = [
         name: 'unionizeIndex',
         component: () => import('pages/unionize/IndexPage.vue'),
         children: [
-          { path: '', name: 'unionize', component: () => import('pages/unionize/UnionizePage.vue') }
+          { path: '', name: 'unionize', component: () => import('pages/unionize/IntroductionPage.vue') },
+          { path: 'formulario', name: 'unionizeForm', component: () => import('pages/unionize/UnionizePage.vue') },
+          { path: 'encontrar-formulario', name: 'findForm', component: () => import('pages/unionize/FindFormPage.vue') },
+          { path: 'enviar-arquivo/:email?', name: 'uploadFile', component: () => import('pages/unionize/UploadFilePage.vue') }
         ]
       },
       {

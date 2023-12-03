@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue'
+import { PropType, computed, reactive, ref } from 'vue'
 
 const props = defineProps({
+  modelValue: {
+    type: String as PropType<string | number | null | undefined>,
+    default: () => ('')
+  },
   label: {
     type: String,
     default: '',
@@ -16,6 +20,19 @@ const props = defineProps({
     type: Boolean,
     default: false,
     require: false
+  },
+  size: {
+    type: String,
+    default: 'xl',
+    require: false
+  },
+  toPrint: {
+    type: Boolean,
+    require: false
+  },
+  required: {
+    type: Boolean,
+    required: false
   }
 })
 
@@ -48,11 +65,11 @@ const showLastRadio = computed((): boolean => {
 </script>
 
 <template>
-  <div class="page__contact--component-radio">
+  <div :class="`page__contact--component-radio ${props.required ? 'required' : ''} ${props.toPrint ? 'to--print' : ''}`">
     <span class="label__form">{{ props.label }}</span>
     <div :class="`box__input`">
-      <q-radio size="xl" v-model="shape" color="primary" val="n" :label="firstLabel" v-if="showFirstRadio" />
-      <q-radio size="xl" v-model="shape" color="primary" val="y" :label="lastLabel" v-if="showLastRadio" />
+      <q-radio :size="props.size" :model-value="(modelValue as string | null)" @update:model-value="(event) => $emit('update:modelValue', event)" :keep-color="props.required" color="primary" val="n" :label="firstLabel" v-if="showFirstRadio" />
+      <q-radio :size="props.size" :model-value="(modelValue as string | null)" @update:model-value="(event) => $emit('update:modelValue', event)" :keep-color="props.required" color="primary" val="y" :label="lastLabel" v-if="showLastRadio" />
     </div>
   </div>
 </template>
@@ -81,5 +98,24 @@ const showLastRadio = computed((): boolean => {
     }
   }
 
+  &.to--print
+  {
+    .label__form {
+      font-size: 12px;
+    }
+
+    .box__input
+    {
+      height: 20px;
+
+      .q-field__control {
+        height: 20px;
+      }
+
+      .q-radio__label {
+        font-size: 12px;
+      }
+    }
+  }
 }
 </style>

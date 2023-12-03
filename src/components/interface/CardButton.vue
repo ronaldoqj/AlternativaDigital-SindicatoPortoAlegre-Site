@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PropType, computed } from 'vue'
-import ReverseCorner from 'components/interface/ReverseCorner.vue'
 import { RouteLocationRaw, useRouter } from 'vue-router'
+import ReverseCorner from 'components/interface/ReverseCorner.vue'
 // import { colors, setCssVar } from 'quasar'
 
 // const { getPaletteColor } = colors
@@ -19,6 +19,10 @@ const props = defineProps({
     default: () => { return 'accent' },
     require: false
   },
+  maxWidth: {
+    type: String,
+    require: false
+  },
   background: {
     type: String,
     default: () => { return 'quaternary' },
@@ -26,7 +30,7 @@ const props = defineProps({
   },
   route: {
     type: Object as PropType<RouteLocationRaw>,
-    default: () => ({ name: 'servicos' }),
+    default: () => ({ }),
     required: false
   }
 })
@@ -39,6 +43,10 @@ const resolveBackground = computed((): string => {
 
 const resolveColor = computed((): string => {
   return props.color ? `text-${props.color}` : ''
+})
+
+const resolveMaxWidth = computed((): string => {
+  return props.maxWidth ? `max-width: ${props.maxWidth};` : ''
 })
 
 const clickRoute = (route: RouteLocationRaw) => {
@@ -55,11 +63,11 @@ const clickRoute = (route: RouteLocationRaw) => {
 <template>
   <div
     class="component__interface--card-button"
-    :style="`background: url(${props.image}) center/cover;`"
+    :style="`background: url(${props.image}) center/cover; ${resolveMaxWidth}`"
     @click="clickRoute(props.route)"
   >
     <ReverseCorner :size="80" :color="props.background" />
-    <div :class="`title ${resolveColor} ${resolveBackground}`" :style="`background-color: $primary`">{{ props.title }}</div>
+    <div :class="`title ${resolveColor} ${resolveBackground}`" :style="`background-color: $primary`"><slot></slot> {{ props.title }}</div>
   </div>
 </template>
 
