@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { AxiosError } from 'axios'
 import SearchService from 'src/services/SearchService'
+import { useInputsStore } from 'stores/inputs-store'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import TitleLastItem from 'components/interface/TitleLastItem.vue'
@@ -22,7 +23,7 @@ const staticState = {
 }
 const state = reactive({
   searchInput: {
-    value: null
+    value: null as null | string
   },
   banks: {
     value: { label: 'Todos os bancos', value: null } as ISelectOption,
@@ -131,11 +132,17 @@ const bankSelectedValue = computed(() => {
   return state.banks.value.value
 })
 
+const initSearchValue = () => {
+  state.searchInput.value = useInputsStore().getSearch
+  useInputsStore().setSearch(null)
+}
+
 watch(bankSelectedValue, () => {
   triggerGetNews()
 })
 
 onMounted(() => {
+  initSearchValue()
   getBanks()
   getNews()
   initTabMenu()
