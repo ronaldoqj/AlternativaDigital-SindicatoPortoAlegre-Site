@@ -183,15 +183,33 @@ watch(geralNews, newValue => {
       display: flex;
       justify-content: center;
     }
-    .title__page {
+
+    .title__page
+    {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      flex-direction: column-reverse;
+      transition: 0.3s ease-in-out;
 
       .input--search {
         flex-grow: 1;
-        margin-left: 20px;
-        max-width: 530px;
+        margin: 0 0 20px 0;
+      }
+    }
+
+    @media only screen and (min-width: $breakpoint-sm)
+    {
+      .title__page
+      {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .input--search {
+          margin-left: 20px;
+          max-width: 530px;
+          margin: 0 20px 0 0;
+        }
       }
     }
   }
