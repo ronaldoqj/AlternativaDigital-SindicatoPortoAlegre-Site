@@ -153,7 +153,7 @@ onMounted(() => {
   <q-page class="row justify-evenly">
     <div id="page__all--news" class="col">
       <LayoutSection background="tertiary" type="top" cornerColor="secondary" min-height>
-        <TitleDefault title="Busca" color="primary" />
+        <TitleDefault title="Busca" color="primary" class="q-mb-sm" />
         <section class="search__input">
           <div class="box__input--search">
             <InputForm
