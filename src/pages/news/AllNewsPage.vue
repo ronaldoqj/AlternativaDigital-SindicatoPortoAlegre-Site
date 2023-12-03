@@ -1,23 +1,30 @@
 <script setup lang="ts">
+import { computed, onMounted, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import { AxiosError } from 'axios'
+import { useInputsStore } from 'stores/inputs-store'
 import NewsService from 'src/services/NewsService'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import TitleLastItem from 'components/interface/TitleLastItem.vue'
 import IconDefault from 'components/interface/IconDefault.vue'
 import NewsItem from 'components/interface/NewsItem.vue'
+import InputForm from 'components/inputs/InputForm.vue'
 import SkeletonCardNews from 'components/interface/skeletons/SkeletonCardNews.vue'
 import { getValidImage, convertURL } from 'src/helpers/helpers'
 import { ITabsIcons } from 'src/types/IDefaults'
 import { INews, IPagination, IResponseNews } from 'src/types/INews'
-import { computed, onMounted, reactive } from 'vue'
 
+const router = useRouter()
 const staticState = {
   tabMenu: {
     oldValue: null as null | number
   }
 }
 const state = reactive({
+  searchInput: {
+    value: null
+  },
   news: {
     list: [] as INews[],
     lastPage: 0
@@ -95,6 +102,12 @@ const triggerGetNews = () => {
   getNews()
 }
 
+const toSearchPage = () => {
+  console.log('click to SearchPage')
+  useInputsStore().setSearch(state.searchInput.value)
+  router.push({ name: 'search' })
+}
+
 onMounted(() => {
   getNews()
   initTabMenu()
@@ -105,7 +118,19 @@ onMounted(() => {
   <q-page class="row justify-evenly">
     <div id="page__all--news" class="col">
       <LayoutSection background="tertiary" type="top" cornerColor="secondary" min-height>
-        <TitleDefault title="Notícias" color="primary" />
+        <section class="title__page">
+          <TitleDefault title="Notícias" color="primary" />
+          <div class="input--search">
+            <InputForm
+              v-model="state.searchInput.value"
+              @clickToSearch="toSearchPage()"
+              placeholder="Pesquisar"
+              name="search"
+              typeSearch
+              class="input"
+            />
+          </div>
+        </section>
         <section class="filters">
           <div class="component_tabs q-mt-sm">
             <div class="container__tabs">
@@ -202,9 +227,20 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-
 #page__all--news
 {
+  .title__page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .input--search {
+      flex-grow: 1;
+      margin-left: 20px;
+      max-width: 530px;
+    }
+  }
+
   .list {
     margin-top: 40px;
   }

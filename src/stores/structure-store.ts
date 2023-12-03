@@ -4,7 +4,7 @@ import { TStructureScreenSize, TStructureScreenDevice } from 'src/types/IDefault
 /**
  * Functionality developed in App.vue
  */
-export const useStructureStore = defineStore('counter', {
+export const useStructureStore = defineStore('structure', {
   state: () => ({
     screen: {
       screenSize: 'xs' as TStructureScreenSize,
