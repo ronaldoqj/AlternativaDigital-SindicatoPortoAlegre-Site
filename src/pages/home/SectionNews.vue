@@ -2,11 +2,13 @@
 import { computed, reactive, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { AxiosError } from 'axios'
+import { useInputsStore } from 'stores/inputs-store'
 import { getValidImage, convertURL } from 'src/helpers/helpers'
 import NewsService from 'src/services/NewsService'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import ButtonDefault from 'components/interface/ButtonDefault.vue'
 import NewsItem from 'components/interface/NewsItem.vue'
+import InputForm from 'components/inputs/InputForm.vue'
 import { INews, IPagination, IResponseNews } from 'src/types/INews'
 import TitleLastItem from 'components/interface/TitleLastItem.vue'
 
@@ -20,6 +22,9 @@ const props = defineProps({
 
 const router = useRouter()
 const state = reactive({
+  searchInput: {
+    value: null
+  },
   news: {
     geral: {
       page: 1,
@@ -74,14 +79,32 @@ const moreNews = () => {
     })
 }
 
+const toSearchPage = () => {
+  console.log('click to SearchPage')
+  useInputsStore().setSearch(state.searchInput.value)
+  router.push({ name: 'search' })
+}
+
 watch(geralNews, newValue => {
   state.news.geral.list = newValue
 })
 </script>
 
 <template>
-  <div class="section__default">
-    <TitleDefault title="Notícias" color="primary" />
+  <div class="section__default section--news">
+    <section class="title__page q-mb-xl">
+      <TitleDefault title="Notícias" color="primary" />
+      <div class="input--search">
+        <InputForm
+          v-model="state.searchInput.value"
+          @clickToSearch="toSearchPage()"
+          placeholder="Pesquisar"
+          name="search"
+          typeSearch
+          class="input"
+        />
+      </div>
+    </section>
     <div class="row q-mb-md q-col-gutter-md">
       <div v-if="props.news?.highlights && props.news?.highlights.length > 0" class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm">
         <NewsItem
@@ -153,9 +176,23 @@ watch(geralNews, newValue => {
 </template>
 
 <style lang="scss">
-  .box__btn--more
+  .section--news
   {
-    display: flex;
-    justify-content: center;
+    .box__btn--more
+    {
+      display: flex;
+      justify-content: center;
+    }
+    .title__page {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .input--search {
+        flex-grow: 1;
+        margin-left: 20px;
+        max-width: 530px;
+      }
+    }
   }
 </style>
