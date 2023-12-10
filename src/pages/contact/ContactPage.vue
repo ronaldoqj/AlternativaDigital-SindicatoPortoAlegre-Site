@@ -228,7 +228,7 @@ const onSubmit = (evt:any) => {
   </LayoutSection>
   <LayoutSection background="tertiary" type="banner" cornerColor="secondary" min-height>
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12467.796408773884!2d-9.0460533!3d38.62705195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-PT!2spt!4v1694046684967!5m2!1spt-PT!2spt"
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3454.2022427409574!2d-51.2324297!3d-30.0310552!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9519791027dfa4b7%3A0xe0302d31c109cb1a!2sSindBanc%C3%A1rios%20%7C%20Sindicato%20dos%20Banc%C3%A1rios%20de%20Porto%20Alegre%20e%20Regi%C3%A3o!5e0!3m2!1spt-PT!2spt!4v1702086895251!5m2!1spt-PT!2spt"
       width="100%"
       height="870"
       style="border:0;"

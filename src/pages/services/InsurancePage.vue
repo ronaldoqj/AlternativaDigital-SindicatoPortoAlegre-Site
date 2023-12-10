@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { reactive } from 'vue'
+import { baseURL } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
 // import TabsCategories from 'components/interface/TabsCategories.vue'
 import InsuranceItem from 'components/interface/InsuranceItem.vue'
-import { reactive } from 'vue'
 
 const state = reactive({
   item: {
@@ -439,7 +440,7 @@ const state = reactive({
 <template>
   <div id="page__services--insurance" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop src="/assets/image/tests/test-6.jpg" />
+      <BannerTop :src="`${baseURL}temporary/images/services/convenios.jpg`" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="secondary">

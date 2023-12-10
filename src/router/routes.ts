@@ -25,6 +25,14 @@ const routes: RouteRecordRaw[] = [
       { path: 'noticia/:id/:title', name: 'news', component: () => import('pages/news/IndexPage.vue') },
       { path: 'artigo/:id/:title', name: 'article', component: () => import('pages/article/IndexPage.vue') },
       {
+        path: 'agenda',
+        name: 'agendaIndex',
+        component: () => import('pages/agenda/IndexPage.vue'),
+        children: [
+          { path: ':id', name: 'agenda', component: () => import('pages/agenda/AgendaPage.vue') }
+        ]
+      },
+      {
         path: 'servicos',
         name: 'servicesIndex',
         component: () => import('pages/services/IndexPage.vue'),
@@ -70,7 +78,7 @@ const routes: RouteRecordRaw[] = [
           { path: '', name: 'unionize', component: () => import('pages/unionize/IntroductionPage.vue') },
           { path: 'formulario', name: 'unionizeForm', component: () => import('pages/unionize/UnionizePage.vue') },
           { path: 'encontrar-formulario', name: 'findForm', component: () => import('pages/unionize/FindFormPage.vue') },
-          { path: 'enviar-arquivo/:email?', name: 'uploadFile', component: () => import('pages/unionize/UploadFilePage.vue') }
+          { path: 'enviar-arquivo/:cpf?', name: 'uploadFile', component: () => import('pages/unionize/UploadFilePage.vue') }
         ]
       },
       {

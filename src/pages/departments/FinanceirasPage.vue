@@ -160,17 +160,22 @@ onMounted(() => {
       </div>
     </LayoutSection>
 
-    <LayoutSection background="quaternary" cornerColor="tertiary">
+    <LayoutSection v-if="false" background="quaternary" cornerColor="tertiary">
       <TitleDefault class="q-mb-xl" title="Documentos" />
       <CarouselSlide v-if="state.documents.items.listProp.length" :listItems="state.documents.items" :component-item="freezeComponentDocument" item-class="departments__legal--document-item" />
     </LayoutSection>
 
-    <LayoutSection background="tertiary" cornerColor="quaternary">
+    <!-- <LayoutSection background="tertiary" cornerColor="quaternary"> -->
+    <LayoutSection background="quaternary" cornerColor="tertiary">
       <RelatedPublications v-if="state.relatedDepartments.list.length" :list="state.relatedDepartments.list" />
-      <TitleDefault v-else class="q-my-xl" title="Nenhuma publicação relacionada encontrada" only-text />
+      <div v-else>
+        <TitleDefault title="Publicações Relacionadas" />
+        <TitleDefault class="q-my-xl" title="Nenhuma publicação relacionada encontrada" only-text />
+      </div>
     </LayoutSection>
 
-    <LayoutSection background="quaternary" cornerColor="secondary">
+    <!-- <LayoutSection background="quaternary" cornerColor="secondary"> -->
+    <LayoutSection background="tertiary" cornerColor="secondary">
       <TitleDefault class="q-mb-xl" title="Membros por equipe" />
       <div class="row">
         <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3" v-for="(member, key) in (state.legalMembers.items.listProp as IItemMember[])" :key="key">

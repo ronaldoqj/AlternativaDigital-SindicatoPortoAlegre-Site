@@ -186,7 +186,7 @@ onMounted(() => {
       </div>
     </LayoutSection>
 
-    <LayoutSection background="quaternary" cornerColor="tertiary">
+    <LayoutSection v-if="false" background="quaternary" cornerColor="tertiary">
       <TitleDefault class="q-mb-xl" title="Documentos" />
       <!-- <DocumentItem title="Guia 2023" description="Lorem ipsum dolor sit amet, consectetuer" />
       <component :is="documentItem" v-bind="props"></component> -->
@@ -194,9 +194,13 @@ onMounted(() => {
       <CarouselSlide v-if="state.documents.items.listProp.length" :listItems="state.documents.items" :component-item="freezeComponentDocument" item-class="departments__legal--document-item" />
     </LayoutSection>
 
-    <LayoutSection background="tertiary" cornerColor="quaternary">
+    <!-- <LayoutSection background="tertiary" cornerColor="quaternary"> -->
+    <LayoutSection background="quaternary" cornerColor="tertiary">
       <RelatedPublications v-if="state.relatedDepartments.list.length" :list="state.relatedDepartments.list" />
-      <TitleDefault v-else class="q-my-xl" title="Nenhuma publicação relacionada encontrada" only-text />
+      <div v-else>
+        <TitleDefault title="Publicações Relacionadas" />
+        <TitleDefault class="q-my-xl" title="Nenhuma publicação relacionada encontrada" only-text />
+      </div>
       <!-- <CarouselSlide v-if="state.departmentPublications.items.listProp.length" :listItems="state.departmentPublications.items" :items-screen-break="state.departmentPublications.items.screenBreak" :component-item="freezeComponentDepartmentPublications" item-class="" /> -->
     </LayoutSection>
 
@@ -205,7 +209,8 @@ onMounted(() => {
       <SectionVideos />
     </LayoutSection> -->
 
-    <LayoutSection background="quaternary" cornerColor="secondary">
+    <!-- <LayoutSection background="quaternary" cornerColor="secondary"> -->
+    <LayoutSection background="tertiary" cornerColor="secondary">
       <TitleDefault class="q-mb-xl" title="Membros por equipe" />
       <!-- <p class="subtitle__legal-members">
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo

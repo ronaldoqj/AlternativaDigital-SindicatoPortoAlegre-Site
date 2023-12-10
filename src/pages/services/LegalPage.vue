@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { baseURL } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
@@ -20,14 +21,14 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
 <template>
   <div id="page__services--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop src="/assets/image/tests/test-6.jpg" />
+      <BannerTop :src="`${baseURL}temporary/images/services/juridico.jpg`" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="secondary">
       <div id="content__page--service-default-open">
         <TitleDefault class="q-mb-xl" title="Jurídico" />
         <div>
-          <ImageDefault class="images__floats left" src="/assets/image/tests/test-7.jpg" />
+          <ImageDefault class="images__floats left" :src="`${baseURL}temporary/images/services/juridico.jpg`" />
           <h4>O Espaço</h4>
           <p>It has survived not only five centuries. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
           <h4>Serviços</h4>
@@ -41,7 +42,7 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
         <div class="space__between"></div>
 
         <div>
-          <ImageDefault class="images__floats right" src="/assets/image/tests/test-7.jpg" />
+          <ImageDefault class="images__floats right" :src="`${baseURL}temporary/images/services/juridico.jpg`" />
           <h4>O Espaço</h4>
           <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
           <h4>Serviços</h4>

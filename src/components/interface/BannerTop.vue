@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import ImageDefault from 'components/interface/ImageDefault.vue'
 import { defaultImage } from 'src/helpers/helpers'
 

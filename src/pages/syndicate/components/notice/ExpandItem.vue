@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PropType, onMounted, computed, shallowRef } from 'vue'
+import { onMounted, computed, shallowRef } from 'vue'
 // import { ButtonDefaultSize, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
 
 const props = defineProps({

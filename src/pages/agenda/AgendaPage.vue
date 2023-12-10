@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { baseURL } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
-import BannerTop from 'components/interface/BannerTop.vue'
-import ImageDefault from 'components/interface/ImageDefault.vue'
+import CardAgendaDate from 'components/interface/CardAgendaDate.vue'
 // import { reactive } from 'vue'
 
 // const state = reactive({
@@ -19,16 +17,15 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
 </script>
 
 <template>
-  <div id="page__services--default-open" class="col">
-    <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop :src="`${baseURL}temporary/images/services/arquivo-historico.jpg`" />
-    </LayoutSection>
-
-    <LayoutSection background="tertiary" cornerColor="secondary">
+  <div id="page__agenda--default-open" class="col">
+    <LayoutSection background="tertiary" type="top" cornerColor="tertiary">
       <div id="content__page--service-default-open">
-        <TitleDefault class="q-mb-xl" title="Arquivo Histórico" />
+        <TitleDefault class="q-mb-xl" title="Agenda" />
         <div>
-          <ImageDefault class="images__floats left" :src="`${baseURL}temporary/images/services/arquivo-historico.jpg`" />
+          <div class="images__floats left">
+            <CardAgendaDate :dates="[ '22', '23', '29' ]" month="MAR" year="2023" />
+          </div>
+
           <p>
              Arquivo Histórico Sindicato dos Bancários de Porto Alegre e Região (AHSBPOA) O Arquivo Histórico Sindicato dos Bancários de Porto Alegre e Região (AHSBPOA) disponibiliza uma série de conjuntos documentais de diversos suportes, com informações que vão além da representação de uma classe profissional.
           </p>
@@ -67,11 +64,9 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
 </template>
 
 <style lang="scss">
-#page__services--default-open
+#page__agenda--default-open
 {
   .images__floats {
-    width: 100%;
-    height: 430px;
     border-radius: 40px;
     margin-bottom: 10px;
   }
@@ -104,7 +99,6 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
   {
     .images__floats
     {
-      width: 400px;
 
       &.left {
         float: left;

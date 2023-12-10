@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { useQuasar } from 'quasar'
+import { baseURL } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
-import { useQuasar } from 'quasar'
-import { reactive, computed, onMounted, watch, shallowRef } from 'vue'
+import { reactive, computed, onMounted, watch } from 'vue'
+// import { shallowRef } from 'vue'
 
 import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
-import ExpandItem from 'src/pages/syndicate/components/notice/ExpandItem.vue'
+// import ExpandItem from 'src/pages/syndicate/components/notice/ExpandItem.vue'
 import DocumentItem from 'src/pages/syndicate/components/notice/DocumentItem.vue'
 
 interface IItemPublication {
@@ -16,7 +18,7 @@ interface IItemPublication {
 }
 
 const $q = useQuasar()
-const freezeComponentDocument = shallowRef(DocumentItem)
+// const freezeComponentDocument = shallowRef(DocumentItem)
 const state = reactive({
   items: {
     currentScreen: {} as IDinamicScreen,
@@ -26,21 +28,13 @@ const state = reactive({
 
 const setListStatute = () => {
   const item: IItemPublication = {
-    subtitle: 'Congresso Fetrafi-RS',
-    title: 'Edital de convocação de congresso Estadual',
+    subtitle: 'Jornal - NOV 2023',
+    title: 'O Bancário',
     src: '/assets/svg/icon-pdf.svg#icon_pdf',
-    link: ''
+    link: `${baseURL}temporary/documents/syndicate/publications/o-bancario-novembro-2023.pdf`
   }
-  // const items = [item, item, item, item, item, item]
-  state.items.listProp = [item, item, item, item, item, item]
-  // const list = [
-  //   { title: '2023', items, open: true },
-  //   { title: '2024', items, open: false },
-  //   { title: '2025', items, open: false },
-  //   { title: '2026', items, open: false }
-  // ]
-
-  // state.items.listProp = list
+  // state.items.listProp = [item, item, item, item, item, item]
+  state.items.listProp = [item]
 }
 
 const currentScreenSize = computed((): TScreenSize => {

@@ -11,8 +11,8 @@ class UnionizeService {
     return http.post(`${prefix}/register${endURL}`, data)
   }
 
-  getByEmail (data:unknown): Promise<IUnionize> {
-    return http.post(`${prefix}/get-register-by-email${endURL}`, data)
+  getByCpf (data:unknown): Promise<IUnionize> {
+    return http.post(`${prefix}/get-register-by-cpf${endURL}`, data)
   }
 
   registerPdfFile (data:unknown): Promise<IUnionize> {

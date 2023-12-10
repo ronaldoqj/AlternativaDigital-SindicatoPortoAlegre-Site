@@ -11,9 +11,8 @@ import ButtonCardFile from './components/ButtonCardFile.vue'
 import CardAlert from './components/CardAlert.vue'
 import NewsService from 'src/services/UnionizeService'
 import { IUnionize } from 'src/types/IUnionize'
-import PrintForm from './components/PrintForm.vue'
 
-type TControlFomr = 'form' | 'print' | 'message'
+type TControlFomr = 'form' | 'message'
 
 const route = useRoute()
 const router = useRouter()
@@ -21,18 +20,16 @@ const router = useRouter()
 const state = reactive({
   status: 'done',
   modelUpload: null,
-  email: '',
+  cpf: '',
   controlForm: {
     show: 'form' as TControlFomr
   },
   form: {}
 })
 
-const getForm = (email: string) => {
-  console.log('getForm by email', email)
-  NewsService.getByEmail({ email })
+const getForm = (cpf: string) => {
+  NewsService.getByCpf({ cpf })
     .then((response:any) => {
-      console.log('response', response)
       state.form = response.data
     })
     .catch((error:AxiosError) => {
@@ -51,13 +48,10 @@ const sendPdfFile = () => {
   // state.modelUpload
   const formData = new FormData()
   formData.append('pdf_file', state.modelUpload as any)
-  formData.append('email', state.email)
-
-  console.log('state.modelUpload', state.modelUpload)
+  formData.append('cpf', state.cpf)
 
   NewsService.registerPdfFile(formData)
     .then((response:IUnionize) => {
-      console.log('response RegisterPdfFile', response)
       state.controlForm.show = 'message'
     })
     .catch((error:AxiosError) => {
@@ -74,27 +68,7 @@ const showBtnToSendFromCardAlert = computed(() => {
 })
 
 const downloadPdf = () => {
-  window.open(`${baseURL}api/site/unionize/print/${state.email}`, '_blank')
-  // NewsService.print('1')
-  //   .then((response:IUnionize) => {
-  //     console.log('print', response)
-  //   })
-  //   .catch((error:AxiosError) => {
-  //     console.log('error', error)
-  //     alert('Por favor selecione um documento PDF válido')
-  //   })
-  //   .then(() => {
-  //     console.log('finally service RegisterPdfFile')
-  //   })
-  /*
-  state.controlForm.show = 'print'
-  console.log('downloadPDF')
-
-  const interval = setInterval(() => {
-    state.controlForm.show = 'form'
-    clearInterval(interval)
-  }, 3000)
-  */
+  window.open(`${baseURL}api/site/unionize/print/${state.cpf}`, '_blank')
 }
 
 const linkToExternal = () => {
@@ -102,29 +76,25 @@ const linkToExternal = () => {
 }
 
 onMounted(() => {
-  let emailFound = false
-  console.log('route.params', route.params)
+  let cpfFound = false
 
   if (route.params) {
-    if ('email' in route.params) {
-      if (route.params.email.length) {
-        state.email = route.params.email as string
-        getForm(route.params.email as string)
-        emailFound = true
+    if ('cpf' in route.params) {
+      if (route.params.cpf.length) {
+        state.cpf = route.params.cpf as string
+        getForm(route.params.cpf as string)
+        cpfFound = true
       }
     }
   }
 
-  if (!emailFound) {
+  if (!cpfFound) {
     redirectToFirstStep()
   }
 })
 </script>
 
 <template>
-  <section v-if="state.controlForm.show === 'print'">
-    <PrintForm :form="state.form" />
-  </section>
   <LayoutSection background="tertiary" type="top" cornerColor="secondary" min-height>
     <section class="q-mb-xl" id="page__upload--File" v-if="state.controlForm.show === 'form'">
       <TitleDefault title="Sindicalize-se" />

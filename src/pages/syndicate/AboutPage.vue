@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { baseURL } from 'src/helpers/helpers'
+import { reactive, computed, onMounted, watch } from 'vue'
 import { useQuasar } from 'quasar'
+import { baseURL } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
 // import CarouselSlide from 'src/components/interface/CarouselSlide.vue'
-import { reactive, computed, onMounted, watch } from 'vue'
 import MembersItem from 'src/pages/departments/components/MembersItem.vue'
 import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
 import StatuteItem from 'src/pages/syndicate/components/about/StatuteItem.vue'
@@ -115,7 +115,7 @@ const state = reactive({
     {
       section: 'Secretaria geral',
       list: [
-        { title: 'Luis Gustavo', surname: 'Vargas Soares', subtitle: 'Secretaria Geral', description: 'Bradesco', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` },
+        { title: 'Luis Gustavo', surname: 'Vargas Soares', subtitle: 'Secretaria Geral', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/secretaria_geral_luis_gustavo.jpg` },
         { title: 'Silvia Regina', surname: 'de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/002.jpg` },
         { title: 'Eduardo', surname: 'Munhoz Baptista', subtitle: 'Secretaria Geral', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/003.jpg` }
       ]
@@ -125,7 +125,7 @@ const state = reactive({
       list: [
         { title: 'Luiz', surname: 'Cassemiro', subtitle: 'Secretaria Executiva', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/006.jpg` },
         { title: 'Daniela', surname: 'Silva de Souza', subtitle: 'Secretaria Executiva', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/005.jpg` },
-        { title: 'Jailson', surname: 'Bueno Prodes', subtitle: 'Secretaria Executiva', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` }
+        { title: 'Jailson', surname: 'Bueno Prodes', subtitle: 'Secretaria Executiva', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/secretaria_executiva_jailson.jpg` }
       ]
     },
     {
@@ -140,8 +140,8 @@ const state = reactive({
       section: 'Administrativo',
       list: [
         { title: 'Antônio Augusto', surname: 'Borges de Borges', subtitle: 'Administrativo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/008.jpg` },
-        { title: 'Jorge Luis', surname: 'Consminski Lucas', subtitle: 'Administrativo', description: 'Bradesco', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` },
-        { title: 'Ronaldo', surname: 'Souza Gross', subtitle: 'Administrativo', description: 'Bradesco', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` }
+        { title: 'Jorge Luis', surname: 'Consminski Lucas', subtitle: 'Administrativo', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/administrativo_jorge_lucas.jpg` },
+        { title: 'Ronaldo', surname: 'Souza Gross', subtitle: 'Administrativo', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/administrativo_ronaldo_gross.jpg` }
       ]
     },
     {
@@ -155,7 +155,7 @@ const state = reactive({
     {
       section: 'Jurídico',
       list: [
-        { title: 'Simoni', surname: 'Fernandes Medeiros', subtitle: 'Jurídico', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` },
+        { title: 'Simoni', surname: 'Fernandes Medeiros', subtitle: 'Jurídico', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/juridico_simoni_medeiros.jpg` },
         { title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/011.jpg` }
       ]
     },
@@ -185,9 +185,9 @@ const state = reactive({
     {
       section: 'Esporte e Lazer',
       list: [
-        { title: 'Gerson Marques', surname: 'dos Reis', subtitle: 'Esporte e Lazer', description: 'Banrisul', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` },
+        { title: 'Gerson Marques', surname: 'dos Reis', subtitle: 'Esporte e Lazer', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/esporte_e_lazer_gerson.jpg` },
         { title: 'Carlos Odone', surname: 'Dahlheimer Viale', subtitle: 'Esporte e Lazer', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` },
-        { title: 'Rogério', surname: 'de Rodrigues Rodrigues', subtitle: 'Esporte e Lazer', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` }
+        { title: 'Rogério', surname: 'de Rodrigues Rodrigues', subtitle: 'Esporte e Lazer', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/esporte_e_lazer_rogerio.jpg` }
       ]
     },
     {
@@ -203,7 +203,7 @@ const state = reactive({
       list: [
         { title: 'Natalina', surname: 'Rosane Gue', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/019.jpg` },
         { title: 'Claudete', surname: 'Genuíno Marocco', subtitle: 'Aposentados e Seguridade Social', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/018.jpg` },
-        { title: 'Ida Jaqueline', surname: 'Pellegino', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` }
+        { title: 'Ida Jaqueline', surname: 'Pellegino', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/aposentados_e_seguridade_social_ida.jpg` }
       ]
     },
     {
@@ -211,7 +211,7 @@ const state = reactive({
       list: [
         { title: 'Virgínia', surname: 'Faria', subtitle: 'Formação', description: 'In Memoriam', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` },
         { title: 'Jairo', surname: 'Severo Soares', subtitle: 'Formação', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/020.jpg` },
-        { title: 'Itamara', surname: 'Pinto Brum', subtitle: 'Formação', description: 'Banrisul', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` }
+        { title: 'Itamara', surname: 'Pinto Brum', subtitle: 'Formação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/formacao_itamara.jpg` }
       ]
     },
     {

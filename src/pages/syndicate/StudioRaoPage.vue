@@ -149,12 +149,13 @@ onMounted(() => {
       </div>
     </LayoutSection>
 
-    <LayoutSection background="quaternary" cornerColor="tertiary">
+    <LayoutSection v-if="false" background="quaternary" cornerColor="tertiary">
       <TitleDefault class="q-mb-xl" title="Vídeos do estúdio RAO" />
       <SectionVideos />
     </LayoutSection>
 
-    <LayoutSection background="tertiary" cornerColor="secondary">
+    <!-- <LayoutSection background="tertiary" cornerColor="secondary"> -->
+    <LayoutSection background="quaternary" cornerColor="secondary">
       <div class="q-my-xl"></div>
     </LayoutSection>
   </div>
