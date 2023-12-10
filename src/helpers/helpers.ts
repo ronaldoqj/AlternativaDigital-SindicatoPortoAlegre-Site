@@ -11,6 +11,24 @@ export const xdebugTrigger = process.env.xdebugTrigger ? process.env.xdebugTrigg
 export const defaultImagePath = 'assets/images/image-default.jpg'
 export const defaultImage = `${baseURL}${defaultImagePath}`
 export const carouselSettings = { autoPlay: 10000 }
+export const gender = [
+  { value: '', label: '' },
+  { value: 'feminino', label: 'Feminino' },
+  { value: 'masculino', label: 'Masculino' },
+  { value: 'intersexo', label: 'Intersexo' },
+  { value: 'nao_binario', label: 'Não Binário' },
+  { value: 'outros', label: 'Outros' },
+  { value: 'nao_informado', label: 'Não Informado' }
+]
+export const color = [
+  { value: '', label: '' },
+  { value: 'branca', label: 'Branca' },
+  { value: 'preta', label: 'Preta' },
+  { value: 'amarela', label: 'Amarela' },
+  { value: 'parda', label: 'Parda' },
+  { value: 'indigena', label: 'Indigena' },
+  { value: 'nao_informado', label: 'Não Informado' }
+]
 export const states = [
   // { value: 'ac', label: 'Acre' },
   // { value: 'al', label: 'Alagoas' },
@@ -43,6 +61,42 @@ export const states = [
 /**
  * Helper Functions
  */
+export const filterOnlyNumbers = (str:string) => {
+  return str.replace(/\D/g, '')
+}
+
+export const getDay = (date: string) => {
+  const day = date.split('-')
+  return day[2]
+}
+
+export const shortMonth = (date: string) => {
+  const month = date.split('-')
+
+  // Obtendo o mês da segunda parte (índice 1)
+  const monthNumber = parseInt(month[1], 10)
+
+  // Mapeando o número do mês para o nome do mês
+  const meses = [
+    'JAN',
+    'FEV',
+    'MAR',
+    'ABR',
+    'MAI',
+    'JUN',
+    'JUL',
+    'AGO',
+    'SET',
+    'OUT',
+    'NOV',
+    'DEZ'
+  ]
+
+  // Obtendo o nome do mês usando o mapeamento
+  const monthName = meses[monthNumber - 1]
+  return monthName // Saída: DEZ
+}
+
 export const metaImage = (path: string) => {
   let image = defaultImage
   if (path.length) {

@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import IconDefault from 'components/interface/IconDefault.vue'
 
-const props = defineProps({
-  step: {
-    type: String,
-    require: true
-  },
-  title: {
-    type: String,
-    require: true
-  },
-  description: {
-    type: String,
-    require: true
-  }
-})
+// const props = defineProps({
+//   step: {
+//     type: String,
+//     require: true
+//   },
+//   title: {
+//     type: String,
+//     require: true
+//   },
+//   description: {
+//     type: String,
+//     require: true
+//   }
+// })
 </script>
 
 <template>

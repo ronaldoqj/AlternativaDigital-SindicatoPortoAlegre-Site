@@ -11,7 +11,7 @@ import RadioForm from 'src/pages/unionize/components/RadioForm.vue'
 import CheckBoxForm from 'src/pages/unionize/components/CheckBoxForm.vue'
 import NewsUnionize from 'src/services/UnionizeService'
 import { AxiosError } from 'axios'
-import { states } from 'src/helpers/helpers'
+import { gender, color, states, filterOnlyNumbers } from 'src/helpers/helpers'
 
 type TFormStates = 'edition' | 'review' | 'done'
 const router = useRouter()
@@ -40,7 +40,8 @@ const state = reactive({
         issuingAuthority: { value: null as null | string, label: 'Orgão Emissor', name: 'issuing_authority', required: true },
 
         birth: { value: null as null | string, label: 'Data de nascimento', name: 'birth', mask: '##  /  ##  /  ####', required: true },
-        sex: { value: null as null | string, label: 'Sexo', name: 'sex', required: true },
+        gender: { value: { value: '', label: '' }, label: 'Gênero', name: 'gender', options: gender, required: true },
+        color: { value: { value: '', label: '' }, label: 'Cor', name: 'color', options: color, required: true },
         maritalStatus: { value: null as null | string, label: 'Estado civil', name: 'marital_status', required: true },
 
         email: { value: null as null | string, label: 'Email', name: 'email', required: true },
@@ -53,7 +54,7 @@ const state = reactive({
 
         neighborhood: { value: null as null | string, label: 'Bairro', name: 'neighborhood', required: true },
         city: { value: null as null | string, label: 'Cidade', name: 'city', required: true },
-        state: { value: null as null | object, label: 'Estado', name: 'state', options: brazilStates, required: true }
+        state: { value: { value: 'rs', label: 'Rio Grande do Sul' }, label: 'Estado', name: 'state', options: brazilStates, required: true }
       },
       authorizationData: {
         confirm: { value: true },
@@ -112,7 +113,8 @@ const disableConfirm = computed((): boolean => {
   if (pData.rg.required && _.isEmpty(pData.rg.value)) { disableBtn = true }
   if (pData.issuingAuthority.required && _.isEmpty(pData.issuingAuthority.value)) { disableBtn = true }
   if (pData.birth.required && _.isEmpty(pData.birth.value)) { disableBtn = true }
-  if (pData.sex.required && _.isEmpty(pData.sex.value)) { disableBtn = true }
+  if (pData.gender.required && _.isEmpty(pData.gender.value)) { disableBtn = true }
+  if (pData.color.required && _.isEmpty(pData.color.value)) { disableBtn = true }
   if (pData.maritalStatus.required && _.isEmpty(pData.maritalStatus.value)) { disableBtn = true }
   if (pData.email.required && _.isEmpty(pData.email.value)) { disableBtn = true }
   if (pData.phone.required && _.isEmpty(pData.phone.value)) { disableBtn = true }
@@ -161,7 +163,8 @@ const clearForm = (): void => {
   pData.rg.value = null
   pData.issuingAuthority.value = null
   pData.birth.value = null
-  pData.sex.value = null
+  pData.gender.value = { value: '', label: '' }
+  pData.color.value = { value: '', label: '' }
   pData.maritalStatus.value = null
   pData.email.value = null
   pData.phone.value = null
@@ -171,7 +174,7 @@ const clearForm = (): void => {
   pData.complement.value = null
   pData.neighborhood.value = null
   pData.city.value = null
-  pData.state.value = null
+  pData.state.value = { value: 'rs', label: 'Rio Grande do Sul' }
   aData.confirm.value = false
   aData.bank.value = null
   aData.agency.value = null
@@ -181,8 +184,7 @@ const clearForm = (): void => {
 const saveForm = () => {
   NewsUnionize.register(state.form.inputs)
     .then((response:any) => {
-      console.log('Unionize Register', response)
-      toConfirmForm(response.data.email)
+      toConfirmForm(response.data.cpf)
     })
     .catch((error:AxiosError) => {
       console.log('error', error)
@@ -211,12 +213,13 @@ const testingForm = () => {
   // state.form.inputs.commercialData.commercialEmail.value = 'email@comercial.com'
 
   // state.form.inputs.personalData.name.value = 'Fulano'
-  // state.form.inputs.personalData.cpf.value = '00314565414'
+  // state.form.inputs.personalData.cpf.value = '11111111111'
   // state.form.inputs.personalData.rg.value = '546432131654'
   // state.form.inputs.personalData.issuingAuthority.value = 'SJS-RS'
   // state.form.inputs.personalData.birth.value = '13041984'
-  // state.form.inputs.personalData.sex.value = 'sex'
-  // state.form.inputs.personalData.maritalStatus.value = 'maritalStatus'
+  // state.form.inputs.personalData.gender.value = { value: 'masculino', label: 'Masculino' }
+  // state.form.inputs.personalData.color.value = { value: 'branca', label: 'Branca' }
+  // state.form.inputs.personalData.maritalStatus.value = 'Estado civil'
   // state.form.inputs.personalData.email.value = 'email@personal.com'
   // state.form.inputs.personalData.phone.value = '5133333333'
   // state.form.inputs.personalData.cellphone.value = '519999999999'
@@ -233,8 +236,9 @@ const testingForm = () => {
   // state.form.inputs.authorizationData.agency.value = 'Auth Agency'
 }
 
-const toConfirmForm = (email: string) => {
-  router.push({ name: 'uploadFile', params: { email } })
+const toConfirmForm = (cpf: string) => {
+  cpf = filterOnlyNumbers(cpf)
+  router.push({ name: 'uploadFile', params: { cpf } })
 }
 
 onMounted(() => {
@@ -287,10 +291,11 @@ onMounted(() => {
                 <div class="col-xs-12 col-sm-6 col-lg-2"><InputForm v-model="pData.issuingAuthority.value" :label="pData.issuingAuthority.label" :name="pData.rg.name" :read-only="formReadyOnly" :required="pData.issuingAuthority.required" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
-                <div class="col-xs-12 col-md-7 col-lg-4"><InputForm v-model="pData.birth.value" :label="pData.birth.label" :name="pData.birth.name" :read-only="formReadyOnly" :mask="pData.birth.mask" :required="pData.birth.required" /></div>
-                <!-- <div class="col-xs-12 col-md-5 col-sm-6 col-lg-3"><RadioForm label="Sexo" gender /></div> -->
-                <div class="col-xs-12 col-md-5 col-sm-6 col-lg-3"><InputForm v-model="pData.sex.value" :label="pData.sex.label" :name="pData.sex.name" :read-only="formReadyOnly" :required="pData.sex.required" /></div>
-                <div class="col-xs-12 col-sm-6 col-lg-5"><InputForm v-model="pData.maritalStatus.value" :label="pData.maritalStatus.label" :name="pData.maritalStatus.name" :read-only="formReadyOnly" :required="pData.maritalStatus.required" /></div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="pData.birth.value" :label="pData.birth.label" :name="pData.birth.name" :read-only="formReadyOnly" :mask="pData.birth.mask" :required="pData.birth.required" /></div>
+                <!-- <div class="col-xs-12 col-md-5 col-sm-6 col-lg-3"><RadioForm label="Gênero" gender /></div> -->
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><SelectForm v-model="pData.gender.value" :label="pData.gender.label" :name="pData.gender.name" :read-only="formReadyOnly" :options="pData.gender.options" :required="pData.gender.required" /></div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><SelectForm v-model="pData.color.value" :label="pData.color.label" :name="pData.color.name" :read-only="formReadyOnly" :options="pData.color.options" :required="pData.color.required" /></div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="pData.maritalStatus.value" :label="pData.maritalStatus.label" :name="pData.maritalStatus.name" :read-only="formReadyOnly" :required="pData.maritalStatus.required" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
                 <div class="col-xs-12 col-lg-6"><InputForm v-model="pData.email.value" :label="pData.email.label" :name="pData.email.name" :read-only="formReadyOnly" :required="pData.email.required" /></div>

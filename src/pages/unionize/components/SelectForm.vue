@@ -1,11 +1,12 @@
 <script setup lang="ts">
-// import { PropType } from 'vue'
+import { PropType } from 'vue'
 
 const props = defineProps({
-  // modelValue: {
-  //   type: Object as PropType<string | number | null | undefined>,
-  //   default: () => ({})
-  // },
+  modelValue: {
+    // type: Object as PropType<string | number | null | undefined>,
+    // type: Object,
+    required: true
+  },
   options: {
     type: Array,
     required: true
@@ -49,7 +50,7 @@ const props = defineProps({
     <span class="label__form">{{ props.label }}</span>
     <div class="box__input">
       <q-select
-        model-value="modelValue"
+        :model-value="modelValue"
         :options="props.options"
         @update:model-value="(event) => $emit('update:modelValue', event)"
         :readonly="props.readOnly"

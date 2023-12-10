@@ -2,6 +2,7 @@
 import { computed, onMounted, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { AxiosError } from 'axios'
+import { filterOnlyNumbers } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import NewsService from 'src/services/UnionizeService'
@@ -25,12 +26,12 @@ const state = reactive({
   }
 })
 
-const getForm = (email: string) => {
-  console.log('getForm by email', email)
-  NewsService.getByEmail({ email })
+const getForm = (cpf: string) => {
+  console.log('getForm by cpf', cpf)
+  NewsService.getByCpf({ cpf })
     .then((response:IUnionize) => {
       console.log('response', response)
-      redirectToLastStep(email)
+      redirectToLastStep(cpf)
     })
     .catch((error:AxiosError) => {
       console.log('error', error)
@@ -41,20 +42,21 @@ const getForm = (email: string) => {
     })
 }
 
-const redirectToLastStep = (email: string) => {
-  router.push({ name: 'uploadFile', params: { email } })
+const redirectToLastStep = (cpf: string) => {
+  cpf = filterOnlyNumbers(cpf)
+  router.push({ name: 'uploadFile', params: { cpf } })
 }
 
 const disableBtnToSend = computed(() => {
   let check = true
-  if (state.form.email.length > 3) {
+  if (state.form.cpf.length > 13) {
     check = false
   }
   return check
 })
 
 onMounted(() => {
-  // state.form.email = 'email@personal.com'
+  // state.form.cpf = '11111111111'
 })
 </script>
 
@@ -76,15 +78,15 @@ onMounted(() => {
           </div>
           <div class="offset-sm-2"></div>
         </div>
-        <div class="row q-col-gutter-md justify-center">
+        <!-- <div class="row q-col-gutter-md justify-center">
           <div class="col-xs-12 col-sm-6 offset-sm-2">
             <InputForm v-model="state.form.email" label="E-Mail" name="email" :required="true" />
           </div>
           <div class="offset-sm-2"></div>
-        </div>
+        </div> -->
         <div class="row q-col-gutter-md q-my-lg justify-center">
           <div class="col-xs-12 col-sm-6 offset-sm-2">
-            <q-btn color="octal" size="lg" class="default__btn confirm-btn" :label="state.controls.btnSend.title" @click="getForm(state.form.email)" :disable="disableBtnToSend" />
+            <q-btn color="octal" size="lg" class="default__btn confirm-btn" :label="state.controls.btnSend.title" @click="getForm(state.form.cpf)" :disable="disableBtnToSend" />
           </div>
           <div class="offset-sm-2"></div>
         </div>

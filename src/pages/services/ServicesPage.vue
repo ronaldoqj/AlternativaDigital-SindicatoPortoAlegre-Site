@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { baseURL } from 'src/helpers/helpers'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import CardButton from 'components/interface/CardButton.vue'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
@@ -10,10 +11,10 @@ import LayoutSection from 'layouts/components/LayoutSection.vue'
       <TitleDefault title="Serviços" />
       <div id="content__page--service">
         <div class="row q-col-gutter-md">
-          <div class="col-xs-12 col-lg-6"><CardButton image="/assets/image/tests/test-1.jpg" title="Convênios" :route="{name: 'servicesInsurance'}" /></div>
-          <div class="col-xs-12 col-lg-6"><CardButton image="/assets/image/tests/test-3.jpg" title="Arquivo Histórico" :route="{name: 'servicesHistoryFile'}" /></div>
-          <div class="col-xs-12 col-lg-6"><CardButton image="/assets/image/tests/test-5.jpg" title="Espaços" :route="{name: 'servicesSpaces'}" /></div>
-          <div class="col-xs-12 col-lg-6"><CardButton image="/assets/image/tests/test-6.jpg" title="Jurídico" :route="{name: 'servicesLegal'}" /></div>
+          <div class="col-xs-12 col-lg-6"><CardButton :image="`${baseURL}temporary/images/services/convenios.jpg`" title="Convênios" :route="{name: 'servicesInsurance'}" /></div>
+          <div class="col-xs-12 col-lg-6"><CardButton :image="`${baseURL}temporary/images/services/arquivo-historico.jpg`" title="Arquivo Histórico" :route="{name: 'servicesHistoryFile'}" /></div>
+          <!-- <div class="col-xs-12 col-lg-6"><CardButton image="/assets/image/tests/test-5.jpg" title="Espaços" :route="{name: 'servicesSpaces'}" /></div> -->
+          <div class="col-xs-12 col-lg-6"><CardButton :image="`${baseURL}temporary/images/services/juridico.jpg`" title="Jurídico" :route="{name: 'servicesLegal'}" /></div>
         </div>
       </div>
     </div>

@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { reactive, onMounted, computed } from 'vue'
-import { arrayChunk, carouselSettings } from 'src/helpers/helpers'
+import { useRouter } from 'vue-router'
+import { AxiosError } from 'axios'
+import AgendaService from 'src/services/AgendaService'
+import { arrayChunk, carouselSettings, getDay, shortMonth } from 'src/helpers/helpers'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import { useStructureStore } from 'src/stores/structure-store'
 import { TStructureScreenSize } from 'src/types/IDefaults'
 
+const router = useRouter()
+
 interface ICarouselItem {
   id: number
-  day: number
+  day: number | string
   month: string
   type?: 'text' | 'image'
   image?: string
@@ -54,6 +59,38 @@ const listItems = computed(() => {
 //   state.carousel.carouselData = arrayChunk(carouselData, 2) as unknown as Array<ICarouselItem>[]
 // }
 
+const getAgenda = () => {
+  AgendaService.list({})
+    .then((response:any) => {
+      console.log('response Agenda', response)
+      setAgenda(response.data)
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      //
+    })
+}
+
+const setAgenda = (agendas: any) => {
+  const newData:ICarouselItem[] = []
+
+  agendas.forEach((element:any) => {
+    const item: ICarouselItem = {
+      id: element.id,
+      day: getDay(element.scheduled_dates[0].scheduled_date) as string,
+      month: shortMonth(element.scheduled_dates[0].scheduled_date)
+    }
+    item.type = 'text'
+    item.title = element.title
+    item.description = element.call
+    newData.push(item)
+  })
+
+  state.carousel.data = newData
+}
+
 const getData = (): void => {
   const limitImages = 7
   let countImages = 0
@@ -91,8 +128,13 @@ const structureStore = computed((): null | TStructureScreenSize => {
   return useStructureStore().currentSize
 })
 
+const clickItem = (id: number, name: string) => {
+  router.push({ name: 'agenda', params: { id, name } })
+}
+
 onMounted(() => {
-  getData()
+  getAgenda()
+  // getData()
 })
 </script>
 
@@ -113,7 +155,7 @@ onMounted(() => {
         <q-carousel-slide v-for="(arrayItem, key) in listItems" :key="key" :name="key" class="carousel--slide">
           <div class="row q-col-gutter-sm">
             <div class="col-xs-12 col-sm-6 col-lg-3" v-for="(item, key2) in arrayItem" :key="key2">
-                <div class="container-content">
+                <div class="container-content" @click="clickItem(item.id, 'agenda')">
                   <div class="content-item">
                     <div class="item-section1"><h4>{{ item.day }}</h4><h5>{{ item.month }}</h5></div>
                     <q-img v-if="item.type === 'image'" class="item-section2 rounded-borders" :src="item.image" />
