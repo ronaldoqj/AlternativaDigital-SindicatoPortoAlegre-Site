@@ -3,7 +3,7 @@ import { reactive, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { AxiosError } from 'axios'
 import AgendaService from 'src/services/AgendaService'
-import { arrayChunk, carouselSettings, getDay, shortMonth } from 'src/helpers/helpers'
+import { baseURL, arrayChunk, carouselSettings, getDates } from 'src/helpers/helpers'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import { useStructureStore } from 'src/stores/structure-store'
 import { TStructureScreenSize } from 'src/types/IDefaults'
@@ -13,6 +13,7 @@ const router = useRouter()
 interface ICarouselItem {
   id: number
   day: number | string
+  scheduledDates: any
   month: string
   type?: 'text' | 'image'
   image?: string
@@ -46,6 +47,8 @@ const listItems = computed(() => {
       list = arrayChunk(state.carousel.data, 2)
       break
     case 'lg':
+      list = arrayChunk(state.carousel.data, 3)
+      break
     case 'xl':
     default:
       list = arrayChunk(state.carousel.data, 4)
@@ -55,14 +58,9 @@ const listItems = computed(() => {
   return list
 })
 
-// const setStoreDatas = (carouselData: Array<ICarouselItem>) : void => {
-//   state.carousel.carouselData = arrayChunk(carouselData, 2) as unknown as Array<ICarouselItem>[]
-// }
-
 const getAgenda = () => {
   AgendaService.list({})
     .then((response:any) => {
-      console.log('response Agenda', response)
       setAgenda(response.data)
     })
     .catch((error:AxiosError) => {
@@ -79,49 +77,18 @@ const setAgenda = (agendas: any) => {
   agendas.forEach((element:any) => {
     const item: ICarouselItem = {
       id: element.id,
-      day: getDay(element.scheduled_dates[0].scheduled_date) as string,
-      month: shortMonth(element.scheduled_dates[0].scheduled_date)
+      day: '',
+      month: '',
+      scheduledDates: getDates(element.scheduled_dates)
     }
-    item.type = 'text'
+    item.type = element.card_image_id != null ? 'image' : 'text'
     item.title = element.title
+    item.image = element.card_image_id != null ? `${baseURL}${element.card_image.path}/${element.card_image.file_name}` : ''
     item.description = element.call
     newData.push(item)
   })
 
   state.carousel.data = newData
-}
-
-const getData = (): void => {
-  const limitImages = 7
-  let countImages = 0
-  const newData:ICarouselItem[] = []
-
-  for (let index = 1; index < 9; index++) {
-    if (countImages === limitImages) {
-      countImages = 0
-    }
-    countImages += 1
-
-    const item: ICarouselItem = {
-      id: index,
-      day: 1 + index,
-      month: 'APR'
-    }
-
-    if (index % 2) {
-      item.type = 'image'
-      item.image = `assets/image/tests/test-${countImages}.jpg`
-    } else {
-      item.type = 'text'
-      item.title = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.'
-      item.description = 'Gravida neque convallis a cras. Turpis massa sed elementum tempus egestas sed sed risus. Elit pellentesque habitant morbi tristique.'
-    }
-
-    newData.push(item)
-  }
-
-  state.carousel.data = newData
-  // setStoreDatas(state.carousel.data)
 }
 
 const structureStore = computed((): null | TStructureScreenSize => {
@@ -154,10 +121,14 @@ onMounted(() => {
       >
         <q-carousel-slide v-for="(arrayItem, key) in listItems" :key="key" :name="key" class="carousel--slide">
           <div class="row q-col-gutter-sm">
-            <div class="col-xs-12 col-sm-6 col-lg-3" v-for="(item, key2) in arrayItem" :key="key2">
+            <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3" v-for="(item, key2) in arrayItem" :key="key2">
                 <div class="container-content" @click="clickItem(item.id, 'agenda')">
                   <div class="content-item">
-                    <div class="item-section1"><h4>{{ item.day }}</h4><h5>{{ item.month }}</h5></div>
+                    <div class="item-section1">
+                      <div><h4>{{ item.scheduledDates.initialDate.day }}</h4><h5>{{ item.scheduledDates.initialDate.month }}</h5></div>
+                      <div><h3 v-if="item.scheduledDates.conector !== null">{{ item.scheduledDates.conector }}</h3></div>
+                      <div><h4 v-if="item.scheduledDates.conector !== null">{{ item.scheduledDates.finalDate.day }}</h4><h5>{{ item.scheduledDates.finalDate.month }}</h5></div>
+                    </div>
                     <q-img v-if="item.type === 'image'" class="item-section2 rounded-borders" :src="item.image" />
                     <div v-else class="item-section2 rounded-borders">
                       <div>
@@ -221,24 +192,34 @@ $height-section2: 200px;
             color: $text-inverse;
             display: flex;
             align-items: baseline;
-            margin-left: 15px;
-            margin-bottom: -15px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: -2px;
 
-            h4, h5 {
+            div {
+              display: flex;
+              align-items: end;
+            }
+
+            h3, h4, h5 {
               margin: 0;
+              line-height: 1em;
+            }
+
+            h3 {
+              font-size: 30px;
+              margin: 0 25px;
             }
 
             h4 {
-              // font-size: 3.56em;
-              font-size: 100px;
+              font-size: 90px;
               font-weight: bold;
-              line-height: 1em;
               letter-spacing: -0.04em;
-              margin-right: 5px;
+              margin-right: 1px;
+              line-height: 0.8;
             }
 
             h5 {
-              // font-size: 1.1em;
               font-size: 30px;
             }
           }

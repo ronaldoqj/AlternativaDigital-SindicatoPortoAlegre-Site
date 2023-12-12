@@ -1,3 +1,5 @@
+import { IFile } from './IFile'
+
 /**
  * Interfaces
  */
@@ -8,7 +10,7 @@ export interface IBannerAgenda {
 
 export interface IAgenda {
   id: number
-  image?: number
+  image?: IFile
   card_image?: number
   scheduled_dates?: Date
   topper: string
