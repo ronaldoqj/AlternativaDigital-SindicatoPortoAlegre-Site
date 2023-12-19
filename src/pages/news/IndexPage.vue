@@ -231,6 +231,10 @@ onMounted(() => {
     text-align: justify;
   }
 
+  .layer--text {
+    font-size: 16px;
+  }
+
   @media only screen and (min-width: $breakpoint-sm)
   {
     .images__floats

@@ -97,15 +97,12 @@ const resetCarouselSlide = () => {
 
 const getData = (): void => {
   const newData = [
-    { id: 1, image: `${baseURL}temporary/images/home/videos/001.jpg`, title: 'OP SindBancários - COPA DO BRASIL KIDS 2023: Nem o mau tempo impediu o futebol da criançada', video: 'https://youtu.be/9oZYy2-lpQo?si=8WfbxoDMubQRE7ia' },
-    { id: 2, image: `${baseURL}temporary/images/home/videos/002.jpg`, title: 'VISTA BRANCO E PARTICIPE! Dia Nacional de Luta em Defesa do Saúde Caixa 🔵🟠 (17.10)', video: 'https://youtu.be/nfqpaMCGESw?si=O6GQNgdhNKi3qNn6' },
-    { id: 3, image: `${baseURL}temporary/images/home/videos/003.jpg`, title: 'Podcast De Fato #10|Frei Sérgio Görgen - A Teologia da Libertação está viva ⛪✝️', video: 'https://youtu.be/CYT-TLLGV1g?si=7jADZweOHqKEIRKu' },
-    { id: 4, image: `${baseURL}temporary/images/home/videos/004.jpg`, title: '⚡E AGORA - Vem aí Energia Bancária (21/10): esporte, cultura e lazer para a categoria', video: 'https://youtu.be/xpkf3oEGQNI?si=hEylqh1fWYkNi4es' },
-    { id: 5, image: `${baseURL}temporary/images/home/videos/005.jpg`, title: 'Minidoc 15 anos CineBancários', video: 'https://youtu.be/mu0SSeJVwcw?si=WqXY40U_QDEXJQaq' },
-    { id: 6, image: `${baseURL}temporary/images/home/videos/006.jpg`, title: 'DO LADO DE CÁ - Privatização da Carris: o que esperar do sistema de ônibus de Porto Alegre? 🚌🏙️', video: 'https://youtu.be/9U_jUzzKkD0?si=-5lsQDB35FBWGVAz' },
-    { id: 7, image: `${baseURL}temporary/images/home/videos/007.jpg`, title: 'Novos banrisulenses são recepcionados por diretoras do SindBancários 🤗🏦', video: 'https://youtu.be/sNALoW18jLE?si=oXE7OGCSnLhr_xk0' },
-    { id: 8, image: `${baseURL}temporary/images/home/videos/008.jpg`, title: 'Podcast De Fato #09|Professora Jaqueline Moll - Educação Pública, uma barreira contra o fascismo 🤓🏫', video: 'https://youtu.be/g87rW6nzz8Q?si=UOYh-Q7Qc7FB4lBg' },
-    { id: 9, image: `${baseURL}temporary/images/home/videos/009.jpg`, title: '🎬🎼 Agenda Cultural: CULTURA EM MOVIMENTO:', video: 'https://youtu.be/6pEC1pDAElk?si=ta3Expe7mThMEozt' }
+    { id: 1, image: `${baseURL}temporary/images/home/videos/video_01.jpg`, title: 'Assédio Sexual #001 | EU TENHO DIREITO', video: 'https://youtu.be/ZBEaebAUvbA?si=8MVqfQw120uyOT5y' },
+    { id: 2, image: `${baseURL}temporary/images/home/videos/video_02.jpg`, title: 'Leonel Radde fala sobre a bandeira Antifascista e trajetória como policial civil | DO LADO DE CÁ', video: 'https://youtu.be/Iq1oFw_qGRc?si=QXHJTSyHGcXFXVfu' },
+    { id: 3, image: `${baseURL}temporary/images/home/videos/video_03.jpg`, title: 'Quilombos: luta e reparação com Onir Araújo | Podcast De Fato #17', video: 'https://youtu.be/EPVNGJw2DoA?si=b2X0Bw247TgOuuzM' },
+    { id: 4, image: `${baseURL}temporary/images/home/videos/video_04.jpg`, title: 'Matheus Gomes (PSOL): mandato na ALRS e representação política das esquerdas no RS | DO LADO DE CÁ', video: 'https://youtu.be/nChMmtY9Vvk?si=rqldHCYWsO9C-H5M' },
+    { id: 5, image: `${baseURL}temporary/images/home/videos/video_05.jpg`, title: 'E agora, Argentina? com Leonardo Granato e Carla Perelló | Podcast De Fato #16', video: 'https://youtu.be/USG0ZO6A0Wo?si=bMOWM3ldDBAyc1OV' },
+    { id: 6, image: `${baseURL}temporary/images/home/videos/video_06.jpg`, title: 'Sofia Cavedon (PT): situação da Porto Alegre com a gestão Melo e os rumos para 2024 | DO LADO DE CÁ', video: 'https://youtu.be/cpMxuTKU8dk?si=pXxdZQ3QT67W59Ox' }
   ]
 
   state.carousel.list = newData
