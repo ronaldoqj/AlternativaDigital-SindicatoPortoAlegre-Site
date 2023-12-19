@@ -70,6 +70,34 @@ export const getDay = (date: string) => {
   return day[2]
 }
 
+export const getDates = (dates: Array<any>) => {
+  const rangeDates = {
+    initialDate: { day: '', month: '' },
+    conector: null as null | string,
+    finalDate: { day: '', month: '' }
+  }
+
+  let initialDay = dates[0].scheduled_date
+  initialDay = initialDay.split('-')
+  rangeDates.initialDate.day = initialDay[2]
+  rangeDates.initialDate.month = shortMonth(dates[0].scheduled_date)
+
+  if (dates.length > 1) {
+    let finalDay = dates[dates.length - 1].scheduled_date
+    finalDay = finalDay.split('-')
+    rangeDates.finalDate.day = finalDay[2]
+    rangeDates.finalDate.month = shortMonth(dates[dates.length - 1].scheduled_date)
+  }
+
+  if (dates.length > 2) {
+    rangeDates.conector = 'A' as string
+  } else if (dates.length > 1) {
+    rangeDates.conector = 'E' as string
+  }
+
+  return rangeDates
+}
+
 export const shortMonth = (date: string) => {
   const month = date.split('-')
 

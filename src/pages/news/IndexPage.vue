@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { computed, onMounted, reactive, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { AxiosError } from 'axios'
+import NewsService from 'src/services/NewsService'
 import { getValidImage, baseURL } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import RelatedPublications from 'components/interface/RelatedPublications.vue'
@@ -6,11 +10,7 @@ import TitleDefault from 'components/interface/TitleDefault.vue'
 import ImageDefault from 'components/interface/ImageDefault.vue'
 import VideoDefault from 'components/interface/VideoDefault.vue'
 import AudioDefault from 'components/interface/AudioDefault.vue'
-import { computed, onMounted, reactive, watch } from 'vue'
-import { useRoute } from 'vue-router'
 import { INews, IResponseNews, IResponseRelated, TNewsLayers } from 'src/types/INews'
-import NewsService from 'src/services/NewsService'
-import { AxiosError } from 'axios'
 import SkeletonNews from 'components/interface/skeletons/SkeletonNews.vue'
 import ShareButtons from 'src/components/interface/ShareButtons.vue'
 
@@ -229,6 +229,10 @@ onMounted(() => {
 
   p {
     text-align: justify;
+  }
+
+  .layer--text {
+    font-size: 16px;
   }
 
   @media only screen and (min-width: $breakpoint-sm)

@@ -1,41 +1,53 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { shortMonth } from 'src/helpers/helpers'
 
 const props = defineProps({
-  dates: {
-    type: Array<string>,
-    required: true
-  },
-  month: {
-    type: String,
-    required: true
-  },
-  year: {
-    type: String,
+  scheduledDate: {
+    type: Array<any>,
     required: true
   }
 })
 
 const resolveMultiple = computed(() => {
-  return props.dates?.length > 1 ? 'multiple' : ''
+  return props.scheduledDate?.length > 1 ? 'multiple' : ''
+})
+
+const resolveScheduledDate = computed(() => {
+  const dates = {
+    initial: { day: '', month: '' },
+    final: { day: '', month: '' }
+  }
+
+  const initialDate = props.scheduledDate[0]
+  const initialDateSplit = initialDate.scheduled_date.split('-')
+  const finalDate = props.scheduledDate[props.scheduledDate.length - 1]
+  const finalDateSplit = finalDate.scheduled_date.split('-')
+
+  dates.initial.day = initialDateSplit[2]
+  dates.initial.month = shortMonth(initialDate.scheduled_date)
+  dates.final.day = finalDateSplit[2]
+  dates.final.month = shortMonth(finalDate.scheduled_date)
+
+  return dates
 })
 
 const resolveConectionWord = computed(() => {
-  return props.dates?.length > 1 ? 'à' : 'e'
+  return props.scheduledDate?.length > 1 ? 'A' : 'E'
 })
 </script>
 
 <template>
-  <div :class="`component__card--date ${resolveMultiple}`">
-    <div class="box--card">
+  <div class="component__card--date">
+    <div :class="`box--card ${resolveMultiple}`">
       <div class="day">
-        <span>{{ props.dates[0] }}</span>
-        <span v-if="props.dates.length > 1" class="conection--days">{{ resolveConectionWord }}</span>
-        <span v-if="props.dates.length > 1">{{ props.dates[props.dates.length - 1] }}</span>
+        <span>{{ resolveScheduledDate.initial.day }}</span>
+        <span class="month">{{ resolveScheduledDate.initial.month }}</span>
       </div>
-      <div class="date">
-        <div>{{ props.month }}</div>
-        <div>{{ props.year }}</div>
+      <div v-if="props.scheduledDate.length > 1" class="conect--dates">{{ resolveConectionWord }}</div>
+      <div v-if="props.scheduledDate.length > 1" class="day">
+        <span>{{ resolveScheduledDate.final.day }}</span>
+        <span class="month">{{ resolveScheduledDate.final.month }}</span>
       </div>
     </div>
   </div>
@@ -59,56 +71,45 @@ const resolveConectionWord = computed(() => {
 
   .box--card
   {
-    display: flex;
-
     .day
     {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       transition: 0.2s ease-in-out;
 
       span {
         font-size: 6em;
         font-weight: bold;
         line-height: 0.7em;
-      }
 
-      .conection--days {
-        font-size: 3em;
-        margin: 0 5px;
-        transition: 0.2s ease-in-out;
+        &.month {
+          font-size: 2em;
+        }
       }
     }
 
-    .date {
-      font-size: 1.4em;
-      line-height: 1em;
-      display: flex;
-      flex-flow: column;
-      justify-content: end;
+    .conect--dates {
+      font-size: 3em;
+      margin: 0 15px;
       transition: 0.2s ease-in-out;
     }
-  }
 
-  &.multiple
-  {
-    .box--card
+    &.multiple
     {
-      flex-direction: column;
-      align-items: end;
+      display: flex;
+      align-items: center;
       transition: 0.2s ease-in-out;
 
-      .date
-      {
-        display: flex;
-        flex-flow: row;
-        justify-content: end;
-        margin-top: 1px;
-        letter-spacing: 1px;
-        transition: 0.2s ease-in-out;
+      .day {
+        flex-direction: column;
+        align-items: center;
 
-        div {
-          margin-left: 5px;
+        span
+        {
+          &.month {
+            letter-spacing: 3px;
+            line-height: 0.9em;
+          }
         }
       }
     }
@@ -117,16 +118,6 @@ const resolveConectionWord = computed(() => {
   @media only screen and (min-width: $breakpoint-xs)
   {
     width: fit-content;
-
-    .box--card
-    {
-      &.multiple
-      {
-        align-items: center;
-        align-items: end;
-      }
-    }
-
   }
 }
 </style>
