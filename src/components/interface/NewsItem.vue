@@ -109,7 +109,7 @@ resolveType()
         <h6 class="tag-h6 " v-if="props.highlights === true">{{ props.description }}</h6>
       </div>
       <div>
-        <a href="#">Leia mais</a>
+        <a :to="props.route">Leia mais</a>
       </div>
     </div>
   </div>
