@@ -1,11 +1,21 @@
 <script setup lang="ts">
 import { reactive, computed, onMounted } from 'vue'
 import { baseURL, arrayChunk, carouselSettings } from 'src/helpers/helpers'
+import _ from 'lodash'
 import IconDefault from 'components/interface/IconDefault.vue'
 import VideoDefault from 'src/components/interface/VideoDefault.vue'
 import CardVideoThumb from 'components/interface/CardVideoThumb.vue'
 import { TStructureScreenSize } from 'src/types/IDefaults'
 import { useStructureStore } from 'src/stores/structure-store'
+import VideoService from 'src/services/VideoService'
+import { AxiosError } from 'axios'
+
+const props = defineProps({
+  page: {
+    type: Number,
+    required: false
+  }
+})
 
 interface ICarouselItem {
   id: number
@@ -96,16 +106,27 @@ const resetCarouselSlide = () => {
 }
 
 const getData = (): void => {
-  const newData = [
-    { id: 1, image: `${baseURL}temporary/images/home/videos/video_01.jpg`, title: 'Assédio Sexual #001 | EU TENHO DIREITO', video: 'https://youtu.be/ZBEaebAUvbA?si=8MVqfQw120uyOT5y' },
-    { id: 2, image: `${baseURL}temporary/images/home/videos/video_02.jpg`, title: 'Leonel Radde fala sobre a bandeira Antifascista e trajetória como policial civil | DO LADO DE CÁ', video: 'https://youtu.be/Iq1oFw_qGRc?si=QXHJTSyHGcXFXVfu' },
-    { id: 3, image: `${baseURL}temporary/images/home/videos/video_03.jpg`, title: 'Quilombos: luta e reparação com Onir Araújo | Podcast De Fato #17', video: 'https://youtu.be/EPVNGJw2DoA?si=b2X0Bw247TgOuuzM' },
-    { id: 4, image: `${baseURL}temporary/images/home/videos/video_04.jpg`, title: 'Matheus Gomes (PSOL): mandato na ALRS e representação política das esquerdas no RS | DO LADO DE CÁ', video: 'https://youtu.be/nChMmtY9Vvk?si=rqldHCYWsO9C-H5M' },
-    { id: 5, image: `${baseURL}temporary/images/home/videos/video_05.jpg`, title: 'E agora, Argentina? com Leonardo Granato e Carla Perelló | Podcast De Fato #16', video: 'https://youtu.be/USG0ZO6A0Wo?si=bMOWM3ldDBAyc1OV' },
-    { id: 6, image: `${baseURL}temporary/images/home/videos/video_06.jpg`, title: 'Sofia Cavedon (PT): situação da Porto Alegre com a gestão Melo e os rumos para 2024 | DO LADO DE CÁ', video: 'https://youtu.be/cpMxuTKU8dk?si=pXxdZQ3QT67W59Ox' }
-  ]
-
-  state.carousel.list = newData
+  VideoService.list({ page: props.page })
+    // .then((response:IResponseRelated) => {
+    .then((response:any) => {
+      // state.relatedDepartments.list = response.data
+      const item = { id: 0, image: '', title: '', video: '' }
+      response.data.forEach((element: any) => {
+        //
+        item.id = element.id
+        item.image = `${baseURL}${element.image.path}/${element.image.file_name}`
+        item.title = element.title
+        item.video = element.video
+        state.carousel.list.push(_.clone(item))
+      })
+      console.log('listVideos', response.data)
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      //
+    })
 }
 
 onMounted(() => {
