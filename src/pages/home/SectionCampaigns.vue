@@ -11,6 +11,7 @@ import { AxiosError } from 'axios'
 interface ICarouselItem {
   src: string
   link: string
+  target: string
 }
 
 const state = reactive({
