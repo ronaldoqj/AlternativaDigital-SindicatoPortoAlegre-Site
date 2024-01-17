@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive } from 'vue'
 import { arrayChunk, baseURL, carouselSettings } from 'src/helpers/helpers'
+import _ from 'lodash'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import { useStructureStore } from 'src/stores/structure-store'
 import { TStructureScreenSize } from 'src/types/IDefaults'
+import CampaignService from 'src/services/CampaignService'
+import { AxiosError } from 'axios'
 
 interface ICarouselItem {
   src: string
@@ -42,8 +45,8 @@ const listItems = computed(() => {
   return list
 })
 
-const clickLink = (link:string) => {
-  window.open(link, '_blank')
+const clickLink = (link:string, target:string) => {
+  window.open(link, target)
 }
 
 const structureStore = computed((): null | TStructureScreenSize => {
@@ -51,12 +54,23 @@ const structureStore = computed((): null | TStructureScreenSize => {
 })
 
 const getData = (): void => {
-  state.carousel.list.push({ src: `${baseURL}temporary/images/home/campaigns/001_saude_mental.jpg`, link: 'https://www.instagram.com/p/CyN69NXv-pu/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==' })
-  state.carousel.list.push({ src: `${baseURL}temporary/images/home/campaigns/002_energia_bancaria.jpg`, link: 'https://www.instagram.com/p/CyJ2CABMe6s/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==' })
-  state.carousel.list.push({ src: `${baseURL}temporary/images/home/campaigns/003_outubro_rosa.jpg`, link: 'https://www.instagram.com/p/Cx2-NzfObt_/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==' })
-  state.carousel.list.push({ src: `${baseURL}temporary/images/home/campaigns/004_doacao_sangue.jpg`, link: 'https://www.instagram.com/p/CxYOebMuB_E/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==' })
-  state.carousel.list.push({ src: `${baseURL}temporary/images/home/campaigns/005_basta.jpg`, link: 'https://www.instagram.com/p/CyOL-YCOEop/?utm_source=ig_web_copy_link' })
-  state.carousel.list.push({ src: `${baseURL}temporary/images/home/campaigns/006_banrisul.jpg`, link: 'https://www.instagram.com/p/CxFtywQtiWZ/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==' })
+  CampaignService.list({})
+    // .then((response:IResponseRelated) => {
+    .then((response:any) => {
+      const item = { src: '', link: '', target: '' }
+      response.data.forEach((element: any) => {
+        item.src = `${baseURL}${element.image.path}/${element.image.file_name}`
+        item.link = element.link
+        item.target = element.target
+        state.carousel.list.push(_.clone(item))
+      })
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      //
+    })
 }
 
 onMounted(() => {
@@ -82,7 +96,7 @@ onMounted(() => {
         <q-carousel-slide v-for="(items, key) in listItems" :key="key" :name="key" class="carousel--slide">
           <div class="row q-col-gutter-sm justify-center">
             <div class="col-xs-12 col-sm-6 col-md-4 col-xl-3 text-center" v-for="(item, keyItem) in items" :key="keyItem">
-              <q-img :ratio="1" class="carousel-item" :src="item.src" @click="clickLink(item.link)" />
+              <q-img :ratio="1" class="carousel-item" :src="item.src" @click="clickLink(item.link, item.target)" />
             </div>
           </div>
         </q-carousel-slide>
