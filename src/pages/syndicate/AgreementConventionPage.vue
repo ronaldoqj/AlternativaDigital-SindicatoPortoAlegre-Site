@@ -136,7 +136,7 @@ const groupResponse = (data:Array<any>) => {
     const index = list.findIndex(item => item.id === element.category_id)
     list[index].items.push({
       subtitle: element.file.description,
-      link: `${baseURL}${element.file.path}/${element.file.path.file_name}`,
+      link: `${baseURL}${element.file.path}/${element.file.file_name}`,
       title: element.file.name
     })
   })

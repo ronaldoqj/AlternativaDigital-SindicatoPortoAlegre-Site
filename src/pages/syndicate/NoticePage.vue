@@ -2,11 +2,21 @@
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import { useQuasar } from 'quasar'
+import { baseURL } from 'src/helpers/helpers'
 import { reactive, computed, onMounted, watch, shallowRef } from 'vue'
 
 import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
 import ExpandItem from 'src/pages/syndicate/components/notice/ExpandItem.vue'
 import DocumentItem from 'src/pages/syndicate/components/notice/DocumentItem.vue'
+import PublicNoticeService from 'src/services/PublicNoticeService'
+import { AxiosError } from 'axios'
+
+interface IList {
+  id: number
+  title: string
+  open: boolean
+  items: Array<any>
+}
 
 const $q = useQuasar()
 const freezeComponentDocument = shallowRef(DocumentItem)
@@ -33,6 +43,56 @@ const setListStatute = () => {
   ]
 
   state.items.listProp = list
+}
+
+const getNewItemList = (data: any) => {
+  const newItem = {
+    id: data.category_id,
+    title: data.category.name,
+    open: false,
+    items: []
+  } as IList
+  return newItem
+}
+
+const groupResponse = (data:Array<any>) => {
+  const list:IList[] = []
+
+  data.forEach((element:any) => {
+    const idExists = list.some(item => item.id === element.category_id)
+
+    if (!idExists) {
+      list.push(getNewItemList(element))
+    }
+
+    const index = list.findIndex(item => item.id === element.category_id)
+    list[index].items.push({
+      subtitle: element.file.description,
+      link: `${baseURL}${element.file.path}/${element.file.file_name}`,
+      title: element.file.name
+    })
+  })
+
+  if (list.length) {
+    list[0].open = true
+  }
+  console.log('list', list)
+  return list
+}
+
+const getData = (): void => {
+  PublicNoticeService.list({ })
+    // .then((response:IResponseRelated) => {
+    .then((response:any) => {
+      state.items.listProp = groupResponse(response.data)
+      console.log('listPublicNotice', response.data)
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      //
+    })
 }
 
 const currentScreenSize = computed((): TScreenSize => {
@@ -63,7 +123,8 @@ watch(currentScreenSize, (newValue) => {
 })
 
 onMounted(() => {
-  setListStatute()
+  getData()
+  // setListStatute()
   changeOrderList(currentScreenSize.value)
 })
 </script>

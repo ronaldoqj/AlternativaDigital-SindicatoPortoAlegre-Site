@@ -84,9 +84,9 @@ const clickRoute = (route: RouteLocationRaw) => {
           <q-item-section @click="clickRoute(state.menu.agreementsConventions)">Acordos e convenções</q-item-section>
         </q-item>
 
-        <q-separator v-if="false" class="menu__separator" />
+        <q-separator v-if="true" class="menu__separator" />
 
-        <q-item v-if="false" clickable v-close-popup>
+        <q-item v-if="true" clickable v-close-popup>
           <q-item-section @click="clickRoute(state.menu.notice)">Editais</q-item-section>
         </q-item>
 
