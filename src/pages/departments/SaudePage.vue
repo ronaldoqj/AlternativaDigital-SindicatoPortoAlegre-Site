@@ -69,6 +69,8 @@ const setListDocuments = () => {
 
 const setListLegalMembers = () => {
   state.legalMembers.items.listProp.push({ title: 'Jamile', surname: 'Chamun', subtitle: 'Saúde', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/012.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Thiely Denise', surname: 'Kalil', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Rodrigo', surname: 'Ambros Rodrigues', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` })
 }
 
 const setDepartmentPublications = () => {

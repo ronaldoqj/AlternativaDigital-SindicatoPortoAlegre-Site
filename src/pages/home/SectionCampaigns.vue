@@ -60,7 +60,7 @@ const getData = (): void => {
     .then((response:any) => {
       const item = { src: '', link: '', target: '' }
       response.data.forEach((element: any) => {
-        item.src = `${baseURL}${element.image.path}/${element.image.file_name}`
+        item.src = `${baseURL}${element.card_image.path}/${element.card_image.file_name}`
         item.link = element.link
         item.target = element.target
         state.carousel.list.push(_.clone(item))

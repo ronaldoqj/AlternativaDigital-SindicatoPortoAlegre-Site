@@ -116,7 +116,7 @@ interface IList {
 const getNewItemList = (data: any) => {
   const newItem = {
     id: data.category_id,
-    title: data.category.name,
+    title: data.categories.name,
     open: false,
     items: []
   } as IList

@@ -67,6 +67,8 @@ const setListDocuments = () => {
 
 const setListLegalMembers = () => {
   state.legalMembers.items.listProp.push({ title: 'Carmen', surname: 'Guedes', subtitle: 'Juventude e Gênero', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/013.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Rachel', surname: 'de Araujo Weber', subtitle: 'Juventude e Gênero', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Gean Francisco', surname: 'Farias Espíndula', subtitle: 'Juventude e Gênero', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` })
 }
 
 const setDepartmentPublications = () => {

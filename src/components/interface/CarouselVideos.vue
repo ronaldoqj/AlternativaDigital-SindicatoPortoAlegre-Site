@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, computed, onMounted } from 'vue'
+import { reactive, computed, onMounted, PropType } from 'vue'
 import { baseURL, arrayChunk, carouselSettings } from 'src/helpers/helpers'
 import _ from 'lodash'
 import IconDefault from 'components/interface/IconDefault.vue'
@@ -8,11 +8,16 @@ import CardVideoThumb from 'components/interface/CardVideoThumb.vue'
 import { TStructureScreenSize } from 'src/types/IDefaults'
 import { useStructureStore } from 'src/stores/structure-store'
 import VideoService from 'src/services/VideoService'
+import { type TSectionVideoColor } from 'components/models/interfaces/InterfacesDefault'
 import { AxiosError } from 'axios'
 
 const props = defineProps({
   page: {
     type: Number,
+    required: false
+  },
+  color: {
+    type: String as PropType<TSectionVideoColor>,
     required: false
   }
 })
@@ -40,6 +45,10 @@ const state = reactive({
     slide: 0,
     autoPlay: carouselSettings.autoPlay
   }
+})
+
+const colorCarousel = computed((): string => {
+  return props.color ?? 'tertiary'
 })
 
 const showCarousel = computed((): boolean => {
@@ -140,7 +149,7 @@ onMounted(() => {
     <div v-else class="component__videos--carousel">
       <q-carousel
         class="carousel-section"
-        control-color="tertiary"
+        :control-color="colorCarousel"
         swipeable
         animated
         v-model="state.carousel.slide"

@@ -68,7 +68,9 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
+  state.legalMembers.items.listProp.push({ title: 'Claudia Stella', surname: 'Rodrigues Santana de Resende', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Banrisul', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` })
   state.legalMembers.items.listProp.push({ title: 'Caroline', surname: 'Soares Heidner', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/021.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Marilene', surname: 'Brusa Sá', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Banrisul', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` })
 }
 
 const setDepartmentPublications = () => {

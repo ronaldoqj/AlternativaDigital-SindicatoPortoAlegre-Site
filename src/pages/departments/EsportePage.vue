@@ -68,7 +68,9 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'ESPORTE E LAZER', surname: '', subtitle: '', description: '', image: `${baseURL}temporary/images/quem-somos/directorship/015.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Gerson Marques', surname: 'dos Reis', subtitle: 'Esporte e Lazer', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/esporte_e_lazer_gerson.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Carlos Odone', surname: 'Dahlheimer Viale', subtitle: 'Esporte e Lazer', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Rogério', surname: 'de Rodrigues Rodrigues', subtitle: 'Esporte e Lazer', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/esporte_e_lazer_rogerio.jpg` })
 }
 
 const setDepartmentPublications = () => {
