@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, watch } from 'vue'
+import { computed, onMounted, reactive, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { AxiosError } from 'axios'
 import { useInputsStore } from 'stores/inputs-store'
@@ -17,6 +17,10 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
     required: false
+  },
+  notIds: {
+    type: Array<number>,
+    required: true
   }
 })
 
@@ -32,7 +36,8 @@ const state = reactive({
       endList: false,
       lastPate: null as null | number,
       list: [] as INews[]
-    }
+    },
+    ids: [] as Array<number>
   },
   buttons: {
     moreNews: {
@@ -63,9 +68,10 @@ const allNews = () => {
 const moreNews = () => {
   state.news.geral.page += 1
   state.buttons.moreNews.loading = true
-  NewsService.list({ page: state.news.geral.page, perPage: state.news.geral.perPage })
+  NewsService.list({ page: state.news.geral.page, perPage: state.news.geral.perPage, notIds: state.news.ids })
     .then((response:IResponseNews) => {
-      const list = response.data as IPagination
+      state.news.ids = [...response.ids, ...state.news.ids]
+      const list = response.news.data as IPagination
       state.news.geral.list = [...state.news.geral.list, ...list.data as INews[]]
       if (list.next_page_url === null) {
         state.buttons.moreNews.show = false
@@ -87,6 +93,10 @@ const toSearchPage = () => {
 
 watch(geralNews, newValue => {
   state.news.geral.list = newValue
+})
+
+onMounted(() => {
+  state.news.ids = props.notIds
 })
 </script>
 

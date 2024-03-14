@@ -78,11 +78,14 @@ export interface IPagination {
 }
 
 export interface IResponseNews {
-  config: unknown
-  data: INews | IPagination
-  status: number
-  request: unknown
-  statusText: string
+  news: {
+    config: unknown
+    data: INews | IPagination
+    status: number
+    request: unknown
+    statusText: string
+  },
+  ids: Array<number>
 }
 
 export interface IResponseRelated {

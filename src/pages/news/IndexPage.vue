@@ -146,7 +146,7 @@ onMounted(() => {
       <LayoutSection background="tertiary" type="top" cornerColor="secondary" min-height>
         <div class="align-title">
           <TitleDefault title="Notícia" />
-          <ShareButtons v-if="state.control.showContent" :description="state.news?.call" :image="`${state.news?.image_news?.path}/${state.news?.image_news?.file_name}`" />
+          <!--ShareButtons v-if="state.control.showContent" :description="state.news?.call" :image="`${state.news?.image_news?.path}/${state.news?.image_news?.file_name}`" /-->
         </div>
 
         <!-- <div class="fb-share-button"
@@ -212,7 +212,7 @@ onMounted(() => {
   }
 
   h1 {
-    font-size: 54px;
+    font-size: 40px;
     line-height: 1.15em;
     color: $primary;
     font-weight: bold;

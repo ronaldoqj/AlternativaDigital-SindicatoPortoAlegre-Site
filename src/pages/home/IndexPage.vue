@@ -5,7 +5,7 @@
         <SectionBanner :news="state.sectionBanners" />
       </LayoutSection>
       <LayoutSection background="tertiary" cornerColor="accent" :type="state.sectionBanners.length ? 'normal' : 'top'">
-        <SectionNews :news="state.sectionNews" />
+        <SectionNews :news="state.sectionNews" :notIds="state.notIdsToPagination" />
       </LayoutSection>
       <LayoutSection background="accent" cornerColor="quaternary">
         <SectionVideos />
@@ -49,7 +49,8 @@ import { onMounted, reactive } from 'vue'
 
 const state = reactive({
   sectionBanners: [],
-  sectionNews: {}
+  sectionNews: {},
+  notIdsToPagination: []
 })
 
 onMounted(() => {
@@ -58,7 +59,8 @@ onMounted(() => {
       state.sectionBanners = response.data.banners
       state.sectionNews = {
         highlights: response.data.highlights,
-        geral: response.data.geral
+        geral: response.data.geral,
+        notIdsToPagination: response.data.allNewsIds
       }
     })
     .catch((error:AxiosError) => {

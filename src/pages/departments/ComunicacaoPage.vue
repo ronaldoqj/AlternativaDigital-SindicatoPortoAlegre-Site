@@ -70,7 +70,7 @@ const setListDocuments = () => {
 const setListLegalMembers = () => {
   state.legalMembers.items.listProp.push({ title: 'Gilnei', surname: 'Silva Nunes', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/022.jpg` })
   state.legalMembers.items.listProp.push({ title: 'Jonas', surname: 'de Souza Castilhos', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/023.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Andrei', surname: 'Freitas Teixeira', subtitle: 'Comunicação', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Andrei', surname: 'Freitas Teixeira', subtitle: 'Comunicação', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/comunicacao_-_andrei.png` })
 }
 
 const setDepartmentPublications = () => {
