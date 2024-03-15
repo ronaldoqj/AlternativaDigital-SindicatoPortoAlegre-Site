@@ -241,17 +241,17 @@ const clickRoute = (route: RouteLocationRaw) => {
           <q-item-section @click="clickRoute(state.menu.servicesHistoryFile)">Arquivo histórico</q-item-section>
         </q-item>
 
-        <q-separator class="menu__separator" />
+        <!-- <q-separator class="menu__separator" /> -->
 
-        <q-item clickable v-close-popup>
+        <!-- <q-item clickable v-close-popup>
           <q-item-section @click="clickRoute(state.menu.servicesSpaces)">Espaços</q-item-section>
-        </q-item>
+        </q-item> -->
 
-        <q-separator class="menu__separator" />
+        <!-- <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
           <q-item-section @click="clickRoute(state.menu.servicesLegal)">Jurídico</q-item-section>
-        </q-item>
+        </q-item> -->
       </q-list>
     </q-menu>
   </q-btn>

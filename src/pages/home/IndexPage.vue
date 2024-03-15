@@ -56,11 +56,13 @@ const state = reactive({
 onMounted(() => {
   NewsService.listHome({})
     .then((response:any) => {
+      console.log('inicial', response)
+
       state.sectionBanners = response.data.banners
+      state.notIdsToPagination = response.data.allNewsIds
       state.sectionNews = {
         highlights: response.data.highlights,
-        geral: response.data.geral,
-        notIdsToPagination: response.data.allNewsIds
+        geral: response.data.geral
       }
     })
     .catch((error:AxiosError) => {

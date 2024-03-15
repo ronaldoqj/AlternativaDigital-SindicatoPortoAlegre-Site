@@ -37,7 +37,7 @@ const state = reactive({
       lastPate: null as null | number,
       list: [] as INews[]
     },
-    ids: [] as Array<number>
+    notIds: [] as Array<number>
   },
   buttons: {
     moreNews: {
@@ -68,10 +68,13 @@ const allNews = () => {
 const moreNews = () => {
   state.news.geral.page += 1
   state.buttons.moreNews.loading = true
-  NewsService.list({ page: state.news.geral.page, perPage: state.news.geral.perPage, notIds: state.news.ids })
+  NewsService.list({ page: state.news.geral.page, perPage: state.news.geral.perPage, notIds: props.notIds })
     .then((response:IResponseNews) => {
-      state.news.ids = [...response.ids, ...state.news.ids]
-      const list = response.news.data as IPagination
+      const test = response
+      console.log('test', test)
+
+      // state.news.ids = [...response.data.ids, ...state.news.ids]
+      const list = response.data as IPagination
       state.news.geral.list = [...state.news.geral.list, ...list.data as INews[]]
       if (list.next_page_url === null) {
         state.buttons.moreNews.show = false
@@ -96,7 +99,7 @@ watch(geralNews, newValue => {
 })
 
 onMounted(() => {
-  state.news.ids = props.notIds
+  // state.news.notIds = props.notIds
 })
 </script>
 
