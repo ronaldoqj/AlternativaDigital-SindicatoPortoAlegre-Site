@@ -28,7 +28,7 @@ const sortItems = (carouselType:CarouselType) => {
       switch (carouselType) {
         case 'desktop':
           // const test = element
-          console.log(element)
+          // console.log(element)
 
           break
         case 'mobile':
@@ -39,7 +39,7 @@ const sortItems = (carouselType:CarouselType) => {
     }
   })
 
-  console.log('function Test', carouselType)
+  // console.log('function Test', carouselType)
 }
 
 /**
@@ -50,10 +50,10 @@ const sortItems = (carouselType:CarouselType) => {
 const blocksOfThree = (carouselData: Array<ICarouselData>) : Array<ICarouselData[]> => {
   const blocksMobile = arrayChunk(carouselData, 5)
   const blocksDesktop = arrayChunk(carouselData, 3)
-  console.log('blocksMobile', blocksMobile)
-  console.log('blocksDesktop', blocksDesktop)
-  console.log('chunkMobile', chunkMobile(blocksMobile, 4))
-  console.log('chunkDesktop', chunkDesktop(blocksDesktop, 2))
+  // console.log('blocksMobile', blocksMobile)
+  // console.log('blocksDesktop', blocksDesktop)
+  // console.log('chunkMobile', chunkMobile(blocksMobile, 4))
+  // console.log('chunkDesktop', chunkDesktop(blocksDesktop, 2))
 
   return blocksMobile
 }
@@ -206,12 +206,12 @@ const getData = () => {
   }
 
   state.carousel.data = newData
-  console.log(state.carousel.data)
+  // console.log(state.carousel.data)
   blocksOfThree(state.carousel.data)
 }
 
 onMounted(() => {
-  console.log('onMounted')
+  // console.log('onMounted')
   getData()
 })
 </script>

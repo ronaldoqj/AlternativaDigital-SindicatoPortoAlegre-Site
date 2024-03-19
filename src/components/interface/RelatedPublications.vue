@@ -48,7 +48,7 @@ const getData = (): void => {
 
 onMounted(() => {
   getData()
-  console.log('List of RelatedPublications', props.list)
+  // console.log('List of RelatedPublications', props.list)
 })
 </script>
 

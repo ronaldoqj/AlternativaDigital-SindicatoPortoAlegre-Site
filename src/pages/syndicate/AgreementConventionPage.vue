@@ -144,7 +144,6 @@ const groupResponse = (data:Array<any>) => {
   if (list.length) {
     list[0].open = true
   }
-  console.log('list', list)
   return list
 }
 
@@ -153,7 +152,6 @@ const getData = (): void => {
     // .then((response:IResponseRelated) => {
     .then((response:any) => {
       state.items.listProp = groupResponse(response.data)
-      console.log('listAgreementConvention', response.data)
     })
     .catch((error:AxiosError) => {
       console.log('error', error)

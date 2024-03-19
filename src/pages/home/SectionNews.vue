@@ -70,9 +70,6 @@ const moreNews = () => {
   state.buttons.moreNews.loading = true
   NewsService.list({ page: state.news.geral.page, perPage: state.news.geral.perPage, notIds: props.notIds })
     .then((response:IResponseNews) => {
-      const test = response
-      console.log('test', test)
-
       // state.news.ids = [...response.data.ids, ...state.news.ids]
       const list = response.data as IPagination
       state.news.geral.list = [...state.news.geral.list, ...list.data as INews[]]
@@ -89,7 +86,6 @@ const moreNews = () => {
 }
 
 const toSearchPage = () => {
-  console.log('click to SearchPage')
   useInputsStore().setSearch(state.searchInput.value)
   router.push({ name: 'search' })
 }

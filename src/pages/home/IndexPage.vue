@@ -56,8 +56,6 @@ const state = reactive({
 onMounted(() => {
   NewsService.listHome({})
     .then((response:any) => {
-      console.log('inicial', response)
-
       state.sectionBanners = response.data.banners
       state.notIdsToPagination = response.data.allNewsIds
       state.sectionNews = {

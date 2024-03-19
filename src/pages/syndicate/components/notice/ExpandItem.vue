@@ -32,7 +32,7 @@ const opened = computed((): boolean => {
 })
 
 onMounted(() => {
-  console.log('props.componentItem', props.listItems)
+  // console.log('props.componentItem', props.listItems)
 })
 </script>
 

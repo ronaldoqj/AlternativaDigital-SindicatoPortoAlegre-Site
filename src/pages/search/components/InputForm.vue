@@ -51,7 +51,7 @@ const props = defineProps({
 })
 
 const triggerClickToSearch = () => {
-  console.log('click triggerClickToSearch')
+  // console.log('click triggerClickToSearch')
   emits('clickToSearch', true)
 }
 </script>

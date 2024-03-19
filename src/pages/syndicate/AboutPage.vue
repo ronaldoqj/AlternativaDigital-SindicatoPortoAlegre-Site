@@ -96,9 +96,9 @@ const state = reactive({
   },
   statute: {
     item: {
-      title: 'Estatuto 2023 1',
-      description: 'Lorem ipsum dolor sit amet, consectetuer 1',
-      src: '/assets/svg/icon-xml.svg#icon_xml'
+      title: 'Estatuto SindBancários',
+      description: '',
+      src: '/assets/svg/icon-pdf.svg#icon_pdf'
     },
     items: {
       currentScreen: {} as IDinamicScreen,
@@ -348,7 +348,7 @@ onMounted(() => {
           </p>
         </div>
         <div class="col-xs-12 col-md-5 self-center q-mb-md">
-          <StatuteItem style="margin: 0;" :title="state.statute.item.title" :description="state.statute.item.description" :src="state.statute.item.src" :link="`${baseURL}temporary/documents/about/Novo_Estatuto_Social_do_Sindicato_dos_Bancarios_de_Porto_Alegre_e_Regiao.pdf`" />
+          <StatuteItem style="margin: 0;" :title="state.statute.item.title" :description="state.statute.item.description" :src="state.statute.item.src" :link="`${baseURL}temporary/documents/about/ESTATUTOS_SINDICATO_DOS _BANCARIOS.pdf`" />
         </div>
       </div>
       <!-- <p class="section__statute--subtitle">

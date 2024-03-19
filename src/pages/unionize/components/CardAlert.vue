@@ -41,7 +41,7 @@ const props = defineProps({
 })
 
 const triggerClickToSend = () => {
-  console.log('click triggerClickToSend')
+  // console.log('click triggerClickToSend')
   emits('clickToSend', true)
 }
 // const state = {

@@ -56,8 +56,8 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
       env: {
-        DOMAIN: ctx.dev ? 'http://localhost' : 'http://sindbancarios.nodejsng15f06.uni5.net/',
-        API: ctx.dev ? 'http://localhost' : 'http://server.sindbancarios.nodejsng15f06.uni5.net/',
+        DOMAIN: ctx.dev ? 'http://localhost' : 'https://www.sindbancarios.org.br/#',
+        API: ctx.dev ? 'http://localhost' : 'https://server.sindbancarios.org.br/',
         xdebugTrigger: ctx.dev ? '?XDEBUG_TRIGGER' : ''
       },
       target: {

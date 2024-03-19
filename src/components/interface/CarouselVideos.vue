@@ -128,7 +128,7 @@ const getData = (): void => {
         item.video = element.video
         state.carousel.list.push(_.clone(item))
       })
-      console.log('listVideos', response.data)
+      // console.log('listVideos', response.data)
     })
     .catch((error:AxiosError) => {
       console.log('error', error)

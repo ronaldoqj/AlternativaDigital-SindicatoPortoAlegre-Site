@@ -23,7 +23,7 @@ const applicationName = 'Sindicato dos Bancários de Porto Alegre e Região - Si
 
 const setMeta = () => {
   const description = props.description
-  console.log('DESCRIPTION SOCIAL MEDIAS', description)
+  // console.log('DESCRIPTION SOCIAL MEDIAS', description)
 
   // const imagePath = baseURL + defaultImagePath
   const imagePath = props.image as string

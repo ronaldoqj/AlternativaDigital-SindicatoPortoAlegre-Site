@@ -143,7 +143,7 @@ const getRelatedDepartments = () => {
   NewsService.relatedDepartment({ department_id: state.relatedDepartments.departmentId, limit: state.relatedDepartments.limit })
     .then((response:IResponseRelated) => {
       state.relatedDepartments.list = response.data
-      console.log('getRelatedDepartments response:', response)
+      // console.log('getRelatedDepartments response:', response)
       // console.log('initial response', response.data)
       // console.log('initial response2', state.sectionNews)
     })

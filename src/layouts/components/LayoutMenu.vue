@@ -48,6 +48,10 @@ const clickRoute = (route: RouteLocationRaw) => {
 //   }
 // })
 
+const clickLink = (link:string, target:string) => {
+  window.open(link, target)
+}
+
 </script>
 
 <template>
@@ -241,7 +245,11 @@ const clickRoute = (route: RouteLocationRaw) => {
           <q-item-section @click="clickRoute(state.menu.servicesHistoryFile)">Arquivo histórico</q-item-section>
         </q-item>
 
-        <!-- <q-separator class="menu__separator" /> -->
+        <q-separator class="menu__separator" />
+
+        <q-item clickable v-close-popup>
+          <q-item-section @click="clickLink('https://portal.sindbancarios.org.br/', '_blank')">Portal do associado</q-item-section>
+        </q-item>
 
         <!-- <q-item clickable v-close-popup>
           <q-item-section @click="clickRoute(state.menu.servicesSpaces)">Espaços</q-item-section>

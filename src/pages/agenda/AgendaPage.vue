@@ -27,7 +27,7 @@ const route = useRoute()
 const getAgenda = () => {
   AgendaService.get({ id: state.idAgenda })
     .then((response:IResponseAgenda) => {
-      console.log('getAgenda', response)
+      // console.log('getAgenda', response)
       state.control.showContent = true
       state.agenda = response.data as IAgenda
       // getRelatedList()
