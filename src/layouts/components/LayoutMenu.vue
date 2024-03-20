@@ -48,6 +48,10 @@ const clickRoute = (route: RouteLocationRaw) => {
 //   }
 // })
 
+const clickLink = (link:string, target:string) => {
+  window.open(link, target)
+}
+
 </script>
 
 <template>
@@ -84,9 +88,9 @@ const clickRoute = (route: RouteLocationRaw) => {
           <q-item-section @click="clickRoute(state.menu.agreementsConventions)">Acordos e convenções</q-item-section>
         </q-item>
 
-        <q-separator v-if="false" class="menu__separator" />
+        <q-separator v-if="true" class="menu__separator" />
 
-        <q-item v-if="false" clickable v-close-popup>
+        <q-item v-if="true" clickable v-close-popup>
           <q-item-section @click="clickRoute(state.menu.notice)">Editais</q-item-section>
         </q-item>
 
@@ -244,14 +248,18 @@ const clickRoute = (route: RouteLocationRaw) => {
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section @click="clickRoute(state.menu.servicesSpaces)">Espaços</q-item-section>
+          <q-item-section @click="clickLink('https://portal.sindbancarios.org.br/', '_blank')">Portal do associado</q-item-section>
         </q-item>
 
-        <q-separator class="menu__separator" />
+        <!-- <q-item clickable v-close-popup>
+          <q-item-section @click="clickRoute(state.menu.servicesSpaces)">Espaços</q-item-section>
+        </q-item> -->
+
+        <!-- <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
           <q-item-section @click="clickRoute(state.menu.servicesLegal)">Jurídico</q-item-section>
-        </q-item>
+        </q-item> -->
       </q-list>
     </q-menu>
   </q-btn>

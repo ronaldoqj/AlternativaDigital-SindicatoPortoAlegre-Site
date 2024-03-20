@@ -10,7 +10,7 @@ const props = defineProps({
 })
 
 onMounted(() => {
-  console.log('about props', props.item)
+  // console.log('about props', props.item)
 })
 </script>
 

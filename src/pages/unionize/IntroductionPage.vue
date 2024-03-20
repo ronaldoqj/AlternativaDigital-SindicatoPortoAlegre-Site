@@ -17,10 +17,10 @@ const openVideo = () => {
       <TitleDefault title="Sindicalize-se" />
       <div class="row q-col-gutter-md q-mt-xl">
         <div class="col-xs-12 col-md-6">
-          <CardButton :route="{name: 'unionizeForm'}" :image="`/assets/image/image-inscricao-sindicalizacao-digital.png`" background="primary" color="text-inverse" :title="`Realizar sindicalização digital`" />
+          <CardButton :route="{name: 'unionizeForm'}" :image="`/assets/image/image-inscricao-sindicalizacao-digital.png`" background="primary" color="text-inverse" :title="`Sindicalize-se aqui`" />
         </div>
         <div class="col-xs-12 col-md-6">
-          <CardButton :route="{name: 'findForm'}" :image="`/assets/image/image-ficha-sindicalizacao-digital.png`" background="primary" color="text-inverse" :title="`Enviar arquivo PDF assinado no .gov`" />
+          <CardButton :route="{name: 'findForm'}" :image="`/assets/image/image-ficha-sindicalizacao-digital.png`" background="primary" color="text-inverse" :title="`Enviar arquivo PDF assinado no .gov.br*`" subtitle="*Após preencher a ficha digital no banner ao lado" />
         </div>
       </div>
     </section>
@@ -46,8 +46,8 @@ const openVideo = () => {
     <section class="q-mb-xl">
       <div class="row q-col-gutter-md justify-center">
         <div class="col-xs-12 col-sm-6 col-md-4 col-xl-3"><CardStep step="01" title="Preencher os dados" description="Preencha seus dados conforme os campos obrigatórios" /></div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-xl-3"><CardStep step="02" title="Conferir os dados" description="Confira seus dados e aceite as politicas de sindicalização" /></div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-xl-3"><CardStep step="03" title="Baixar PDF, assinar PDF no .gov e enviar para análise" description="Após baixar sua ficha digital, acesse o website do Governo Federal (www.gov.br) e assine digitalmente sua ficha de sindicalização, após isso faça o uploud desse arquivo por aqui." /></div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-xl-3"><CardStep step="02" title="Conferir os dados" description="Confira seus dados e aceite as políticas de sindicalização" /></div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-xl-3"><CardStep step="03" title="Baixar PDF, assinar PDF no .gov.br e enviar para análise" description="Após baixar sua ficha digital, acesse o website do Governo Federal (www.gov.br) e assine digitalmente sua ficha de sindicalização, após isso faça o upload desse arquivo por aqui." /></div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-xl-3"><CardStep step="04" title="Sindicalização enviada para análise" description="Sua sindicalização foi remetida para analise junto ao sindicato." /></div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-xl-3"><CardStep step="05" title="Confirmação da sindicalização" description="Você receberá o contato do Sindbancários confirmando o sucesso da sua sindicalização." /></div>
       </div>

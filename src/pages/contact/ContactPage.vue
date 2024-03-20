@@ -84,7 +84,7 @@ const validateForm = computed(() => {
 })
 
 const onSubmit = (evt:any) => {
-  console.log('@submit - do something here', evt)
+  // console.log('@submit - do something here', evt)
 
   if (validateForm.value) {
     evt.target.submit()

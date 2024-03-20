@@ -5,7 +5,7 @@
         <SectionBanner :news="state.sectionBanners" />
       </LayoutSection>
       <LayoutSection background="tertiary" cornerColor="accent" :type="state.sectionBanners.length ? 'normal' : 'top'">
-        <SectionNews :news="state.sectionNews" />
+        <SectionNews :news="state.sectionNews" :notIds="state.notIdsToPagination" />
       </LayoutSection>
       <LayoutSection background="accent" cornerColor="quaternary">
         <SectionVideos />
@@ -49,13 +49,15 @@ import { onMounted, reactive } from 'vue'
 
 const state = reactive({
   sectionBanners: [],
-  sectionNews: {}
+  sectionNews: {},
+  notIdsToPagination: []
 })
 
 onMounted(() => {
   NewsService.listHome({})
     .then((response:any) => {
       state.sectionBanners = response.data.banners
+      state.notIdsToPagination = response.data.allNewsIds
       state.sectionNews = {
         highlights: response.data.highlights,
         geral: response.data.geral

@@ -1,97 +1,40 @@
 <script setup lang="ts">
-import LayoutSection from 'layouts/components/LayoutSection.vue'
-import TitleDefault from 'components/interface/TitleDefault.vue'
 import { useQuasar } from 'quasar'
 import { baseURL } from 'src/helpers/helpers'
-import { reactive, computed, onMounted, watch, shallowRef } from 'vue'
+import LayoutSection from 'layouts/components/LayoutSection.vue'
+import TitleDefault from 'components/interface/TitleDefault.vue'
+import { reactive, computed, onMounted, watch } from 'vue'
+// import { shallowRef } from 'vue'
 
 import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
-import ExpandItem from 'src/pages/syndicate/components/notice/ExpandItem.vue'
+// import ExpandItem from 'src/pages/syndicate/components/notice/ExpandItem.vue'
 import DocumentItem from 'src/pages/syndicate/components/notice/DocumentItem.vue'
-import PublicNoticeService from 'src/services/PublicNoticeService'
-import { AxiosError } from 'axios'
 
-interface IList {
-  id: number
+interface IItemPublication {
   title: string
-  open: boolean
-  items: Array<any>
+  subtitle: string
+  src: string
+  link: string
 }
 
 const $q = useQuasar()
-const freezeComponentDocument = shallowRef(DocumentItem)
+// const freezeComponentDocument = shallowRef(DocumentItem)
 const state = reactive({
   items: {
     currentScreen: {} as IDinamicScreen,
-    listProp: [] as Array<object>
+    listProp: [] as IItemPublication[]
   } as IDinamicList
 })
 
 const setListStatute = () => {
-  const item = {
-    subtitle: 'Congresso Fetrafi-RS',
-    title: 'Edital de convocação de congresso Estadual',
+  const item: IItemPublication = {
+    subtitle: 'Jornal - NOV 2023',
+    title: 'O Bancário',
     src: '/assets/svg/icon-pdf.svg#icon_pdf',
-    link: ''
+    link: `${baseURL}temporary/documents/syndicate/publications/o-bancario-novembro-2023.pdf`
   }
-  const items = [item, item, item, item, item, item]
-  const list = [
-    { title: '2023', items, open: true },
-    { title: '2024', items, open: false },
-    { title: '2025', items, open: false },
-    { title: '2026', items, open: false }
-  ]
-
-  state.items.listProp = list
-}
-
-const getNewItemList = (data: any) => {
-  const newItem = {
-    id: data.category_id,
-    title: data.categories.name,
-    open: false,
-    items: []
-  } as IList
-  return newItem
-}
-
-const groupResponse = (data:Array<any>) => {
-  const list:IList[] = []
-
-  data.forEach((element:any) => {
-    const idExists = list.some(item => item.id === element.category_id)
-
-    if (!idExists) {
-      list.push(getNewItemList(element))
-    }
-
-    const index = list.findIndex(item => item.id === element.category_id)
-    list[index].items.push({
-      subtitle: element.file.description,
-      link: `${baseURL}${element.file.path}/${element.file.file_name}`,
-      title: element.file.name
-    })
-  })
-
-  if (list.length) {
-    list[0].open = true
-  }
-
-  return list
-}
-
-const getData = (): void => {
-  PublicNoticeService.list({ })
-    // .then((response:IResponseRelated) => {
-    .then((response:any) => {
-      state.items.listProp = groupResponse(response.data)
-    })
-    .catch((error:AxiosError) => {
-      console.log('error', error)
-    })
-    .then(() => {
-      //
-    })
+  // state.items.listProp = [item, item, item, item, item, item]
+  state.items.listProp = [item]
 }
 
 const currentScreenSize = computed((): TScreenSize => {
@@ -122,8 +65,7 @@ watch(currentScreenSize, (newValue) => {
 })
 
 onMounted(() => {
-  getData()
-  // setListStatute()
+  setListStatute()
   changeOrderList(currentScreenSize.value)
 })
 </script>
@@ -132,12 +74,23 @@ onMounted(() => {
   <div id="page__syndicate--notice" class="col">
     <LayoutSection background="tertiary" type="top" cornerColor="secondary" min-height>
       <div id="content__page--syndicate">
-        <TitleDefault class="q-mb-xl" title="Editais" />
-        <ExpandItem
+        <TitleDefault class="q-mb-xl" title="Publicações" />
+        <!-- <ExpandItem
           v-for="(item, key) in (state.items.listProp)" :key="key"
           :listItems="item"
           :component-item="freezeComponentDocument"
-        />
+        /> -->
+
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-lg-4" v-for="(item, key) in (state.items.listProp as IItemPublication[])" :key="key">
+            <DocumentItem
+              :title="item.title"
+              :subtitle="item.subtitle"
+              :src="item.src"
+              :link="item.link"
+            />
+          </div>
+        </div>
 
         <!-- <ExpandItem :listItems="state.items.listProp" :component-item="freezeComponentDocument" />
         <ExpandItem :listItems="state.items.listProp" :component-item="freezeComponentDocument" />

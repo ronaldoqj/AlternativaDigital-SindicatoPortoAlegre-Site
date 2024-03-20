@@ -14,7 +14,7 @@ import LayoutSection from 'layouts/components/LayoutSection.vue'
           <div class="col-xs-12 col-lg-6"><CardButton :image="`${baseURL}temporary/images/services/convenios.jpg`" title="Convênios" :route="{name: 'servicesInsurance'}" /></div>
           <div class="col-xs-12 col-lg-6"><CardButton :image="`${baseURL}temporary/images/services/arquivo-historico.jpg`" title="Arquivo Histórico" :route="{name: 'servicesHistoryFile'}" /></div>
           <!-- <div class="col-xs-12 col-lg-6"><CardButton image="/assets/image/tests/test-5.jpg" title="Espaços" :route="{name: 'servicesSpaces'}" /></div> -->
-          <div class="col-xs-12 col-lg-6"><CardButton :image="`${baseURL}temporary/images/services/juridico.jpg`" title="Jurídico" :route="{name: 'servicesLegal'}" /></div>
+          <!-- <div class="col-xs-12 col-lg-6"><CardButton :image="`${baseURL}temporary/images/services/juridico.jpg`" title="Jurídico" :route="{name: 'servicesLegal'}" /></div> -->
         </div>
       </div>
     </div>

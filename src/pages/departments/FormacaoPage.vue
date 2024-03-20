@@ -69,6 +69,8 @@ const setListDocuments = () => {
 
 const setListLegalMembers = () => {
   state.legalMembers.items.listProp.push({ title: 'Jairo', surname: 'Severo Soares', subtitle: 'Formação', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/020.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Itamara', surname: 'Pinto Brum', subtitle: 'Formação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/formacao_itamara.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Virgínia', surname: 'Faria', subtitle: 'Formação', description: 'In Memoriam', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` })
 }
 
 const setDepartmentPublications = () => {

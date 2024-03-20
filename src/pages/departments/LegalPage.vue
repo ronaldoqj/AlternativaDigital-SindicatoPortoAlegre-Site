@@ -89,6 +89,7 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
+  state.legalMembers.items.listProp.push({ title: 'Simoni', surname: 'Fernandes Medeiros', subtitle: 'Jurídico', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/juridico_simoni_medeiros.jpg` })
   state.legalMembers.items.listProp.push({ title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/011.jpg` })
 }
 
@@ -142,7 +143,7 @@ const getRelatedDepartments = () => {
   NewsService.relatedDepartment({ department_id: state.relatedDepartments.departmentId, limit: state.relatedDepartments.limit })
     .then((response:IResponseRelated) => {
       state.relatedDepartments.list = response.data
-      console.log('getRelatedDepartments response:', response)
+      // console.log('getRelatedDepartments response:', response)
       // console.log('initial response', response.data)
       // console.log('initial response2', state.sectionNews)
     })

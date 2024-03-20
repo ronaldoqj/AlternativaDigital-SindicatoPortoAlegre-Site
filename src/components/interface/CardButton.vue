@@ -14,6 +14,10 @@ const props = defineProps({
     type: String,
     require: true
   },
+  subtitle: {
+    type: String,
+    require: false
+  },
   color: {
     type: String,
     default: () => { return 'accent' },
@@ -67,7 +71,11 @@ const clickRoute = (route: RouteLocationRaw) => {
     @click="clickRoute(props.route)"
   >
     <ReverseCorner :size="80" :color="props.background" />
-    <div :class="`title ${resolveColor} ${resolveBackground}`" :style="`background-color: $primary`"><slot></slot> {{ props.title }}</div>
+    <div :class="`title ${resolveColor} ${resolveBackground}`" :style="`background-color: $primary`">
+      <slot></slot>
+      {{ props.title }}
+      <div v-if="props.subtitle" class="subtitle">{{ props.subtitle }}</div>
+    </div>
   </div>
 </template>
 
@@ -98,12 +106,19 @@ const clickRoute = (route: RouteLocationRaw) => {
     border-top-left-radius: 0;
     line-height: 1.3em;
     transition: 0.3s ease-in-out;
+
+    .subtitle {
+      font-size: 14px;
+      line-height: 1em;
+      font-weight: normal;
+    }
   }
 
   &:hover
   {
     .title {
       box-shadow: 2px 2px 1px 1px;
+      line-height: 1.2em;
     }
 
     box-shadow: 2px 2px 1px 1px;

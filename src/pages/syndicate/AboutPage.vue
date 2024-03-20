@@ -96,9 +96,9 @@ const state = reactive({
   },
   statute: {
     item: {
-      title: 'Estatuto 2023 1',
-      description: 'Lorem ipsum dolor sit amet, consectetuer 1',
-      src: '/assets/svg/icon-xml.svg#icon_xml'
+      title: 'Estatuto SindBancários',
+      description: '',
+      src: '/assets/svg/icon-pdf.svg#icon_pdf'
     },
     items: {
       currentScreen: {} as IDinamicScreen,
@@ -149,7 +149,7 @@ const state = reactive({
       list: [
         { title: 'Gilnei', surname: 'Silva Nunes', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/022.jpg` },
         { title: 'Jonas', surname: 'de Souza Castilhos', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/023.jpg` },
-        { title: 'Andrei', surname: 'Freitas Teixeira', subtitle: 'Comunicação', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` }
+        { title: 'Andrei', surname: 'Freitas Teixeira', subtitle: 'Comunicação', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/comunicacao_-_andrei.png` }
       ]
     },
     {
@@ -163,37 +163,37 @@ const state = reactive({
       section: 'Juventude e Gênero',
       list: [
         { title: 'Carmen', surname: 'Guedes', subtitle: 'Juventude e Gênero', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/013.jpg` },
-        { title: 'Rachel', surname: 'de Araujo Weber', subtitle: 'Juventude e Gênero', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` },
-        { title: 'Gean Francisco', surname: 'Farias Espíndula', subtitle: 'Juventude e Gênero', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` }
+        { title: 'Rachel', surname: 'de Araujo Weber', subtitle: 'Juventude e Gênero', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/juventude-e-genero_-_raquel.png` },
+        { title: 'Gean Francisco', surname: 'Farias Espíndula', subtitle: 'Juventude e Gênero', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/juventude-e-genero_-_gean.png` }
       ]
     },
     {
       section: 'Diversidade e Combate ao Racismo',
       list: [
         { title: 'Sandro Artur', surname: 'Ferreira Rodrigues', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/014.jpg` },
-        { title: 'Ernesto Humberto', surname: 'dos Santos', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` }
+        { title: 'Ernesto Humberto', surname: 'dos Santos', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/diversidade-e-combate-ao-racismo_-_ernesto.png` }
       ]
     },
     {
       section: 'Saúde e Condições de Trabalho',
       list: [
         { title: 'Jamile', surname: 'Chamun', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/012.jpg` },
-        { title: 'Thiely Denise', surname: 'Kalil', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` },
-        { title: 'Rodrigo', surname: 'Ambros Rodrigues', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` }
+        { title: 'Thiely Denise', surname: 'Kalil', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/saude-e-condicoes-de-trabalho_-_thiely.png` },
+        { title: 'Rodrigo', surname: 'Ambros Rodrigues', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/saude-e-condicoes-de-trabalho_-_rodrigo.png` }
       ]
     },
     {
       section: 'Esporte e Lazer',
       list: [
         { title: 'Gerson Marques', surname: 'dos Reis', subtitle: 'Esporte e Lazer', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/esporte_e_lazer_gerson.jpg` },
-        { title: 'Carlos Odone', surname: 'Dahlheimer Viale', subtitle: 'Esporte e Lazer', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` },
+        { title: 'Carlos Odone', surname: 'Dahlheimer Viale', subtitle: 'Esporte e Lazer', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/esporte-e-lazer_-_carlos.png` },
         { title: 'Rogério', surname: 'de Rodrigues Rodrigues', subtitle: 'Esporte e Lazer', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/esporte_e_lazer_rogerio.jpg` }
       ]
     },
     {
       section: 'Cultura e Sustentabilidade',
       list: [
-        { title: 'Ana Lúcia', surname: 'Soares Guimaraens', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` },
+        { title: 'Ana Lúcia', surname: 'Soares Guimaraens', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/cultura-e-sustentabilidade_-_ana-lucia.jpg` },
         { title: 'Guaracy', surname: 'Padilla Gonçalves', subtitle: 'Cultura e Sustentabilidade', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/016.jpg` },
         { title: 'Eroni', surname: 'Batista Ribeiro', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/017.jpg` }
       ]
@@ -209,17 +209,17 @@ const state = reactive({
     {
       section: 'Formação',
       list: [
-        { title: 'Virgínia', surname: 'Faria', subtitle: 'Formação', description: 'In Memoriam', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` },
         { title: 'Jairo', surname: 'Severo Soares', subtitle: 'Formação', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/020.jpg` },
-        { title: 'Itamara', surname: 'Pinto Brum', subtitle: 'Formação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/formacao_itamara.jpg` }
+        { title: 'Itamara', surname: 'Pinto Brum', subtitle: 'Formação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/formacao_itamara.jpg` },
+        { title: 'Virgínia', surname: 'Faria', subtitle: 'Formação', description: 'In Memoriam', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` }
       ]
     },
     {
       section: 'Financeiras e Terceirizados do Ramo Financeiro',
       list: [
-        { title: 'Claudia Stella', surname: 'Rodrigues Santana de Resende', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Banrisul', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` },
+        { title: 'Claudia Stella', surname: 'Rodrigues Santana de Resende', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/financeiras-e-terceirizados-do-ramo-financeiro_-_claudia.png` },
         { title: 'Caroline', surname: 'Soares Heidner', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/021.jpg` },
-        { title: 'Marilene', surname: 'Brusa Sá', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Banrisul', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` }
+        { title: 'Marilene', surname: 'Brusa Sá', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/financeiras-e-terceirizados-do-ramo-financeiro_-_marilene.png` }
       ]
     },
     {
@@ -348,7 +348,7 @@ onMounted(() => {
           </p>
         </div>
         <div class="col-xs-12 col-md-5 self-center q-mb-md">
-          <StatuteItem style="margin: 0;" :title="state.statute.item.title" :description="state.statute.item.description" :src="state.statute.item.src" :link="`${baseURL}temporary/documents/about/Novo_Estatuto_Social_do_Sindicato_dos_Bancarios_de_Porto_Alegre_e_Regiao.pdf`" />
+          <StatuteItem style="margin: 0;" :title="state.statute.item.title" :description="state.statute.item.description" :src="state.statute.item.src" :link="`${baseURL}temporary/documents/about/ESTATUTOS_SINDICATO_DOS _BANCARIOS.pdf`" />
         </div>
       </div>
       <!-- <p class="section__statute--subtitle">

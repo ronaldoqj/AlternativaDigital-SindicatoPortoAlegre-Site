@@ -5,7 +5,9 @@ import { computed, onMounted, reactive, watch } from 'vue'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
-import SectionVideos from 'src/pages/departments/components/legal/SectionVideos.vue'
+// import SectionVideos from 'src/pages/departments/components/legal/SectionVideos.vue'
+import CarouselVideos from 'components/interface/CarouselVideos.vue'
+import { EPages } from 'src/types/IPages'
 import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
 
 interface IItemMember {
@@ -149,15 +151,15 @@ onMounted(() => {
       </div>
     </LayoutSection>
 
-    <LayoutSection v-if="false" background="quaternary" cornerColor="tertiary">
+    <LayoutSection background="quaternary" cornerColor="secondary">
       <TitleDefault class="q-mb-xl" title="Vídeos do estúdio RAO" />
-      <SectionVideos />
+      <CarouselVideos :page="EPages.studyRAO" color="primary" />
     </LayoutSection>
 
     <!-- <LayoutSection background="tertiary" cornerColor="secondary"> -->
-    <LayoutSection background="quaternary" cornerColor="secondary">
+    <!-- <LayoutSection background="quaternary" cornerColor="secondary">
       <div class="q-my-xl"></div>
-    </LayoutSection>
+    </LayoutSection> -->
   </div>
 </template>
 

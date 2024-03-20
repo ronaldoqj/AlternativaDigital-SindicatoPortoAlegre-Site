@@ -27,10 +27,8 @@ const state = reactive({
 })
 
 const getForm = (cpf: string) => {
-  console.log('getForm by cpf', cpf)
   NewsService.getByCpf({ cpf })
     .then((response:IUnionize) => {
-      console.log('response', response)
       redirectToLastStep(cpf)
     })
     .catch((error:AxiosError) => {
@@ -38,7 +36,7 @@ const getForm = (cpf: string) => {
       alert('Não foi possível encontrar um cadastro para o email informado')
     })
     .then(() => {
-      console.log('finally service')
+      // console.log('finally service')
     })
 }
 

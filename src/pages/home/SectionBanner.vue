@@ -34,6 +34,10 @@ const clickRoute = (route: RouteLocationRaw) => {
   // router.replace(route)
 }
 
+const clickLink = (link:string, target:string) => {
+  window.open(link, target)
+}
+
 watch(screenSize, (newValue) => {
   state.typeImage = newValue
 })
@@ -59,7 +63,7 @@ onMounted(() => {
         v-for="(row, index) in props.news"
         :key="index"
         style="cursor: pointer;"
-        @click="clickRoute(convertURL(row.id, row.title))"
+        @click="row.entityType === 'campaign' ? clickLink(row.link, row.target) : clickRoute(convertURL(row.id, row.title))"
         :name="index"
         :img-src=" state.typeImage === 'mobile' ? `${baseURL}${row.banner_mobile.path}/${row.banner_mobile.file_name}` : `${baseURL}${row.banner_desktop.path}/${row.banner_desktop.file_name}`"
       />

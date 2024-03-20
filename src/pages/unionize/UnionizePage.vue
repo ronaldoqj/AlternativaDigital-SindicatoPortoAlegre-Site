@@ -288,7 +288,7 @@ onMounted(() => {
               <div class="row q-col-gutter-sm q-my-md">
                 <div class="col-xs-12 col-lg-5"><InputForm v-model="pData.cpf.value" :label="pData.cpf.label" :name="pData.cpf.name" :read-only="formReadyOnly" :mask="pData.cpf.mask" :required="pData.cpf.required" /></div>
                 <div class="col-xs-12 col-sm-6 col-lg-5"><InputForm v-model="pData.rg.value" :label="pData.rg.label" :name="pData.rg.name" :read-only="formReadyOnly" :required="pData.rg.required" /></div>
-                <div class="col-xs-12 col-sm-6 col-lg-2"><InputForm v-model="pData.issuingAuthority.value" :label="pData.issuingAuthority.label" :name="pData.rg.name" :read-only="formReadyOnly" :required="pData.issuingAuthority.required" /></div>
+                <div class="col-xs-12 col-sm-6 col-lg-2"><InputForm v-model="pData.issuingAuthority.value" :label="pData.issuingAuthority.label" :name="pData.issuingAuthority.name" :read-only="formReadyOnly" :required="pData.issuingAuthority.required" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="pData.birth.value" :label="pData.birth.label" :name="pData.birth.name" :read-only="formReadyOnly" :mask="pData.birth.mask" :required="pData.birth.required" /></div>
