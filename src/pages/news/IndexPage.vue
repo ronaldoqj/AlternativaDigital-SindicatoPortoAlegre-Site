@@ -163,7 +163,8 @@ onMounted(() => {
         <div v-else class="q-mb-xl">
           <div v-for="(layer, index) in state.layersNews" :key="index">
             <div v-if="layer === 'image_news'" class="layer--image">
-              <ImageDefault class="q-my-lg" :src="getValidImage(state.news as INews, 'imageNews')"></ImageDefault>
+              <img :src="getValidImage(state.news as INews, 'imageNews')" alt="">
+              <!-- <ImageDefault class="q-my-lg" :src="getValidImage(state.news as INews, 'imageNews')"></ImageDefault> -->
             </div>
             <div v-if="layer === 'video_news'" class="layer--video"> <VideoDefault :src="(state.news?.video_news as string)" /> </div>
             <div v-if="layer === 'audio_news'" class="layer--audio">
@@ -267,6 +268,12 @@ onMounted(() => {
     }
   }
 
+  .layer--image {
+    text-align: center;
+    object-fit: contain;
+    width: 100%;
+  }
+
   @media only screen and (min-width: $breakpoint-sm)
   {
     .images__floats
@@ -291,6 +298,13 @@ onMounted(() => {
     .layer--image, .layer--video {
       max-width: 80%;
       margin: 0 auto;
+    }
+
+    .layer--image
+    {
+      img {
+        max-height: 800px;
+      }
     }
   }
 
