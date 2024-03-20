@@ -181,8 +181,8 @@ onMounted(() => {
 
           <div v-if="state.news?.journalist_font || state.news?.url_email" class="layer--font">
             <div class="title">Jornalista/Fonte</div>
-            <p v-if="state.news?.journalist_font">{{ state.news.journalist_font }} Jornalista</p>
-            <p v-if="state.news?.url_email">{{ state.news.url_email }} Email</p>
+            <p v-if="state.news?.journalist_font">{{ state.news.journalist_font }}</p>
+            <p v-if="state.news?.url_email">{{ state.news.url_email }}</p>
           </div>
         </div>
 
