@@ -272,6 +272,11 @@ onMounted(() => {
     text-align: center;
     object-fit: contain;
     width: 100%;
+
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
   }
 
   @media only screen and (min-width: $breakpoint-sm)
