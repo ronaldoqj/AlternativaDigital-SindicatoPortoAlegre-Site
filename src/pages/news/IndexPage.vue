@@ -12,7 +12,7 @@ import VideoDefault from 'components/interface/VideoDefault.vue'
 import AudioDefault from 'components/interface/AudioDefault.vue'
 import { INews, IResponseNews, IResponseRelated, TNewsLayers } from 'src/types/INews'
 import SkeletonNews from 'components/interface/skeletons/SkeletonNews.vue'
-import ShareButtons from 'src/components/interface/ShareButtons.vue'
+// import ShareButtons from 'src/components/interface/ShareButtons.vue'
 
 const route = useRoute()
 const state = reactive({
@@ -174,8 +174,15 @@ onMounted(() => {
             <div v-if="layer === 'titles'" class="layer--title">
               <h2>{{ state.news?.topper }}</h2>
               <h1>{{ state.news?.title }}</h1>
+              <h3 v-if="state.news?.call">{{ state.news?.call }}</h3>
             </div>
             <div v-if="layer === 'text'" class="layer--text" v-html="state.news?.text"></div>
+          </div>
+
+          <div v-if="state.news?.journalist_font || state.news?.url_email" class="layer--font">
+            <div class="title">Jornalista/Fonte</div>
+            <p v-if="state.news?.journalist_font">{{ state.news.journalist_font }} Jornalista</p>
+            <p v-if="state.news?.url_email">{{ state.news.url_email }} Email</p>
           </div>
         </div>
 
@@ -210,12 +217,21 @@ onMounted(() => {
     margin: 45px 0 10px;
   }
 
+  h3 {
+    font-size: 18px;
+    font-style: italic;
+    font-weight: bold;
+    color: $senary;
+    line-height: 1.25em;
+    margin: 0 0 10px;
+  }
+
   h1 {
     font-size: 40px;
     line-height: 1.15em;
     color: $primary;
     font-weight: bold;
-    margin: 0 0 30px;
+    margin: 0 0 20px;
   }
 
   h4 {
@@ -230,8 +246,25 @@ onMounted(() => {
     text-align: justify;
   }
 
-  .layer--text {
-    font-size: 16px;
+  .layer--font {
+    margin-top: 30px;
+
+    .title {
+      font-size: 12px;
+      color: $quinary;
+      font-weight: bold;
+      font-style: italic;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-weight: bold;
+      margin: 0;
+      color: $quinary;
+      font-size: 18px;
+      line-height: 1.2em;
+      font-style: italic;
+    }
   }
 
   @media only screen and (min-width: $breakpoint-sm)
@@ -249,6 +282,15 @@ onMounted(() => {
         float: right;
         margin-left: 10px;
       }
+    }
+
+    .layer--text {
+      font-size: 16px;
+    }
+
+    .layer--image, .layer--video {
+      max-width: 80%;
+      margin: 0 auto;
     }
   }
 
