@@ -263,9 +263,9 @@ onMounted(() => {
             <div class="header--section-form">Dados Comerciais</div>
             <div class="section--form">
               <div class="row q-col-gutter-sm q-my-md">
-                <div class="col-xs-12 col-lg-5"><InputForm ref-model="refBank" v-model="cData.bank.value" :label="cData.bank.label" :name="cData.bank.name" :read-only="formReadyOnly" :required="cData.bank.required" /></div>
-                <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm v-model="cData.codeBank.value" :label="cData.codeBank.label" :name="cData.codeBank.name" :read-only="formReadyOnly" :required="cData.codeBank.required" /></div>
-                <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm v-model="cData.agency.value" :label="cData.agency.label" :name="cData.agency.name" :read-only="formReadyOnly" :required="cData.agency.required" /></div>
+                <div class="col-xs-12 col-lg-5"><InputForm ref-model="refBank" v-model="cData.bank.value" :label="cData.bank.label" :name="cData.bank.name" :read-only="formReadyOnly" :required="cData.bank.required" max-length="40" /></div>
+                <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm v-model="cData.codeBank.value" :label="cData.codeBank.label" :name="cData.codeBank.name" :read-only="formReadyOnly" :required="cData.codeBank.required" max-length="40" /></div>
+                <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm v-model="cData.agency.value" :label="cData.agency.label" :name="cData.agency.name" :read-only="formReadyOnly" :required="cData.agency.required" max-length="40" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
                 <div class="col-xs-12 col-lg-5"><InputForm v-model="cData.phone.value" :label="cData.phone.label" :name="cData.phone.name" :read-only="formReadyOnly" :mask="cData.phone.mask" :required="cData.phone.required" /></div>
@@ -283,12 +283,12 @@ onMounted(() => {
             <div class="header--section-form">Dados Pessoais</div>
             <div class="section--form">
               <div class="row q-col-gutter-sm q-my-md">
-                <div class="col-12"><InputForm v-model="pData.name.value" :label="pData.name.label" :name="pData.name.name" :read-only="formReadyOnly" :required="pData.name.required" /></div>
+                <div class="col-12"><InputForm v-model="pData.name.value" :label="pData.name.label" :name="pData.name.name" :read-only="formReadyOnly" :required="pData.name.required" max-length="140" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
                 <div class="col-xs-12 col-lg-5"><InputForm v-model="pData.cpf.value" :label="pData.cpf.label" :name="pData.cpf.name" :read-only="formReadyOnly" :mask="pData.cpf.mask" :required="pData.cpf.required" /></div>
-                <div class="col-xs-12 col-sm-6 col-lg-5"><InputForm v-model="pData.rg.value" :label="pData.rg.label" :name="pData.rg.name" :read-only="formReadyOnly" :required="pData.rg.required" /></div>
-                <div class="col-xs-12 col-sm-6 col-lg-2"><InputForm v-model="pData.issuingAuthority.value" :label="pData.issuingAuthority.label" :name="pData.issuingAuthority.name" :read-only="formReadyOnly" :required="pData.issuingAuthority.required" /></div>
+                <div class="col-xs-12 col-sm-6 col-lg-5"><InputForm v-model="pData.rg.value" :label="pData.rg.label" :name="pData.rg.name" :read-only="formReadyOnly" :required="pData.rg.required" max-length="20" /></div>
+                <div class="col-xs-12 col-sm-6 col-lg-2"><InputForm v-model="pData.issuingAuthority.value" :label="pData.issuingAuthority.label" :name="pData.issuingAuthority.name" :read-only="formReadyOnly" :required="pData.issuingAuthority.required" max-length="20" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="pData.birth.value" :label="pData.birth.label" :name="pData.birth.name" :read-only="formReadyOnly" :mask="pData.birth.mask" :required="pData.birth.required" /></div>
@@ -303,13 +303,13 @@ onMounted(() => {
                 <div class="col-4 col-xs-12 col-sm-6 col-lg-3"><InputForm v-model="pData.cellphone.value" :label="pData.cellphone.label" :name="pData.cellphone.name" :read-only="formReadyOnly" :mask="pData.cellphone.mask" :required="pData.cellphone.required" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
-                <div class="col-xs-12 col-lg-6"><InputForm v-model="pData.homeAddress.value" :label="pData.homeAddress.label" :name="pData.homeAddress.name" :read-only="formReadyOnly" :required="pData.homeAddress.required" /></div>
-                <div class="col-3 col-xs-12 col-sm-4 col-lg-2"><InputForm v-model="pData.number.value" :label="pData.number.label" :name="pData.number.name" :read-only="formReadyOnly" :required="pData.number.required" /></div>
-                <div class="col-4 col-xs-12 col-sm-8 col-lg-4"><InputForm v-model="pData.complement.value" :label="pData.complement.label" :name="pData.complement.name" :read-only="formReadyOnly" :required="pData.complement.required" /></div>
+                <div class="col-xs-12 col-lg-6"><InputForm v-model="pData.homeAddress.value" :label="pData.homeAddress.label" :name="pData.homeAddress.name" :read-only="formReadyOnly" :required="pData.homeAddress.required" max-length="140" /></div>
+                <div class="col-3 col-xs-12 col-sm-4 col-lg-2"><InputForm v-model="pData.number.value" :label="pData.number.label" :name="pData.number.name" :read-only="formReadyOnly" :required="pData.number.required" max-length="20" /></div>
+                <div class="col-4 col-xs-12 col-sm-8 col-lg-4"><InputForm v-model="pData.complement.value" :label="pData.complement.label" :name="pData.complement.name" :read-only="formReadyOnly" :required="pData.complement.required" max-length="40" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
-                <div class="col-xs-12 col-lg-4"><InputForm v-model="pData.neighborhood.value" :label="pData.neighborhood.label" :name="pData.neighborhood.name" :read-only="formReadyOnly" :required="pData.neighborhood.required" /></div>
-                <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm v-model="pData.city.value" :label="pData.city.label" :name="pData.city.name" :read-only="formReadyOnly" :required="pData.city.required" /></div>
+                <div class="col-xs-12 col-lg-4"><InputForm v-model="pData.neighborhood.value" :label="pData.neighborhood.label" :name="pData.neighborhood.name" :read-only="formReadyOnly" :required="pData.neighborhood.required" max-length="100" /></div>
+                <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm v-model="pData.city.value" :label="pData.city.label" :name="pData.city.name" :read-only="formReadyOnly" :required="pData.city.required" max-length="100" /></div>
                 <div class="col-3 col-xs-12 col-sm-6 col-lg-4"><SelectForm v-model="pData.state.value" :label="pData.state.label" :name="pData.state.name" :read-only="formReadyOnly" :options="pData.state.options" :required="pData.state.required" /></div>
               </div>
             </div>
