@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { PropType } from 'vue'
 
+type TFormType = 'number' | 'textarea' | 'time' | 'text' | 'password' | 'email' | 'search' | 'tel' | 'file' | 'url' | 'date' | undefined
+
 const props = defineProps({
   modelValue: {
     type: String as PropType<string | number | null | undefined>,
@@ -16,11 +18,12 @@ const props = defineProps({
     required: true
   },
   type: {
-    type: String,
-    default: '',
+    type: String as PropType<TFormType>,
+    default: 'text',
     require: false
   }
 })
+
 </script>
 
 <template>
@@ -33,6 +36,7 @@ const props = defineProps({
       borderless
       :name="props.name"
       dense
+      :type="props.type"
       ></q-input>
     </div>
   </div>
@@ -55,6 +59,9 @@ const props = defineProps({
 
     &.textarea {
       height: 200px;
+      textarea {
+        height: 195px;
+      }
     }
   }
 

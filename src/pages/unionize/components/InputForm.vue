@@ -29,6 +29,11 @@ const props = defineProps({
     type: String,
     require: false
   },
+  maxLength: {
+    type: String,
+    defaul: '',
+    required: false
+  },
   toPrint: {
     type: Boolean,
     require: false
@@ -53,6 +58,7 @@ const props = defineProps({
         :class="props.readOnly ? 'read__only--input' : ''"
         :mask="props.mask"
         dense
+        :maxlength="props.maxLength"
         >
       </q-input>
     </div>

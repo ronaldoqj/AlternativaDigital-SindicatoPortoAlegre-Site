@@ -31,6 +31,11 @@ const props = defineProps({
     default: () => { return 'accent' },
     require: false
   },
+  cardColor: {
+    type: String,
+    default: () => { return '' },
+    require: false
+  },
   backgroundColor: {
     type: String,
     default: () => { return 'quaternary' },

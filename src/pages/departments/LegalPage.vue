@@ -76,16 +76,17 @@ const state = reactive({
 })
 
 const setListDocuments = () => {
-  state.documents.items.listProp.push({ title: 'Guia 2023 1', description: 'Lorem ipsum dolor sit amet, consectetuer 1', src: '/assets/svg/icon-xml.svg#icon_xml' })
-  state.documents.items.listProp.push({ title: 'Guia 2023 2', description: 'Lorem ipsum dolor sit amet, consectetuer 2', src: '/assets/svg/icon-pdf.svg#icon_pdf' })
-  state.documents.items.listProp.push({ title: 'Guia 2023 3', description: 'Lorem ipsum dolor sit amet, consectetuer 3', src: '/assets/svg/icon-pdf.svg#icon_pdf' })
-  state.documents.items.listProp.push({ title: 'Guia 2023 4', description: 'Lorem ipsum dolor sit amet, consectetuer 4', src: '/assets/svg/icon-pdf.svg#icon_pdf' })
-  state.documents.items.listProp.push({ title: 'Guia 2023 5', description: 'Lorem ipsum dolor sit amet, consectetuer 5', src: '/assets/svg/icon-pdf.svg#icon_pdf' })
-  state.documents.items.listProp.push({ title: 'Guia 2023 6', description: 'Lorem ipsum dolor sit amet, consectetuer 6', src: '/assets/svg/icon-pdf.svg#icon_pdf' })
-  state.documents.items.listProp.push({ title: 'Guia 2023 7', description: 'Lorem ipsum dolor sit amet, consectetuer 7', src: '/assets/svg/icon-pdf.svg#icon_pdf' })
-  state.documents.items.listProp.push({ title: 'Guia 2023 8', description: 'Lorem ipsum dolor sit amet, consectetuer 8', src: '/assets/svg/icon-pdf.svg#icon_pdf' })
-  state.documents.items.listProp.push({ title: 'Guia 2023 9', description: 'Lorem ipsum dolor sit amet, consectetuer 9', src: '/assets/svg/icon-pdf.svg#icon_pdf' })
-  state.documents.items.listProp.push({ title: 'Guia 2023 10', description: 'Lorem ipsum dolor sit amet, consectetuer 10', src: '/assets/svg/icon-xml.svg#icon_xml' })
+  state.documents.items.listProp.push({ title: 'Agiplan', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/AGIPLAN-RELATORIO_ACOES_COLETIVAS.pdf` })
+  state.documents.items.listProp.push({ title: 'Banrisul', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/BANRISUL-RELATORIO_ACOES_COLETIVAS.pdf` })
+  state.documents.items.listProp.push({ title: 'Bradesco', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/BRADESCO-RELATORIO_ACOES_COLETIVAS.pdf` })
+  state.documents.items.listProp.push({ title: 'BRDE', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/BRDE-RELATORIO_ACOES_COLETIVAS.pdf` })
+  state.documents.items.listProp.push({ title: 'CEF', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/CEF-RELATORIO_ACOES_COLETIVAS.pdf` })
+  state.documents.items.listProp.push({ title: 'Hsbc', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/HSBC-RELATORIO_ACOES_COLETIVAS.pdf` })
+  state.documents.items.listProp.push({ title: 'Itaú', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/ITAU-RELATORIO_ACOES_COLETIVAS.pdf` })
+  state.documents.items.listProp.push({ title: 'NBC', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/NBC-RELATORIO_ACOES_COLETIVAS.pdf` })
+  state.documents.items.listProp.push({ title: 'Renner', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/RENNER-RELATORIO_ACOES_COLETIVAS.pdf` })
+  state.documents.items.listProp.push({ title: 'Safra', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/SAFRA-RELATORIO_ACOES_COLETIVAS.pdf` })
+  state.documents.items.listProp.push({ title: 'Santander', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/SANTANDER-RELATORIO_ACOES_COLETIVAS.pdf` })
 }
 
 const setListLegalMembers = () => {
@@ -187,7 +188,7 @@ onMounted(() => {
       </div>
     </LayoutSection>
 
-    <LayoutSection v-if="false" background="quaternary" cornerColor="tertiary">
+    <LayoutSection background="quaternary" cornerColor="tertiary">
       <TitleDefault class="q-mb-xl" title="Documentos" />
       <!-- <DocumentItem title="Guia 2023" description="Lorem ipsum dolor sit amet, consectetuer" />
       <component :is="documentItem" v-bind="props"></component> -->
@@ -195,8 +196,7 @@ onMounted(() => {
       <CarouselSlide v-if="state.documents.items.listProp.length" :listItems="state.documents.items" :component-item="freezeComponentDocument" item-class="departments__legal--document-item" />
     </LayoutSection>
 
-    <!-- <LayoutSection background="tertiary" cornerColor="quaternary"> -->
-    <LayoutSection background="quaternary" cornerColor="tertiary">
+    <LayoutSection background="tertiary" cornerColor="quaternary">
       <RelatedPublications v-if="state.relatedDepartments.list.length" :list="state.relatedDepartments.list" />
       <div v-else>
         <TitleDefault title="Publicações Relacionadas" />
@@ -210,8 +210,7 @@ onMounted(() => {
       <SectionVideos />
     </LayoutSection> -->
 
-    <!-- <LayoutSection background="quaternary" cornerColor="secondary"> -->
-    <LayoutSection background="tertiary" cornerColor="secondary">
+    <LayoutSection background="quaternary" cornerColor="secondary">
       <TitleDefault class="q-mb-xl" title="Membros por equipe" />
       <!-- <p class="subtitle__legal-members">
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
@@ -222,7 +221,7 @@ onMounted(() => {
 
       <div class="row">
         <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3" v-for="(member, key) in (state.legalMembers.items.listProp as IItemMember[])" :key="key">
-          <MembersItem :title="member.title" :surname="member.surname" :subtitle="member.subtitle" :description="member.description" :image="member.image" />
+          <MembersItem :title="member.title" :surname="member.surname" :subtitle="member.subtitle" :description="member.description" :image="member.image" background-color="tertiary" />
         </div>
       </div>
     </LayoutSection>

@@ -24,6 +24,7 @@ const state = reactive({
         bank: { value: null as null | string, label: 'Banco', name: 'bank', required: true },
         codeBank: { value: null as null | string, label: 'COD do banco', name: 'code_bank', required: true },
         agency: { value: null as null | string, label: 'Agência', name: 'agency', required: true },
+        account: { value: null as null | string, label: 'Conta', name: 'account', required: true },
 
         phone: { value: null as null | string, label: 'Telefone', name: 'phone', mask: '(##) #### - ####', required: false },
         extension: { value: null as null | string, label: 'Ramal', name: 'extension', required: true },
@@ -48,7 +49,7 @@ const state = reactive({
         phone: { value: null as null | string, label: 'Telefone', name: 'phone', mask: '(##) #### - ####', required: false },
         cellphone: { value: null as null | string, label: 'Celular', name: 'cellphone', mask: '(##) ##### - ####', required: true },
 
-        homeAddress: { value: null as null | string, label: 'Endereço Recidencial', name: 'home_address', required: true },
+        homeAddress: { value: null as null | string, label: 'Endereço Residencial', name: 'home_address', required: true },
         number: { value: null as null | string, label: 'Número', name: 'number', required: true },
         complement: { value: null as null | string, label: 'Complemento', name: 'complement', required: false },
 
@@ -60,7 +61,8 @@ const state = reactive({
         confirm: { value: true },
         bank: { value: null as null | string, label: 'banco', name: 'auth_bank', required: true },
         codeBank: { value: null as null | string, label: 'COD do banco', name: 'auth_code_bank', required: true },
-        agency: { value: null as null | string, label: 'Agência', name: 'auth_agency', required: true }
+        agency: { value: null as null | string, label: 'Agência', name: 'auth_agency', required: true },
+        account: { value: null as null | string, label: 'Conta', name: 'auth_account', required: true }
       }
     }
   },
@@ -102,6 +104,7 @@ const disableConfirm = computed((): boolean => {
   if (cData.bank.required && _.isEmpty(cData.bank.value)) { disableBtn = true }
   if (cData.codeBank.required && _.isEmpty(cData.codeBank.value)) { disableBtn = true }
   if (cData.agency.required && _.isEmpty(cData.agency.value)) { disableBtn = true }
+  if (cData.account.required && _.isEmpty(cData.account.value)) { disableBtn = true }
   if (cData.phone.required && _.isEmpty(cData.phone.value)) { disableBtn = true }
   if (cData.extension.required && _.isEmpty(cData.extension.value)) { disableBtn = true }
   if (cData.alreadyAssociated.required && _.isEmpty(cData.alreadyAssociated.value)) { disableBtn = true }
@@ -152,6 +155,7 @@ const clearForm = (): void => {
   cData.bank.value = null
   cData.codeBank.value = null
   cData.agency.value = null
+  cData.account.value = null
   cData.phone.value = null
   cData.extension.value = null
   cData.alreadyAssociated.value = null
@@ -178,6 +182,7 @@ const clearForm = (): void => {
   aData.confirm.value = false
   aData.bank.value = null
   aData.agency.value = null
+  aData.account.value = null
   aData.codeBank.value = null
 }
 
@@ -204,6 +209,7 @@ const testingForm = () => {
   // state.form.inputs.commercialData.bank.value = 'Bank'
   // state.form.inputs.commercialData.codeBank.value = 'codeBank'
   // state.form.inputs.commercialData.agency.value = 'Agency'
+  // state.form.inputs.commercialData.account.value = 'Conta'
   // state.form.inputs.commercialData.phone.value = '5111111111'
   // state.form.inputs.commercialData.commercialEmail.value = 'comercial Email'
   // state.form.inputs.commercialData.extension.value = 'extension'
@@ -234,6 +240,7 @@ const testingForm = () => {
   // state.form.inputs.authorizationData.bank.value = 'Auth Bank'
   // state.form.inputs.authorizationData.codeBank.value = 'Auth codeBank'
   // state.form.inputs.authorizationData.agency.value = 'Auth Agency'
+  // state.form.inputs.authorizationData.account.value = 'Auth Account'
 }
 
 const toConfirmForm = (cpf: string) => {
@@ -263,9 +270,10 @@ onMounted(() => {
             <div class="header--section-form">Dados Comerciais</div>
             <div class="section--form">
               <div class="row q-col-gutter-sm q-my-md">
-                <div class="col-xs-12 col-lg-5"><InputForm ref-model="refBank" v-model="cData.bank.value" :label="cData.bank.label" :name="cData.bank.name" :read-only="formReadyOnly" :required="cData.bank.required" /></div>
-                <div class="col-3 col-xs-12 col-sm-6 col-lg-3"><InputForm v-model="cData.codeBank.value" :label="cData.codeBank.label" :name="cData.codeBank.name" :read-only="formReadyOnly" :required="cData.codeBank.required" /></div>
-                <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm v-model="cData.agency.value" :label="cData.agency.label" :name="cData.agency.name" :read-only="formReadyOnly" :required="cData.agency.required" /></div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm ref-model="refBank" v-model="cData.bank.value" :label="cData.bank.label" :name="cData.bank.name" :read-only="formReadyOnly" :required="cData.bank.required" max-length="40" /></div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="cData.codeBank.value" :label="cData.codeBank.label" :name="cData.codeBank.name" :read-only="formReadyOnly" :required="cData.codeBank.required" max-length="40" /></div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="cData.agency.value" :label="cData.agency.label" :name="cData.agency.name" :read-only="formReadyOnly" :required="cData.agency.required" max-length="40" /></div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="cData.account.value" :label="cData.account.label" :name="cData.account.name" :read-only="formReadyOnly" :required="cData.account.required" max-length="40" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
                 <div class="col-xs-12 col-lg-5"><InputForm v-model="cData.phone.value" :label="cData.phone.label" :name="cData.phone.name" :read-only="formReadyOnly" :mask="cData.phone.mask" :required="cData.phone.required" /></div>
@@ -283,12 +291,12 @@ onMounted(() => {
             <div class="header--section-form">Dados Pessoais</div>
             <div class="section--form">
               <div class="row q-col-gutter-sm q-my-md">
-                <div class="col-12"><InputForm v-model="pData.name.value" :label="pData.name.label" :name="pData.name.name" :read-only="formReadyOnly" :required="pData.name.required" /></div>
+                <div class="col-12"><InputForm v-model="pData.name.value" :label="pData.name.label" :name="pData.name.name" :read-only="formReadyOnly" :required="pData.name.required" max-length="140" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
                 <div class="col-xs-12 col-lg-5"><InputForm v-model="pData.cpf.value" :label="pData.cpf.label" :name="pData.cpf.name" :read-only="formReadyOnly" :mask="pData.cpf.mask" :required="pData.cpf.required" /></div>
-                <div class="col-xs-12 col-sm-6 col-lg-5"><InputForm v-model="pData.rg.value" :label="pData.rg.label" :name="pData.rg.name" :read-only="formReadyOnly" :required="pData.rg.required" /></div>
-                <div class="col-xs-12 col-sm-6 col-lg-2"><InputForm v-model="pData.issuingAuthority.value" :label="pData.issuingAuthority.label" :name="pData.issuingAuthority.name" :read-only="formReadyOnly" :required="pData.issuingAuthority.required" /></div>
+                <div class="col-xs-12 col-sm-6 col-lg-5"><InputForm v-model="pData.rg.value" :label="pData.rg.label" :name="pData.rg.name" :read-only="formReadyOnly" :required="pData.rg.required" max-length="20" /></div>
+                <div class="col-xs-12 col-sm-6 col-lg-2"><InputForm v-model="pData.issuingAuthority.value" :label="pData.issuingAuthority.label" :name="pData.issuingAuthority.name" :read-only="formReadyOnly" :required="pData.issuingAuthority.required" max-length="20" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="pData.birth.value" :label="pData.birth.label" :name="pData.birth.name" :read-only="formReadyOnly" :mask="pData.birth.mask" :required="pData.birth.required" /></div>
@@ -303,13 +311,13 @@ onMounted(() => {
                 <div class="col-4 col-xs-12 col-sm-6 col-lg-3"><InputForm v-model="pData.cellphone.value" :label="pData.cellphone.label" :name="pData.cellphone.name" :read-only="formReadyOnly" :mask="pData.cellphone.mask" :required="pData.cellphone.required" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
-                <div class="col-xs-12 col-lg-6"><InputForm v-model="pData.homeAddress.value" :label="pData.homeAddress.label" :name="pData.homeAddress.name" :read-only="formReadyOnly" :required="pData.homeAddress.required" /></div>
-                <div class="col-3 col-xs-12 col-sm-4 col-lg-2"><InputForm v-model="pData.number.value" :label="pData.number.label" :name="pData.number.name" :read-only="formReadyOnly" :required="pData.number.required" /></div>
-                <div class="col-4 col-xs-12 col-sm-8 col-lg-4"><InputForm v-model="pData.complement.value" :label="pData.complement.label" :name="pData.complement.name" :read-only="formReadyOnly" :required="pData.complement.required" /></div>
+                <div class="col-xs-12 col-lg-6"><InputForm v-model="pData.homeAddress.value" :label="pData.homeAddress.label" :name="pData.homeAddress.name" :read-only="formReadyOnly" :required="pData.homeAddress.required" max-length="140" /></div>
+                <div class="col-3 col-xs-12 col-sm-4 col-lg-2"><InputForm v-model="pData.number.value" :label="pData.number.label" :name="pData.number.name" :read-only="formReadyOnly" :required="pData.number.required" max-length="20" /></div>
+                <div class="col-4 col-xs-12 col-sm-8 col-lg-4"><InputForm v-model="pData.complement.value" :label="pData.complement.label" :name="pData.complement.name" :read-only="formReadyOnly" :required="pData.complement.required" max-length="40" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
-                <div class="col-xs-12 col-lg-4"><InputForm v-model="pData.neighborhood.value" :label="pData.neighborhood.label" :name="pData.neighborhood.name" :read-only="formReadyOnly" :required="pData.neighborhood.required" /></div>
-                <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm v-model="pData.city.value" :label="pData.city.label" :name="pData.city.name" :read-only="formReadyOnly" :required="pData.city.required" /></div>
+                <div class="col-xs-12 col-lg-4"><InputForm v-model="pData.neighborhood.value" :label="pData.neighborhood.label" :name="pData.neighborhood.name" :read-only="formReadyOnly" :required="pData.neighborhood.required" max-length="100" /></div>
+                <div class="col-4 col-xs-12 col-sm-6 col-lg-4"><InputForm v-model="pData.city.value" :label="pData.city.label" :name="pData.city.name" :read-only="formReadyOnly" :required="pData.city.required" max-length="100" /></div>
                 <div class="col-3 col-xs-12 col-sm-6 col-lg-4"><SelectForm v-model="pData.state.value" :label="pData.state.label" :name="pData.state.name" :read-only="formReadyOnly" :options="pData.state.options" :required="pData.state.required" /></div>
               </div>
             </div>
@@ -325,9 +333,10 @@ onMounted(() => {
                  devidamente autorizadas em assembleia geral da categoria, através de desconto em folha de pagamento ou utilizar meus dados bancários:
               </p>
               <div class="row q-col-gutter-sm q-mb-sm">
-                  <div class="col-xs-12 col-md-5"><InputForm v-model="aData.bank.value" :label="aData.bank.label" :name="aData.bank.name" :required="aData.bank.required" /></div>
-                  <div class="col-3 col-xs-6 col-md-3"><InputForm v-model="aData.codeBank.value" :label="aData.codeBank.label" :name="aData.codeBank.name" :required="aData.codeBank.required" /></div>
-                  <div class="col-4 col-xs-6 col-md-4"><InputForm v-model="aData.agency.value" :label="aData.agency.label" :name="aData.agency.name" :required="aData.agency.required" /></div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="aData.bank.value" :label="aData.bank.label" :name="aData.bank.name" :required="aData.bank.required" /></div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="aData.codeBank.value" :label="aData.codeBank.label" :name="aData.codeBank.name" :required="aData.codeBank.required" /></div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="aData.agency.value" :label="aData.agency.label" :name="aData.agency.name" :required="aData.agency.required" /></div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="aData.account.value" :label="aData.account.label" :name="aData.account.name" :required="aData.account.required" /></div>
                 </div>
               <p>para débito na minha conta corrente ou, ainda, através de outro meio eletrônico.</p>
               <p>
