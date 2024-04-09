@@ -3,10 +3,12 @@ import TitleDefault from 'components/interface/TitleDefault.vue'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import InputForm from 'src/pages/contact/components/InputForm.vue'
 import IconDefault from 'components/interface/IconDefault.vue'
-import { computed, reactive } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 
+const recaptcha = ref<HTMLElement | null>(null)
 const state = reactive({
   form: {
+    reCAPTCHA: false,
     protocolType: {
       value: null,
       name: 'tipoSolicitacao',
@@ -32,30 +34,33 @@ const state = reactive({
     },
     phone: {
       value: null,
-      name: ''
+      name: 'fone'
     },
     email: {
       value: null,
-      name: ''
+      name: 'email'
     },
     subject: {
       value: null,
-      name: ''
+      name: 'assunto'
     },
     message: {
       value: null,
-      name: ''
+      name: 'mensagemSite'
     },
     sendToSector: {
       value: null,
       name: 'oidSetor',
       options: [
         { label: 'Atendimento Geral', value: '11', color: 'text-inverse', size: 'xl' },
+        { label: 'Administração', value: '7', color: 'text-inverse', size: 'xl' },
         { label: 'Biblioteca', value: '9', color: 'text-inverse', size: 'xl' },
         { label: 'Cine Bancários', value: '12', color: 'text-inverse', size: 'xl' },
+        { label: 'Financeiro', value: '1', color: 'text-inverse', size: 'xl' },
+        { label: 'Formação', value: '8', color: 'text-inverse', size: 'xl' },
         { label: 'Jurídico', value: '3', color: 'text-inverse', size: 'xl' },
         { label: 'Saúde do Trabalhador', value: '5', color: 'text-inverse', size: 'xl' },
-        { label: 'Outros', value: '11', color: 'text-inverse', size: 'xl' }
+        { label: 'Outros', value: '10', color: 'text-inverse', size: 'xl' }
       ]
     },
     file: {
@@ -64,6 +69,17 @@ const state = reactive({
     }
   }
 })
+
+// const validCaptcha = () => {
+//   // const getResponse = grecaptcha.getResponse() as string
+//   // const getResponse = grecaptcha.getResponse() as string
+//   // eslint-disable-next-line no-undef
+//   // console.log('grecaptcha', grecaptcha.getResponse())
+//   // grecaptcha.ready((element: any) => {
+//   //   console.log('element', element)
+//   // })
+//   return ''
+// }
 
 const validateForm = computed(() => {
   let send = true
@@ -78,7 +94,8 @@ const validateForm = computed(() => {
   if (state.form.message.value === null) { send = false }
   if (state.form.nameBank.value === null) { send = false }
   if (state.form.sendToSector.value === null) { send = false }
-  if (state.form.file.value === null) { send = false }
+  if (state.form.reCAPTCHA === false) { send = false }
+  // if (state.form.file.value === null) { send = false }
 
   return send
 })
@@ -90,6 +107,21 @@ const onSubmit = (evt:any) => {
     evt.target.submit()
   }
 }
+
+onMounted(() => {
+  if (recaptcha.value) {
+    // Carregar o reCAPTCHA do Google
+    window.grecaptcha.render(recaptcha.value, {
+      sitekey: '6LfpraEUAAAAAA4_KnXCx8BmWxBP01xkU-MXtWmJ',
+      callback: (response: string) => {
+        // Callback chamado após o usuário resolver o reCAPTCHA
+        console.log('reCAPTCHA resolved:', response)
+        state.form.reCAPTCHA = true
+        // Você pode fazer algo com a resposta, como enviar para o servidor junto com o formulário
+      }
+    })
+  }
+})
 </script>
 
 <template>
@@ -212,12 +244,17 @@ const onSubmit = (evt:any) => {
                     />
                   </div>
                 </section>
+                <section class="q-mb-lg">
+                  <!-- <div class="g-recaptcha" data-sitekey="6LfpraEUAAAAAA4_KnXCx8BmWxBP01xkU-MXtWmJ"></div> -->
+                  <div class="g-recaptcha" ref="recaptcha"></div>
+                </section>
                 <section>
                   <div>
                     <q-btn class="btn-send full-width" label="Enviar" type="submit" color="octal" rounded unelevated :disable="!validateForm" />
                   </div>
                 </section>
               </div>
+              <!-- <button @click="validCaptcha()">click</button> -->
             </q-form>
           </div>
         </div>
@@ -352,6 +389,13 @@ const onSubmit = (evt:any) => {
           input {
             color: $text;
           }
+        }
+      }
+
+      .g-recaptcha
+      {
+        > div {
+          margin: 0 0 0 auto;
         }
       }
     }

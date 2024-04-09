@@ -16,7 +16,7 @@ const props = defineProps({
   },
   titleButton: {
     type: String,
-    default: 'Visualizar Estatuto',
+    default: 'Baixar Arquivo',
     require: false
   },
   description: {
@@ -47,7 +47,8 @@ const props = defineProps({
       <div class="title">{{ props.title }}</div>
       <div class="description">{{ props.description }}</div>
       <div>
-        <ButtonDefault rounded noCaps class="btn--link" :title="props.titleButton" :color="props.color" />
+        <!-- <ButtonDefault rounded noCaps class="btn--link" :title="props.titleButton" :color="props.color" /> -->
+        <a class="btn--link" :href="props.link" target="_blank">{{ props.titleButton }}</a>
       </div>
     </div>
   </div>
@@ -78,7 +79,13 @@ const props = defineProps({
     }
 
     .btn--link{
-      width: 100%;
+      // width: 100%;
+      color: $accent;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
