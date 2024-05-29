@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, reactive, watch } from 'vue'
-import { baseURL, convertURL, carouselSettings } from 'src/helpers/helpers'
+import { baseURL, convertURL, carouselSettings, defaultImage } from 'src/helpers/helpers'
 import { useQuasar } from 'quasar'
 import { RouteLocationRaw, useRouter } from 'vue-router'
 import SkeletonBanner from 'components/interface/skeletons/SkeletonBanner.vue'
@@ -38,6 +38,15 @@ const clickLink = (link:string, target:string) => {
   window.open(link, target)
 }
 
+const resolveImage = (type:string, news:any): string => {
+  const banner = type === 'mobile' ? news.banner_mobile : news.banner_desktop
+  const path = banner?.path
+  const fileName = banner?.file_name
+  const src = path && fileName ? `${baseURL}${path}/${fileName}` : defaultImage
+
+  return src
+}
+
 watch(screenSize, (newValue) => {
   state.typeImage = newValue
 })
@@ -65,7 +74,7 @@ onMounted(() => {
         style="cursor: pointer;"
         @click="row.entityType === 'campaign' ? clickLink(row.link, row.target) : clickRoute(convertURL(row.id, row.title))"
         :name="index"
-        :img-src=" state.typeImage === 'mobile' ? `${baseURL}${row.banner_mobile.path}/${row.banner_mobile.file_name}` : `${baseURL}${row.banner_desktop.path}/${row.banner_desktop.file_name}`"
+        :img-src="resolveImage(state.typeImage, row)"
       />
       <q-carousel-slide v-if="!props.news" name="0">
         <SkeletonBanner />
