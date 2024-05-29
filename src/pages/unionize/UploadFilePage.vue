@@ -9,7 +9,7 @@ import CardButton from 'components/interface/CardButton.vue'
 import CardStep from './components/CardStep.vue'
 import ButtonCardFile from './components/ButtonCardFile.vue'
 import CardAlert from './components/CardAlert.vue'
-import NewsService from 'src/services/UnionizeService'
+import UnionizeService from 'src/services/UnionizeService'
 import { IUnionize } from 'src/types/IUnionize'
 
 type TControlFomr = 'form' | 'message'
@@ -28,7 +28,7 @@ const state = reactive({
 })
 
 const getForm = (cpf: string) => {
-  NewsService.getByCpf({ cpf })
+  UnionizeService.getByCpf({ cpf })
     .then((response:any) => {
       state.form = response.data
     })
@@ -50,7 +50,7 @@ const sendPdfFile = () => {
   formData.append('pdf_file', state.modelUpload as any)
   formData.append('cpf', state.cpf)
 
-  NewsService.registerPdfFile(formData)
+  UnionizeService.registerPdfFile(formData)
     .then((response:IUnionize) => {
       state.controlForm.show = 'message'
     })
@@ -101,7 +101,7 @@ onMounted(() => {
       <section class="q-mb-xl">
         <div class="row q-col-gutter-md justify-center">
           <div class="col-xs-12 col-sm-6 col-md-4 col-xl-3">
-            <CardStep step="03" title="Baixar PDF, assinar PDF no .gov e enviar para análise" />
+            <CardStep step="03" title="Baixar PDF, assinar PDF no .gov.br e enviar para análise" />
           </div>
         </div>
       </section>
@@ -112,7 +112,7 @@ onMounted(() => {
           </CardAlert>
         </div>
         <div class="card__button--fullwidth" @click="linkToExternal()">
-          <CardButton :image="`/assets/image/image-site-governament.jpg`" background="quaternary" color="primary" :title="`Acessar .gov para assinar digitalmente sua sindicalização`">
+          <CardButton :image="`/assets/image/image-site-governament.jpg`" background="quaternary" color="primary" :title="`Acessar .gov.br para assinar digitalmente sua sindicalização`">
             <q-img
               src="/assets/image/icon-gov-br.png"
               width="100px"

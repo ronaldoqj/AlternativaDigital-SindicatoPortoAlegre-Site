@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { baseURL } from 'src/helpers/helpers'
+import { useRouter } from 'vue-router'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
+import ButtonDefault from 'components/interface/ButtonDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
 import CarouselSlide from 'src/components/interface/CarouselSlide.vue'
 import { useQuasar } from 'quasar'
@@ -43,6 +45,7 @@ interface IItemMember {
   image: string
 }
 
+const router = useRouter()
 const $q = useQuasar()
 const freezeComponentDocument = shallowRef(DocumentItem)
 // const freezeComponentDepartmentPublications = shallowRef(NewsItem)
@@ -156,6 +159,10 @@ const getRelatedDepartments = () => {
     })
 }
 
+const clickButton = () => {
+  router.push({ name: 'servicesLegal' })
+}
+
 watch(currentScreenSize, (newValue) => {
   changeOrderList(newValue)
 })
@@ -184,6 +191,19 @@ onMounted(() => {
           <p>
             Ao Departamento Jurídico, cabe preparar material para subsidiar as negociações coletivas, assessorar a Diretoria Executiva em todas as negociações coletivas, ações trabalhistas e outras demandas da área jurídica, coordenando a elaboração de medidas judiciais em defesa dos direitos da categoria, da classe trabalhadora e da cidadania.
           </p>
+
+          <div class="box__btn--more q-mt-xl q-mb-lg">
+            <ButtonDefault
+              rounded
+              unradiusTopLeft
+              noCaps
+              title="Veja os serviços jurídicos disponíveis"
+              color="primary"
+              :size="{maxWidth: '400px'}"
+              style="flex:max-content;"
+              @click="clickButton()"
+            />
+          </div>
         </div>
       </div>
     </LayoutSection>

@@ -2,6 +2,7 @@
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import NewsItem from 'components/interface/NewsItem.vue'
 import { reactive, onMounted, computed } from 'vue'
+import { date } from 'quasar'
 import { getValidImage, defaultImage, convertURL } from 'src/helpers/helpers'
 
 const props = defineProps({
@@ -24,6 +25,22 @@ interface IPublicationItem {
 }
 
 const state = reactive({
+  shortDates: {
+    monthsShort: [
+      'JAN',
+      'FEV',
+      'MAR',
+      'ABR',
+      'MAI',
+      'JUN',
+      'JUL',
+      'AGO',
+      'SET',
+      'OUT',
+      'NOV',
+      'DEZ'
+    ]
+  },
   title: 'Assembleia irá deliberar sobre aprovação de Acordos Coletivos de Trabalho do Itaú',
   relatedPublicationData: [] as Array<IPublicationItem>
 })
@@ -59,7 +76,8 @@ onMounted(() => {
       <div class="col-xs-12 col-sm-6 col-lg-4" v-for="(row, key) in (props.list as any)" :key="key">
         <NewsItem
           :src="getValidImage(row, 'imageNews')"
-          :subject="row.subject"
+          :subject="row.topper"
+          :date="date.formatDate(row.created_at, 'DD/MMM/YYYY', state.shortDates)"
           :title="row.title"
           :route="convertURL(row.id, row.title)"
           :description="row.description"

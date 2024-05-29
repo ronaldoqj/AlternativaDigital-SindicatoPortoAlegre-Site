@@ -3,6 +3,7 @@ import { computed, onMounted, reactive, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { AxiosError } from 'axios'
 import { useInputsStore } from 'stores/inputs-store'
+import { date } from 'quasar'
 import { getValidImage, convertURL } from 'src/helpers/helpers'
 import NewsService from 'src/services/NewsService'
 import TitleDefault from 'components/interface/TitleDefault.vue'
@@ -26,6 +27,22 @@ const props = defineProps({
 
 const router = useRouter()
 const state = reactive({
+  shortDates: {
+    monthsShort: [
+      'JAN',
+      'FEV',
+      'MAR',
+      'ABR',
+      'MAI',
+      'JUN',
+      'JUL',
+      'AGO',
+      'SET',
+      'OUT',
+      'NOV',
+      'DEZ'
+    ]
+  },
   searchInput: {
     value: null
   },
@@ -120,6 +137,7 @@ onMounted(() => {
           :src="getValidImage(props.news?.highlights[0], 'imageNews')"
           :route="convertURL(props.news?.highlights[0].id, props.news?.highlights[0].title)"
           :subject="props.news?.highlights[0].topper"
+          :date="date.formatDate(props.news?.highlights[0].created_at, 'DD/MMM/YYYY', state.shortDates)"
           :title="props.news?.highlights[0].title"
           :description="props.news?.highlights[0].call"
           :highlights="true"
@@ -131,6 +149,7 @@ onMounted(() => {
           :src="getValidImage(props.news?.highlights[1], 'imageNews')"
           :route="convertURL(props.news?.highlights[1].id, props.news?.highlights[1].title)"
           :subject="props.news?.highlights[1].topper"
+          :date="date.formatDate(props.news?.highlights[1].created_at, 'DD/MMM/YYYY', state.shortDates)"
           :title="props.news?.highlights[1].title"
           :description="props.news?.highlights[1].call"
           :highlights="true"
@@ -142,6 +161,7 @@ onMounted(() => {
           :src="getValidImage(props.news?.highlights[2], 'imageNews')"
           :route="convertURL(props.news?.highlights[2].id, props.news?.highlights[2].title)"
           :subject="props.news?.highlights[2].topper"
+          :date="date.formatDate(props.news?.highlights[2].created_at, 'DD/MMM/YYYY', state.shortDates)"
           :title="props.news?.highlights[2].title"
           :description="props.news?.highlights[2].call"
           :highlights="true"
@@ -156,6 +176,7 @@ onMounted(() => {
           :src="getValidImage(row, 'imageNews')"
           :route="convertURL(row.id, row.title)"
           :subject="row.topper"
+          :date="date.formatDate(row.created_at, 'DD/MMM/YYYY', state.shortDates)"
           :title="row.title"
           :description="row.call"
           :onlyText="row.type_news === 'text'"

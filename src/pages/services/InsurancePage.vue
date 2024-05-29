@@ -413,6 +413,144 @@ const state = reactive({
         }
       }
     ],
+    education: [
+      {
+        title: 'DQI',
+        subject: 'Faculdade e Escola Técnica',
+        description: 'Desconto de 10% para associados + desconto de balcão',
+        phone: '(51) 99541 3830',
+        address: '',
+        address2: '',
+        mail: '',
+        site: 'https://qi.edu.br/',
+        socialMedia: {
+          facebook: 'https://www.facebook.com/escolhaQI',
+          instagram: 'https://www.instagram.com/escolhaqi',
+          twitter: '',
+          whatsapp: '(51) 99541 3830',
+          youtube: 'https://www.youtube.com/@QIFaculdadeEscolaTecnica'
+        }
+      },
+      {
+        title: 'Uniasselvi',
+        subject: '',
+        description: '5% de desconto + desconto de balcão Para pós-graduação – valor fixo de R$99,00 mensais – ao matricular-se em uma pós graduação, automaticamente ganhará outra a sua escolha (pague 1, leve 2)',
+        phone: '(47) 3301-6100',
+        address: '',
+        address2: '',
+        mail: '',
+        site: 'https://portal.uniasselvi.com.br/',
+        socialMedia: {
+          facebook: 'https://www.facebook.com/uniasselvi/',
+          instagram: 'https://www.instagram.com/uniasselvioficial/',
+          twitter: 'https://twitter.com/UniasselviBR',
+          whatsapp: '(47) 3301-6100',
+          youtube: 'https://www.youtube.com/user/wwwuniasselvi'
+        }
+      },
+      {
+        title: 'PUC',
+        subject: '',
+        description: 'Desconto de 10% nos cursos, a partir de 60 anos desconto de 20%',
+        phone: '(51) 3320-3500',
+        address: '',
+        address2: '',
+        mail: '',
+        site: 'https://portal.pucrs.br/',
+        socialMedia: {
+          facebook: 'https://www.facebook.com/pucrs',
+          instagram: 'https://www.instagram.com/pucrs/',
+          twitter: 'https://twitter.com/pucrs',
+          whatsapp: '(51) 8443-0788',
+          youtube: 'https://www.youtube.com/@PUCRSOficial'
+        }
+      },
+      {
+        title: 'Fundatec',
+        subject: '',
+        description: '15% de desconto',
+        phone: '(51) 3320-1000',
+        address: '',
+        address2: '',
+        mail: '',
+        site: 'https://www.fundatec.org.br/',
+        socialMedia: {
+          facebook: 'https://www.facebook.com/fundatec.org',
+          instagram: '',
+          twitter: 'https://twitter.com/fundatec',
+          whatsapp: '(51) 3320-1000',
+          youtube: ''
+        }
+      },
+      {
+        title: 'Instituição Educacional São Judas',
+        subject: 'Ensino fundamental, superior e pós-graduação com porcentagem de descontos para associados ao SindBancários, dependentes e familiares.',
+        description: 'Colégio - 20%, Colégio Bolsa Irmãos Relacionamento - 30%, Graduação Administração 08 créditos - 20%, 12 créditos 25%, 16 créditos - 30%, 20 créditos . 30%. Graduação Ciências Contábeis 08 créditos - 20%, 12 créditos - 25%, 16 créditos - 30%, 20 créditos . 30% Graduação Direito 08 créditos - 15%, 12 créditos - 20%, 16 créditos - 25% Pós Graduação - 20%',
+        phone: '(51) 3340-7888',
+        address: '',
+        address2: '',
+        mail: '',
+        site: 'https://faculdade.saojudastadeu.edu.br/',
+        socialMedia: {
+          facebook: 'https://www.facebook.com/saojudasfacul/',
+          instagram: 'https://www.instagram.com/saojudasfacul/',
+          twitter: '',
+          whatsapp: '(51) 3340-7888',
+          youtube: ''
+        }
+      },
+      {
+        title: 'Escola Professor Lucas Silva',
+        subject: 'CPA-10 e CPA-20',
+        description: 'Associados(as) do Sindicato e seus familiares têm direito a 25% de redução no custo das certificações CPA-10, CPA-20, CEA e CFP.',
+        phone: '(51) 9813-7307',
+        address: '',
+        address2: '',
+        mail: '',
+        site: 'http://professorlucassilva.com.br/',
+        socialMedia: {
+          facebook: 'https://www.facebook.com/proflucassilva/',
+          instagram: 'https://www.instagram.com/professorlucassilva/',
+          twitter: '',
+          whatsapp: '(51) 9813-7307',
+          youtube: 'https://www.youtube.com/channel/UCUowWv92bJV4tCJpKLSQjZg'
+        }
+      },
+      {
+        title: 'Academia Rafael Toro',
+        subject: 'CPA10 e CPA20',
+        description: 'CEA, CFP, CFG, CGA, CGE, CNPI, ANCORD – 25% de desconto com o CUPOM SINDBANCARIO-TORO.',
+        phone: '(51) 9744-9565',
+        address: '',
+        address2: '',
+        mail: '',
+        site: 'https://www.academiarafaeltoro.com.br/',
+        socialMedia: {
+          facebook: 'https://www.facebook.com/academiarafaeltoro',
+          instagram: 'https://www.instagram.com/academiarafaeltoro/',
+          twitter: '',
+          whatsapp: '(51) 9744-9565',
+          youtube: 'https://www.youtube.com/c/academiarafaeltoro'
+        }
+      },
+      {
+        title: 'C3 Educacional',
+        subject: '',
+        description: 'CPA-10 gratuita no módulo online e 40% de desconto nas demais certificações.',
+        phone: '(51) 99820-3324',
+        address: '',
+        address2: '',
+        mail: 'contato@c3educacional.com.br',
+        site: 'https://www.c3educacional.com.br/',
+        socialMedia: {
+          facebook: 'https://www.facebook.com/c3educa',
+          instagram: 'https://www.instagram.com/c3educacional/',
+          twitter: '',
+          whatsapp: '(51) 99820-3324',
+          youtube: 'https://www.youtube.com/@c3Educacao'
+        }
+      }
+    ],
     others: [
       {
         title: 'Quadro Amarelo | Plataforma de Escrita Criativa',
@@ -505,6 +643,24 @@ const state = reactive({
 
           <div class="row q-mt-sm q-col-gutter-lg">
             <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3" v-for="(item, key) in (state.items.tourism)" :key="key">
+              <InsuranceItem
+                :title="item.title"
+                :subject="item.subject"
+                :description="item.description"
+                :phone="item.phone"
+                :address="item.address"
+                :address2="item.address2"
+                :mail="item.mail"
+                :site="item.site"
+                :social-media="item.socialMedia" />
+            </div>
+          </div>
+        </div>
+        <div class="section--insurance">
+          <h2 class="q-mt-xl q-mb-lg">Educação</h2>
+
+          <div class="row q-mt-sm q-col-gutter-lg">
+            <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3" v-for="(item, key) in (state.items.education)" :key="key">
               <InsuranceItem
                 :title="item.title"
                 :subject="item.subject"

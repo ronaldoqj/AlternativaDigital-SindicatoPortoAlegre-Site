@@ -3,6 +3,7 @@ import { computed, onMounted, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { AxiosError } from 'axios'
 import { useInputsStore } from 'stores/inputs-store'
+import { date } from 'quasar'
 import NewsService from 'src/services/NewsService'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
@@ -22,6 +23,22 @@ const staticState = {
   }
 }
 const state = reactive({
+  shortDates: {
+    monthsShort: [
+      'JAN',
+      'FEV',
+      'MAR',
+      'ABR',
+      'MAI',
+      'JUN',
+      'JUL',
+      'AGO',
+      'SET',
+      'OUT',
+      'NOV',
+      'DEZ'
+    ]
+  },
   searchInput: {
     value: null
   },
@@ -169,6 +186,7 @@ onMounted(() => {
                 :src="getValidImage(row, 'imageNews')"
                 :route="convertURL(row.id, row.title)"
                 :subject="row.topper"
+                :date="date.formatDate(row.created_at, 'DD/MMM/YYYY', state.shortDates)"
                 :title="row.title"
                 :description="row.call"
                 :onlyText="row.type_news === 'text'"

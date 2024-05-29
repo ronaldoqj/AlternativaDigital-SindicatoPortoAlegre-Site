@@ -85,14 +85,13 @@ const validateForm = computed(() => {
   let send = true
 
   if (state.form.protocolType.value === null) { send = false }
-  if (state.form.nameBank.value === null) { send = false }
-  if (state.form.agency.value === null) { send = false }
-  if (state.form.name.value === null) { send = false }
-  if (state.form.phone.value === null) { send = false }
-  if (state.form.email.value === null) { send = false }
-  if (state.form.subject.value === null) { send = false }
+  // if (state.form.nameBank.value === null) { send = false }
+  // if (state.form.agency.value === null) { send = false }
+  // if (state.form.name.value === null) { send = false }
+  // if (state.form.phone.value === null) { send = false }
+  // if (state.form.email.value === null) { send = false }
+  // if (state.form.subject.value === null) { send = false }
   if (state.form.message.value === null) { send = false }
-  if (state.form.nameBank.value === null) { send = false }
   if (state.form.sendToSector.value === null) { send = false }
   if (state.form.reCAPTCHA === false) { send = false }
   // if (state.form.file.value === null) { send = false }

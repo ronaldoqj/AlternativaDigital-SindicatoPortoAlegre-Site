@@ -3,6 +3,8 @@ import { computed, onMounted, reactive, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { AxiosError } from 'axios'
 import NewsService from 'src/services/NewsService'
+import { date } from 'quasar'
+import IconDefault from 'components/interface/IconDefault.vue'
 import { getValidImage, baseURL } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import RelatedPublications from 'components/interface/RelatedPublications.vue'
@@ -16,6 +18,22 @@ import SkeletonNews from 'components/interface/skeletons/SkeletonNews.vue'
 
 const route = useRoute()
 const state = reactive({
+  shortDates: {
+    months: [
+      'de janeiro de',
+      'de fevereiro de',
+      'de março de',
+      'de abril de',
+      'de maio de',
+      'de junho de',
+      'de julho de',
+      'de agosto de',
+      'de setembro de',
+      'de outubro de',
+      'de novembro de',
+      'de dezembro de'
+    ]
+  },
   control: {
     showContent: false
   },
@@ -173,7 +191,15 @@ onMounted(() => {
               />
             </div>
             <div v-if="layer === 'titles'" class="layer--title">
-              <h2>{{ state.news?.topper }}</h2>
+              <div class="box-subject">
+                <h2>{{ state.news?.topper }}</h2>
+                <div class="box-date">
+                  <IconDefault :size="24" class="icon--default" :color="'quinary'" viewBox="0 5 56 30" src="/assets/svg/icon-calendar.svg#calendar" />
+                  {{ date.formatDate(state.news?.created_at, 'DD MMMM YYYY', state.shortDates) }}
+                  <IconDefault :size="21" class="icon--default icon--clock" :color="'quinary'" viewBox="0 0 237.54 237.54" src="/assets/svg/icon-hour-min.svg#hour-min" />
+                  {{ date.formatDate(state.news?.created_at, 'HH:mm') }}
+                </div>
+              </div>
               <h1>{{ state.news?.title }}</h1>
               <h3 v-if="state.news?.call">{{ state.news?.call }}</h3>
             </div>
@@ -215,7 +241,6 @@ onMounted(() => {
     font-size: 14px;
     color: $quinary;
     line-height: 1.25em;
-    margin: 45px 0 10px;
   }
 
   h3 {
@@ -245,6 +270,30 @@ onMounted(() => {
 
   p {
     text-align: justify;
+  }
+
+  .layer--title {
+    .box-subject {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap-reverse;
+      align-items: center;
+      color: $quinary;
+      margin: 45px 0 10px;
+
+      .date {
+        font-size: 13px;
+      }
+
+      .box-date {
+        display: flex;
+        align-items: center;
+
+        .icon--clock {
+          margin: 0 5px 0 15px;
+        }
+      }
+    }
   }
 
   .layer--font {
