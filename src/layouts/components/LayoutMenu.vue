@@ -26,6 +26,7 @@ const state = reactive({
     formacao: { name: 'formacao' } as RouteLocationRaw,
     financeiras: { name: 'financeiras' } as RouteLocationRaw,
     comunicacao: { name: 'comunicacao' } as RouteLocationRaw,
+    bankersHouse: { name: 'bankersHouse' } as RouteLocationRaw,
 
     services: { name: 'services' } as RouteLocationRaw,
     servicesInsurance: { name: 'servicesInsurance' } as RouteLocationRaw,
@@ -231,6 +232,14 @@ const clickLink = (link:string, target:string) => {
       <q-list dense style="min-width: 100px">
         <q-item clickable v-close-popup>
           <q-item-section @click="clickRoute(state.menu.services)">Todos Serviços</q-item-section>
+        </q-item>
+
+        <q-separator class="menu__separator" />
+
+        <q-item clickable v-close-popup>
+          <q-item-section @click="clickRoute(state.menu.bankersHouse)">
+            Casa dos Bancários
+          </q-item-section>
         </q-item>
 
         <q-separator class="menu__separator" />

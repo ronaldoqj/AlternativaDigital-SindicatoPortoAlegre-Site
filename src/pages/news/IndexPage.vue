@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { computed, onMounted, reactive, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, onMounted, onBeforeMount, reactive, watch, onServerPrefetch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { AxiosError } from 'axios'
-import NewsService from 'src/services/NewsService'
-import { date } from 'quasar'
-import IconDefault from 'components/interface/IconDefault.vue'
+import { date, useMeta } from 'quasar'
 import { getValidImage, baseURL } from 'src/helpers/helpers'
+import NewsService from 'src/services/NewsService'
+import IconDefault from 'components/interface/IconDefault.vue'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import RelatedPublications from 'components/interface/RelatedPublications.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
-import ImageDefault from 'components/interface/ImageDefault.vue'
 import VideoDefault from 'components/interface/VideoDefault.vue'
 import AudioDefault from 'components/interface/AudioDefault.vue'
 import { INews, IResponseNews, IResponseRelated, TNewsLayers } from 'src/types/INews'
 import SkeletonNews from 'components/interface/skeletons/SkeletonNews.vue'
-// import ShareButtons from 'src/components/interface/ShareButtons.vue'
+import ShareButtons from 'src/components/interface/ShareButtons.vue'
+import { useStructureStore } from 'stores/structure-store'
 
 const route = useRoute()
 const state = reactive({
@@ -49,7 +49,6 @@ const state = reactive({
 const getRelatedList = () => {
   NewsService.related({ notNews: state.idNews, perPage: state.relatedNews.perPage })
     .then((response:IResponseRelated) => {
-      // console.log('getRelatedList', response)
       response.data.forEach((element: INews) => {
         state.relatedNews.list.push(element)
       })
@@ -145,14 +144,31 @@ const resetNews = () => {
 }
 
 watch(computedLayout, (newValue) => {
-  // console.log('router News changed', newValue)
   if (Object.keys(newValue).length) {
     resetNews()
     init()
   }
 })
 
-onMounted(() => {
+defineOptions({
+  preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
+    const applicationName = 'Sindicato dos Bancários de Porto Alegre e Região - SindBancários'
+    const id = Number(currentRoute.params.id)
+    console.log('--------------------------------------- start', applicationName)
+    console.log('currentRoute.name', currentRoute.name)
+    console.log('currentRoute.fullPath', currentRoute.fullPath)
+    console.log(store)
+    console.log('_______________________________________ end')
+    return useStructureStore().fetchItem(currentRoute.fullPath, currentRoute.name as string, id)
+  }
+})
+
+onServerPrefetch(() => {
+  console.log('onServerPrefetch', useStructureStore().$state)
+  useMeta(useStructureStore().$state.metaTags)
+})
+
+onMounted(async () => {
   init()
 })
 </script>
@@ -163,7 +179,7 @@ onMounted(() => {
       <LayoutSection background="tertiary" type="top" cornerColor="secondary" min-height>
         <div class="align-title">
           <TitleDefault title="Notícia" />
-          <!--ShareButtons v-if="state.control.showContent" :description="state.news?.call" :image="`${state.news?.image_news?.path}/${state.news?.image_news?.file_name}`" /-->
+          <ShareButtons v-if="state.control.showContent" :title="state.news?.title" :description="state.news?.call" :image="`${state.news?.image_news?.path}/${state.news?.image_news?.file_name}`" />
         </div>
 
         <!-- <div class="fb-share-button"
@@ -228,6 +244,7 @@ onMounted(() => {
     display: flex;
     flex-wrap: wrap-reverse;
     justify-content: space-between;
+    margin-bottom: 20px;
   }
 
   .images__floats {

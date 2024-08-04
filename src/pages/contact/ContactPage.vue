@@ -141,7 +141,7 @@ onMounted(() => {
               <q-btn size="sm" flat round class="container-icon">
                 <IconDefault :size="24" class="icon-class" viewBox="0 0 22.3 22.3" src="/assets/svg/icon-instagram-outline.svg#instagram_outline" />
               </q-btn>
-              <span class="item">contato@sindbancarios.org.br</span>
+              <span class="item">atendimento@sindbancarios.org.br</span>
             </div>
             <div class="personal--data-item">
               <q-btn size="sm" flat round class="container-icon">

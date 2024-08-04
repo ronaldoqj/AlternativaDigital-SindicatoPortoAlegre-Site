@@ -17,6 +17,12 @@ const typeSection1 = computed((): CurrentColor => {
 </script>
 
 <template>
+  <a href="https://denuncia.bancariosrs.com.br" class="float_btcanal" aria-label="Botão para fazer uma denúncia">
+      <img src="https://denuncia.bancariosrs.com.br/logo_denuncia.png" width="60px" height="60px" />
+  </a>
+  <a href="https://denuncia.bancariosrs.com.br" class="float2_btcanal" aria-label="Botão para fazer uma denúncia">
+      <img src="https://denuncia.bancariosrs.com.br/icone_canal_desktop.png" width="200px" height="68px" />
+  </a>
   <div id="container__footer" class="text-text-inverse">
     <LayoutSection background="secondary" :cornerColor="typeSection1">
         <div id="content__footer">
@@ -42,10 +48,10 @@ const typeSection1 = computed((): CurrentColor => {
             <div class="section-footer__menu-social-media--desktop"><LayoutMenuSocialMedia /></div>
             <div class="contact-details">
               <p class="contact-fone">(51) 3030 9400</p>
-              <p class="contact-email">contato@sindbancarios.org.br</p>
+              <p class="contact-email">atendimento@sindbancarios.org.br</p>
               <p class="contact-address">
                 Horário de Segunda a Sexta das 9h às 18h<br />
-                Rua General Câmara, 424, Porto Alegre/RS
+                Rua General Câmara, 424, Porto Alegre/RS.
               </p>
             </div>
           </div>
@@ -60,6 +66,99 @@ const typeSection1 = computed((): CurrentColor => {
 </template>
 
 <style lang="scss">
+:root {
+    --icon-color: #fff;
+    --icon-hover: #fff;
+    --background-color: #AF0011;
+    --background-hover: #AF0011
+}
+
+.icon_btcanal {
+    width: 48px;
+    height: 48px;
+    transform: scale(0.6) translate(20%, 20%);
+    fill: var(--icon-color)
+}
+
+.float_btcanal {
+  position: fixed;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  transition: 1s;
+  background-color: var(--background-color);
+  border-radius: 50px;
+  animation: pulse 3s infinite;
+  -webkit-animation: pulse 3s infinite;
+  -moz-animation: pulse 3s infinite;
+  -o-animation: pulse 3s infinite;
+  z-index: 99999;
+
+  @media (min-width: 1001px) {
+    display: none;
+  }
+}
+
+.float2_btcanal {
+  position: fixed;
+  cursor: pointer;
+  width: 200px;
+  height: 68px;
+  bottom: 40px;
+  right: 40px;
+  transition: 1s;
+  background-color: var(--background-color);
+  border-radius: 50px;
+  animation: pulse 3s infinite;
+  -webkit-animation: pulse 3s infinite;
+  -moz-animation: pulse 3s infinite;
+  -o-animation: pulse 3s infinite;
+  z-index: 99999;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
+}
+
+.float_btcanal:hover {
+    background-color: var(--background-hover)
+}
+
+.float_btcanal:hover .icon {
+    fill: var(--icon-hover)
+}
+
+@-webkit-keyframes pulse {
+    0% { -webkit-box-shadow: 0 0 0 0 rgba(200, 0, 0, 1) }
+    70% { -webkit-box-shadow: 0 0 0 20px rgba(200, 0, 0, 0) }
+    100% { -webkit-box-shadow: 0 0 0 0 rgba(200, 0, 0, 0) }
+}
+
+@-o-keyframes pulse {
+    0% { -webkit-box-shadow: 0 0 0 0 rgba(200, 0, 0, 1) }
+    70% { -webkit-box-shadow: 0 0 0 20px rgba(200, 0, 0, 0) }
+    100% { -webkit-box-shadow: 0 0 0 0 rgba(200, 0, 0, 0) }
+}
+
+@-ms-keyframes pulse {
+    0% { -webkit-box-shadow: 0 0 0 0 rgba(200, 0, 0, 1) }
+    70% { -webkit-box-shadow: 0 0 0 20px rgba(200, 0, 0, 0) }
+    100% { -webkit-box-shadow: 0 0 0 0 rgba(200, 0, 0, 0) }
+}
+
+@-moz-keyframes pulse {
+    0% { -webkit-box-shadow: 0 0 0 0 rgba(200, 0, 0, 1) }
+    70% { -webkit-box-shadow: 0 0 0 20px rgba(200, 0, 0, 0) }
+    100% { -webkit-box-shadow: 0 0 0 0 rgba(200, 0, 0, 0) }
+}
+
+@keyframes pulse {
+    0% { -webkit-box-shadow: 0 0 0 0 rgba(200, 0, 0, 1) }
+    70% { -webkit-box-shadow: 0 0 0 20px rgba(200, 0, 0, 0) }
+    100% { -webkit-box-shadow: 0 0 0 0 rgba(200, 0, 0, 0) }
+}
 
 #container__footer
 {

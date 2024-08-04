@@ -5,6 +5,8 @@ import { INews } from 'src/types/INews'
  * Helper Variables
  */
 // export const domain = process.env.DOMAIN?.endsWith('/') ? process.env.DOMAIN : process.env.DOMAIN + '/'
+// Sindicato dos Bancários de Porto Alegre e Região - SindBancários
+export const applicationName = process.env.APPLICATION_NAME?.replace(/\/$/, '')
 export const domain = process.env.DOMAIN?.replace(/\/$/, '')
 export const baseURL = process.env.API?.endsWith('/') ? process.env.API : process.env.API + '/'
 export const xdebugTrigger = process.env.xdebugTrigger ? process.env.xdebugTrigger : ''

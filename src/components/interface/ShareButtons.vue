@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { domain, metaImage } from 'src/helpers/helpers'
+import { domain } from 'src/helpers/helpers'
 // import { baseURL, defaultImagePath } from 'src/helpers/helpers'
-import { useMeta } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
 import IconDefault from 'components/interface/IconDefault.vue'
 import { onMounted } from 'vue'
 
 const props = defineProps({
+  title: {
+    type: String,
+    required: false
+  },
   description: {
     type: String,
     required: false
@@ -19,10 +22,10 @@ const props = defineProps({
 
 const route = useRoute()
 const router = useRouter()
-const applicationName = 'Sindicato dos Bancários de Porto Alegre e Região - SindBancários'
+// const applicationName = 'Sindicato dos Bancários de Porto Alegre e Região - SindBancários'
 
 const setMeta = () => {
-  const description = props.description
+  const description: string = props.description as string
   // console.log('DESCRIPTION SOCIAL MEDIAS', description)
 
   // const imagePath = baseURL + defaultImagePath
@@ -52,27 +55,27 @@ const setMeta = () => {
     <!-- Meta Tags Generated with https://metatags.io -->
    */
 
-  const metaData = {
-    // title: route.params.title,
-    meta: {
-      ogType: { property: 'og:type', content: 'website' },
-      ogUrl: { property: 'og:url', content: `${domain}${router.currentRoute.value.fullPath}` },
-      ogTitle: { property: 'og:title', content: route.params.title },
-      ogDescription: { property: 'og:description', content: description },
-      ogImage: { property: 'og:image', content: metaImage(imagePath) },
+  // const metaData = {
+  //   // title: route.params.title,
+  //   meta: {
+  //     ogType: { property: 'og:type', content: 'website' },
+  //     ogUrl: { property: 'og:url', content: `${domain}${router.currentRoute.value.fullPath}` },
+  //     ogTitle: { property: 'og:title', content: route.params.title },
+  //     ogDescription: { property: 'og:description', content: description },
+  //     ogImage: { property: 'og:image', content: metaImage(imagePath) },
 
-      metaCard: { name: 'twitter:card', content: 'summary_large_image' },
-      metaUrl: { name: 'twitter:url', content: `${domain}${router.currentRoute.value.fullPath}` },
-      metaTitle: { name: 'twitter:title', content: route.params.title },
-      metaDescription: { name: 'twitter:description', content: description },
-      metaImage: { name: 'twitter:image', content: metaImage(imagePath) }
-      // metaCreator: { name: 'twitter:creator', content: '@sindipoa' },
-      // metaDomain: { name: 'twitter:domain', content: applicationName },
-      // metaSite: { name: 'twitter:site', content: '@sindipoa' }
-    }
-  }
+  //     metaCard: { name: 'twitter:card', content: 'summary_large_image' },
+  //     metaUrl: { name: 'twitter:url', content: `${domain}${router.currentRoute.value.fullPath}` },
+  //     metaTitle: { name: 'twitter:title', content: route.params.title },
+  //     metaDescription: { name: 'twitter:description', content: description },
+  //     metaImage: { name: 'twitter:image', content: metaImage(imagePath) }
+  //     // metaCreator: { name: 'twitter:creator', content: '@sindipoa' },
+  //     // metaDomain: { name: 'twitter:domain', content: applicationName },
+  //     // metaSite: { name: 'twitter:site', content: '@sindipoa' }
+  //   }
+  // }
 
-  useMeta(metaData)
+  // useMeta(metaData)
 }
 
 const whatsappUrl = () => {
@@ -97,15 +100,17 @@ const socialMediaShare = (socialMedia: 'facebook' | 'twitter' | 'whatsapp', url:
     top: screen.height / 2 - 360 / 2
   }
   const t = {
-    url: 'https://twitter.com/intent/tweet?text=' + url,
-    title: applicationName,
+    url: 'https://twitter.com/intent/tweet?text=' + props.title,
+    title: props.title,
     w: 650,
     h: 550
   }
 
   switch (socialMedia) {
     case 'facebook':
-      window.open('http://www.facebook.com/sharer.php?u=' + url, 'Compartilhar no facebook', 'toolbar=no, location=no, directories=no, status=no, ' + 'menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width=' + f.w + ', height=' + f.h + ', top=' + f.top + ', left=' + f.left)
+      // window.open('http://www.facebook.com/sharer.php?u=' + url, 'Compartilhar no facebook', 'toolbar=no, location=no, directories=no, status=no, ' + 'menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width=' + f.w + ', height=' + f.h + ', top=' + f.top + ', left=' + f.left)
+      window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(url) + '&p=' + encodeURIComponent(props.description as string), 'Compartilhar no facebook', 'toolbar=no, location=no, directories=no, status=no, ' + 'menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width=' + f.w + ', height=' + f.h + ', top=' + f.top + ', left=' + f.left)
+
       break
     case 'twitter':
       window.open(t.url, t.title, `toolbar=0, status=0, width=${t.w}, height=${t.h}`)
@@ -125,7 +130,7 @@ onMounted(() => {
 <template>
   <div class="component__share--buttons">
     <div class="title">Compartilhar</div>
-    <q-btn size="12px" outline round color="quinary">
+    <q-btn size="12px" class="mobile-only" outline round color="quinary">
       <IconDefault @click="socialMediaShare('whatsapp', whatsappUrl())" :size="18" class="icon-class" viewBox="0 0 20.65 20.7" src="/assets/svg/icon-whatsapp-outline.svg#whatsapp_outline" />
     </q-btn>
     <q-btn size="12px" outline round color="quinary">

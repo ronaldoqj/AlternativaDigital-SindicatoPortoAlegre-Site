@@ -20,6 +20,14 @@ class NewsService {
     return http.post(`${prefix}/get${endURL}`, data)
   }
 
+  getPost (data:unknown) {
+    return http.post(`${prefix}/get${endURL}`, data)
+  }
+
+  async getSSR (data:unknown) {
+    return await http.post(`${prefix}/get${endURL}`, data)
+  }
+
   related (data:unknown): Promise<IResponseRelated> {
     return http.post(`${prefix}/related${endURL}`, data)
   }

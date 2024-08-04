@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PropType, computed } from 'vue'
-import { ImageDefaultSize, type ratioType } from 'components/models/interfaces/InterfacesDefault'
+import { ImageDefaultSize, type ratioType, classType } from 'components/models/interfaces/InterfacesDefault'
 
 const props = defineProps({
   src: {
@@ -13,6 +13,10 @@ const props = defineProps({
   },
   size: {
     type: Object as PropType<ImageDefaultSize>,
+    require: false
+  },
+  class: {
+    type: Object as PropType<classType>,
     require: false
   }
 })
@@ -37,5 +41,12 @@ const resolveStyle = computed(() => {
     :style="resolveStyle"
     :src="props.src"
     :ratio="props.ratio"
+    :class="props.class"
   />
 </template>
+
+<style lang="scss" scoped>
+  .rounded-borders {
+    border-radius: 7%;
+  }
+</style>

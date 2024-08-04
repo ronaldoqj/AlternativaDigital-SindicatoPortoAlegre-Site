@@ -3,6 +3,10 @@ import { baseURL } from 'src/helpers/helpers'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import CardButton from 'components/interface/CardButton.vue'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
+
+const openLink = (url:string) => {
+  window.open(url, '_blank')
+}
 </script>
 
 <template>
@@ -11,9 +15,11 @@ import LayoutSection from 'layouts/components/LayoutSection.vue'
       <TitleDefault title="Serviços" />
       <div id="content__page--service">
         <div class="row q-col-gutter-md">
+          <div class="col-xs-12 col-lg-6"><CardButton :image="`${baseURL}temporary/images/services/casa-dos-bancarios.jpg`" title="Casa dos Bancários" :route="{name: 'bankersHouse'}" /></div>
           <div class="col-xs-12 col-lg-6"><CardButton :image="`${baseURL}temporary/images/services/convenios.jpg`" title="Convênios" :route="{name: 'servicesInsurance'}" /></div>
           <div class="col-xs-12 col-lg-6"><CardButton :image="`${baseURL}temporary/images/services/arquivo-historico.jpg`" title="Arquivo Histórico" :route="{name: 'servicesHistoryFile'}" /></div>
           <!-- <div class="col-xs-12 col-lg-6"><CardButton image="/assets/image/tests/test-5.jpg" title="Espaços" :route="{name: 'servicesSpaces'}" /></div> -->
+          <div class="col-xs-12 col-lg-6"><CardButton :image="`${baseURL}temporary/images/services/portal-do-associado.jpg`" title="Portal do Associado" @click="openLink('https://portal.sindbancarios.org.br/')" /></div>
           <div class="col-xs-12 col-lg-6"><CardButton :image="`${baseURL}temporary/images/services/juridico.jpg`" title="Jurídico" :route="{name: 'servicesLegal'}" /></div>
         </div>
       </div>
