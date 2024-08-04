@@ -24,7 +24,7 @@ module.exports = configure(function (ctx) {
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
-    // preFetch: true,
+    preFetch: true,
 
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
@@ -56,7 +56,10 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
       env: {
-        DOMAIN: ctx.dev ? 'http://localhost' : 'https://www.sindbancarios.org.br/#',
+        APPLICATION_NAME: 'Sindicato dos Bancários de Porto Alegre e Região - SindBancários',
+        // DOMAIN: ctx.dev ? 'http://localhost' : 'https://www.ad.dev.br/',
+        // API: ctx.dev ? 'http://localhost' : 'https://server.ad.dev.br/',
+        DOMAIN: ctx.dev ? 'http://localhost' : 'https://www.sindbancarios.org.br/',
         API: ctx.dev ? 'http://localhost' : 'https://server.sindbancarios.org.br/',
         xdebugTrigger: ctx.dev ? '?XDEBUG_TRIGGER' : ''
       },
@@ -65,7 +68,7 @@ module.exports = configure(function (ctx) {
         node: 'node16'
       },
 
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -149,12 +152,14 @@ module.exports = configure(function (ctx) {
       // extendSSRWebserverConf (esbuildConf) {},
       // extendPackageJson (json) {},
 
-      pwa: true,
+      // Para o prefetch do SSR funcionar, não pode ser pwa
+      // pwa: true,
 
       // manualStoreHydration: true,
       // manualPostHydrationTrigger: true,
 
-      prodPort: 3000, // The default port that the production server should use
+      prodPort: 21001, // The default port that the production server should use
+      // prodPort: 21000, // The default port that the production server should use
       // (gets superseded if process.env.PORT is specified at runtime)
 
       middlewares: [

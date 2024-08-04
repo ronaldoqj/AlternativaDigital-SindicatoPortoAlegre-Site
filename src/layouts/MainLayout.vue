@@ -43,7 +43,7 @@
         <div class="mobile__contact--information">
           <div class="contact-details">
             <p class="contact-fone">(51) 3030 9400</p>
-            <p class="contact-email">contato@sindbancarios.org.br</p>
+            <p class="contact-email">atendimento@sindbancarios.org.br</p>
             <p class="contact-address">
               Horário de Segunda a Sexta das 9h às 18h<br />
               Rua General Câmara, 424, Porto Alegre/RS

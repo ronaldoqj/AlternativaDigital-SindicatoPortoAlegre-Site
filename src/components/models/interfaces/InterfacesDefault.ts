@@ -1,4 +1,5 @@
 export type ratioType = string | number | '1' | '16/9' | '4/3'
+export type classType = string | 'rounded-borders'
 export type TScreenSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type TSectionVideoColor = null | 'primary' | 'tertiary'
 

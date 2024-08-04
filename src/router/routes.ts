@@ -41,7 +41,8 @@ const routes: RouteRecordRaw[] = [
           { path: 'convenios', name: 'servicesInsurance', component: () => import('pages/services/InsurancePage.vue') },
           { path: 'arquivo-historico', name: 'servicesHistoryFile', component: () => import('pages/services/HistoryFilePage.vue') },
           { path: 'espacos', name: 'servicesSpaces', component: () => import('pages/services/SpacesPage.vue') },
-          { path: 'juridico', name: 'servicesLegal', component: () => import('pages/services/LegalPage.vue') }
+          { path: 'juridico', name: 'servicesLegal', component: () => import('pages/services/LegalPage.vue') },
+          { path: 'casa-dos-bancarios', name: 'bankersHouse', component: () => import('pages/services/BankersHousePage.vue') }
         ]
       },
       {
@@ -59,7 +60,7 @@ const routes: RouteRecordRaw[] = [
           { path: 'aposentados-e-seguridade-social', name: 'aposentados', component: () => import('pages/departments/AposentadosPage.vue') },
           { path: 'formacao', name: 'formacao', component: () => import('pages/departments/FormacaoPage.vue') },
           { path: 'financeiras-e-terceirizados-do-ramo-financeiro', name: 'financeiras', component: () => import('pages/departments/FinanceirasPage.vue') },
-          { path: 'Comunicacao', name: 'comunicacao', component: () => import('pages/departments/ComunicacaoPage.vue') }
+          { path: 'comunicacao', name: 'comunicacao', component: () => import('pages/departments/ComunicacaoPage.vue') }
           // { path: 'saude-e-condicoes-de-trabalho', name: 'departmentsHealthAndWorkingConditions', component: () => import('pages/departments/HealthAndWorkingConditionsPage.vue') },
           // { path: 'juventude-e-genero', name: 'departmentsYouthAndGender', component: () => import('pages/departments/YouthGenderPage.vue') },
           // { path: 'diversidade-e-combate-ao-racismo', name: 'departmentsDiversityAndCombatingRacism', component: () => import('pages/departments/DiversityAndCombatingRacismPage.vue') },
