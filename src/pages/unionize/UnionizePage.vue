@@ -24,7 +24,7 @@ const state = reactive({
         bank: { value: null as null | string, label: 'Banco', name: 'bank', required: true },
         codeBank: { value: null as null | string, label: 'COD do banco', name: 'code_bank', required: true },
         agency: { value: null as null | string, label: 'Agência', name: 'agency', required: true },
-        account: { value: null as null | string, label: 'Conta', name: 'account', required: true },
+        admissionDate: { value: null as null | string, label: 'Data de admissão', name: 'admission_date', mask: '##  /  ##  /  ####', required: true },
 
         phone: { value: null as null | string, label: 'Telefone', name: 'phone', mask: '(##) #### - ####', required: false },
         extension: { value: null as null | string, label: 'Ramal', name: 'extension', required: true },
@@ -104,7 +104,7 @@ const disableConfirm = computed((): boolean => {
   if (cData.bank.required && _.isEmpty(cData.bank.value)) { disableBtn = true }
   if (cData.codeBank.required && _.isEmpty(cData.codeBank.value)) { disableBtn = true }
   if (cData.agency.required && _.isEmpty(cData.agency.value)) { disableBtn = true }
-  if (cData.account.required && _.isEmpty(cData.account.value)) { disableBtn = true }
+  if (cData.admissionDate.required && _.isEmpty(cData.admissionDate.value)) { disableBtn = true }
   if (cData.phone.required && _.isEmpty(cData.phone.value)) { disableBtn = true }
   if (cData.extension.required && _.isEmpty(cData.extension.value)) { disableBtn = true }
   if (cData.alreadyAssociated.required && _.isEmpty(cData.alreadyAssociated.value)) { disableBtn = true }
@@ -155,7 +155,7 @@ const clearForm = (): void => {
   cData.bank.value = null
   cData.codeBank.value = null
   cData.agency.value = null
-  cData.account.value = null
+  cData.admissionDate.value = null
   cData.phone.value = null
   cData.extension.value = null
   cData.alreadyAssociated.value = null
@@ -209,7 +209,7 @@ const testingForm = () => {
   // state.form.inputs.commercialData.bank.value = 'Bank'
   // state.form.inputs.commercialData.codeBank.value = 'codeBank'
   // state.form.inputs.commercialData.agency.value = 'Agency'
-  // state.form.inputs.commercialData.account.value = 'Conta'
+  // state.form.inputs.commercialData.admissionDate.value = '13041984'
   // state.form.inputs.commercialData.phone.value = '5111111111'
   // state.form.inputs.commercialData.commercialEmail.value = 'comercial Email'
   // state.form.inputs.commercialData.extension.value = 'extension'
@@ -273,7 +273,7 @@ onMounted(() => {
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm ref-model="refBank" v-model="cData.bank.value" :label="cData.bank.label" :name="cData.bank.name" :read-only="formReadyOnly" :required="cData.bank.required" max-length="40" /></div>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="cData.codeBank.value" :label="cData.codeBank.label" :name="cData.codeBank.name" :read-only="formReadyOnly" :required="cData.codeBank.required" max-length="40" /></div>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="cData.agency.value" :label="cData.agency.label" :name="cData.agency.name" :read-only="formReadyOnly" :required="cData.agency.required" max-length="40" /></div>
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="cData.account.value" :label="cData.account.label" :name="cData.account.name" :read-only="formReadyOnly" :required="cData.account.required" max-length="40" /></div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><InputForm v-model="cData.admissionDate.value" :label="cData.admissionDate.label" :name="cData.admissionDate.name" :read-only="formReadyOnly" :mask="cData.admissionDate.mask" :required="cData.admissionDate.required" max-length="40" /></div>
               </div>
               <div class="row q-col-gutter-sm q-my-md">
                 <div class="col-xs-12 col-lg-5"><InputForm v-model="cData.phone.value" :label="cData.phone.label" :name="cData.phone.name" :read-only="formReadyOnly" :mask="cData.phone.mask" :required="cData.phone.required" /></div>
