@@ -33,7 +33,7 @@ const getForm = (cpf: string) => {
     })
     .catch((error:AxiosError) => {
       console.log('error', error)
-      alert('Não foi possível encontrar um cadastro para o email informado')
+      alert('Não foi possível encontrar um cadastro para o CPF informado')
     })
     .then(() => {
       // console.log('finally service')
