@@ -175,6 +175,7 @@ onMounted(() => {
           <div class="box__input--search">
             <InputForm
               v-model="state.searchInput.value"
+              @keyup.enter="triggerGetNews()"
               @clickToSearch="triggerGetNews()"
               placeholder="Pesquisar"
               name="search"

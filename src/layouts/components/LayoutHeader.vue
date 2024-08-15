@@ -38,13 +38,16 @@ function toggleDrawer () {
     </div>
     <div id="menu__header">
       <div class="mobile__menu">
-        <IconDefault
-          :size="40"
-          class="icon__menu-burguer"
-          viewBox="0 0 34 23"
-          src="/assets/svg/icon-menu-burguer.svg#menu_burguer"
-          @click="toggleDrawer"
-        />
+        <div class="box__icon">
+          <IconDefault
+            :size="40"
+            class="icon__menu-burguer"
+            viewBox="0 0 34 23"
+            src="/assets/svg/icon-menu-burguer.svg#menu_burguer"
+            @click="toggleDrawer"
+          />
+          <div>MENU</div>
+        </div>
       </div>
       <div class="menu__header--content">
         <div class="logo">
@@ -168,7 +171,8 @@ $borderTopRadius: 40px;
         }
       }
 
-      .mobile__menu {
+      .mobile__menu
+      {
         display: none;
       }
 

@@ -10,7 +10,7 @@ import CardStep from './components/CardStep.vue'
 import ButtonCardFile from './components/ButtonCardFile.vue'
 import CardAlert from './components/CardAlert.vue'
 import UnionizeService from 'src/services/UnionizeService'
-import { IUnionize } from 'src/types/IUnionize'
+// import { IUnionize } from 'src/types/IUnionize'
 
 type TControlFomr = 'form' | 'message'
 
@@ -51,7 +51,8 @@ const sendPdfFile = () => {
   formData.append('cpf', state.cpf)
 
   UnionizeService.registerPdfFile(formData)
-    .then((response:IUnionize) => {
+    // .then((response:IUnionize) => {
+    .then(() => {
       state.controlForm.show = 'message'
     })
     .catch((error:AxiosError) => {

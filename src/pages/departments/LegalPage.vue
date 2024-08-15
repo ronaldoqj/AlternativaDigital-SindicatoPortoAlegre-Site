@@ -209,7 +209,7 @@ onMounted(() => {
     </LayoutSection>
 
     <LayoutSection background="quaternary" cornerColor="tertiary">
-      <TitleDefault class="q-mb-xl" title="Documentos" />
+      <TitleDefault class="q-mb-xl" title="Documentos para processos" />
       <!-- <DocumentItem title="Guia 2023" description="Lorem ipsum dolor sit amet, consectetuer" />
       <component :is="documentItem" v-bind="props"></component> -->
       <!-- <CarouselSlide :list="state.documents.listDocuments" :screen-block="state.documents.screenBlock"></CarouselSlide> -->

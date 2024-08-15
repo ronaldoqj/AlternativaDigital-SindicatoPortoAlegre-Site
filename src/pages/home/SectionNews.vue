@@ -48,7 +48,7 @@ const state = reactive({
   },
   news: {
     geral: {
-      page: 1,
+      page: 0,
       perPage: 6,
       endList: false,
       lastPate: null as null | number,
@@ -123,6 +123,7 @@ onMounted(() => {
       <div class="input--search">
         <InputForm
           v-model="state.searchInput.value"
+          @keyup.enter="toSearchPage()"
           @clickToSearch="toSearchPage()"
           placeholder="Pesquisar"
           name="search"

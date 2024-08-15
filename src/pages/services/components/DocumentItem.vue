@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PropType } from 'vue'
 import IconDefault from 'components/interface/IconDefault.vue'
-import ButtonDefault from 'components/interface/ButtonDefault.vue'
+// import ButtonDefault from 'components/interface/ButtonDefault.vue'
 import { IDocumentItem } from 'src/components/models/interfaces/pages/services/document'
 
 const props = defineProps({

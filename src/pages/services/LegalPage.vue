@@ -253,7 +253,7 @@ onMounted(() => {
     </LayoutSection>
 
     <LayoutSection background="quaternary" cornerColor="tertiary">
-      <TitleDefault class="q-mb-xl" title="Documentos" />
+      <TitleDefault class="q-mb-xl" title="Documentos para processos" />
       <CarouselSlide v-if="state.documents.items.listProp.length" :listItems="state.documents.items" :component-item="freezeComponentDocument" item-class="departments__legal--document-item" />
     </LayoutSection>
 
