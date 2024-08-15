@@ -198,7 +198,7 @@ $height-section2: 200px;
 
             div {
               display: flex;
-              align-items: end;
+              align-items: flex-end;
             }
 
             h3, h4, h5 {

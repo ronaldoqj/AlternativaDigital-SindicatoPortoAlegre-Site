@@ -26,7 +26,7 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
 
     <LayoutSection background="tertiary" cornerColor="secondary">
       <div id="content__page--service-default-open">
-        <TitleDefault class="q-mb-xl" title="Casa dos Bancários" />
+        <TitleDefault class="q-mb-xl" title="Espaço Casa dos Bancários" />
         <div>
           <p>
             A Casa dos Bancários é um centro de organização e atendimento à categoria. Tem auditório com capacidade para 120 lugares que pode ser transformada em sala menores, permitindo que várias atividades ocorram ao mesmo tempo; salão de festas com capacidade churrasqueira, eletrodomésticos, louça, refrigeradores e capacidade para 20 pessoas, biblioteca com mais de 9 mil livros disponíveis para locação dos sócios e um cinema, o CineBancários.

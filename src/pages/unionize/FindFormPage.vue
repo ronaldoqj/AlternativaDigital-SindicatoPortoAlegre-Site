@@ -7,7 +7,7 @@ import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import NewsService from 'src/services/UnionizeService'
 import InputForm from 'src/pages/unionize/components/InputForm.vue'
-import { IUnionize } from 'src/types/IUnionize'
+// import { IUnionize } from 'src/types/IUnionize'
 
 const router = useRouter()
 const state = reactive({
@@ -28,7 +28,8 @@ const state = reactive({
 
 const getForm = (cpf: string) => {
   NewsService.getByCpf({ cpf })
-    .then((response:IUnionize) => {
+    // .then((response:IUnionize) => {
+    .then(() => {
       redirectToLastStep(cpf)
     })
     .catch((error:AxiosError) => {

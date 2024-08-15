@@ -42,7 +42,7 @@ const routes: RouteRecordRaw[] = [
           { path: 'arquivo-historico', name: 'servicesHistoryFile', component: () => import('pages/services/HistoryFilePage.vue') },
           { path: 'espacos', name: 'servicesSpaces', component: () => import('pages/services/SpacesPage.vue') },
           { path: 'juridico', name: 'servicesLegal', component: () => import('pages/services/LegalPage.vue') },
-          { path: 'casa-dos-bancarios', name: 'bankersHouse', component: () => import('pages/services/BankersHousePage.vue') }
+          { path: 'espaço-casa-dos-bancarios', name: 'bankersHouse', component: () => import('pages/services/BankersHousePage.vue') }
         ]
       },
       {

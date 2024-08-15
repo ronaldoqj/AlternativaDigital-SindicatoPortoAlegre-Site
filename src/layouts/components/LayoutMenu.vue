@@ -238,7 +238,7 @@ const clickLink = (link:string, target:string) => {
 
         <q-item clickable v-close-popup>
           <q-item-section @click="clickRoute(state.menu.bankersHouse)">
-            Casa dos Bancários
+            Espaço casa dos bancários
           </q-item-section>
         </q-item>
 

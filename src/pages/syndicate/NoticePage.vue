@@ -27,23 +27,23 @@ const state = reactive({
   } as IDinamicList
 })
 
-const setListStatute = () => {
-  const item = {
-    subtitle: 'Congresso Fetrafi-RS',
-    title: 'Edital de convocação de congresso Estadual',
-    src: '/assets/svg/icon-pdf.svg#icon_pdf',
-    link: ''
-  }
-  const items = [item, item, item, item, item, item]
-  const list = [
-    { title: '2023', items, open: true },
-    { title: '2024', items, open: false },
-    { title: '2025', items, open: false },
-    { title: '2026', items, open: false }
-  ]
+// const setListStatute = () => {
+//   const item = {
+//     subtitle: 'Congresso Fetrafi-RS',
+//     title: 'Edital de convocação de congresso Estadual',
+//     src: '/assets/svg/icon-pdf.svg#icon_pdf',
+//     link: ''
+//   }
+//   const items = [item, item, item, item, item, item]
+//   const list = [
+//     { title: '2023', items, open: true },
+//     { title: '2024', items, open: false },
+//     { title: '2025', items, open: false },
+//     { title: '2026', items, open: false }
+//   ]
 
-  state.items.listProp = list
-}
+//   state.items.listProp = list
+// }
 
 const getNewItemList = (data: any) => {
   const newItem = {

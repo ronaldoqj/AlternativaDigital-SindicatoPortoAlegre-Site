@@ -25,11 +25,11 @@ const router = useRouter()
 // const applicationName = 'Sindicato dos Bancários de Porto Alegre e Região - SindBancários'
 
 const setMeta = () => {
-  const description: string = props.description as string
+  // const description: string = props.description as string
   // console.log('DESCRIPTION SOCIAL MEDIAS', description)
 
   // const imagePath = baseURL + defaultImagePath
-  const imagePath = props.image as string
+  // const imagePath = props.image as string
 
   /**
    * Example:
