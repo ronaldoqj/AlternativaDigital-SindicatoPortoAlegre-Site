@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, onBeforeMount, reactive, watch, onServerPrefetch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { computed, onMounted, reactive, watch, onServerPrefetch } from 'vue'
+import { useRoute } from 'vue-router'
 import { AxiosError } from 'axios'
 import { date, useMeta } from 'quasar'
 import { getValidImage, baseURL } from 'src/helpers/helpers'
@@ -151,7 +151,8 @@ watch(computedLayout, (newValue) => {
 })
 
 defineOptions({
-  preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
+  // preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
+  preFetch ({ store, currentRoute }) {
     const applicationName = 'Sindicato dos Bancários de Porto Alegre e Região - SindBancários'
     const id = Number(currentRoute.params.id)
     console.log('--------------------------------------- start', applicationName)
