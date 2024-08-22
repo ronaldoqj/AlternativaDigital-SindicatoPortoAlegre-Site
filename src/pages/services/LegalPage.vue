@@ -217,6 +217,39 @@ onMounted(() => {
         <div class="space__between"></div>
 
         <div>
+          <h4>Escritórios credenciados</h4>
+          <div class="space__between"></div>
+
+          <p>
+            <strong class="title-strong">AVM Advogados</strong><br>
+            Telefone: 51 3061-4880<br>
+            E-mail: contato@avmadvogados.com.br
+          </p>
+          <p>
+            <strong class="title-strong">CCM Advogados</strong><br>
+            Telefone: 51 99797-0591<br>
+            E-mail: ccm@ccm.adv.br
+          </p>
+          <p>
+            <strong class="title-strong">Costa Advogados</strong><br>
+            Telefone: 51 99630-6203<br>
+            E-mail: atendimento@costaadvogados.com.br
+          </p>
+          <p>
+            <strong class="title-strong">Jairo Frank Advogado</strong><br>
+            Telefone: 51 3226-0844<br>
+            E-mail: jfrank@gfcadv.com.br
+          </p>
+          <p>
+            <strong class="title-strong">Fagundes e Schneider</strong><br>
+            Telefone: 51 3595-3995<br>
+            E-mail: atendimento@fse.adv.br
+          </p>
+        </div>
+
+        <div class="space__between"></div>
+
+        <div>
           <h4>Comissões de conciliação</h4>
           <div class="space__between"></div>
           <p>O SindBancários coordena e orienta tentativas de solução de conflitos trabalhistas individuais utilizando as Comissões de Conciliação Prévia (CCP) ou Voluntária (CCV). <br>
