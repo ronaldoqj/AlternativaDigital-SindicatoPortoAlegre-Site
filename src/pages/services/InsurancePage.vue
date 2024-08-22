@@ -275,23 +275,6 @@ const state = reactive({
         }
       },
       {
-        title: '',
-        subject: '',
-        description: '',
-        phone: '',
-        address: '',
-        address2: '',
-        mail: '',
-        site: '',
-        socialMedia: {
-          facebook: '',
-          instagram: '',
-          twitter: '',
-          whatsapp: '',
-          youtube: ''
-        }
-      },
-      {
         title: 'Óptica Nobre Causa',
         subject: 'Desconto nas armações de óculos de grau e solares mediante a apresentação de matrícula ou carteirinha sindical.',
         description: '',
