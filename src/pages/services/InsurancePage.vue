@@ -275,23 +275,6 @@ const state = reactive({
         }
       },
       {
-        title: '',
-        subject: '',
-        description: '',
-        phone: '',
-        address: '',
-        address2: '',
-        mail: '',
-        site: '',
-        socialMedia: {
-          facebook: '',
-          instagram: '',
-          twitter: '',
-          whatsapp: '',
-          youtube: ''
-        }
-      },
-      {
         title: 'Óptica Nobre Causa',
         subject: 'Desconto nas armações de óculos de grau e solares mediante a apresentação de matrícula ou carteirinha sindical.',
         description: '',
@@ -537,7 +520,7 @@ const state = reactive({
         title: 'C3 Educacional',
         subject: '',
         description: 'CPA-10 gratuita no módulo online e 40% de desconto nas demais certificações.',
-        phone: '(51) 99820-3324',
+        phone: '(43) 98457-4395 | (43) 99820-3324',
         address: '',
         address2: '',
         mail: 'contato@c3educacional.com.br',
@@ -546,7 +529,7 @@ const state = reactive({
           facebook: 'https://www.facebook.com/c3educa',
           instagram: 'https://www.instagram.com/c3educacional/',
           twitter: '',
-          whatsapp: '(51) 99820-3324',
+          whatsapp: '(43) 99820-3324',
           youtube: 'https://www.youtube.com/@c3Educacao'
         }
       }

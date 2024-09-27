@@ -68,9 +68,9 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Ana Lúcia', surname: 'Soares Guimaraens', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/cultura-e-sustentabilidade_-_ana-lucia.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Guaracy', surname: 'Padilla Gonçalves', subtitle: 'Cultura e Sustentabilidade', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/016.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Eroni', surname: 'Batista Ribeiro', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/017.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Guaracy', surname: 'Padilla Gonçalves', subtitle: 'Cultura e Sustentabilidade', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/013_CULTURA_SUSTENTABILIDADE-Guaracy.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Ana Beni', surname: 'Helebrandt', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/013_CULTURA_SUSTENTABILIDADE-Ana.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Tobias', surname: 'Santos Monteiro', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/013_CULTURA_SUSTENTABILIDADE-Tobias.jpg` })
 }
 
 const setDepartmentPublications = () => {

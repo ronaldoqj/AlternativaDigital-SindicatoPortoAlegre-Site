@@ -93,8 +93,9 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Simoni', surname: 'Fernandes Medeiros', subtitle: 'Jurídico', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/juridico_simoni_medeiros.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/011.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Priscila', surname: 'Aguirres', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/008_JURIDICO-Priscila.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Jonas', surname: 'Castilhos', subtitle: 'Jurídico', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/008_JURIDICO-Jonas.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Ricardo', surname: 'Stumpf', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/008_JURIDICO-Ricardo.jpg` })
 }
 
 const setDepartmentPublications = () => {
