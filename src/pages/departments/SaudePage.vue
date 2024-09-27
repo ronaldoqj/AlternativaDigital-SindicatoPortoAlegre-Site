@@ -68,9 +68,9 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Jamile', surname: 'Chamun', subtitle: 'Saúde', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/012.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Thiely Denise', surname: 'Kalil', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/saude-e-condicoes-de-trabalho_-_thiely.png` })
-  state.legalMembers.items.listProp.push({ title: 'Rodrigo', surname: 'Ambros Rodrigues', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/saude-e-condicoes-de-trabalho_-_rodrigo.png` })
+  state.legalMembers.items.listProp.push({ title: 'Jamile', surname: 'Chamun', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/011_SAUDE_CONDICOES-Jamile.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Rodrigo', surname: 'Ambros Rodrigues', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/011_SAUDE_CONDICOES-Rodrigo.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Rosecler', surname: 'de Carvalho', subtitle: 'Saúde e Condições de Trabalho', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/011_SAUDE_CONDICOES-Rosecler.jpg` })
 }
 
 const setDepartmentPublications = () => {

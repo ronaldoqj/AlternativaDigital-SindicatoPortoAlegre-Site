@@ -109,137 +109,139 @@ const state = reactive({
     {
       section: 'Presidente',
       list: [
-        { title: 'Luciano', surname: 'Fetzner Barcellos', subtitle: 'Presidência', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/001.jpg` }
+        { title: 'Luciano', surname: 'Fetzner Barcellos', subtitle: 'Presidência', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/001_PRESIDENTE_Luciano.jpg` }
       ]
     },
     {
       section: 'Secretaria geral',
       list: [
-        { title: 'Luis Gustavo', surname: 'Vargas Soares', subtitle: 'Secretaria Geral', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/secretaria_geral_luis_gustavo.jpg` },
-        { title: 'Silvia Regina', surname: 'de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/002.jpg` },
-        { title: 'Eduardo', surname: 'Munhoz Baptista', subtitle: 'Secretaria Geral', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/003.jpg` }
+        { title: 'Sabrina', surname: 'Quinteros Muniz', subtitle: 'Secretaria Geral', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/002_Secretaria_Geral_Sabrina.jpg` },
+        { title: 'Mauro', surname: 'Salles', subtitle: 'Secretaria Geral', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/002_Secretaria_Geral_Mauro_sales.jpg` },
+        { title: 'Jailson', surname: 'Bueno Prodes', subtitle: 'Secretaria Geral', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/002_Secretaria_Geral_JAILSON.jpg` }
       ]
     },
     {
       section: 'Secretaria executiva',
       list: [
-        { title: 'Luiz', surname: 'Cassemiro', subtitle: 'Secretaria Executiva', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/006.jpg` },
-        { title: 'Daniela', surname: 'Silva de Souza', subtitle: 'Secretaria Executiva', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/005.jpg` },
-        { title: 'Jailson', surname: 'Bueno Prodes', subtitle: 'Secretaria Executiva', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/secretaria_executiva_jailson.jpg` }
+        { title: 'Daniela', surname: 'Silva de Souza', subtitle: 'Secretaria Executiva', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/004_SECRETARIA_EXECUTIVA-DANIELA.jpg` },
+        { title: 'Luis Gustavo', surname: 'Vargas Soares', subtitle: 'Secretaria Executiva', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/004_SECRETARIA_EXECUTIVA-LUIS.jpg` },
+        { title: 'Rodrigo', surname: 'Pereira Soares', subtitle: 'Secretaria Executiva', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/004_SECRETARIA_EXECUTIVA-Rodrigo-Pereira.jpg` }
       ]
     },
     {
       section: 'Financeiro',
       list: [
-        { title: 'Tiago', surname: 'Vasconcellos Pedroso', subtitle: 'Financeiro', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/009.jpg` },
-        { title: 'Maristela', surname: 'da Rocha', subtitle: 'Financeiro', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/010.jpg` },
-        { title: 'Fabiano', surname: 'Barnart', subtitle: 'Financeiro', description: 'Banrisul', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` }
+        { title: 'Tiago', surname: 'Vasconcellos Pedroso', subtitle: 'Financeiro', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/005_FINANCEIRO-TIAGO.jpg` },
+        { title: 'Maristela', surname: 'da Rocha', subtitle: 'Financeiro', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/005_FINANCEIRO-MARISTELA.jpg` },
+        { title: 'Rafael', surname: 'Binotto Gomes', subtitle: 'Financeiro', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/005_FINANCEIRO-rafael.jpg` }
       ]
     },
     {
       section: 'Administrativo',
       list: [
-        { title: 'Antônio Augusto', surname: 'Borges de Borges', subtitle: 'Administrativo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/008.jpg` },
-        { title: 'Jorge Luis', surname: 'Consminski Lucas', subtitle: 'Administrativo', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/administrativo_jorge_lucas.jpg` },
-        { title: 'Ronaldo', surname: 'Souza Gross', subtitle: 'Administrativo', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/administrativo_ronaldo_gross.jpg` }
+        { title: 'Silvia Regina', surname: 'de Carvalho Chaves', subtitle: 'Secretaria Geral', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/003_SECRETARIA_EXECUTIVA-silvia.jpg` },
+        { title: 'Jorge Luis', surname: 'Consminski Lucas', subtitle: 'Secretaria Geral', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/003_administrativo_jorge_lucas.jpg` },
+        { title: 'Ronaldo', surname: 'Souza Gross', subtitle: 'Secretaria Geral', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/003_administrativo_ronaldo_gross.jpg` }
       ]
     },
     {
       section: 'Comunicação',
       list: [
-        { title: 'Gilnei', surname: 'Silva Nunes', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/022.jpg` },
-        { title: 'Jonas', surname: 'de Souza Castilhos', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/023.jpg` },
-        { title: 'Andrei', surname: 'Freitas Teixeira', subtitle: 'Comunicação', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/comunicacao_-_andrei.png` }
+        { title: 'Sergio Rogério', surname: 'Moreira Hoff', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/007_COMUNICACAO-Sergio.jpg` },
+        { title: 'Guilherme', surname: 'Daroit', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/007_COMUNICACAO-Guilherme.jpg` },
+        { title: 'Andrei', surname: 'Freitas Teixeira', subtitle: 'Comunicação', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/007_COMUNICACAO-Andrei.jpg` }
       ]
     },
     {
       section: 'Jurídico',
       list: [
-        { title: 'Simoni', surname: 'Fernandes Medeiros', subtitle: 'Jurídico', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/juridico_simoni_medeiros.jpg` },
-        { title: 'Ronaldo', surname: 'Zeni', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/011.jpg` }
+        { title: 'Priscila', surname: 'Aguirres', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/008_JURIDICO-Priscila.jpg` },
+        { title: 'Jonas', surname: 'Castilhos', subtitle: 'Jurídico', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/008_JURIDICO-Jonas.jpg` },
+        { title: 'Ricardo', surname: 'Stumpf', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/008_JURIDICO-Ricardo.jpg` }
       ]
     },
     {
       section: 'Juventude e Gênero',
       list: [
-        { title: 'Carmen', surname: 'Guedes', subtitle: 'Juventude e Gênero', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/013.jpg` },
-        { title: 'Rachel', surname: 'de Araujo Weber', subtitle: 'Juventude e Gênero', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/juventude-e-genero_-_raquel.png` },
-        { title: 'Gean Francisco', surname: 'Farias Espíndula', subtitle: 'Juventude e Gênero', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/juventude-e-genero_-_gean.png` }
+        { title: 'Claudia Stella', surname: 'Rodrigues Santana de Resende', subtitle: 'Juventude e Gênero', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/009_JUVENTUDE_GENERO-Claudia.jpg` },
+        { title: 'Bianca', surname: 'Garbelini', subtitle: 'Juventude e Gênero', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/009_JUVENTUDE_GENERO-Bianca.jpg` },
+        { title: 'Fernanda', surname: 'Umsza', subtitle: 'Juventude e Gênero', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/009_JUVENTUDE_GENERO-Fernanda.jpg` }
       ]
     },
     {
       section: 'Diversidade e Combate ao Racismo',
       list: [
-        { title: 'Sandro Artur', surname: 'Ferreira Rodrigues', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/014.jpg` },
-        { title: 'Ernesto Humberto', surname: 'dos Santos', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/diversidade-e-combate-ao-racismo_-_ernesto.png` }
+        { title: 'Sandro Artur', surname: 'Ferreira Rodrigues', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/010_DIVERSIDADE_COMBATE_RACISMO-Sandro.jpg` },
+        { title: 'Paulo Roberto', surname: 'dos Santos Caetano', subtitle: 'Diversidade e Combate ao Racismo', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/010_DIVERSIDADE_COMBATE_RACISMO-Paulo.jpg` },
+        { title: 'Thiely', surname: 'Denise Kalil', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/010_DIVERSIDADE_COMBATE_RACISMO-Thielly.jpg` }
       ]
     },
     {
       section: 'Saúde e Condições de Trabalho',
       list: [
-        { title: 'Jamile', surname: 'Chamun', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/012.jpg` },
-        { title: 'Thiely Denise', surname: 'Kalil', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/saude-e-condicoes-de-trabalho_-_thiely.png` },
-        { title: 'Rodrigo', surname: 'Ambros Rodrigues', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/saude-e-condicoes-de-trabalho_-_rodrigo.png` }
+        { title: 'Jamile', surname: 'Chamun', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/011_SAUDE_CONDICOES-Jamile.jpg` },
+        { title: 'Rodrigo', surname: 'Ambros Rodrigues', subtitle: 'Saúde e Condições de Trabalho', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/011_SAUDE_CONDICOES-Rodrigo.jpg` },
+        { title: 'Rosecler', surname: 'de Carvalho', subtitle: 'Saúde e Condições de Trabalho', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/011_SAUDE_CONDICOES-Rosecler.jpg` }
       ]
     },
     {
       section: 'Esporte e Lazer',
       list: [
-        { title: 'Gerson Marques', surname: 'dos Reis', subtitle: 'Esporte e Lazer', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/esporte_e_lazer_gerson.jpg` },
-        { title: 'Carlos Odone', surname: 'Dahlheimer Viale', subtitle: 'Esporte e Lazer', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/esporte-e-lazer_-_carlos.png` },
-        { title: 'Rogério', surname: 'de Rodrigues Rodrigues', subtitle: 'Esporte e Lazer', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/esporte_e_lazer_rogerio.jpg` }
+        { title: 'Gerson', surname: 'Marques dos Reis', subtitle: 'Esporte e Lazer', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/012_ESPORTE_LAZER-Gerson.jpg` },
+        { title: 'Carlos Odone', surname: 'Dahlheimer Viale', subtitle: 'Esporte e Lazer', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/012_ESPORTE_LAZER-Carlos.jpg` },
+        { title: 'Gilnei', surname: 'Silva Nunes', subtitle: 'Esporte e Lazer', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/012_ESPORTE_LAZER-Gilnei.jpg` }
       ]
     },
     {
       section: 'Cultura e Sustentabilidade',
       list: [
-        { title: 'Ana Lúcia', surname: 'Soares Guimaraens', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/cultura-e-sustentabilidade_-_ana-lucia.jpg` },
-        { title: 'Guaracy', surname: 'Padilla Gonçalves', subtitle: 'Cultura e Sustentabilidade', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/016.jpg` },
-        { title: 'Eroni', surname: 'Batista Ribeiro', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/017.jpg` }
+        { title: 'Guaracy', surname: 'Padilla Gonçalves', subtitle: 'Cultura e Sustentabilidade', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/013_CULTURA_SUSTENTABILIDADE-Guaracy.jpg` },
+        { title: 'Ana Beni', surname: 'Helebrandt', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/013_CULTURA_SUSTENTABILIDADE-Ana.jpg` },
+        { title: 'Tobias', surname: 'Santos Monteiro', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/013_CULTURA_SUSTENTABILIDADE-Tobias.jpg` }
       ]
     },
     {
       section: 'Aposentados e Seguridade Social',
       list: [
-        { title: 'Natalina', surname: 'Rosane Gue', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/019.jpg` },
-        { title: 'Claudete', surname: 'Genuíno Marocco', subtitle: 'Aposentados e Seguridade Social', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/018.jpg` },
-        { title: 'Ida Jaqueline', surname: 'Pellegino', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/aposentados_e_seguridade_social_ida.jpg` }
+        { title: 'Natalina', surname: 'Rosane Gue', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/014_APROSENTADOS_SEGURIDADE-Natalina.jpg` },
+        { title: 'Claudete', surname: 'Genuíno Marocco', subtitle: 'Aposentados e Seguridade Social', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/014_APROSENTADOS_SEGURIDADE-Claudete.jpg` },
+        { title: 'Ida', surname: 'Pellegino', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/014_APROSENTADOS_SEGURIDADE-Ida.jpg` }
       ]
     },
     {
       section: 'Formação',
       list: [
-        { title: 'Jairo', surname: 'Severo Soares', subtitle: 'Formação', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/020.jpg` },
-        { title: 'Itamara', surname: 'Pinto Brum', subtitle: 'Formação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/formacao_itamara.jpg` },
-        { title: 'Virgínia', surname: 'Faria', subtitle: 'Formação', description: 'In Memoriam', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` }
+        { title: 'Jairo', surname: 'Severo Soares', subtitle: 'Formação', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/015_FORMACAO-Jairo.jpg` },
+        { title: 'Itamara', surname: 'Pinto Brum', subtitle: 'Formação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/015_FORMACAO-Itamara.jpg` },
+        { title: 'Neiva', surname: 'Berggrav', subtitle: 'Formação', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/015_FORMACAO-Neiva.jpg` }
       ]
     },
     {
       section: 'Financeiras e Terceirizados do Ramo Financeiro',
       list: [
-        { title: 'Claudia Stella', surname: 'Rodrigues Santana de Resende', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/financeiras-e-terceirizados-do-ramo-financeiro_-_claudia.png` },
-        { title: 'Caroline', surname: 'Soares Heidner', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/021.jpg` },
-        { title: 'Marilene', surname: 'Brusa Sá', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/financeiras-e-terceirizados-do-ramo-financeiro_-_marilene.png` }
+        { title: 'Luiz', surname: 'Cassemiro', subtitle: 'Financeiras e Terceirizados', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/016_FINANCEIRAS-Luiz.jpg` },
+        { title: 'Antônio Augusto', surname: 'Borges de Borges', subtitle: 'Financeiras e Terceirizados', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/016_Administrativo-Antonio.jpg` },
+        { title: 'Maria', surname: 'Francilina Maier', subtitle: 'Financeiras e Terceirizados', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/016_FINANCEIRAS-Maria.jpg` }
       ]
     },
     {
       section: 'Conselho de Representação em Entidades de Grau Superior',
       list: [
-        { title: 'Everton', surname: 'de Morais Gimenis', subtitle: 'Conselho de Representação em Entidades de Grau Superior', description: 'Bradesco', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` },
-        { title: 'Mauro', surname: 'Salles Machado', subtitle: 'Conselho de Representação em Entidades de Grau Superior', description: 'Santander', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` }
+        { title: 'Everton', surname: 'de Morais Gimenis', subtitle: 'Conselheiro (licenciado)', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/017_CONSELHO-Everton.jpg` },
+        { title: 'Ernesto', surname: 'Humberto dos Santos', subtitle: 'Conselheiro', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/017_CONSELHO-Ernesto.jpg` }
       ]
     },
     {
       section: 'Conselho Fiscal',
       list: [
-        { title: 'Nilton', surname: 'Correa Gomes', subtitle: 'Conselho Fiscal', description: 'Bradesco', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` },
-        { title: 'Fabiano', surname: 'Beneduzi', subtitle: 'Conselho Fiscal', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` },
-        { title: 'Edson', surname: 'Ramos da Rocha', subtitle: 'Conselho Fiscal', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/007.jpg` },
-        { title: 'Carlos Eduardo', surname: 'Bobsin', subtitle: 'Conselho Fiscal', description: 'Banrisul', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` },
-        { title: 'Cristina', surname: 'Silva Rocha Garbinatto', subtitle: 'Conselho Fiscal', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/004.jpg` },
-        { title: 'Rodrigo', surname: 'Pereira Soares', subtitle: 'Conselho Fiscal', description: 'Banrisul', image: `${baseURL}temporary/images/people/diretoria_masculino.jpg` },
-        { title: 'Noelha', surname: 'Rodrigues da Rosa', subtitle: 'Conselho Fiscal', description: 'Banrisul', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` },
-        { title: 'Maria Francilina', surname: 'Maier Dias', subtitle: 'Conselho Fiscal', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/people/diretoria_feminino.jpg` }
+        { title: 'Eroni', surname: 'Batista Ribeiro', subtitle: 'Conselho Fiscal', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Eroni.jpg` },
+        { title: 'Rogério', surname: 'de Rodrigues Rodrigues', subtitle: 'Conselho Fiscal', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Rogerio.jpg` },
+        { title: 'Carmen', surname: 'Guedes', subtitle: 'Conselho Fiscal', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Carmem.jpg` },
+        { title: 'Edson', surname: 'Ramos da Rocha', subtitle: 'Conselho Fiscal', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Edson.jpg` },
+        { title: 'Nilton', surname: 'Correa Gomes', subtitle: 'Conselho Fiscal', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Nilton.jpg` },
+        { title: 'Noelha', surname: 'Rodrigues da Rosa', subtitle: 'Conselho Fiscal', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Noelha.jpg` },
+        { title: 'João Gilberto', surname: 'Nunes Festa', subtitle: 'Conselho Fiscal', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-joao.jpg` },
+        { title: 'Carlos Eduardo', surname: 'Bobsin', subtitle: 'Conselho Fiscal', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Carlos-Eduardo.jpg` }
       ]
     }
   ]

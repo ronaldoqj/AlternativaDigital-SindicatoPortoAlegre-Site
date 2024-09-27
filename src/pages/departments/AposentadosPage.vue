@@ -68,9 +68,9 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Natalina', surname: 'Rosane Gue', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/019.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Claudete', surname: 'Genuíno Marocco', subtitle: 'Aposentados e Seguridade Social', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/018.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Ida Jaqueline', surname: 'Pellegino', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/aposentados_e_seguridade_social_ida.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Natalina', surname: 'Rosane Gue', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/014_APROSENTADOS_SEGURIDADE-Natalina.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Claudete', surname: 'Genuíno Marocco', subtitle: 'Aposentados e Seguridade Social', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/014_APROSENTADOS_SEGURIDADE-Claudete.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Ida', surname: 'Pellegino', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/014_APROSENTADOS_SEGURIDADE-Ida.jpg` })
 }
 
 const setDepartmentPublications = () => {

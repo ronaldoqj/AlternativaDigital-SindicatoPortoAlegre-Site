@@ -68,8 +68,9 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Sandro Artur', surname: 'Ferreira Rodrigues', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/014.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Ernesto Humberto', surname: 'dos Santos', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/diversidade-e-combate-ao-racismo_-_ernesto.png` })
+  state.legalMembers.items.listProp.push({ title: 'Sandro Artur', surname: 'Ferreira Rodrigues', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/010_DIVERSIDADE_COMBATE_RACISMO-Sandro.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Paulo Roberto', surname: 'dos Santos Caetano', subtitle: 'Diversidade e Combate ao Racismo', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/010_DIVERSIDADE_COMBATE_RACISMO-Paulo.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Thiely', surname: 'Denise Kalil', subtitle: 'Diversidade e Combate ao Racismo', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/010_DIVERSIDADE_COMBATE_RACISMO-Thielly.jpg` })
 }
 
 const setDepartmentPublications = () => {

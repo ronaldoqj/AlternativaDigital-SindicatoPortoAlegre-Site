@@ -68,9 +68,9 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Claudia Stella', surname: 'Rodrigues Santana de Resende', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/financeiras-e-terceirizados-do-ramo-financeiro_-_claudia.png` })
-  state.legalMembers.items.listProp.push({ title: 'Caroline', surname: 'Soares Heidner', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/021.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Marilene', surname: 'Brusa Sá', subtitle: 'Financeiras e Terceirizados do Ramo Financeiro', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/financeiras-e-terceirizados-do-ramo-financeiro_-_marilene.png` })
+  state.legalMembers.items.listProp.push({ title: 'Luiz', surname: 'Cassemiro', subtitle: 'Financeiras e Terceirizados', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/016_FINANCEIRAS-Luiz.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Antônio Augusto', surname: 'Borges de Borges', subtitle: 'Financeiras e Terceirizados', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/016_Administrativo-Antonio.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Maria', surname: 'Francilina Maier', subtitle: 'Financeiras e Terceirizados', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/016_FINANCEIRAS-Maria.jpg` })
 }
 
 const setDepartmentPublications = () => {
