@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { baseURL } from 'src/helpers/helpers'
+import { shallowRef, reactive, computed, onMounted, watch } from 'vue'
+import { useQuasar } from 'quasar'
+import { AxiosError } from 'axios'
+import { baseURL, getValidImage } from 'src/helpers/helpers'
+import DepartmentService from 'src/services/GenericPageService'
+import NewsService from 'src/services/NewsService'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
 import CarouselSlide from 'src/components/interface/CarouselSlide.vue'
-import { useQuasar } from 'quasar'
-import { shallowRef, reactive, computed, onMounted, watch } from 'vue'
-
 import DocumentItem from './components/DocumentItem.vue'
 import MembersItem from './components/MembersItem.vue'
 import RelatedPublications from 'components/interface/RelatedPublications.vue'
-
 import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
-import { AxiosError } from 'axios'
-import NewsService from 'src/services/NewsService'
 import { INews, IResponseRelated } from 'src/types/INews'
+import { IGenericPage, IResponseGenericPage } from 'src/types/IGenericPage'
 
 interface IItemMember {
   title: string
@@ -27,6 +27,7 @@ interface IItemMember {
 const $q = useQuasar()
 const freezeComponentDocument = shallowRef(DocumentItem)
 const state = reactive({
+  department: {} as IGenericPage,
   documents: {
     items: {
       currentScreen: {} as IDinamicScreen,
@@ -51,6 +52,9 @@ const state = reactive({
     departmentId: 5,
     limit: 6,
     list: [] as INews[]
+  },
+  controlsPage: {
+    loading: true
   }
 })
 
@@ -132,11 +136,25 @@ const getRelatedDepartments = () => {
     })
 }
 
+const getGenericPage = (id:number) => {
+  DepartmentService.get({ id })
+    .then((response:IResponseGenericPage) => {
+      state.department = response.data as IGenericPage
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      state.controlsPage.loading = false
+    })
+}
+
 watch(currentScreenSize, (newValue) => {
   changeOrderList(newValue)
 })
 
 onMounted(() => {
+  getGenericPage(5)
   setListDocuments()
   setDepartmentPublications()
   setListLegalMembers()
@@ -148,18 +166,21 @@ onMounted(() => {
 <template>
   <div id="page__departments--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop :src="`${baseURL}temporary/images/departamentos/005_Esporte.png`" />
+      <BannerTop :src="getValidImage(state.department.image)" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">
       <div id="content__page--departments-default-open">
-        <TitleDefault class="q-mb-xl" title="Esporte e Lazer" />
-        <div>
-          <p>
-            O Departamento organiza eventos esportivos que promovam a integração da categoria e a consolidação da solidariedade de classe. À pasta, também cabe primar pela organização de atividades que alcancem a categoria como um todo, garantindo a previsão de modalidades masculina, feminina e/ou mista, conforme a demanda.
-          </p>
-        </div>
+        <TitleDefault class="q-mb-xl" :title="state.department.title as string" />
+        <div class="content" v-html="state.department.text"></div>
       </div>
+      <q-inner-loading
+        :showing="state.controlsPage.loading"
+        label="Por favor espere..."
+        label-class="text-primary"
+        color="primary"
+        label-style="font-size: 1.1em"
+      />
     </LayoutSection>
 
     <LayoutSection v-if="false" background="quaternary" cornerColor="tertiary">

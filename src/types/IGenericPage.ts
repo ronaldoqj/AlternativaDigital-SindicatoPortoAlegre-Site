@@ -1,26 +1,22 @@
 /**
- * Types
- */
-// export type TTypeNews = 'image' | 'video' | 'audio' | 'text'
-
-/**
  * Interfaces
  */
-export interface IDepartment {
+export interface IGenericPage {
     id?: number
     name?: string
     title?: string
+    link?: string
     text?: string
     description?: string
-    image_id?: null
+    image_id?: number
     image?: object
     created_at?: Date
     updated_at?: Date
 }
 
-export interface IResponseDepartment {
+export interface IResponseGenericPage {
   config: unknown
-  data: IDepartment
+  data: IGenericPage
   status: number
   request: unknown
   statusText: string

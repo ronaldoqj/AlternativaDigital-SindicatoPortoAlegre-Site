@@ -53,15 +53,14 @@ const resolveMaxWidth = computed((): string => {
   return props.maxWidth ? `max-width: ${props.maxWidth};` : ''
 })
 
-const clickRoute = (route: RouteLocationRaw) => {
-  router.push(route)
+const clickRoute = (route: any | RouteLocationRaw) => {
+  if ('name' in route && route.name.includes('://')) {
+    window.open(route.name, '_blank') // https://portal.sindbancarios.org.br/
+  } else {
+    router.push(route)
+  }
   // router.replace(route)
 }
-
-// const changeScssColor = () => {
-//   console.log('getPaletteColor: ', getPaletteColor('color-buffer'))
-//   setCssVar('color-buffer', getPaletteColor('secondary'))
-// }
 </script>
 
 <template>

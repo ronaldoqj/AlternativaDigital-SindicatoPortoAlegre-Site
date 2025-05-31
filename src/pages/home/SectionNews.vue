@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router'
 import { AxiosError } from 'axios'
 import { useInputsStore } from 'stores/inputs-store'
 import { date } from 'quasar'
-import { getValidImage, convertURL } from 'src/helpers/helpers'
+import { getValidImageNews, convertURL } from 'src/helpers/helpers'
 import NewsService from 'src/services/NewsService'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import ButtonDefault from 'components/interface/ButtonDefault.vue'
@@ -135,7 +135,7 @@ onMounted(() => {
     <div class="row q-mb-md q-col-gutter-md">
       <div v-if="props.news?.highlights && props.news?.highlights.length > 0" class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm">
         <NewsItem
-          :src="getValidImage(props.news?.highlights[0], 'imageNews')"
+          :src="getValidImageNews(props.news?.highlights[0], 'imageNews')"
           :route="convertURL(props.news?.highlights[0].id, props.news?.highlights[0].title)"
           :subject="props.news?.highlights[0].topper"
           :date="date.formatDate(props.news?.highlights[0].created_at, 'DD/MMM/YYYY', state.shortDates)"
@@ -147,7 +147,7 @@ onMounted(() => {
       </div>
       <div v-if="props.news?.highlights && props.news?.highlights.length > 1" class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm">
         <NewsItem
-          :src="getValidImage(props.news?.highlights[1], 'imageNews')"
+          :src="getValidImageNews(props.news?.highlights[1], 'imageNews')"
           :route="convertURL(props.news?.highlights[1].id, props.news?.highlights[1].title)"
           :subject="props.news?.highlights[1].topper"
           :date="date.formatDate(props.news?.highlights[1].created_at, 'DD/MMM/YYYY', state.shortDates)"
@@ -159,7 +159,7 @@ onMounted(() => {
       </div>
       <div v-if="props.news?.highlights && props.news?.highlights.length > 2" class="col-xs-12 col-md-6 col-lg-6 col-xl-4 q-my-sm xl">
         <NewsItem
-          :src="getValidImage(props.news?.highlights[2], 'imageNews')"
+          :src="getValidImageNews(props.news?.highlights[2], 'imageNews')"
           :route="convertURL(props.news?.highlights[2].id, props.news?.highlights[2].title)"
           :subject="props.news?.highlights[2].topper"
           :date="date.formatDate(props.news?.highlights[2].created_at, 'DD/MMM/YYYY', state.shortDates)"
@@ -174,7 +174,7 @@ onMounted(() => {
     <div v-if="state.news.geral.list.length" class="row q-col-gutter-md">
       <div v-for="(row, index) in state.news.geral.list" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 q-my-sm">
         <NewsItem
-          :src="getValidImage(row, 'imageNews')"
+          :src="getValidImageNews(row, 'imageNews')"
           :route="convertURL(row.id, row.title)"
           :subject="row.topper"
           :date="date.formatDate(row.created_at, 'DD/MMM/YYYY', state.shortDates)"

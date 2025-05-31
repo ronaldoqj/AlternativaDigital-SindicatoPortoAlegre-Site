@@ -11,7 +11,7 @@ import SelectForm from 'src/pages/search/components/SelectForm.vue'
 import IconDefault from 'components/interface/IconDefault.vue'
 import NewsItem from 'components/interface/NewsItem.vue'
 import SkeletonCardNews from 'components/interface/skeletons/SkeletonCardNews.vue'
-import { getValidImage, convertURL } from 'src/helpers/helpers'
+import { getValidImageNews, convertURL } from 'src/helpers/helpers'
 import { ISelectOption, ITabsIcons } from 'src/types/IDefaults'
 import { INews, IPagination, IResponseNews } from 'src/types/INews'
 import { computed, onMounted, reactive, watch } from 'vue'
@@ -235,7 +235,7 @@ onMounted(() => {
           <div class="row q-col-gutter-md">
             <div v-for="(row, index) in state.news.list" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 q-my-sm">
               <NewsItem
-                :src="getValidImage(row, 'imageNews')"
+                :src="getValidImageNews(row, 'imageNews')"
                 :route="convertURL(row.id, row.title)"
                 :subject="row.topper"
                 :date="date.formatDate(row.created_at, 'DD/MMM/YYYY', state.shortDates)"

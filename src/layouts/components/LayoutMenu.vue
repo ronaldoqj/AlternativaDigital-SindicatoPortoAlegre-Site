@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { AxiosError } from 'axios'
+import GenericPageService from 'src/services/GenericPageService'
+import { IResponseGenericPage } from 'src/types/IGenericPage'
+
+import { onMounted, reactive } from 'vue'
 import { RouteLocationRaw, useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -33,6 +37,8 @@ const state = reactive({
     servicesHistoryFile: { name: 'servicesHistoryFile' } as RouteLocationRaw,
     servicesSpaces: { name: 'servicesSpaces' } as RouteLocationRaw,
     servicesLegal: { name: 'servicesLegal' } as RouteLocationRaw,
+    servicesMemberPortal: '' as string,
+
     contact: { name: 'contact' } as RouteLocationRaw
     // news: { name: 'news', params: { id: 1, title: 'O-Santander-informou' } } as RouteLocationRaw
   }
@@ -53,6 +59,23 @@ const clickLink = (link:string, target:string) => {
   window.open(link, target)
 }
 
+const getServicePageLink = () => {
+  // GenericPageService.get({ id: 14 }).then((response:IResponseDepartment) => {
+  GenericPageService.get({ id: 14 }).then((response: IResponseGenericPage) => {
+    state.menu.servicesMemberPortal = response.data.link as string
+    console.log('state.list = ', response.data.link)
+  })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      //
+    })
+}
+
+onMounted(() => {
+  getServicePageLink()
+})
 </script>
 
 <template>
@@ -257,7 +280,7 @@ const clickLink = (link:string, target:string) => {
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section @click="clickLink('https://portal.sindbancarios.org.br/', '_blank')">Portal do associado</q-item-section>
+          <q-item-section @click="clickLink(state.menu.servicesMemberPortal, '_blank')">Portal do associado</q-item-section>
         </q-item>
 
         <!-- <q-item clickable v-close-popup>

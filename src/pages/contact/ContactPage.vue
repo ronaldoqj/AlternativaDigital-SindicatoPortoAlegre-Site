@@ -6,6 +6,8 @@ import IconDefault from 'components/interface/IconDefault.vue'
 import { computed, onMounted, reactive, ref } from 'vue'
 
 const recaptcha = ref<HTMLElement | null>(null)
+const maxMbPerFile = 2
+const messageSizeExceeded = `Limite permitido excedido de ${maxMbPerFile}mb!`
 const state = reactive({
   form: {
     reCAPTCHA: false,
@@ -63,9 +65,23 @@ const state = reactive({
         { label: 'Outros', value: '10', color: 'text-inverse', size: 'xl' }
       ]
     },
-    file: {
+    file1: {
       value: null,
-      name: 'documentoUpload'
+      hint: undefined,
+      size: 0,
+      name: 'documentoUpload1'
+    },
+    file2: {
+      value: null,
+      hint: undefined,
+      size: 0,
+      name: 'documentoUpload2'
+    },
+    file3: {
+      value: null,
+      hint: undefined,
+      size: 0,
+      name: 'documentoUpload3'
     }
   }
 })
@@ -92,16 +108,26 @@ const validateForm = computed(() => {
   // if (state.form.email.value === null) { send = false }
   // if (state.form.subject.value === null) { send = false }
   if (state.form.message.value === null) { send = false }
-  if (state.form.sendToSector.value === null) { send = false }
+  if (state.form.file1.size > maxMbPerFile) { send = false }
+  if (state.form.file2.size > maxMbPerFile) { send = false }
+  if (state.form.file3.size > maxMbPerFile) { send = false }
+  // if (state.form.sendToSector.value === null) { send = false }
   if (state.form.reCAPTCHA === false) { send = false }
-  // if (state.form.file.value === null) { send = false }
 
   return send
 })
 
+const calcToMb = (bytes:number) => {
+  return bytes / (1024 * 1024)
+}
+
+const handleFileChange = (fileObject:any) => {
+  fileObject.size = calcToMb(fileObject.value[0].size)
+  fileObject.hint = fileObject.size > maxMbPerFile ? messageSizeExceeded : undefined
+}
+
 const onSubmit = (evt:any) => {
   // console.log('@submit - do something here', evt)
-
   if (validateForm.value) {
     evt.target.submit()
   }
@@ -209,7 +235,7 @@ onMounted(() => {
                 <InputForm title="Assunto" class="q-mb-md" :name="state.form.subject.name" v-model="state.form.subject.value" />
                 <InputForm title="Mensagem" type="textarea" class="q-mb-md" :name="state.form.message.name" v-model="state.form.message.value" />
 
-                <div class="title">Encaminhar para o Setor</div>
+                <!-- <div class="title">Encaminhar para o Setor</div>
                 <section class="radio">
                   <q-option-group
                     :options="state.form.sendToSector.options"
@@ -221,22 +247,60 @@ onMounted(() => {
                     keep-color
                     inline
                   />
-                </section>
+                </section> -->
 
                 <!-- documentoUpload -->
                 <div class="title"> Anexar Documento </div>
                 <section class="attach--file q-mb-lg">
-                  <div>
+                  <div class="q-my-xs">
                     <div class="file-btn">Escolher Arquivo</div>
                     <q-input
                       rounded
                       standout
-                      v-model="state.form.file.value"
-                      :name="state.form.file.name"
+                      v-model="state.form.file1.value"
+                      :name="state.form.file1.name"
+                      :hint="state.form.file1.hint"
                       type="file"
                       color="text"
                       class="input-file"
                       bg-color="text-inverse"
+                      label-color="text"
+                      @change="handleFileChange(state.form.file1)"
+                      dark
+                      dense
+                    />
+                  </div>
+                  <div class="q-my-xs">
+                    <div class="file-btn">Escolher Arquivo</div>
+                    <q-input
+                      rounded
+                      standout
+                      v-model="state.form.file2.value"
+                      :name="state.form.file2.name"
+                      :hint="state.form.file2.hint"
+                      type="file"
+                      color="text"
+                      class="input-file"
+                      bg-color="text-inverse"
+                      @change="handleFileChange(state.form.file2)"
+                      label-color="text"
+                      dark
+                      dense
+                    />
+                  </div>
+                  <div class="q-my-xs">
+                    <div class="file-btn">Escolher Arquivo</div>
+                    <q-input
+                      rounded
+                      standout
+                      v-model="state.form.file3.value"
+                      :name="state.form.file3.name"
+                      :hint="state.form.file3.hint"
+                      type="file"
+                      color="text"
+                      class="input-file"
+                      bg-color="text-inverse"
+                      @change="handleFileChange(state.form.file3)"
                       label-color="text"
                       dark
                       dense
@@ -387,6 +451,10 @@ onMounted(() => {
         .input-file {
           input {
             color: $text;
+          }
+
+          .q-field__messages {
+            color: white;
           }
         }
       }

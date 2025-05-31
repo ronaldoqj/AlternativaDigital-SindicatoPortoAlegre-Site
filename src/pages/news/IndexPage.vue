@@ -3,7 +3,7 @@ import { computed, onMounted, reactive, watch, onServerPrefetch } from 'vue'
 import { useRoute } from 'vue-router'
 import { AxiosError } from 'axios'
 import { date, useMeta } from 'quasar'
-import { getValidImage, baseURL } from 'src/helpers/helpers'
+import { getValidImageNews, baseURL } from 'src/helpers/helpers'
 import NewsService from 'src/services/NewsService'
 import IconDefault from 'components/interface/IconDefault.vue'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
@@ -198,8 +198,8 @@ onMounted(async () => {
         <div v-else class="q-mb-xl">
           <div v-for="(layer, index) in state.layersNews" :key="index">
             <div v-if="layer === 'image_news'" class="layer--image">
-              <img :src="getValidImage(state.news as INews, 'imageNews')" alt="">
-              <!-- <ImageDefault class="q-my-lg" :src="getValidImage(state.news as INews, 'imageNews')"></ImageDefault> -->
+              <img :src="getValidImageNews(state.news as INews, 'imageNews')" alt="">
+              <!-- <ImageDefault class="q-my-lg" :src="getValidImageNews(state.news as INews, 'imageNews')"></ImageDefault> -->
             </div>
             <div v-if="layer === 'video_news'" class="layer--video"> <VideoDefault :src="(state.news?.video_news as string)" /> </div>
             <div v-if="layer === 'audio_news'" class="layer--audio">
