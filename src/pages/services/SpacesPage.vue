@@ -3,18 +3,6 @@ import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
 import ImageDefault from 'components/interface/ImageDefault.vue'
-// import { reactive } from 'vue'
-
-// const state = reactive({
-//   item: {
-//     title: 'Clinica Odontológica update',
-//     subject: 'Desconto de 25% em compras acima de R$ 150,00 update',
-//     phone: '3325 5036 update',
-//     mail: 'farmacia@donjoaoxii.com.br update',
-//     socialMedia: ['facebook', 'instagram', 'twitter', 'whatsapp', 'youtube']
-//   }
-// })
-
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { TStructureScreenSize, TStructureScreenDevice } from 'src/types/IDefaults'
-import { getValidImage, domain, applicationName } from 'src/helpers/helpers'
+import { getValidImageNews, domain, applicationName } from 'src/helpers/helpers'
 import { INews } from 'src/types/INews'
 import NewsService from 'src/services/NewsService'
 
@@ -46,11 +46,11 @@ export const useStructureStore = defineStore('structure', {
         this.metaTags.meta.ogUrl.content = `${domain}${currentRoute}`
         this.metaTags.meta.ogTitle.content = data.title
         this.metaTags.meta.ogDescription.content = data.call
-        this.metaTags.meta.ogImage.content = getValidImage(data as INews, 'imageNews')
+        this.metaTags.meta.ogImage.content = getValidImageNews(data as INews, 'imageNews')
 
         this.metaTags.meta.metaCard.content = 'summary_large_image'
         this.metaTags.meta.metaDescription.content = data.call
-        this.metaTags.meta.metaImage.content = getValidImage(data as INews, 'imageNews')
+        this.metaTags.meta.metaImage.content = getValidImageNews(data as INews, 'imageNews')
         this.metaTags.meta.metaTitle.content = data.title
       })
 
@@ -61,7 +61,7 @@ export const useStructureStore = defineStore('structure', {
       //   this.metaTags.meta.ogType.content = 'type_value'
       //   this.metaTags.meta.ogTitle.content = data.title
       //   this.metaTags.meta.ogDescription.content = data.description
-      //   this.metaTags.meta.ogImage.content = getValidImage(data as INews, 'imageNews')
+      //   this.metaTags.meta.ogImage.content = getValidImageNews(data as INews, 'imageNews')
 
       //   // useMeta(this.metaTags)
       // })

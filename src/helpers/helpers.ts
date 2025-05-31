@@ -143,7 +143,7 @@ export const arrayChunk = <T>(array: T[], chunkSize: number): T[][] => {
   return chunks
 }
 
-export const getValidImage = (data: INews | IColumnImage<string>, column: TColumnImage): string => {
+export const getValidImageNews = (data: INews | IColumnImage<string>, column: TColumnImage): string => {
   let url = defaultImagePath
   switch (column) {
     case 'bannerMobile':
@@ -164,6 +164,14 @@ export const getValidImage = (data: INews | IColumnImage<string>, column: TColum
       break
   }
   return `${baseURL}${url}`
+}
+
+export const getValidImage = (image: any) => {
+  let url = defaultImage
+  if (image && image.path) {
+    url = `${baseURL}${image.path}/${image.file_name}`
+  }
+  return url
 }
 
 export const convertURL = (id: number, title: string) => {

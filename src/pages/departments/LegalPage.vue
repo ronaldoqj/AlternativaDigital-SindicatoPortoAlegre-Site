@@ -1,41 +1,22 @@
 <script setup lang="ts">
-import { baseURL } from 'src/helpers/helpers'
+import { shallowRef, reactive, computed, onMounted, watch } from 'vue'
+import { useQuasar } from 'quasar'
+import { baseURL, getValidImage } from 'src/helpers/helpers'
 import { useRouter } from 'vue-router'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import ButtonDefault from 'components/interface/ButtonDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
 import CarouselSlide from 'src/components/interface/CarouselSlide.vue'
-import { useQuasar } from 'quasar'
-import { shallowRef, reactive, computed, onMounted, watch } from 'vue'
-
 import DocumentItem from './components/DocumentItem.vue'
 import MembersItem from './components/MembersItem.vue'
-// import NewsItem from 'components/interface/NewsItem.vue'
 import NewsService from 'src/services/NewsService'
 import RelatedPublications from 'components/interface/RelatedPublications.vue'
-// import SectionVideos from 'src/pages/departments/components/legal/SectionVideos.vue'
-// import IconDefault from 'components/interface/IconDefault.vue'
-// import ImageDefault from 'components/interface/ImageDefault.vue'
-
 import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
 import { AxiosError } from 'axios'
 import { INews, IResponseRelated } from 'src/types/INews'
-// const state = reactive({
-//   item: {
-//     title: 'Clinica Odontológica update',
-//     subject: 'Desconto de 25% em compras acima de R$ 150,00 update',
-//     phone: '3325 5036 update',
-//     mail: 'farmacia@donjoaoxii.com.br update',
-//     socialMedia: ['facebook', 'instagram', 'twitter', 'whatsapp', 'youtube']
-//   }
-// })
-
-// const props = {
-//   title: 'Guia 2023',
-//   description: 'Lorem ipsum dolor sit amet, consectetuer',
-//   src: '/assets/svg/icon-xml.svg#icon_xml'
-// }
+import { IGenericPage, IResponseGenericPage } from 'src/types/IGenericPage'
+import GenericPageService from 'src/services/GenericPageService'
 
 interface IItemMember {
   title: string
@@ -48,9 +29,8 @@ interface IItemMember {
 const router = useRouter()
 const $q = useQuasar()
 const freezeComponentDocument = shallowRef(DocumentItem)
-// const freezeComponentDepartmentPublications = shallowRef(NewsItem)
-// const freezeComponentMembersItem = shallowRef(MembersItem)
 const state = reactive({
+  department: {} as IGenericPage,
   documents: {
     items: {
       currentScreen: {} as IDinamicScreen,
@@ -75,6 +55,9 @@ const state = reactive({
     departmentId: 1,
     limit: 6,
     list: [] as INews[]
+  },
+  controlsPage: {
+    loading: true
   }
 })
 
@@ -90,6 +73,7 @@ const setListDocuments = () => {
   state.documents.items.listProp.push({ title: 'Renner', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/RENNER-RELATORIO_ACOES_COLETIVAS.pdf` })
   state.documents.items.listProp.push({ title: 'Safra', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/SAFRA-RELATORIO_ACOES_COLETIVAS.pdf` })
   state.documents.items.listProp.push({ title: 'Santander', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/SANTANDER-RELATORIO_ACOES_COLETIVAS.pdf` })
+  state.documents.items.listProp.push({ title: 'Banco do Brasil', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/BANCO-DO-BRASIL-RELATORIO_ACOES_COLETIVAS.pdf` })
 }
 
 const setListLegalMembers = () => {
@@ -148,15 +132,25 @@ const getRelatedDepartments = () => {
   NewsService.relatedDepartment({ department_id: state.relatedDepartments.departmentId, limit: state.relatedDepartments.limit })
     .then((response:IResponseRelated) => {
       state.relatedDepartments.list = response.data
-      // console.log('getRelatedDepartments response:', response)
-      // console.log('initial response', response.data)
-      // console.log('initial response2', state.sectionNews)
     })
     .catch((error:AxiosError) => {
       console.log('error', error)
     })
     .then(() => {
       //
+    })
+}
+
+const getGenericPage = (id:number) => {
+  GenericPageService.get({ id })
+    .then((response:IResponseGenericPage) => {
+      state.department = response.data as IGenericPage
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      state.controlsPage.loading = false
     })
 }
 
@@ -169,6 +163,7 @@ watch(currentScreenSize, (newValue) => {
 })
 
 onMounted(() => {
+  getGenericPage(1)
   setListDocuments()
   setDepartmentPublications()
   setListLegalMembers()
@@ -179,20 +174,16 @@ onMounted(() => {
 
 <template>
   <div id="page__departments--default-open" class="col">
+
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop :src="`${baseURL}temporary/images/departamentos/001_Juridico.png`" />
+      <BannerTop :src="getValidImage(state.department.image)" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">
       <div id="content__page--departments-default-open">
-        <TitleDefault class="q-mb-xl" title="Departamento Jurídico" />
+        <TitleDefault class="q-mb-xl" :title="state.department.title as string" />
         <div>
-          <!-- <ImageDefault class="images__floats left" src="/assets/image/tests/test-1.jpg" /> -->
-          <!-- <h4>Ao Departamento Jurídico, cabe preparar material para subsidiar as negociações coletivas, assessorar a Diretoria Executiva em todas as negociações coletivas, ações trabalhistas e outras demandas da área jurídica, coordenando a elaboração de medidas judiciais em defesa dos direitos da categoria, da classe trabalhadora e da cidadania.</h4> -->
-          <p>
-            Ao Departamento Jurídico, cabe preparar material para subsidiar as negociações coletivas, assessorar a Diretoria Executiva em todas as negociações coletivas, ações trabalhistas e outras demandas da área jurídica, coordenando a elaboração de medidas judiciais em defesa dos direitos da categoria, da classe trabalhadora e da cidadania.
-          </p>
-
+          <div class="content" v-html="state.department.text"></div>
           <div class="box__btn--more q-mt-xl q-mb-lg">
             <ButtonDefault
               rounded
@@ -207,6 +198,13 @@ onMounted(() => {
           </div>
         </div>
       </div>
+      <q-inner-loading
+        :showing="state.controlsPage.loading"
+        label="Por favor espere..."
+        label-class="text-primary"
+        color="primary"
+        label-style="font-size: 1.1em"
+      />
     </LayoutSection>
 
     <LayoutSection background="quaternary" cornerColor="tertiary">

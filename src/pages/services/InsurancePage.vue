@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
-import { baseURL } from 'src/helpers/helpers'
+import { onMounted, reactive } from 'vue'
+import { baseURL, getValidImage } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
-// import TabsCategories from 'components/interface/TabsCategories.vue'
 import InsuranceItem from 'components/interface/InsuranceItem.vue'
+import GenericPageService from 'src/services/GenericPageService'
+import { IGenericPage, IResponseGenericPage } from 'src/types/IGenericPage'
+import { AxiosError } from 'axios'
 
 const state = reactive({
+  service: {} as IGenericPage,
   item: {
     title: 'Clinica Odontológica',
     subject: 'Desconto de 25% em compras acima de R$ 150,00',
@@ -138,23 +141,23 @@ const state = reactive({
       }
     ],
     HealthAndBeauty: [
-      {
-        title: 'Odontologia | Pronto Clínica Dentária',
-        subject: 'Cirurgiões-dentistas rigorosamente selecionados. Diagnósticos, Urgência, Radiologia, Tratamento Conservador (prevenção). Odontopediatria, Dentística, Endodontia, Periodontia, Cirurgia e Prótese Dentária. ',
-        description: 'Atendimento diurno, noturno, urgência aos sábados, domingos e feriados.',
-        phone: '',
-        address: 'Consultório Porto Alegre: Av. Otavio Rocha, 115-12º andar - Centro. Fone: (51) 32245707',
-        address2: 'Consultório Gravataí: Rua Coronel Sarmento, 1495 - Centro. Fone: (51) 3488-5956',
-        mail: '',
-        site: '',
-        socialMedia: {
-          facebook: '',
-          instagram: '',
-          twitter: '',
-          whatsapp: '',
-          youtube: ''
-        }
-      },
+      // {
+      //   title: 'Odontologia | Pronto Clínica Dentária',
+      //   subject: 'Cirurgiões-dentistas rigorosamente selecionados. Diagnósticos, Urgência, Radiologia, Tratamento Conservador (prevenção). Odontopediatria, Dentística, Endodontia, Periodontia, Cirurgia e Prótese Dentária. ',
+      //   description: 'Atendimento diurno, noturno, urgência aos sábados, domingos e feriados.',
+      //   phone: '',
+      //   address: 'Consultório Porto Alegre: Av. Otavio Rocha, 115-12º andar - Centro. Fone: (51) 32245707',
+      //   address2: 'Consultório Gravataí: Rua Coronel Sarmento, 1495 - Centro. Fone: (51) 3488-5956',
+      //   mail: '',
+      //   site: '',
+      //   socialMedia: {
+      //     facebook: '',
+      //     instagram: '',
+      //     twitter: '',
+      //     whatsapp: '',
+      //     youtube: ''
+      //   }
+      // },
       {
         title: 'iSaúde Clínica Particular +Acessível',
         subject: 'A iSaúde é uma clínica de multiespecialidades, que oferece consultas e exames acessíveis, com atendimento humanizado e alta qualidade do corpo clínico. Bancários sindicalizados e seus dependentes têm direito a descontos.',
@@ -398,6 +401,23 @@ const state = reactive({
     ],
     education: [
       {
+        title: 'Escola 1K Certificações',
+        subject: 'CPA-10, CPA-20 e CEA',
+        description: 'Associados(as) do Sindicato têm direito a 50% de desconto nos cursos online das certificações CPA-10, CPA-20, CEA e 70% de desconto nos presenciais.',
+        phone: '(51) 99179 6217',
+        address: '',
+        address2: '',
+        mail: '',
+        site: '',
+        socialMedia: {
+          facebook: '',
+          instagram: 'https://www.instagram.com/1kcertifica/',
+          twitter: '',
+          whatsapp: '',
+          youtube: ''
+        }
+      },
+      {
         title: 'DQI',
         subject: 'Faculdade e Escola Técnica',
         description: 'Desconto de 10% para associados + desconto de balcão',
@@ -553,23 +573,43 @@ const state = reactive({
         }
       }
     ]
+  },
+  controlsPage: {
+    loading: true
   }
 })
 
+const getGenericPage = (id:number) => {
+  GenericPageService.get({ id })
+    .then((response:IResponseGenericPage) => {
+      state.service = response.data as IGenericPage
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      state.controlsPage.loading = false
+    })
+}
+
+onMounted(() => {
+  getGenericPage(12)
+})
 </script>
 
 <template>
   <div id="page__services--insurance" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop :src="`${baseURL}temporary/images/services/convenios.jpg`" />
+      <BannerTop :src="getValidImage(state.service.image)" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="secondary">
       <div id="content__page--service-insurance">
-        <TitleDefault class="q-mb-md" title="Convênios" />
-        <div class="subtitle q-mb-xl">Os bancários e bancárias sindicalizadas têm, à disposição, uma série de descontos e benefícios em cursos, escolas, universidades, consultas, estabelecimentos esportivos, restaurantes e livrarias. Confira os convênios do SindBancários nas diferentes áreas.</div>
+        <TitleDefault class="q-mb-xl" :title="state.service.title as string" />
+        <div v-html="state.service.text"></div>
+
         <!-- <TabsCategories title="Filtro por categoia" /> -->
-        <div class="section--insurance">
+        <div class="section--insurance q-mt-xl">
           <h2 class="q-mt-xl q-mb-lg">Atividade Física</h2>
             <!-- title: 'Host Turismo',
             subject: 'A HOST TURISMO em parceria com as melhores operadoras e consolidadoras vem atuando no mercado de turismo desde 2015 como Agência de Viagens, para que todos possam ter aquela viagem para contar por toda vida.',
@@ -690,6 +730,13 @@ const state = reactive({
         </div> -->
 
       </div>
+      <q-inner-loading
+        :showing="state.controlsPage.loading"
+        label="Por favor espere..."
+        label-class="text-primary"
+        color="primary"
+        label-style="font-size: 1.1em"
+      />
     </LayoutSection>
   </div>
 </template>

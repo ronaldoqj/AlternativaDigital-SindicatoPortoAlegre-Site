@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { baseURL } from 'src/helpers/helpers'
+import { shallowRef, reactive, computed, onMounted, watch } from 'vue'
+import { baseURL, getValidImage } from 'src/helpers/helpers'
+import { AxiosError } from 'axios'
+import { useQuasar } from 'quasar'
+import GenericPageService from 'src/services/GenericPageService'
+import { IGenericPage, IResponseGenericPage } from 'src/types/IGenericPage'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
 import CarouselSlide from 'src/components/interface/CarouselSlide.vue'
-import { useQuasar } from 'quasar'
-import { shallowRef, reactive, computed, onMounted, watch } from 'vue'
 
 import DocumentItem from './components/DocumentItem.vue'
 import MembersItem from './components/MembersItem.vue'
@@ -13,7 +16,6 @@ import NewsService from 'src/services/NewsService'
 import RelatedPublications from 'components/interface/RelatedPublications.vue'
 
 import { IDinamicList, IDinamicScreen, TScreenSize } from 'src/components/models/interfaces/InterfacesDefault'
-import { AxiosError } from 'axios'
 import { INews, IResponseRelated } from 'src/types/INews'
 
 interface IItemMember {
@@ -28,6 +30,7 @@ const $q = useQuasar()
 const freezeComponentDocument = shallowRef(DocumentItem)
 
 const state = reactive({
+  service: {} as IGenericPage,
   documents: {
     items: {
       currentScreen: {} as IDinamicScreen,
@@ -52,6 +55,9 @@ const state = reactive({
     departmentId: 1,
     limit: 6,
     list: [] as INews[]
+  },
+  controlsPage: {
+    loading: true
   }
 })
 
@@ -141,7 +147,21 @@ watch(currentScreenSize, (newValue) => {
   changeOrderList(newValue)
 })
 
+const getGenericPage = (id:number) => {
+  GenericPageService.get({ id })
+    .then((response:IResponseGenericPage) => {
+      state.service = response.data as IGenericPage
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      state.controlsPage.loading = false
+    })
+}
+
 onMounted(() => {
+  getGenericPage(15)
   setListDocuments()
   setDepartmentPublications()
   setListLegalMembers()
@@ -154,12 +174,14 @@ onMounted(() => {
 <template>
   <div id="page__services--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop :src="`${baseURL}temporary/images/services/juridico.jpg`" />
+      <BannerTop :src="getValidImage(state.service.image)" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="quaternary">
       <div id="content__page--service-default-open">
-        <TitleDefault class="q-mb-xl" title="Serviços Jurídico" />
+        <TitleDefault class="q-mb-xl" :title="state.service.title as string" />
+        <div v-html="state.service.text"></div>
+        <!--
         <div>
           <p>As consultas com os advogados e advogadas retornam ao formato presencial no Sindicato dos Bancários de Porto Alegre e Região, juntamente do atendimento virtual, de forma remota, em sala virtual do aplicativo Zoom, nos mesmos horários do atendimento presencial.</p>
           <p>
@@ -283,6 +305,14 @@ onMounted(() => {
             </ul>
           </p>
         </div>
+        -->
+        <q-inner-loading
+          :showing="state.controlsPage.loading"
+          label="Por favor espere..."
+          label-class="text-primary"
+          color="primary"
+          label-style="font-size: 1.1em"
+        />
       </div>
     </LayoutSection>
 
@@ -327,53 +357,9 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
 
-    h4 {
-      margin: 5px 0;
-      font-size: 25px;
-      font-weight: bold;
-      line-height: 1.2em;
-      color: $accent;
-    }
-
-    p {
-      text-align: justify;
-
-      .title-strong {
-        font-size: 1.2em;
-      }
-    }
-
     .space__between {
       margin: 10px 0;
       clear: both;
-    }
-
-    ul {
-      padding: 0px 17px;
-      margin: 5px 0 0 0;
-
-      list-style-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 9 9"><circle fill="%23E34548" cx="7" cy="7" r="2"/></svg>');
-      li {
-        margin-top: -5px;
-      }
-    }
-  }
-
-  @media only screen and (min-width: $breakpoint-sm)
-  {
-    .images__floats
-    {
-      width: 400px;
-
-      &.left {
-        float: left;
-        margin-right: 10px;
-      }
-
-      &.right {
-        float: right;
-        margin-left: 10px;
-      }
     }
   }
 }

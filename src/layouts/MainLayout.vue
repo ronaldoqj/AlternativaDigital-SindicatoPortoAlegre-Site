@@ -261,4 +261,61 @@ $height-slice-bottom-header: 40px;
   min-width: 320px !important;
   max-width: 400px !important;
 }
+
+/** ---------------------------------------------- */
+/** Content pages */
+/** ---------------------------------------------- */
+.section--content
+{
+  h1 {
+    margin: 5px 0;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 1.2em;
+    color: $accent;
+  }
+
+  h2 {
+    margin: 3px 0;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.2em;
+    color: $accent;
+  }
+
+  h3 {
+    margin: 3px 0;
+    line-height: 1em;
+    font-size: 1.2em;
+    color: $accent;
+  }
+
+  ul {
+    padding: 0px 17px;
+    margin: 5px 0 15px 30px;
+
+    list-style-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 9 9"><circle fill="%23E34548" cx="7" cy="7" r="2"/></svg>');
+    li {
+      margin-top: -5px;
+    }
+  }
+
+  .round-borders
+  {
+    img {
+      border-radius: 30px; padding: 5px;
+    }
+  }
+
+  .round-borders-inline
+  {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    img {
+      border-radius: 30px;
+    }
+  }
+}
 </style>

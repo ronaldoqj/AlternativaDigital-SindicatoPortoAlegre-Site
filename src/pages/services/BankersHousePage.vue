@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { baseURL } from 'src/helpers/helpers'
+import { getValidImage } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
-import ImageDefault from 'components/interface/ImageDefault.vue'
+import GenericPageService from 'src/services/GenericPageService'
+import { IGenericPage, IResponseGenericPage } from 'src/types/IGenericPage'
+import { onMounted, reactive } from 'vue'
+import { AxiosError } from 'axios'
 // import { reactive } from 'vue'
 
 // const state = reactive({
@@ -16,9 +19,33 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
 //   }
 // })
 
+const state = reactive({
+  service: {} as IGenericPage,
+  controlsPage: {
+    loading: true
+  }
+})
+
+const getGenericPage = (id:number) => {
+  GenericPageService.get({ id })
+    .then((response:IResponseGenericPage) => {
+      state.service = response.data as IGenericPage
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      state.controlsPage.loading = false
+    })
+}
+
+onMounted(() => {
+  getGenericPage(11)
+})
+
 </script>
 
-<template>
+<!-- <template>
   <div id="page__services--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
       <BannerTop :src="`${baseURL}temporary/images/services/casa-dos-bancarios.jpg`" />
@@ -138,6 +165,27 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
       </div>
     </LayoutSection>
   </div>
+</template> -->
+<template>
+  <div id="page__services--default-open" class="col">
+    <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
+      <BannerTop :src="getValidImage(state.service.image)" />
+    </LayoutSection>
+
+    <LayoutSection background="tertiary" cornerColor="secondary">
+      <div id="content__page--service-default-open">
+        <TitleDefault class="q-mb-xl" :title="state.service.title as string" />
+        <div v-html="state.service.text"></div>
+      </div>
+      <q-inner-loading
+        :showing="state.controlsPage.loading"
+        label="Por favor espere..."
+        label-class="text-primary"
+        color="primary"
+        label-style="font-size: 1.1em"
+      />
+    </LayoutSection>
+  </div>
 </template>
 
 <style lang="scss">
@@ -156,40 +204,31 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
     display: flex;
     flex-direction: column;
 
-    h4 {
-      margin: 5px 0;
-      font-size: 25px;
-      font-weight: bold;
-      line-height: 1.2em;
-      color: $accent;
-    }
+    // h4 {
+    //   margin: 5px 0;
+    //   font-size: 25px;
+    //   font-weight: bold;
+    //   line-height: 1.2em;
+    //   color: $accent;
+    // }
 
-    h5 {
-      margin: 0;
-      padding: 10px 0 0;
-      line-height: 1em;
-      font-size: 1.2em;
-      color: $senary;
-    }
+    // h5 {
+    //   margin: 0;
+    //   padding: 10px 0 0;
+    //   line-height: 1em;
+    //   font-size: 1.2em;
+    //   color: $senary;
+    // }
 
-    p {
-      text-align: justify;
-    }
+    // p {
+    //   text-align: justify;
+    // }
 
     .space__between {
       margin: 10px 0;
       clear: both;
     }
 
-    ul {
-      padding: 0px 17px;
-      margin: 5px 0 15px 30px;
-
-      list-style-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 9 9"><circle fill="%23E34548" cx="7" cy="7" r="2"/></svg>');
-      li {
-        margin-top: -5px;
-      }
-    }
   }
 
   @media only screen and (min-width: $breakpoint-sm)

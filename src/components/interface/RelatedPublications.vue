@@ -3,7 +3,7 @@ import TitleDefault from 'components/interface/TitleDefault.vue'
 import NewsItem from 'components/interface/NewsItem.vue'
 import { reactive, onMounted, computed } from 'vue'
 import { date } from 'quasar'
-import { getValidImage, defaultImage, convertURL } from 'src/helpers/helpers'
+import { getValidImageNews, defaultImage, convertURL } from 'src/helpers/helpers'
 
 const props = defineProps({
   title: {
@@ -75,7 +75,7 @@ onMounted(() => {
     <div class="row q-my-sm q-col-gutter-md">
       <div class="col-xs-12 col-sm-6 col-lg-4" v-for="(row, key) in (props.list as any)" :key="key">
         <NewsItem
-          :src="getValidImage(row, 'imageNews')"
+          :src="getValidImageNews(row, 'imageNews')"
           :subject="row.topper"
           :date="date.formatDate(row.created_at, 'DD/MMM/YYYY', state.shortDates)"
           :title="row.title"

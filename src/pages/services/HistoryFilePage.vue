@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { baseURL } from 'src/helpers/helpers'
+import { getValidImage } from 'src/helpers/helpers'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import BannerTop from 'components/interface/BannerTop.vue'
-import ImageDefault from 'components/interface/ImageDefault.vue'
+import GenericPageService from 'src/services/GenericPageService'
+import { IGenericPage, IResponseGenericPage } from 'src/types/IGenericPage'
+import { onMounted, reactive } from 'vue'
+import { AxiosError } from 'axios'
 // import { reactive } from 'vue'
 
 // const state = reactive({
@@ -16,17 +19,41 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
 //   }
 // })
 
+const state = reactive({
+  service: {} as IGenericPage,
+  controlsPage: {
+    loading: true
+  }
+})
+
+const getGenericPage = (id:number) => {
+  GenericPageService.get({ id })
+    .then((response:IResponseGenericPage) => {
+      state.service = response.data as IGenericPage
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      state.controlsPage.loading = false
+    })
+}
+
+onMounted(() => {
+  getGenericPage(13)
+})
 </script>
 
 <template>
   <div id="page__services--default-open" class="col">
     <LayoutSection background="tertiary" type="banner" cornerColor="tertiary" min-height>
-      <BannerTop :src="`${baseURL}temporary/images/services/arquivo-historico.jpg`" />
+      <BannerTop :src="getValidImage(state.service.image)" />
     </LayoutSection>
 
     <LayoutSection background="tertiary" cornerColor="secondary">
       <div id="content__page--service-default-open">
-        <TitleDefault class="q-mb-xl" title="Arquivo Histórico" />
+        <TitleDefault class="q-mb-xl" :title="state.service.title as string" />
+        <!--
         <div>
           <ImageDefault class="images__floats left" :src="`${baseURL}temporary/images/services/arquivo-historico.jpg`" />
           <p>
@@ -61,7 +88,16 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
             Acesse a série ‘O Bancário’: <a href="https://obancario.adb.inf.br" target="_blank">obancario.adb.inf.br</a> <br />
           </p>
         </div>
+        -->
+        <div v-html="state.service.text"></div>
       </div>
+      <q-inner-loading
+        :showing="state.controlsPage.loading"
+        label="Por favor espere..."
+        label-class="text-primary"
+        color="primary"
+        label-style="font-size: 1.1em"
+      />
     </LayoutSection>
   </div>
 </template>
@@ -82,39 +118,9 @@ import ImageDefault from 'components/interface/ImageDefault.vue'
     display: flex;
     flex-direction: column;
 
-    h4 {
-      margin: 5px 0;
-      font-size: 25px;
-      font-weight: bold;
-      line-height: 1.2em;
-      color: $accent;
-    }
-
-    p {
-      text-align: justify;
-    }
-
     .space__between {
       margin: 10px 0;
       clear: both;
-    }
-  }
-
-  @media only screen and (min-width: $breakpoint-sm)
-  {
-    .images__floats
-    {
-      width: 400px;
-
-      &.left {
-        float: left;
-        margin-right: 10px;
-      }
-
-      &.right {
-        float: right;
-        margin-left: 10px;
-      }
     }
   }
 }

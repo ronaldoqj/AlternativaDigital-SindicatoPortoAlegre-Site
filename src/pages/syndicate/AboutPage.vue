@@ -196,7 +196,7 @@ const state = reactive({
       section: 'Cultura e Sustentabilidade',
       list: [
         { title: 'Guaracy', surname: 'Padilla Gonçalves', subtitle: 'Cultura e Sustentabilidade', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/013_CULTURA_SUSTENTABILIDADE-Guaracy.jpg` },
-        { title: 'Ana Beni', surname: 'Helebrandt', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/013_CULTURA_SUSTENTABILIDADE-Ana.jpg` },
+        { title: 'Ana Berni', surname: 'Helebrandt', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/013_CULTURA_SUSTENTABILIDADE-Ana.jpg` },
         { title: 'Tobias', surname: 'Santos Monteiro', subtitle: 'Cultura e Sustentabilidade', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/013_CULTURA_SUSTENTABILIDADE-Tobias.jpg` }
       ]
     },
@@ -236,7 +236,7 @@ const state = reactive({
       list: [
         { title: 'Eroni', surname: 'Batista Ribeiro', subtitle: 'Conselho Fiscal', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Eroni.jpg` },
         { title: 'Rogério', surname: 'de Rodrigues Rodrigues', subtitle: 'Conselho Fiscal', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Rogerio.jpg` },
-        { title: 'Carmen', surname: 'Guedes', subtitle: 'Conselho Fiscal', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Carmem.jpg` },
+        { title: 'Carmem', surname: 'Guedes', subtitle: 'Conselho Fiscal', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Carmem.jpg` },
         { title: 'Edson', surname: 'Ramos da Rocha', subtitle: 'Conselho Fiscal', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Edson.jpg` },
         { title: 'Nilton', surname: 'Correa Gomes', subtitle: 'Conselho Fiscal', description: 'Bradesco', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Nilton.jpg` },
         { title: 'Noelha', surname: 'Rodrigues da Rosa', subtitle: 'Conselho Fiscal', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Noelha.jpg` },
