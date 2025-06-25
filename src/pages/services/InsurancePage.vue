@@ -8,6 +8,8 @@ import InsuranceItem from 'components/interface/InsuranceItem.vue'
 import GenericPageService from 'src/services/GenericPageService'
 import { IGenericPage, IResponseGenericPage } from 'src/types/IGenericPage'
 import { AxiosError } from 'axios'
+import InsuranceService from 'src/services/InsuranceService'
+import { IInsurences } from 'src/types/IInsurancet'
 
 const state = reactive({
   service: {} as IGenericPage,
@@ -18,6 +20,14 @@ const state = reactive({
     mail: 'farmacia@donjoaoxii.com.br',
     socialMedia: ['facebook', 'instagram', 'twitter', 'whatsapp', 'youtube']
   },
+  insurances: [{
+    id: null,
+    name: '',
+    title: '',
+    list: [] as IInsurences[],
+    created_at: null,
+    updated_at: null
+  }] as any,
   items: {
     physicalActivity: [
       {
@@ -582,7 +592,7 @@ const state = reactive({
 const getGenericPage = (id:number) => {
   GenericPageService.get({ id })
     .then((response:IResponseGenericPage) => {
-      state.service = response.data as IGenericPage
+      state.service = response.data as unknown as IGenericPage
     })
     .catch((error:AxiosError) => {
       console.log('error', error)
@@ -592,8 +602,23 @@ const getGenericPage = (id:number) => {
     })
 }
 
+const listInsurance = () => {
+  InsuranceService.list()
+    .then((response:IResponseGenericPage) => {
+      state.insurances = response.data as any
+    })
+    .catch((error:AxiosError) => {
+      console.log('error', error)
+    })
+    .then(() => {
+      console.log('insuranceList', state.insurances)
+      state.controlsPage.loading = false
+    })
+}
+
 onMounted(() => {
   getGenericPage(12)
+  listInsurance()
 })
 </script>
 
@@ -608,6 +633,38 @@ onMounted(() => {
         <TitleDefault class="q-mb-xl" :title="state.service.title as string" />
         <div v-html="state.service.text"></div>
 
+        <div class="section--insurance">
+          <template v-for="(row, index) in state.insurances" :key="index">
+            <div class="row q-mt-sm q-col-gutter-lg">
+              <template v-if="typeof row === 'object' && row !== null && 'title' in row">
+                <h2 v-if="row.list.length > 0" class="col-12 q-mt-xl q-mb-lg"> {{ row?.title }} </h2>
+              </template>
+
+              <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3" v-for="(item, key) in (row.list)" :key="key">
+                <InsuranceItem
+                  :title="item.title"
+                  :subject="item.subtitle"
+                  :description="item.description"
+                  :phone="item.phone"
+                  :phone2="item.phone2"
+                  :address="item.address"
+                  :address2="item.address2"
+                  :mail="item.mail"
+                  :site="item.site"
+                  :social-media="{
+                      facebook: item.socialMedia.facebook ?? '',
+                      instagram: item.socialMedia.instagram ?? '',
+                      twitter: item.socialMedia.twitter ?? '',
+                      whatsapp: item.socialMedia.whatsapp ?? '',
+                      youtube: item.socialMedia.youtube ?? ''
+                    }" />
+              </div>
+            </div>
+
+          </template>
+        </div>
+
+        <div v-if="false" style="margin-top: 500px;">
         <!-- <TabsCategories title="Filtro por categoia" /> -->
         <div class="section--insurance q-mt-xl">
           <h2 class="q-mt-xl q-mb-lg">Atividade Física</h2>
@@ -728,6 +785,8 @@ onMounted(() => {
             <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3"><InsuranceItem :title="state.item.title" :subject="state.item.subject" :phone="state.item.phone" :mail="state.item.mail" :social-media="state.item.socialMedia" /></div>
           </div>
         </div> -->
+
+        </div>
 
       </div>
       <q-inner-loading

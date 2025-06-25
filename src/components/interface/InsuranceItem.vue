@@ -19,6 +19,10 @@ const props = defineProps({
     type: String,
     require: true
   },
+  phone2: {
+    type: String,
+    require: true
+  },
   address: {
     type: String,
     required: true
@@ -77,8 +81,9 @@ const props = defineProps({
         <h5 v-if="props.subject?.length">{{ props.subject }}</h5>
         <h5 v-if="props.description?.length">{{ props.description }}</h5>
         <h6 v-if="props.phone?.length">Fone: <span>{{ props.phone }}</span></h6>
-        <h6 v-if="props.address.length">Endereço: <span>{{ props.address }}</span></h6>
-        <h6 v-if="props.address2.length">Endereço: <span>{{ props.address2 }}</span></h6>
+        <h6 v-if="props.phone2?.length">Fone: <span>{{ props.phone2 }}</span></h6>
+        <h6 v-if="props.address?.length">Endereço: <span>{{ props.address }}</span></h6>
+        <h6 v-if="props.address2?.length">Endereço: <span>{{ props.address2 }}</span></h6>
         <h6 v-if="props.mail?.length">E-mail: <span> <a :href="`mailto:${props.mail}`">{{ props.mail }}</a></span></h6>
         <h6 v-if="props.site?.length">Site: <span> <a :href="props.site" target="_blank">{{ props.site }}</a></span></h6>
         <h6 v-if="props.socialMedia">Redes Sociais:</h6>
