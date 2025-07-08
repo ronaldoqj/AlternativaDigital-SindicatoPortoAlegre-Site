@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import IconDefault from 'components/interface/IconDefault.vue'
+import { computed } from 'vue'
 // import { reactive } from 'vue'
 
 const props = defineProps({
@@ -16,6 +17,10 @@ const props = defineProps({
     require: true
   },
   phone: {
+    type: String,
+    require: true
+  },
+  phone2: {
     type: String,
     require: true
   },
@@ -66,7 +71,14 @@ const props = defineProps({
 //   },
 //   description: false
 // })
-
+const whatsappLink = computed(() => {
+  if (props.socialMedia.whatsapp) {
+    const phoneNumber = props.socialMedia.whatsapp.replace(/\D/g, '')
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    return isMobile ? `https://wa.me/${phoneNumber}` : `https://web.whatsapp.com/send?phone=${phoneNumber}`
+  }
+  return ''
+})
 </script>
 
 <template>
@@ -77,25 +89,26 @@ const props = defineProps({
         <h5 v-if="props.subject?.length">{{ props.subject }}</h5>
         <h5 v-if="props.description?.length">{{ props.description }}</h5>
         <h6 v-if="props.phone?.length">Fone: <span>{{ props.phone }}</span></h6>
-        <h6 v-if="props.address.length">Endereço: <span>{{ props.address }}</span></h6>
-        <h6 v-if="props.address2.length">Endereço: <span>{{ props.address2 }}</span></h6>
+        <h6 v-if="props.phone2?.length">Fone: <span>{{ props.phone2 }}</span></h6>
+        <h6 v-if="props.address?.length">Endereço: <span>{{ props.address }}</span></h6>
+        <h6 v-if="props.address2?.length">Endereço: <span>{{ props.address2 }}</span></h6>
         <h6 v-if="props.mail?.length">E-mail: <span> <a :href="`mailto:${props.mail}`">{{ props.mail }}</a></span></h6>
         <h6 v-if="props.site?.length">Site: <span> <a :href="props.site" target="_blank">{{ props.site }}</a></span></h6>
         <h6 v-if="props.socialMedia">Redes Sociais:</h6>
         <div class="box__icons--social-media">
-          <q-btn size="sm" flat round class="container-icon" :disable="!props.socialMedia.facebook.length">
+          <q-btn size="sm" flat round class="container-icon" :href="props.socialMedia.facebook" target="_blank" type="a" :disable="!props.socialMedia.facebook.length">
             <IconDefault :size="24" class="icon-class" viewBox="0 0 12.18 22.3" src="/assets/svg/icon-facebook-outline.svg#facebook_outline" />
           </q-btn>
-          <q-btn size="sm" flat round class="container-icon" :disable="!props.socialMedia.instagram.length">
+          <q-btn size="sm" flat round class="container-icon" :href="props.socialMedia.instagram" target="_blank" type="a" :disable="!props.socialMedia.instagram.length">
             <IconDefault :size="24" class="icon-class" viewBox="0 0 22.3 22.3" src="/assets/svg/icon-instagram-outline.svg#instagram_outline" />
           </q-btn>
-          <q-btn size="sm" flat round class="container-icon" :disable="!props.socialMedia.twitter.length">
+          <q-btn size="sm" flat round class="container-icon" :href="props.socialMedia.twitter" target="_blank" type="a" :disable="!props.socialMedia.twitter.length">
             <IconDefault :size="24" class="icon-class" viewBox="0 0 26.99 22.31" src="/assets/svg/icon-twitter-outline.svg#twitter_outline" />
           </q-btn>
-          <q-btn size="sm" flat round class="container-icon" :disable="!props.socialMedia.whatsapp.length">
+          <q-btn size="sm" flat round class="container-icon" :href="whatsappLink" target="_blank" type="a" :disable="!props.socialMedia.whatsapp.length">
             <IconDefault :size="24" class="icon-class" viewBox="0 0 20.65 20.7" src="/assets/svg/icon-whatsapp-outline.svg#whatsapp_outline" />
           </q-btn>
-          <q-btn size="sm" flat round class="container-icon" :disable="!props.socialMedia.youtube.length">
+          <q-btn size="sm" flat round class="container-icon" :href="props.socialMedia.youtube" target="_blank" type="a" :disable="!props.socialMedia.youtube.length">
             <IconDefault :size="24" class="icon-class" viewBox="0 0 24.17 17.07" src="/assets/svg/icon-youtube-outline.svg#youtube_outline" />
           </q-btn>
         </div>
