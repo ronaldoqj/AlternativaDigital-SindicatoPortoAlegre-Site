@@ -21,7 +21,8 @@ body {
   --q-quaternary: #F2F3F3;
   --q-quinary: #9E9B9B;
   --q-senary: #4B4B4B;
-  --q-septenary: #E34548;
+  // --q-septenary: #E34548;
+  --q-septenary: #000;
   --q-octal: #68a884;
   --q-nonary: #38634B;
   --q-text-inverse: #FFFFFF;
@@ -30,9 +31,12 @@ body {
   --q-dark-hover-90: #00000090;
 }
 
-$primary   : #A11D20;
-$secondary : #336AA7;
-$accent    : #7E181A;
+// $primary   : #A11D20;
+$primary   : #272727;
+// $secondary : #336AA7;
+$secondary : #040404;
+// $accent    : #7E181A;
+$accent    : #000000;
 $tertiary: var(--q-tertiary) !default;
 $quaternary: var(--q-quaternary) !default;
 $quinary: var(--q-quinary) !default;

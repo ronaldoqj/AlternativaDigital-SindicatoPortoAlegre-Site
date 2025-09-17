@@ -33,7 +33,7 @@ onMounted(() => {
   h2 {
     font-size: 25px;
     line-height: 1.2em;
-    color: #7E181A;
+    color: $accent;
     font-weight: bold;
     margin: 20px 0 10px;
   }
