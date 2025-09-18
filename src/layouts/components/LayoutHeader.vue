@@ -125,7 +125,7 @@ $borderTopRadius: 40px;
         flex-direction: column;
         align-items: flex-end;
         background: $accent;
-        background: linear-gradient(0deg, $accent 57%, rgba(112,24,26,1) 100%);
+        background: linear-gradient(0deg, $accent 57%, darken($accent, 5%) 100%);
         padding: 30px 0;
         margin-top: 40px;
 
