@@ -205,7 +205,7 @@ const state = reactive({
       list: [
         { title: 'Natalina', surname: 'Rosane Gue', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/014_APROSENTADOS_SEGURIDADE-Natalina.jpg` },
         { title: 'Claudete', surname: 'Genuíno Marocco', subtitle: 'Aposentados e Seguridade Social', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/014_APROSENTADOS_SEGURIDADE-Claudete.jpg` },
-        { title: 'Ida', surname: 'Pellegino', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/014_APROSENTADOS_SEGURIDADE-Ida.jpg` }
+        { title: 'Ida', surname: 'Pellegrino', subtitle: 'Aposentados e Seguridade Social', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/014_APROSENTADOS_SEGURIDADE-Ida.jpg` }
       ]
     },
     {
