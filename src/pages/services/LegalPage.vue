@@ -63,6 +63,7 @@ const state = reactive({
 
 const setListDocuments = () => {
   state.documents.items.listProp.push({ title: 'Agiplan', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/AGIPLAN-RELATORIO_ACOES_COLETIVAS.pdf` })
+  state.documents.items.listProp.push({ title: 'Badesul', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/BADESUL-RELATORIO_ACOES_COLETIVAS.pdf` })
   state.documents.items.listProp.push({ title: 'Banrisul', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/BANRISUL-RELATORIO_ACOES_COLETIVAS.pdf` })
   state.documents.items.listProp.push({ title: 'Bradesco', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/BRADESCO-RELATORIO_ACOES_COLETIVAS.pdf` })
   state.documents.items.listProp.push({ title: 'BRDE', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/BRDE-RELATORIO_ACOES_COLETIVAS.pdf` })
