@@ -16,7 +16,7 @@ const props = defineProps({
     require: false
   },
   class: {
-    type: Object as PropType<classType>,
+    type: String as PropType<classType>,
     require: false
   }
 })

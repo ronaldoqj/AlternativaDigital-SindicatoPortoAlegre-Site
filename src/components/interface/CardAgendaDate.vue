@@ -4,7 +4,7 @@ import { shortMonth } from 'src/helpers/helpers'
 
 const props = defineProps({
   scheduledDate: {
-    type: Array<any>,
+    type: Array<{ scheduled_date: string }>,
     required: true
   }
 })

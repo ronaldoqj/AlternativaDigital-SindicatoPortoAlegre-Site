@@ -59,7 +59,6 @@ onMounted(() => {
 <template>
   <div class="section__highlights--carousel">
     <q-carousel
-      class="carousel-highlights"
       control-color="tertiary"
       swipeable
       animated
@@ -67,6 +66,7 @@ onMounted(() => {
       :autoplay="state.carousel.autoPlay"
       navigation
       infinite
+      class="carousel-highlights"
     >
       <q-carousel-slide
         v-for="(row, index) in props.news"
