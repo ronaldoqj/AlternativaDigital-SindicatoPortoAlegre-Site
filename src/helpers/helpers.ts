@@ -72,22 +72,22 @@ export const getDay = (date: string) => {
   return day[2]
 }
 
-export const getDates = (dates: Array<any>) => {
+export const getDates = (dates: Array<{ scheduled_date: string }>) => {
   const rangeDates = {
     initialDate: { day: '', month: '' },
     conector: null as null | string,
     finalDate: { day: '', month: '' }
   }
 
-  let initialDay = dates[0].scheduled_date
-  initialDay = initialDay.split('-')
-  rangeDates.initialDate.day = initialDay[2]
+  const initialDay = dates[0].scheduled_date
+  const initialDaySplit = initialDay.split('-')
+  rangeDates.initialDate.day = initialDaySplit[2]
   rangeDates.initialDate.month = shortMonth(dates[0].scheduled_date)
 
   if (dates.length > 1) {
-    let finalDay = dates[dates.length - 1].scheduled_date
-    finalDay = finalDay.split('-')
-    rangeDates.finalDate.day = finalDay[2]
+    const finalDay = dates[dates.length - 1].scheduled_date
+    const finalDaySplit = finalDay.split('-')
+    rangeDates.finalDate.day = finalDaySplit[2]
     rangeDates.finalDate.month = shortMonth(dates[dates.length - 1].scheduled_date)
   }
 

@@ -280,7 +280,7 @@ onMounted(() => {
         <q-separator class="menu__separator" />
 
         <q-item clickable v-close-popup>
-          <q-item-section @click="clickLink(state.menu.servicesMemberPortal, '_blank')">Portal do associado</q-item-section>
+          <q-item-section @click="clickLink(state.menu.servicesMemberPortal, '_blank')">Área Restrita</q-item-section>
         </q-item>
 
         <!-- <q-item clickable v-close-popup>
