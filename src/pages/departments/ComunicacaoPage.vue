@@ -72,7 +72,6 @@ const setListDocuments = () => {
 }
 
 const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Sergio Rogério', surname: 'Moreira Hoff', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/007_COMUNICACAO-Sergio.jpg` })
   state.legalMembers.items.listProp.push({ title: 'Guilherme', surname: 'Daroit', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/007_COMUNICACAO-Guilherme.jpg` })
   state.legalMembers.items.listProp.push({ title: 'Andrei', surname: 'Freitas Teixeira', subtitle: 'Comunicação', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/007_COMUNICACAO-Andrei.jpg` })
 }
