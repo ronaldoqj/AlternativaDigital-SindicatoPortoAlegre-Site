@@ -73,8 +73,9 @@ const setListDocuments = () => {
 
 const setListLegalMembers = () => {
   state.legalMembers.items.listProp.push({ title: 'Gerson', surname: 'Marques dos Reis', subtitle: 'Esporte e Lazer', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/012_ESPORTE_LAZER-Gerson.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Carlos Odone', surname: 'Dahlheimer Viale', subtitle: 'Esporte e Lazer', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/012_ESPORTE_LAZER-Carlos.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'José Henrique', surname: 'Bielecki Wierzchowski', subtitle: 'Esporte e Lazer', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/011_ESPORTE_LAZER-jose-henrique.jpg` })
   state.legalMembers.items.listProp.push({ title: 'Gilnei', surname: 'Silva Nunes', subtitle: 'Esporte e Lazer', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/012_ESPORTE_LAZER-Gilnei.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Carlos Odone', surname: 'Dahlheimer Viale', subtitle: 'Esporte e Lazer', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/012_ESPORTE_LAZER-Carlos.jpg` })
 }
 
 const setDepartmentPublications = () => {
