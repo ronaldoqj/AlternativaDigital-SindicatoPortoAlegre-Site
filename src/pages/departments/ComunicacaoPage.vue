@@ -74,6 +74,7 @@ const setListDocuments = () => {
 const setListLegalMembers = () => {
   state.legalMembers.items.listProp.push({ title: 'Guilherme', surname: 'Daroit', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/007_COMUNICACAO-Guilherme.jpg` })
   state.legalMembers.items.listProp.push({ title: 'Andrei', surname: 'Freitas Teixeira', subtitle: 'Comunicação', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/007_COMUNICACAO-Andrei.jpg` })
+  state.legalMembers.items.listProp.push({ title: 'Pedro', surname: 'Sampaio', subtitle: 'Comunicação', description: 'Banco Regional de Desenvolvimento do Extremo Sul (BRDE)', image: `${baseURL}temporary/images/quem-somos/directorship/007_COMUNICACAO-Pedro-Sampaio.jpg` })
 }
 
 const setDepartmentPublications = () => {

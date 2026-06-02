@@ -148,7 +148,8 @@ const state = reactive({
       section: 'Comunicação',
       list: [
         { title: 'Guilherme', surname: 'Daroit', subtitle: 'Comunicação', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/007_COMUNICACAO-Guilherme.jpg` },
-        { title: 'Andrei', surname: 'Freitas Teixeira', subtitle: 'Comunicação', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/007_COMUNICACAO-Andrei.jpg` }
+        { title: 'Andrei', surname: 'Freitas Teixeira', subtitle: 'Comunicação', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/007_COMUNICACAO-Andrei.jpg` },
+        { title: 'Pedro', surname: 'Sampaio', subtitle: 'Comunicação', description: 'Banco Regional de Desenvolvimento do Extremo Sul (BRDE)', image: `${baseURL}temporary/images/quem-somos/directorship/007_COMUNICACAO-Pedro-Sampaio.jpg` }
       ]
     },
     {
