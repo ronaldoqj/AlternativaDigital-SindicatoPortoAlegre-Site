@@ -654,7 +654,7 @@ onMounted(() => {
                   :social-media="{
                       facebook: item.socialMedia.facebook ?? '',
                       instagram: item.socialMedia.instagram ?? '',
-                      twitter: item.socialMedia.twitter ?? '',
+                      twitter: item.socialMedia.x ?? '',
                       whatsapp: item.socialMedia.whatsapp ?? '',
                       youtube: item.socialMedia.youtube ?? ''
                     }" />

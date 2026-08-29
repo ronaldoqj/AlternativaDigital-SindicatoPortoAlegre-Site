@@ -144,7 +144,7 @@ const whatsappLink = computed(() => {
         }
 
         .icon-class {
-          color: $quinary;
+          color: $senary;
         }
 
         &:hover
@@ -157,7 +157,11 @@ const whatsappLink = computed(() => {
         }
 
         &.disabled {
-          opacity: 0.4d !important;
+          opacity: 0.4 !important;
+
+          .icon-class {
+            color: $quinary;
+          }
         }
       }
     }
