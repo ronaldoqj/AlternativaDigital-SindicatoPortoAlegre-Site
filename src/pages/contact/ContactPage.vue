@@ -180,9 +180,10 @@ onMounted(() => {
               <p>R. Gen. Câmara, 424</p>
               <p>Centro Histórico - Porto Alegre - RS</p>
               <p>CEP: 90010-230</p>
+              <p class="policy-privacy">Para mais informações, consulte nossa <a class="link" href="/assets/files/POLITICA-DE-PRIVACIDADE–ADEQUADA-A-LGPD-SINDICATO-DOS-BANCARIOS-DE-PORTO-ALEGRE-E-REGIAO.pdf" target="_blank">política de privacidade</a>.</p>
             </div>
 
-            <div style="height: 80px;"></div>
+            <div style="height: 50px;"></div>
             <div class="personal--data-item social-media">
               <q-btn size="sm" flat round class="container-icon" href="https://www.facebook.com/SindBancarios.PoA/" target="_blank">
                 <IconDefault :size="24" class="icon-class" viewBox="0 0 12.18 22.3" src="/assets/svg/icon-facebook-outline.svg#facebook_outline" />
@@ -345,6 +346,21 @@ onMounted(() => {
   #content__page--contact
   {
     margin: 30px 0;
+
+    .policy-privacy
+    {
+      padding-top: 40px;
+
+      .link
+      {
+        color: $septenary;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+          color: $accent;
+        }
+      }
+    }
 
     .personal--data-item
     {
