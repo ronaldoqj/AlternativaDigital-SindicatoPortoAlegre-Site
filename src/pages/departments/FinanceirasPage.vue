@@ -2,8 +2,9 @@
 import { shallowRef, reactive, computed, onMounted, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import { AxiosError } from 'axios'
-import { baseURL, getValidImage } from 'src/helpers/helpers'
+import { getValidImage } from 'src/helpers/helpers'
 import DepartmentService from 'src/services/GenericPageService'
+import DirectorshipService from 'src/services/DirectorshipService'
 import NewsService from 'src/services/NewsService'
 import LayoutSection from 'layouts/components/LayoutSection.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
@@ -35,6 +36,7 @@ const state = reactive({
     } as IDinamicList
   },
   legalMembers: {
+    loading: true,
     items: {
       screenBreak: 'col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2',
       currentScreen: {} as IDinamicScreen,
@@ -71,10 +73,13 @@ const setListDocuments = () => {
   state.documents.items.listProp.push({ title: 'Guia 2023 10', description: 'Lorem ipsum dolor sit amet, consectetuer 10', src: '/assets/svg/icon-xml.svg#icon_xml' })
 }
 
-const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Luiz', surname: 'Cassemiro', subtitle: 'Financeiras e Terceirizados', description: 'Santander', image: `${baseURL}temporary/images/quem-somos/directorship/016_FINANCEIRAS-Luiz.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Antônio Augusto', surname: 'Borges de Borges', subtitle: 'Financeiras e Terceirizados', description: 'Itaú-Unibanco', image: `${baseURL}temporary/images/quem-somos/directorship/016_Administrativo-Antonio.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Maria', surname: 'Francilina Maier', subtitle: 'Financeiras e Terceirizados', description: 'Caixa Econômica Federal', image: `${baseURL}temporary/images/quem-somos/directorship/016_FINANCEIRAS-Maria.jpg` })
+const setListLegalMembers = async () => {
+  state.legalMembers.loading = true
+  try {
+    state.legalMembers.items.listProp = await DirectorshipService.membersByCategory('Financeiras e Terceirizados do Ramo Financeiro')
+  } finally {
+    state.legalMembers.loading = false
+  }
 }
 
 const setDepartmentPublications = () => {
@@ -200,7 +205,10 @@ onMounted(() => {
     <!-- <LayoutSection background="quaternary" cornerColor="secondary"> -->
     <LayoutSection background="tertiary" cornerColor="secondary">
       <TitleDefault class="q-mb-xl" title="Membros por equipe" />
-      <div class="row">
+      <div v-if="state.legalMembers.loading" class="directorship-loading">
+        <q-spinner color="primary" size="56px" />
+      </div>
+      <div v-else class="row">
         <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3" v-for="(member, key) in (state.legalMembers.items.listProp as IItemMember[])" :key="key">
           <MembersItem :title="member.title" :surname="member.surname" :subtitle="member.subtitle" :description="member.description" :image="member.image" />
         </div>
@@ -212,6 +220,13 @@ onMounted(() => {
 <style lang="scss">
 #page__departments--default-open
 {
+  .directorship-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 360px;
+  }
+
   .images__floats {
     width: 100%;
     height: 400px;

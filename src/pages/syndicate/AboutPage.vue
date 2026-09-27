@@ -10,6 +10,34 @@ import MembersItem from 'src/pages/departments/components/MembersItem.vue'
 import { TScreenSize, IDinamicScreen, IDinamicList } from 'components/models/interfaces/InterfacesDefault'
 import StatuteItem from 'src/pages/syndicate/components/about/StatuteItem.vue'
 import SectionAbout from 'src/pages/syndicate/components/about/SectionAbout.vue'
+import DirectorshipService from 'src/services/DirectorshipService'
+
+interface LegalMember {
+  title: string
+  surname: string
+  subtitle: string
+  description: string
+  image: string
+}
+
+interface LegalMemberSection {
+  section: string
+  list: LegalMember[]
+}
+
+interface DirectorApiItem {
+  first_name: string
+  last_name: string | null
+  role_name: string | null
+  bank: { name: string } | null
+  image: { path: string, file_name: string } | null
+}
+
+interface DirectorCategoryApiItem {
+  name: string
+  role_name: string | null
+  directors: DirectorApiItem[]
+}
 
 // interface IItemMember {
 //   title: string
@@ -105,7 +133,7 @@ const state = reactive({
       listProp: [] as Array<object>
     } as IDinamicList
   },
-  legalMembers: [
+  fallbackLegalMembers: [
     {
       section: 'Presidente',
       list: [
@@ -245,7 +273,9 @@ const state = reactive({
         { title: 'Carlos Eduardo', surname: 'Bobsin', subtitle: 'Conselho Fiscal', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/018_CONSELHO_FISCAL-Carlos-Eduardo.jpg` }
       ]
     }
-  ]
+  ],
+  directorshipLoading: true,
+  legalMembers: [] as LegalMemberSection[]
   // legalMembers: {
   //   items: {
   //     screenBreak: 'col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2',
@@ -266,6 +296,29 @@ const setListStatute = () => {
   state.statute.items.listProp.push({ title: 'Estatuto 2023 8', description: 'Lorem ipsum dolor sit amet, consectetuer 8', src: '/assets/svg/icon-pdf.svg#icon_pdf' })
   state.statute.items.listProp.push({ title: 'Estatuto 2023 9', description: 'Lorem ipsum dolor sit amet, consectetuer 9', src: '/assets/svg/icon-pdf.svg#icon_pdf' })
   state.statute.items.listProp.push({ title: 'Estatuto 2023 10', description: 'Lorem ipsum dolor sit amet, consectetuer 10', src: '/assets/svg/icon-xml.svg#icon_xml' })
+}
+
+const getDirectorship = async () => {
+  state.directorshipLoading = true
+  try {
+    const response = await DirectorshipService.list() as { data: DirectorCategoryApiItem[] }
+    state.legalMembers = response.data.map((category) => ({
+      section: category.name,
+      list: category.directors.map((director) => ({
+        title: director.first_name,
+        surname: director.last_name || '',
+        subtitle: director.role_name || category.role_name || category.name,
+        description: director.bank?.name || '',
+        image: director.image
+          ? `${baseURL}${director.image.path}/${director.image.file_name}`
+          : ''
+      }))
+    }))
+  } catch {
+    state.legalMembers = state.fallbackLegalMembers
+  } finally {
+    state.directorshipLoading = false
+  }
 }
 
 // const setListLegalMembers = () => {
@@ -324,6 +377,7 @@ watch(currentScreenSize, (newValue) => {
 
 onMounted(() => {
   setListStatute()
+  getDirectorship()
   // setListLegalMembers()
   changeOrderList(currentScreenSize.value)
 })
@@ -335,14 +389,14 @@ onMounted(() => {
       <BannerTop :src="`${baseURL}temporary/images/quem-somos/BANNER_QUEM_SOMOS.jpg`" />
     </LayoutSection>
 
-    <LayoutSection background="tertiary" cornerColor="accent">
+    <LayoutSection id="historia" class="about-anchor" background="tertiary" cornerColor="accent">
       <div id="content__page--departments-default-open">
         <TitleDefault class="q-mb-xl" title="Quem Somos" />
         <SectionAbout :item="state.section.about" />
       </div>
     </LayoutSection>
 
-    <LayoutSection background="accent" cornerColor="tertiary">
+    <LayoutSection id="estatuto" class="about-anchor" background="accent" cornerColor="tertiary">
       <TitleDefault class="q-mb-lg" title="Estatuto" color="text-inverse" />
       <div class="row q-mb-lg">
         <div class="col-xs-12 col-md-7 self-center q-mb-md">
@@ -360,18 +414,23 @@ onMounted(() => {
       <CarouselSlide v-if="state.statute.items.listProp.length" :listItems="state.statute.items" color="text-inverse" control-color="text-inverse" :component-item="freezeComponentStatute" item-class="departments__legal--document-item" /> -->
     </LayoutSection>
 
-    <LayoutSection background="tertiary" cornerColor="secondary">
+    <LayoutSection id="diretoria" class="about-anchor" background="tertiary" cornerColor="secondary">
       <TitleDefault class="q-mt-xl" title="Diretoria" />
       <SectionAbout :item="state.section.direction" />
 
-      <div class="row" v-for="(section, key) in (state.legalMembers)" :key="key">
-        <div class="col-12 sectiom--members">
-          <div>{{ section.section }}</div>
-        </div>
-        <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3" v-for="(member, key) in (section.list)" :key="key">
-          <MembersItem :title="member.title" :surname="member.surname" :subtitle="member.subtitle" :description="member.description" :image="member.image" />
-        </div>
+      <div v-if="state.directorshipLoading" class="directorship-loading">
+        <q-spinner color="primary" size="56px" />
       </div>
+      <template v-else>
+        <div class="row" v-for="(section, key) in (state.legalMembers)" :key="key">
+          <div class="col-12 sectiom--members">
+            <div>{{ section.section }}</div>
+          </div>
+          <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3" v-for="(member, key) in (section.list)" :key="key">
+            <MembersItem :title="member.title" :surname="member.surname" :subtitle="member.subtitle" :description="member.description" :image="member.image" />
+          </div>
+        </div>
+      </template>
       <div class="q-mb-xl"></div>
       <!-- <CarouselSlide v-if="state.legalMembers.items.listProp.length" :listItems="state.legalMembers.items" :component-item="freezeComponentMembersItem" /> -->
     </LayoutSection>
@@ -381,6 +440,17 @@ onMounted(() => {
 <style lang="scss">
 #page__departments--default-open
 {
+  .about-anchor {
+    scroll-margin-top: 80px;
+  }
+
+  .directorship-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 360px;
+  }
+
   .images__floats {
     width: 100%;
     height: 400px;
