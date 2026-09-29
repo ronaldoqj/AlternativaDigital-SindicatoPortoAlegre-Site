@@ -18,6 +18,20 @@ export interface IBannerNews {
     url: string
 }
 
+export interface IGalleryItem {
+  id: number
+  display_order: number
+  image: IFile
+}
+
+export interface IGallery {
+  id: number
+  title: string
+  subtitle?: string
+  description?: string
+  items: IGalleryItem[]
+}
+
 export interface INews {
   id: number
   type_news: TTypeNews
@@ -51,6 +65,7 @@ export interface INews {
   updated_at?: Date
   departments?: IDepartment
   banks?: IBank
+  galleries?: IGallery[]
 }
 
 export interface IPaginationLinks {
