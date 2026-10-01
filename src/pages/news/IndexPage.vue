@@ -180,7 +180,7 @@ onMounted(async () => {
 <template>
   <q-page class="row justify-evenly">
     <div id="page__news" class="col">
-      <LayoutSection background="tertiary" type="top" :corner-color="hasGalleries ? 'quaternary' : 'secondary'" min-height>
+      <LayoutSection background="tertiary" type="top" :corner-color="hasGalleries ? 'quaternary' : state.relatedNews.list.length ? 'tertiary' : 'secondary'" min-height>
         <div class="align-title">
           <TitleDefault title="Notícia" />
           <ShareButtons v-if="state.control.showContent" :title="state.news?.title" :description="state.news?.call" :image="`${state.news?.image_news?.path}/${state.news?.image_news?.file_name}`" />
