@@ -12,7 +12,9 @@ const state = reactive({
   menu: {
     home: { name: 'home' } as RouteLocationRaw,
     news: { name: 'allNews' } as RouteLocationRaw,
-    about: { name: 'about' } as RouteLocationRaw,
+    aboutHistory: { name: 'about', hash: '#historia' } as RouteLocationRaw,
+    aboutStatute: { name: 'about', hash: '#estatuto' } as RouteLocationRaw,
+    aboutDirectorship: { name: 'about', hash: '#diretoria' } as RouteLocationRaw,
     agreementsConventions: { name: 'agreementsConventions' } as RouteLocationRaw,
     notice: { name: 'notice' } as RouteLocationRaw,
     unionize: { name: 'unionize' } as RouteLocationRaw,
@@ -91,16 +93,16 @@ onMounted(() => {
 
           <q-menu auto-close class="bg-accent text-text-inverse submenu--level2" anchor="top end" self="top start">
             <q-list dense>
-              <q-item clickable>
-                <q-item-section @click="clickRoute(state.menu.about)">História</q-item-section>
+              <q-item v-close-popup clickable @click="clickRoute(state.menu.aboutHistory)">
+                <q-item-section>História</q-item-section>
               </q-item>
               <q-separator class="menu__separator" />
-              <q-item clickable>
-                <q-item-section @click="clickRoute(state.menu.about)">Estatuto</q-item-section>
+              <q-item v-close-popup clickable @click="clickRoute(state.menu.aboutStatute)">
+                <q-item-section>Estatuto</q-item-section>
               </q-item>
               <q-separator class="menu__separator" />
-              <q-item clickable>
-                <q-item-section @click="clickRoute(state.menu.about)">Diretoria</q-item-section>
+              <q-item v-close-popup clickable @click="clickRoute(state.menu.aboutDirectorship)">
+                <q-item-section>Diretoria</q-item-section>
               </q-item>
             </q-list>
           </q-menu>

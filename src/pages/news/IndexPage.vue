@@ -11,6 +11,7 @@ import RelatedPublications from 'components/interface/RelatedPublications.vue'
 import TitleDefault from 'components/interface/TitleDefault.vue'
 import VideoDefault from 'components/interface/VideoDefault.vue'
 import AudioDefault from 'components/interface/AudioDefault.vue'
+import NewsGallery from 'components/interface/NewsGallery.vue'
 import { INews, IResponseNews, IResponseRelated, TNewsLayers } from 'src/types/INews'
 import SkeletonNews from 'components/interface/skeletons/SkeletonNews.vue'
 import ShareButtons from 'src/components/interface/ShareButtons.vue'
@@ -121,6 +122,8 @@ const computedLayout = computed(() => {
   return route.params
 })
 
+const hasGalleries = computed(() => state.news?.galleries?.some(gallery => gallery.items.length) ?? false)
+
 const init = () => {
   if (route.params && route.params.id.length) {
     if (!isNaN(route.params.id as unknown as number)) {
@@ -177,7 +180,7 @@ onMounted(async () => {
 <template>
   <q-page class="row justify-evenly">
     <div id="page__news" class="col">
-      <LayoutSection background="tertiary" type="top" cornerColor="secondary" min-height>
+      <LayoutSection background="tertiary" type="top" :corner-color="hasGalleries ? 'quaternary' : state.relatedNews.list.length ? 'tertiary' : 'secondary'" min-height>
         <div class="align-title">
           <TitleDefault title="Notícia" />
           <ShareButtons v-if="state.control.showContent" :title="state.news?.title" :description="state.news?.call" :image="`${state.news?.image_news?.path}/${state.news?.image_news?.file_name}`" />
@@ -230,7 +233,20 @@ onMounted(async () => {
           </div>
         </div>
 
-        <div class="related__publications" v-if="state.relatedNews.list.length">
+      </LayoutSection>
+
+      <LayoutSection
+        v-if="hasGalleries"
+        class="gallery__section"
+        background="quaternary"
+        cornerColor="tertiary"
+      >
+        <TitleDefault class="q-mb-xl" title="Galeria de imagens" />
+        <NewsGallery :galleries="state.news?.galleries ?? []" />
+      </LayoutSection>
+
+      <LayoutSection v-if="state.relatedNews.list.length" background="tertiary" cornerColor="secondary">
+        <div class="related__publications">
           <RelatedPublications :list="state.relatedNews.list" />
         </div>
       </LayoutSection>
@@ -241,6 +257,10 @@ onMounted(async () => {
 <style lang="scss">
 #page__news
 {
+  .gallery__section > .box__section > .section--content {
+    padding-bottom: 60px;
+  }
+
   .align-title {
     display: flex;
     flex-wrap: wrap-reverse;

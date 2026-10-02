@@ -17,6 +17,7 @@ import { AxiosError } from 'axios'
 import { INews, IResponseRelated } from 'src/types/INews'
 import { IGenericPage, IResponseGenericPage } from 'src/types/IGenericPage'
 import GenericPageService from 'src/services/GenericPageService'
+import DirectorshipService from 'src/services/DirectorshipService'
 
 interface IItemMember {
   title: string
@@ -38,6 +39,7 @@ const state = reactive({
     } as IDinamicList
   },
   legalMembers: {
+    loading: true,
     items: {
       screenBreak: 'col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2',
       currentScreen: {} as IDinamicScreen,
@@ -76,10 +78,13 @@ const setListDocuments = () => {
   state.documents.items.listProp.push({ title: 'Banco do Brasil', description: 'Relatorio ações coletivas', src: '/assets/svg/icon-pdf.svg#icon_pdf', link: `${baseURL}temporary/documents/departments-services/BANCO-DO-BRASIL-RELATORIO_ACOES_COLETIVAS.pdf` })
 }
 
-const setListLegalMembers = () => {
-  state.legalMembers.items.listProp.push({ title: 'Priscila', surname: 'Aguirres', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/008_JURIDICO-Priscila.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Jonas', surname: 'Castilhos', subtitle: 'Jurídico', description: 'Banrisul', image: `${baseURL}temporary/images/quem-somos/directorship/008_JURIDICO-Jonas.jpg` })
-  state.legalMembers.items.listProp.push({ title: 'Ricardo', surname: 'Stumpf', subtitle: 'Jurídico', description: 'Banco Do Brasil', image: `${baseURL}temporary/images/quem-somos/directorship/008_JURIDICO-Ricardo.jpg` })
+const setListLegalMembers = async () => {
+  state.legalMembers.loading = true
+  try {
+    state.legalMembers.items.listProp = await DirectorshipService.membersByCategory('Jurídico')
+  } finally {
+    state.legalMembers.loading = false
+  }
 }
 
 const setDepartmentPublications = () => {
@@ -238,7 +243,10 @@ onMounted(() => {
       </p> -->
       <!-- <CarouselSlide v-if="state.legalMembers.items.listProp.length" :listItems="state.legalMembers.items" :component-item="freezeComponentMembersItem" /> -->
 
-      <div class="row">
+      <div v-if="state.legalMembers.loading" class="directorship-loading">
+        <q-spinner color="primary" size="56px" />
+      </div>
+      <div v-else class="row">
         <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3" v-for="(member, key) in (state.legalMembers.items.listProp as IItemMember[])" :key="key">
           <MembersItem :title="member.title" :surname="member.surname" :subtitle="member.subtitle" :description="member.description" :image="member.image" background-color="tertiary" />
         </div>
@@ -250,6 +258,13 @@ onMounted(() => {
 <style lang="scss">
 #page__departments--default-open
 {
+  .directorship-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 360px;
+  }
+
   .images__floats {
     width: 100%;
     height: 400px;
