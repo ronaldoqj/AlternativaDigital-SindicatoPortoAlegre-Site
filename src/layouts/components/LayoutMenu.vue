@@ -17,7 +17,7 @@ const state = reactive({
     aboutDirectorship: { name: 'about', hash: '#diretoria' } as RouteLocationRaw,
     agreementsConventions: { name: 'agreementsConventions' } as RouteLocationRaw,
     notice: { name: 'notice' } as RouteLocationRaw,
-    unionize: { name: 'unionize' } as RouteLocationRaw,
+    unionize: 'https://bpa.completo.com.br/siw/#/',
     studioRAO: { name: 'studioRAO' } as RouteLocationRaw,
     publications: { name: 'publications' } as RouteLocationRaw,
 
@@ -298,7 +298,7 @@ onMounted(() => {
     </q-menu>
   </q-btn>
 
-  <q-btn class="menu__main" flat color="text-negative" label="Sindicalize-se" no-caps @click="clickRoute(state.menu.unionize)"></q-btn>
+  <q-btn class="menu__main" flat color="text-negative" label="Sindicalize-se" no-caps @click="clickLink(state.menu.unionize, '_blank')"></q-btn>
   <q-btn class="menu__main" flat color="text-negative" label="Contato" no-caps @click="clickRoute(state.menu.contact)"></q-btn>
 </template>
 
