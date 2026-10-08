@@ -166,7 +166,12 @@ export const getValidImageNews = (data: INews | IColumnImage<string>, column: TC
   return `${baseURL}${url}`
 }
 
-export const getValidImage = (image: any) => {
+interface LaravelImage {
+  path: string;
+  file_name: string;
+}
+
+export const getValidImage = (image: LaravelImage | null | undefined) : string => {
   let url = defaultImage
   if (image && image.path) {
     url = `${baseURL}${image.path}/${image.file_name}`
